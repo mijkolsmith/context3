@@ -42,13 +42,13 @@ public class TrainManager : MonoBehaviour
 
     public void SetDesiredLocationLeft()
     {
-        desiredPosition = stationLocation.position + new Vector3(-25,0,0);
+        desiredPosition = new Vector3(-100,0,5);
         Debug.Log("left");
     }
 
     public void SetDesiredLocationRight()
     {
-        desiredPosition = stationLocation.position + new Vector3(25, 0, 0);
+        desiredPosition = new Vector3(100,0,5);
         Debug.Log("right");
     }
 
