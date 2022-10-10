@@ -5,5 +5,5 @@ using UnityEngine;
 [System.Serializable]
 public class Train : MonoBehaviour
 {
-    public List<Wagon> wagons;
+    public List<WagonReference> wagons;
 }

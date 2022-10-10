@@ -6,12 +6,18 @@ using UnityEngine.Events;
 public class EventManager : MonoBehaviour
 {
 
-    [SerializeField] private UnityEvent trainEvent;
+    [SerializeField] private UnityEvent trainEventLeft;
+    [SerializeField] private UnityEvent trainEventHome;
+    [SerializeField] private UnityEvent trainEventRight;
 
-    public UnityEvent TrainEvent { get => trainEvent; set => trainEvent = value; }
+    public UnityEvent TrainEventLeft { get => trainEventLeft; set => trainEventLeft = value; }
+    public UnityEvent TrainEventHome { get => trainEventHome; set => trainEventHome = value; }
+    public UnityEvent TrainEventRight { get => trainEventRight; set => trainEventRight = value; }
 
-    private void Start()
-    {
-        TrainEvent = new UnityEvent();
-    }
+    //private void Start()
+    //{
+    //    trainEventLeft = new UnityEvent();
+    //    trainEventHome = new UnityEvent();
+    //    trainEventRight = new UnityEvent();
+    //}
 }

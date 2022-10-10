@@ -13,7 +13,13 @@ public class DebugCheatMenu : MonoBehaviour
 
     private void OnGUI()
     {
-        if (GUI.Button(new Rect(10, 70, 50, 30), "Train event"))
-            eventManager.TrainEvent.Invoke();
+        if (GUI.Button(new Rect(30, 70, 25, 30), "<"))
+            eventManager.TrainEventLeft.Invoke();
+
+        if (GUI.Button(new Rect(55, 70, 100, 30), "Home"))
+            eventManager.TrainEventHome.Invoke();
+
+        if (GUI.Button(new Rect(155, 70, 25, 30), ">"))
+            eventManager.TrainEventRight.Invoke();
     }
 }

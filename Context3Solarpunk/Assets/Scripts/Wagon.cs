@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public struct Wagon
+public class Wagon : MonoBehaviour
 {
-    public int wagonNmbr;
-    public GameObject wagonObject;
+    [SerializeField] private Transform leftWagonAttachPoint;
+    [SerializeField] private Transform rightWagonAttachPoint;
+
+    public Transform LeftWagonAttachPoint { get => leftWagonAttachPoint; set => leftWagonAttachPoint = value; }
+    public Transform RightWagonAttachPoint { get => rightWagonAttachPoint; set => rightWagonAttachPoint = value; }
 }
