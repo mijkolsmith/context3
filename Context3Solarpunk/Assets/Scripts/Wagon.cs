@@ -9,9 +9,9 @@ public class Wagon : MonoBehaviour
 
     [SerializeField] private bool hasPlayerInside = false;
 
-    public Transform LeftWagonAttachPoint { get => leftWagonAttachPoint; set => leftWagonAttachPoint = value; }
-    public Transform RightWagonAttachPoint { get => rightWagonAttachPoint; set => rightWagonAttachPoint = value; }
-    public bool HasPlayerInside { get => hasPlayerInside; set => hasPlayerInside = value; }
+    public Transform LeftWagonAttachPoint { get => leftWagonAttachPoint; private set => leftWagonAttachPoint = value; }
+    public Transform RightWagonAttachPoint { get => rightWagonAttachPoint; private set => rightWagonAttachPoint = value; }
+    public bool HasPlayerInside { get => hasPlayerInside; private set => hasPlayerInside = value; }
 
     private void OnTriggerEnter(Collider other)
     {
