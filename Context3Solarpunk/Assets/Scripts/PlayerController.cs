@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, EnableIf("canMoveInThreeDimensions")] private float verticalMovementSpeed = 1f; //Walking speed up and down
 
     [Header("State")]
-    [SerializeField, ReadOnly] private PlayerStates playerState; //Player is currently... (insert state here)
+    [SerializeField, ReadOnly] private PlayerStates playerState = PlayerStates.idle; //Player is currently... (insert state here)
 
     [Space]
     [SerializeField] private bool showDebugInfo = true;
@@ -58,10 +58,12 @@ public class PlayerController : MonoBehaviour
         if (movementInput != Vector3.zero)
         {
             movementVector = new Vector3(MovementInput.x * horizontalMovementSpeed, 0f, MovementInput.z * verticalMovementSpeed) * Time.fixedDeltaTime;
+            playerState = PlayerStates.walking;
         } 
         else
         {
             movementVector = Vector3.zero;
+            playerState = PlayerStates.idle;
         }
         Move();
     }

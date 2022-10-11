@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -404,7 +404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stationLocation: {fileID: 1505882118}
   desiredPosition: {x: 0, y: 0, z: 0}
-  speed: 350
+  speed: 250
   train: {fileID: 1807302250}
 --- !u!1 &818546134
 GameObject:
@@ -418,6 +418,7 @@ GameObject:
   - component: {fileID: 818546135}
   - component: {fileID: 818546137}
   - component: {fileID: 818546138}
+  - component: {fileID: 818546139}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -524,6 +525,20 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!114 &818546139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818546134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4684e3af30bbde45955d37590ba51c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentGameState: 0
+  trainManager: {fileID: 754711507}
 --- !u!1 &1505882117
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,7 +586,7 @@ GameObject:
   - component: {fileID: 1545867736}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -668,7 +683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96563a32e4dd7a0479504558f4986bf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMoveInThreeDimensions: 0
+  canMoveInThreeDimensions: 1
   horizontalMovementSpeed: 5
   verticalMovementSpeed: 5
   playerState: 0
@@ -738,7 +753,11 @@ MonoBehaviour:
   wagons:
   - wagonNmbr: 0
     wagonObject: {fileID: 773204834673399580, guid: 6f04eafc3e703514db04a02e9c3f0890, type: 3}
-  - wagonNmbr: 0
+  - wagonNmbr: 1
+    wagonObject: {fileID: 773204834673399580, guid: 6f04eafc3e703514db04a02e9c3f0890, type: 3}
+  - wagonNmbr: 2
+    wagonObject: {fileID: 773204834673399580, guid: 6f04eafc3e703514db04a02e9c3f0890, type: 3}
+  - wagonNmbr: 3
     wagonObject: {fileID: 773204834673399580, guid: 6f04eafc3e703514db04a02e9c3f0890, type: 3}
 --- !u!1 &1900759476
 GameObject:
