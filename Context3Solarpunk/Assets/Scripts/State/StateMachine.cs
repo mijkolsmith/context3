@@ -2,22 +2,25 @@
 
 public abstract class StateMachine : MonoBehaviour
 {
-	protected State state;
+	private State state;
+
+	protected State State { get => state; private set => state = value; }
+
 	public void SetState(State _state)
 	{
-		if (state != null)
-		{ StartCoroutine(state.Exit()); }
-		state = _state;
-		StartCoroutine(state.Start());
+		if (State != null)
+		{ StartCoroutine(State.Exit()); }
+		State = _state;
+		StartCoroutine(State.Start());
 	}
 
 	public State GetState()
     {
-		return state;
+		return State;
     }
 
 	public void Update()
 	{
-		StartCoroutine(state.Update());
+		StartCoroutine(State.Update());
 	}
 }

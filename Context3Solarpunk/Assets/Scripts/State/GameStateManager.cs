@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class GameStateManager : StateMachine
 {
-    //currently empty
+	private void Start()
+	{
+		SetState(new OnPlatformState());
+	}
 }
