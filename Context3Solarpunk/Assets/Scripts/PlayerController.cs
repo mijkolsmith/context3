@@ -22,6 +22,12 @@ public class PlayerController : MonoBehaviour
     [Header("State")]
     [SerializeField, ReadOnly] private PlayerStates playerState = PlayerStates.idle; //Player is currently... (insert state here)
 
+    [Header("Interaction")]
+    [SerializeField, ReadOnly] private bool interactionInput;
+    [SerializeField, ReadOnly] private IInteractable interactableObject;
+    [SerializeField, ReadOnly] private float interactionTimer;
+    [SerializeField] private float interactionTimeNeeded = 1f;
+
     [Space]
     [SerializeField] private bool showDebugInfo = true;
     [Header("Debug")]
@@ -66,6 +72,18 @@ public class PlayerController : MonoBehaviour
             playerState = PlayerStates.idle;
         }
         Move();
+
+        interactionInput = Input.GetKey(KeyCode.E);
+        if (interactionInput && interactableObject != null)
+		{
+            //play interaction animation
+            interactionTimer += Time.deltaTime;
+            if (interactionTimer > interactionTimeNeeded)
+			{
+                interactionTimer = 0;
+                interactableObject.Interact();
+			}
+		}
     }
 
     private void Move()
@@ -73,8 +91,15 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(transform.position + movementVector);
     }
 
-    private void Interact()
+    private void OnTriggerEnter(Collider other)
     {
+        //is the colliding object interactable? save it
+        interactableObject = other.GetComponent<IInteractable>() ?? other.GetComponent<IInteractable>();
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        //is the colliding object interactable? remove it
+        interactableObject = other.GetComponent<IInteractable>() ?? null;
     }
 }

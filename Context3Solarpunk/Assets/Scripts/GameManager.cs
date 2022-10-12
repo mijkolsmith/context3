@@ -6,7 +6,8 @@ public enum GameStates
 {
     nothing = 0,
     onPlatform = 1,
-    onTrain = 2
+    onTrain = 2,
+    onMovingTrain = 3
 }
 
 public class GameManager : MonoBehaviour
@@ -19,7 +20,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get => instance; private set => instance = value; }
     public GameStates CurrentGameState { get => currentGameState; set => currentGameState = value; }
 
-    // Start is called before the first frame update
     void Start()
     {
         if (Instance == null)
@@ -32,9 +32,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (currentGameState == GameStates.onMovingTrain)
+		{
+
+		}
     }
 }

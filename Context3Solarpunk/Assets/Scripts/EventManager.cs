@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class EventManager : MonoBehaviour
 {
-
     [SerializeField] private UnityEvent trainEventLeft;
     [SerializeField] private UnityEvent trainEventHome;
     [SerializeField] private UnityEvent trainEventRight;

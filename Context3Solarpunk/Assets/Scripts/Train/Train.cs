@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct WagonReference
+public class Train : MonoBehaviour
 {
-    public int wagonNmbr;
-    public GameObject wagonObject;
+    public List<WagonReference> wagons;
 }
