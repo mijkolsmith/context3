@@ -8,18 +8,20 @@ public class Wagon : MonoBehaviour
     [SerializeField] private Transform rightWagonAttachPoint;
 
     [SerializeField] private bool hasPlayerInside = false;
+    [SerializeField] private Unit unit;
 
     public Transform LeftWagonAttachPoint { get => leftWagonAttachPoint; private set => leftWagonAttachPoint = value; }
     public Transform RightWagonAttachPoint { get => rightWagonAttachPoint; private set => rightWagonAttachPoint = value; }
     public bool HasPlayerInside { get => hasPlayerInside; private set => hasPlayerInside = value; }
+	public Unit Unit { get => unit; private set => unit = value; }
 
-    private void OnTriggerEnter(Collider other)
+	private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log("Enters train");
             HasPlayerInside = true;
-            GameManager.Instance.CurrentGameState = GameStates.onTrain;
+            GameManager.Instance.GameStateManager.SetState(new OnTrainState());
         }
     }
 
@@ -29,7 +31,7 @@ public class Wagon : MonoBehaviour
         {
             Debug.Log("Exits train");
             HasPlayerInside = false;
-            GameManager.Instance.CurrentGameState = GameStates.onPlatform;
+            GameManager.Instance.GameStateManager.SetState(new OnPlatformState());
         }
     }
 }

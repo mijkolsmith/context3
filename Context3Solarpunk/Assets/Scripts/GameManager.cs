@@ -2,25 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameStates
-{
-    nothing = 0,
-    onPlatform = 1,
-    onTrain = 2,
-    onMovingTrain = 3
-}
-
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
-
-    [SerializeField] private GameStates currentGameState = GameStates.nothing;
-    [SerializeField] private TrainManager trainManager;
-
     public static GameManager Instance { get => instance; private set => instance = value; }
-    public GameStates CurrentGameState { get => currentGameState; set => currentGameState = value; }
 
-    void Start()
+    [SerializeField] private TrainManager trainManager;
+    [SerializeField] private GameStateManager gameStateManager;
+    public TrainManager TrainManager { get => trainManager; private set => trainManager = value; }
+    public GameStateManager GameStateManager { get => gameStateManager; private set => gameStateManager = value; }
+
+	void Start()
     {
         if (Instance == null)
         {
@@ -30,13 +22,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        GameStateManager = gameObject.AddComponent<GameStateManager>();
     }
 
     void Update()
     {
-        if (currentGameState == GameStates.onMovingTrain)
-		{
-
-		}
     }
 }

@@ -6,7 +6,7 @@ public class OnMovingTrainState : State
 {
 	private float unitBreakTimer = 0f;
 	//exact numbers need to be tested
-	private float unitBreakTimeNeeded = Random.Range(5,10);
+	private float unitBreakTimeNeeded = Random.Range(5f, 10f);
 	public bool isBroken = false;
 
 	public override IEnumerator Start()
@@ -20,6 +20,8 @@ public class OnMovingTrainState : State
 		if (unitBreakTimer > unitBreakTimeNeeded)
 		{
 			isBroken = true;
+			GameManager.Instance.TrainManager.BreakUnit(Random.Range(0, 2));
+			unitBreakTimeNeeded = Random.Range(25f, 30f);
 		}
 		yield return null;
 	}

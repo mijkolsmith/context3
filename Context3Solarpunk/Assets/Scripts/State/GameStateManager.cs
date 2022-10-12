@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class GameStateManager : StateMachine
 {
-    private State currentState;
+    //currently empty
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TrainManager : MonoBehaviour
@@ -16,6 +17,12 @@ public class TrainManager : MonoBehaviour
 	{
         InstantiateWagons();
 	}
+    private void Update()
+    {
+        var step = speed * Time.deltaTime;
+        transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, step);
+        //only move in OnMovingTrainState
+    }
 
     private void InstantiateWagons()
     {
@@ -38,14 +45,13 @@ public class TrainManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        var step = speed * Time.deltaTime;
-        transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, step);
-        //only move in OnMovingTrainState
-    }
+	public void BreakUnit(int unit)
+	{
+        if (unit == 0) train.wagons.Where(x => x.wagonType == WagonType.WAGON_HEATING_UNIT).FirstOrDefault().wagonObject.GetComponent<Wagon>().Unit.Break();
+        else if (unit == 1) train.wagons.Where(x => x.wagonType == WagonType.WAGON_COOLING_UNIT).FirstOrDefault().wagonObject.GetComponent<Wagon>().Unit.Break();
+	}
 
-    public void SetDesiredLocationLeft()
+	public void SetDesiredLocationLeft()
     {
         desiredPosition = new Vector3(-100,0,5);
         Debug.Log("left");
@@ -62,4 +68,5 @@ public class TrainManager : MonoBehaviour
         desiredPosition = new Vector3(0, 0, 5);
         Debug.Log("home");
     }
+
 }

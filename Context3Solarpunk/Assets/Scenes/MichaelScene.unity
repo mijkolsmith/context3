@@ -671,8 +671,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4684e3af30bbde45955d37590ba51c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentGameState: 0
   trainManager: {fileID: 754711507}
+  gameStateManager: {fileID: 0}
 --- !u!1 &924794209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,12 +1071,16 @@ MonoBehaviour:
   wagons:
   - wagonNmbr: 0
     wagonObject: {fileID: 5187331087499056358, guid: 0ec5bf11642496f44917e4d554fcf4c3, type: 3}
+    wagonType: 1
   - wagonNmbr: 1
     wagonObject: {fileID: 773204834673399580, guid: 6f04eafc3e703514db04a02e9c3f0890, type: 3}
+    wagonType: 0
   - wagonNmbr: 2
     wagonObject: {fileID: 773204834673399580, guid: 6f04eafc3e703514db04a02e9c3f0890, type: 3}
+    wagonType: 0
   - wagonNmbr: 3
     wagonObject: {fileID: 1970946687205144226, guid: 370b48839601f9040a7fe8dcc23b6308, type: 3}
+    wagonType: 2
 --- !u!1 &1845493563
 GameObject:
   m_ObjectHideFlags: 0
