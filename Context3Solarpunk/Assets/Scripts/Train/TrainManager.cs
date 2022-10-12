@@ -42,6 +42,7 @@ public class TrainManager : MonoBehaviour
     {
         var step = speed * Time.deltaTime;
         transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, step);
+        //only move in OnMovingTrainState
     }
 
     public void SetDesiredLocationLeft()
