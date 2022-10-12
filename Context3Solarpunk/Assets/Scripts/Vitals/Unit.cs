@@ -7,7 +7,7 @@ public class Unit : MonoBehaviour, IInteractable
 {
     [SerializeField] private Material unitWorkingMaterial;
     [SerializeField] private Material unitBrokenMaterial;
-	private MeshRenderer meshRenderer;
+	[SerializeField, ReadOnly] public MeshRenderer meshRenderer;
 	[SerializeField] protected bool broken;
 	public bool Broken { get => broken; protected set => broken = value; }
 
@@ -25,11 +25,14 @@ public class Unit : MonoBehaviour, IInteractable
 	{
 		meshRenderer.material = unitBrokenMaterial;
 		Broken = true;
+		GameManager.Instance.ChangePassengerHappiness(-5);
 	}
 
 	private void Fix()
 	{
 		meshRenderer.material = unitWorkingMaterial;
+		if (Broken == true) GameManager.Instance.ChangePassengerHappiness(20);
 		Broken = false;
+		
 	}
 }

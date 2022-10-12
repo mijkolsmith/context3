@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +11,9 @@ public class GameManager : MonoBehaviour
     public TrainManager TrainManager { get => trainManager; private set => trainManager = value; }
     public GameStateManager GameStateManager { get => gameStateManager; private set => gameStateManager = value; }
 
-	void Start()
+    [SerializeField] private Slider passengerHappinessSlider;
+
+    void Start()
     {
         if (Instance == null)
         {
@@ -28,5 +29,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        
     }
+
+    public void ChangePassengerHappiness(int amount)
+	{
+        passengerHappinessSlider.value += amount;
+	}
 }

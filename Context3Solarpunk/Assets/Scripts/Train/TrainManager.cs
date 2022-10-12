@@ -32,15 +32,19 @@ public class TrainManager : MonoBehaviour
         {
             if (i == 0) 
             {
-                GameObject go = Instantiate(train.wagons[i].wagonObject, stationLocation);
+                WagonReference wr = train.wagons[i];
+                wr.wagonObject = Instantiate(train.wagons[i].wagonObject, stationLocation);
+                train.wagons[i] = wr;
             } 
             else
             {
-                GameObject go = Instantiate(train.wagons[i].wagonObject, new Vector3(
+                WagonReference wr = train.wagons[i];
+                wr.wagonObject = Instantiate(train.wagons[i].wagonObject, new Vector3(
                     stationLocation.position.x + (i * 16), 
                     stationLocation.position.y, 
                     stationLocation.position.z), 
                     Quaternion.identity, stationLocation);
+                train.wagons[i] = wr;
             }
         }
     }

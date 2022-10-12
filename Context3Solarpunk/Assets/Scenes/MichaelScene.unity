@@ -673,6 +673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trainManager: {fileID: 754711507}
   gameStateManager: {fileID: 0}
+  passengerHappinessSlider: {fileID: 1308243837}
 --- !u!1 &924794209
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,9 +835,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 924794210}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0
+  m_MaxValue: 100
+  m_WholeNumbers: 1
+  m_Value: 50
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -989,10 +990,10 @@ MonoBehaviour:
   horizontalMovementSpeed: 5
   verticalMovementSpeed: 5
   playerState: 0
+  interactionTimeNeeded: 1
+  showDebugInfo: 0
   interactionInput: 0
   interactionTimer: 0
-  interactionTimeNeeded: 5
-  showDebugInfo: 0
   movementInput: {x: 0, y: 0, z: 0}
   movementVector: {x: 0, y: 0, z: 0}
 --- !u!54 &1545867737

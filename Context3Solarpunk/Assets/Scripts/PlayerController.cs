@@ -23,14 +23,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField, ReadOnly] private PlayerStates playerState = PlayerStates.idle; //Player is currently... (insert state here)
 
     [Header("Interaction")]
-    [SerializeField, ReadOnly] private bool interactionInput;
-    [SerializeField, ReadOnly] private IInteractable interactableObject;
-    [SerializeField, ReadOnly] private float interactionTimer;
+    [ReadOnly] private IInteractable interactableObject;
     [SerializeField] private float interactionTimeNeeded = 1f;
 
     [Space]
     [SerializeField] private bool showDebugInfo = true;
     [Header("Debug")]
+    [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool interactionInput;
+
+    [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private float interactionTimer;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private Vector3 movementInput;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private Vector3 movementVector;
 
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour
         Move();
 
         interactionInput = Input.GetKey(KeyCode.E);
+        Debug.Log(interactableObject);
         if (interactionInput && interactableObject != null)
 		{
             //play interaction animation
@@ -84,6 +86,7 @@ public class PlayerController : MonoBehaviour
                 interactableObject.Interact();
 			}
 		}
+        else interactionTimer = 0;
     }
 
     private void Move()

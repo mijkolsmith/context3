@@ -6,6 +6,6 @@ public class GameStateManager : StateMachine
 {
 	private void Start()
 	{
-		SetState(new OnPlatformState());
+		SetState(new OnMovingTrainState());
 	}
 }

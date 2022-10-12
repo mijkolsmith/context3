@@ -21,7 +21,7 @@ public class Wagon : MonoBehaviour
         {
             Debug.Log("Enters train");
             HasPlayerInside = true;
-            GameManager.Instance.GameStateManager.SetState(new OnTrainState());
+            //GameManager.Instance.GameStateManager.SetState(new OnTrainState());
         }
     }
 
@@ -31,7 +31,7 @@ public class Wagon : MonoBehaviour
         {
             Debug.Log("Exits train");
             HasPlayerInside = false;
-            GameManager.Instance.GameStateManager.SetState(new OnPlatformState());
+            //GameManager.Instance.GameStateManager.SetState(new OnPlatformState());
         }
     }
 }

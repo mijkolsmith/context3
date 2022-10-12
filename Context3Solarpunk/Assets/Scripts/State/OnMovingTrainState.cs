@@ -9,6 +9,9 @@ public class OnMovingTrainState : State
 	private float unitBreakTimeNeeded = Random.Range(5f, 10f);
 	public bool isBroken = false;
 
+	private float happinessTickdownTimer = 0f;
+	private float happinessTickdownTimeNeeded = 5f;
+
 	public override IEnumerator Start()
 	{
 		yield return null;
@@ -22,6 +25,14 @@ public class OnMovingTrainState : State
 			isBroken = true;
 			GameManager.Instance.TrainManager.BreakUnit(Random.Range(0, 2));
 			unitBreakTimeNeeded = Random.Range(25f, 30f);
+			unitBreakTimer = 0;
+		}
+
+		happinessTickdownTimer += Time.deltaTime;
+		if (happinessTickdownTimer > happinessTickdownTimeNeeded)
+		{
+			GameManager.Instance.ChangePassengerHappiness(-1);
+			happinessTickdownTimer = 0;
 		}
 		yield return null;
 	}
