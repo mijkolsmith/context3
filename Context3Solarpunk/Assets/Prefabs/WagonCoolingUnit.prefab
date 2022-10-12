@@ -299,14 +299,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1970946687205144226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.611712, y: 0, z: 0.42374516}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1076617932331039029}
   - {fileID: 3906972082111613192}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7689479250629717319
 MonoBehaviour:
@@ -323,6 +323,7 @@ MonoBehaviour:
   leftWagonAttachPoint: {fileID: 2654645771610932053}
   rightWagonAttachPoint: {fileID: 9199022905553005552}
   hasPlayerInside: 0
+  unit: {fileID: 0}
 --- !u!65 &4527630671277183356
 BoxCollider:
   m_ObjectHideFlags: 0
