@@ -1,26 +1,37 @@
 ﻿using UnityEngine;
+using NaughtyAttributes;
 
 public abstract class StateMachine : MonoBehaviour
 {
-	private State state;
+    [SerializeField, ReadOnly] private State state;
 
-	protected State State { get => state; private set => state = value; }
+    [SerializeField, ReadOnly] private string currentStateInformation;
 
-	public void SetState(State _state)
-	{
-		if (State != null)
-		{ StartCoroutine(State.Exit()); }
-		State = _state;
-		StartCoroutine(State.Start());
-	}
 
-	public State GetState()
+
+    protected State State { get => state; private set => state = value; }
+    public string CurrentStateInformation
     {
-		return State;
+        get => currentStateInformation;
+        set => currentStateInformation = value;
     }
 
-	public void Update()
-	{
-		StartCoroutine(State.Update());
-	}
+    public void SetState(State _state)
+    {
+        if (State != null)
+        { StartCoroutine(State.Exit()); }
+        State = _state;
+        currentStateInformation = _state.ToString();
+        StartCoroutine(State.Start());
+    }
+
+    public State GetState()
+    {
+        return State;
+    }
+
+    public void Update()
+    {
+        StartCoroutine(State.Update());
+    }
 }

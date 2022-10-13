@@ -75,7 +75,6 @@ public class PlayerController : MonoBehaviour
         Move();
 
         interactionInput = Input.GetKey(KeyCode.E);
-        Debug.Log(interactableObject);
         if (interactionInput && interactableObject != null)
 		{
             //play interaction animation
