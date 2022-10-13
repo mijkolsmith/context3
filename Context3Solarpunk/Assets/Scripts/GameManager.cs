@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using NaughtyAttributes;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get => instance; private set => instance = value; }
 
     [SerializeField] private TrainManager trainManager;
-    [SerializeField] private GameStateManager gameStateManager;
+    private GameStateManager gameStateManager;
     public TrainManager TrainManager { get => trainManager; private set => trainManager = value; }
     public GameStateManager GameStateManager { get => gameStateManager; private set => gameStateManager = value; }
 
