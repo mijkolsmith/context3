@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameStateManager GameStateManager { get => gameStateManager; private set => gameStateManager = value; }
 
     [SerializeField] private Slider passengerHappinessSlider;
+    [MinValue(0), MaxValue(3)] public int trashCount;
 
     void Start()
     {
