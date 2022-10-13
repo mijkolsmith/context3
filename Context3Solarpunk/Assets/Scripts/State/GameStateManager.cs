@@ -6,6 +6,7 @@ public class GameStateManager : StateMachine
 { 
 	private void Start()
 	{
+		//TEMPORARY FOR TESTING
 		SetState(new OnMovingTrainState());
 	}
 }

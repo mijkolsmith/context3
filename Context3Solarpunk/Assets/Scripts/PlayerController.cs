@@ -30,8 +30,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool showDebugInfo = true;
     [Header("Debug")]
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool interactionInput;
-
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private float interactionTimer;
+    [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private GameObject interactableGameObject;
+
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private Vector3 movementInput;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private Vector3 movementVector;
 
@@ -48,7 +49,6 @@ public class PlayerController : MonoBehaviour
     public float VerticalMovementSpeed { get => verticalMovementSpeed; set => verticalMovementSpeed = value; }
     internal PlayerStates PlayerState { get => playerState; set => playerState = value; }
     #endregion
-
 
     private void Start()
     {
@@ -95,13 +95,25 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //is the colliding object interactable? save it
-        interactableObject = other.GetComponent<IInteractable>() ?? other.GetComponent<IInteractable>();
+        //is the colliding object interactable? save it, otherwise keep what was saved previously
+        interactableObject = other.GetComponent<IInteractable>() != null ? other.GetComponent<IInteractable>() : interactableObject;
+
+        //Debug info updater
+        if (showDebugInfo)
+        {
+            interactableGameObject = other.GetComponent<IInteractable>() != null ? other.gameObject : interactableGameObject;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         //is the colliding object interactable? remove it
-        interactableObject = other.GetComponent<IInteractable>() ?? null;
+        interactableObject = other.GetComponent<IInteractable>() != null ? null : interactableObject;
+
+        //Debug info updater
+        if (showDebugInfo)
+        {
+            interactableGameObject = other.GetComponent<IInteractable>() != null ? null : interactableGameObject;
+        }
     }
 }

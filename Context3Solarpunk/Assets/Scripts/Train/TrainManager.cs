@@ -86,7 +86,7 @@ public class TrainManager : MonoBehaviour
             if (train.wagons[i].wagonObject.GetComponent<Wagon>().HasPlayerInside)
             {
                 playerInTrain = true;
-                GameManager.Instance.GameStateManager.SetState(new OnTrainState());
+                //GameManager.Instance.GameStateManager.SetState(new OnTrainState());
                 Debug.Log("Player on train, current state: " + GameManager.Instance.GameStateManager.GetState());
                 var wallRenderers = train.wagons[i].wagon.FrontWall.GetComponentsInChildren<MeshRenderer>();
                 for (int j = 0; j < wallRenderers.Length; j++)
@@ -98,7 +98,7 @@ public class TrainManager : MonoBehaviour
             else
             {
                 playerInTrain = false;
-                GameManager.Instance.GameStateManager.SetState(new OnPlatformState()); //stop creating new ones every frame
+                //GameManager.Instance.GameStateManager.SetState(new OnPlatformState()); //TODO: stop creating new ones every frame
                 Debug.Log("Player on platform, current state: " + GameManager.Instance.GameStateManager.GetState());
                 var wallRenderers = train.wagons[i].wagon.FrontWall.GetComponentsInChildren<MeshRenderer>();
                 for (int j = 0; j < wallRenderers.Length; j++)

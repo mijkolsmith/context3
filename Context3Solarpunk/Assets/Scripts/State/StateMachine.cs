@@ -4,10 +4,7 @@ using NaughtyAttributes;
 public abstract class StateMachine : MonoBehaviour
 {
     [SerializeField, ReadOnly] private State state;
-
     [SerializeField, ReadOnly] private string currentStateInformation;
-
-
 
     protected State State { get => state; private set => state = value; }
     public string CurrentStateInformation

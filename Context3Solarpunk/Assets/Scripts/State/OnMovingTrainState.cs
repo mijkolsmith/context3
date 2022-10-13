@@ -15,7 +15,6 @@ public class OnMovingTrainState : State
 
 	private float trashTimer = 0f;
 	private float trashTimeNeeded = Random.Range(15f, 30f);
-	[MinValue(0), MaxValue(3)] private int trashAmount;
 
 	public override IEnumerator Start()
 	{
@@ -48,9 +47,10 @@ public class OnMovingTrainState : State
 		if (trashTimer > trashTimeNeeded)
 		{
 			GameManager.Instance.trashCount++;
-			GameManager.Instance.TrainManager.train.wagons[Random.Range(0, GameManager.Instance.TrainManager.train.wagons.Count)].wagonObject.GetComponent<Wagon>().SpawnTrash();
+			GameManager.Instance.TrainManager.train.wagons[Random.Range(0, GameManager.Instance.TrainManager.train.wagons.Count)].wagon.SpawnTrash();
 			trashTimeNeeded = Random.Range(15f, 30f);
 			trashTimer = 0;
+			Debug.Log("spawntrash");
 		}
 	}
 
