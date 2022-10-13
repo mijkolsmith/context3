@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Wagon : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Wagon : MonoBehaviour
     [SerializeField] private bool hasPlayerInside = false;
     [SerializeField] private Unit unit;
     [SerializeField] private List<Trash> trash;
+    [SerializeField] private List<Vector3> trashcanSpawns;
 
     [SerializeField] private GameObject frontWall;
 
@@ -26,8 +28,16 @@ public class Wagon : MonoBehaviour
         currentTrash.Spawn((TrashType)Random.Range(1,4));
     }
 
-    //Yes this polls every frame whether or not the player is in it but it wouldn't work otherwise
-    private void OnTriggerStay(Collider other)
+    public void SpawnTrashcan(GameObject trashcanPrefab)
+	{
+        Vector3 pos = trashcanSpawns[Random.Range(0, trashcanSpawns.Count)];
+        trashcanSpawns.Remove(pos);
+		GameObject go = Instantiate(trashcanPrefab, pos, Quaternion.identity);
+        go.transform.SetParent(transform, false);
+	}
+
+	//Yes this polls every frame whether or not the player is in it but it wouldn't work otherwise
+	private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {

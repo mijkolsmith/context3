@@ -52,4 +52,19 @@ public class GameManager : MonoBehaviour
             }
 		}
 	}
+
+    public bool RemoveTrashFromInventory(TrashType trashType)
+    {
+        foreach (Image trashHolder in trashHolders)
+        {
+            if (trashHolder.sprite == cupSprites[1] && trashType == TrashType.TRASH1 || 
+                trashHolder.sprite == cupSprites[2] && trashType == TrashType.TRASH2 || 
+                trashHolder.sprite == cupSprites[3] && trashType == TrashType.TRASH3)
+            {
+                trashHolder.sprite = cupSprites[0];
+                return true;
+            }
+        }
+        return false;
+    }
 }

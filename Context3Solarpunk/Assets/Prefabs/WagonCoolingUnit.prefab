@@ -370,6 +370,9 @@ MonoBehaviour:
   trash:
   - {fileID: 7083322117524978262}
   - {fileID: 5337260643878292363}
+  trashcanSpawns:
+  - {x: -6, y: 1.5, z: 1.5}
+  - {x: 0, y: 1.5, z: 1.5}
   frontWall: {fileID: 324124205138820559}
 --- !u!65 &4527630671277183356
 BoxCollider:
@@ -593,6 +596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnHappinessValue: -1
   cleanHappinessValue: 15
+  trashType: 0
 --- !u!1 &2835226153948954409
 GameObject:
   m_ObjectHideFlags: 0
@@ -2625,3 +2629,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnHappinessValue: -1
   cleanHappinessValue: 15
+  trashType: 0

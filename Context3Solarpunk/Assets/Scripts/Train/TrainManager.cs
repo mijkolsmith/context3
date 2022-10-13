@@ -9,6 +9,8 @@ public class TrainManager : MonoBehaviour
     [SerializeField] private Vector3 desiredPosition;
     [SerializeField] private float speed = 1.0f;
     [SerializeField] private bool playerInTrain = false;
+    [SerializeField] private GameObject trashcanPrefab;
+    [SerializeField] private Material[] trashcanMaterials;
 
     private Vector3 velocity = Vector3.zero;
 
@@ -18,6 +20,7 @@ public class TrainManager : MonoBehaviour
     {
         InstantiateWagons();
     }
+
     private void Update()
     {
         var step = speed * Time.deltaTime;
@@ -51,6 +54,28 @@ public class TrainManager : MonoBehaviour
                 train.wagons[i] = wr;
             }
         }
+
+        //Spawn trashcans
+        List<WagonReference> unusedWagons = new List<WagonReference>(train.wagons);
+        WagonReference wagonReference;
+
+        trashcanPrefab.GetComponent<MeshRenderer>().material = trashcanMaterials[0];
+        trashcanPrefab.GetComponent<Trashcan>().trashType = TrashType.TRASH1;
+        wagonReference = unusedWagons[Random.Range(0, unusedWagons.Count)];
+        wagonReference.wagon.SpawnTrashcan(trashcanPrefab);
+        unusedWagons.Remove(wagonReference);
+
+        trashcanPrefab.GetComponent<MeshRenderer>().material = trashcanMaterials[1];
+        trashcanPrefab.GetComponent<Trashcan>().trashType = TrashType.TRASH2;
+        wagonReference = unusedWagons[Random.Range(0, unusedWagons.Count)];
+        wagonReference.wagon.SpawnTrashcan(trashcanPrefab);
+        unusedWagons.Remove(wagonReference);
+
+        trashcanPrefab.GetComponent<MeshRenderer>().material = trashcanMaterials[2];
+        trashcanPrefab.GetComponent<Trashcan>().trashType = TrashType.TRASH3;
+        wagonReference = unusedWagons[Random.Range(0, unusedWagons.Count)];
+        wagonReference.wagon.SpawnTrashcan(trashcanPrefab);
+        unusedWagons.Remove(wagonReference);
     }
 
     public void BreakUnit(int unit)

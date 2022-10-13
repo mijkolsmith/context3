@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
 			{
                 interactionTimer = 0;
                 interactableObject.Interact();
+                interactableObject = null;
 			}
 		}
         else interactionTimer = 0;
@@ -102,6 +103,15 @@ public class PlayerController : MonoBehaviour
         if (showDebugInfo)
         {
             interactableGameObject = other.GetComponent<IInteractable>() != null ? other.gameObject : interactableGameObject;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        //is the colliding object interactable? save it, otherwise keep what was saved previously
+        if (interactableObject == null && other.GetComponent<IInteractable>() != null)
+        {
+            interactableObject = other.GetComponent<IInteractable>();
         }
     }
 
