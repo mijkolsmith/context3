@@ -13,7 +13,9 @@ public class GameManager : MonoBehaviour
     public GameStateManager GameStateManager { get => gameStateManager; private set => gameStateManager = value; }
 
     [SerializeField] private Slider passengerHappinessSlider;
-    [MinValue(0), MaxValue(3)] public int trashCount;
+    [MinValue(0), MaxValue(3), ReadOnly] public int trashCount;
+    [SerializeField] private Sprite[] cupSprites;
+    [SerializeField] private Image[] trashHolders;
 
     void Start()
     {
@@ -37,5 +39,17 @@ public class GameManager : MonoBehaviour
     public void ChangePassengerHappiness(int amount)
 	{
         passengerHappinessSlider.value += amount;
+	}
+
+    public void AddTrashToInventory(TrashType trashType)
+	{
+        foreach (Image trashHolder in trashHolders)
+		{
+            if (trashHolder.sprite == cupSprites[0])
+			{
+                trashHolder.sprite = cupSprites[(int)trashType];
+                break;
+            }
+		}
 	}
 }
