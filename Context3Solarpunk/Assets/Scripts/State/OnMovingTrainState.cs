@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class OnMovingTrainState : State
 {
@@ -12,6 +13,10 @@ public class OnMovingTrainState : State
 	private float happinessTickdownTimer = 0f;
 	private float happinessTickdownTimeNeeded = 5f;
 
+	private float trashTimer = 0f;
+	private float trashTimeNeeded = Random.Range(15f, 30f);
+	[MinValue(0), MaxValue(3)] private int trashAmount;
+
 	public override IEnumerator Start()
 	{
 		yield return null;
@@ -19,7 +24,16 @@ public class OnMovingTrainState : State
 
 	public override IEnumerator Update()
 	{
-		//Unit breaking mechanic
+		//Passenger happiness game mechanic
+		happinessTickdownTimer += Time.deltaTime;
+		if (happinessTickdownTimer > happinessTickdownTimeNeeded)
+		{
+			GameManager.Instance.ChangePassengerHappiness(- GameManager.Instance.trashCount - 1);
+			happinessTickdownTimer = 0;
+		}
+		yield return null;
+
+		//Unit breaking game mechanic
 		if (!isBroken) unitBreakTimer += Time.deltaTime;
 		if (unitBreakTimer > unitBreakTimeNeeded)
 		{
@@ -29,14 +43,15 @@ public class OnMovingTrainState : State
 			unitBreakTimer = 0;
 		}
 
-		//Passenger happiness mechanic
-		happinessTickdownTimer += Time.deltaTime;
-		if (happinessTickdownTimer > happinessTickdownTimeNeeded)
+		//Trash game mechanic
+		if (GameManager.Instance.trashCount <= 3) trashTimer += Time.deltaTime;
+		if (trashTimer > trashTimeNeeded)
 		{
-			GameManager.Instance.ChangePassengerHappiness(-1);
-			happinessTickdownTimer = 0;
+			GameManager.Instance.trashCount++;
+			GameManager.Instance.TrainManager.train.wagons[Random.Range(0, GameManager.Instance.TrainManager.train.wagons.Count)].wagonObject.GetComponent<Wagon>().SpawnTrash();
+			trashTimeNeeded = Random.Range(15f, 30f);
+			trashTimer = 0;
 		}
-		yield return null;
 	}
 
 	public override IEnumerator Exit()

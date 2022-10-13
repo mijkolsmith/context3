@@ -9,12 +9,19 @@ public class Wagon : MonoBehaviour
 
     [SerializeField] private bool hasPlayerInside = false;
     [SerializeField] private Unit unit;
-    [SerializeField] private GameObject trash1, trash2;
+    [SerializeField] private List<Trash> trash;
 
     public Transform LeftWagonAttachPoint { get => leftWagonAttachPoint; private set => leftWagonAttachPoint = value; }
     public Transform RightWagonAttachPoint { get => rightWagonAttachPoint; private set => rightWagonAttachPoint = value; }
     public bool HasPlayerInside { get => hasPlayerInside; private set => hasPlayerInside = value; }
 	public Unit Unit { get => unit; private set => unit = value; }
+
+    public void SpawnTrash()
+	{
+        Trash currentTrash = trash[Random.Range(0, trash.Count)];
+        currentTrash.gameObject.SetActive(true);
+        currentTrash.Spawn();
+	}
 
 	private void OnTriggerEnter(Collider other)
     {
