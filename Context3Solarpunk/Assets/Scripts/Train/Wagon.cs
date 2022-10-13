@@ -9,6 +9,7 @@ public class Wagon : MonoBehaviour
 
     [SerializeField] private bool hasPlayerInside = false;
     [SerializeField] private Unit unit;
+    [SerializeField] private GameObject trash1, trash2;
 
     public Transform LeftWagonAttachPoint { get => leftWagonAttachPoint; private set => leftWagonAttachPoint = value; }
     public Transform RightWagonAttachPoint { get => rightWagonAttachPoint; private set => rightWagonAttachPoint = value; }

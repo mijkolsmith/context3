@@ -19,6 +19,7 @@ public class OnMovingTrainState : State
 
 	public override IEnumerator Update()
 	{
+		//Unit breaking mechanic
 		if (!isBroken) unitBreakTimer += Time.deltaTime;
 		if (unitBreakTimer > unitBreakTimeNeeded)
 		{
@@ -28,6 +29,7 @@ public class OnMovingTrainState : State
 			unitBreakTimer = 0;
 		}
 
+		//Passenger happiness mechanic
 		happinessTickdownTimer += Time.deltaTime;
 		if (happinessTickdownTimer > happinessTickdownTimeNeeded)
 		{
