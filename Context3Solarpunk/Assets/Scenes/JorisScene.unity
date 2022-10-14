@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -808,7 +808,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754711504}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: 7.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -830,8 +830,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stationLocation: {fileID: 1505882118}
-  desiredPosition: {x: 0, y: 0, z: 0}
+  desiredPosition: {x: 0, y: 0, z: 7.8}
   speed: 250
+  playerInTrain: 0
+  trashcanPrefab: {fileID: 3566035172669984585, guid: 5ca4ad2d33ed3b042a3d95d7ddff4054, type: 3}
+  trashcanMaterials:
+  - {fileID: 2100000, guid: ccc8ed4c307046b468ef6ecd95f167e8, type: 2}
+  - {fileID: 2100000, guid: f78ab83a8612bac43bd3f95846fc81e7, type: 2}
+  - {fileID: 2100000, guid: eeab24e5771132747b09dd3a576af174, type: 2}
   train: {fileID: 1807302250}
 --- !u!1 &814238436
 GameObject:
@@ -877,8 +883,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb3c7c6b37f217478546059fa7e0324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  landscapePrefab: {fileID: 6736951353357499922, guid: 5912b7440af5f3a42a7327ae8f821d7b, type: 3}
-  amountOfTiles: 5
+  landscapePrefab: {fileID: 6736951353357499922, guid: 1e0310a1de26d97479ea2eb375dcc75e, type: 3}
+  platformPrefab: {fileID: 0}
+  amountOfTiles: 35
   movementState: 0
   groundObjects: []
   maxSpeed: 0.2
@@ -1018,6 +1025,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trainManager: {fileID: 754711507}
   passengerHappinessSlider: {fileID: 1423142665}
+  trashCount: 0
+  cupSprites: []
+  trashHolders: []
 --- !u!114 &818546140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1357,6 +1367,7 @@ MonoBehaviour:
   showDebugInfo: 1
   interactionInput: 0
   interactionTimer: 0
+  interactableGameObject: {fileID: 0}
   movementInput: {x: 0, y: 0, z: 0}
   movementVector: {x: 0, y: 0, z: 0}
 --- !u!54 &1545867737
@@ -1436,15 +1447,19 @@ MonoBehaviour:
   - wagonNmbr: 0
     wagonObject: {fileID: 5187331087499056358, guid: 0ec5bf11642496f44917e4d554fcf4c3, type: 3}
     wagonType: 1
+    wagon: {fileID: 0}
   - wagonNmbr: 1
     wagonObject: {fileID: 773204834673399580, guid: 6f04eafc3e703514db04a02e9c3f0890, type: 3}
     wagonType: 0
+    wagon: {fileID: 0}
   - wagonNmbr: 2
     wagonObject: {fileID: 773204834673399580, guid: 6f04eafc3e703514db04a02e9c3f0890, type: 3}
     wagonType: 0
+    wagon: {fileID: 0}
   - wagonNmbr: 3
     wagonObject: {fileID: 1970946687205144226, guid: 370b48839601f9040a7fe8dcc23b6308, type: 3}
     wagonType: 2
+    wagon: {fileID: 0}
 --- !u!1 &1891773751
 GameObject:
   m_ObjectHideFlags: 0

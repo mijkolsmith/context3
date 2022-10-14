@@ -21,29 +21,41 @@ public class Wagon : MonoBehaviour
     public Unit Unit { get => unit; private set => unit = value; }
     public GameObject FrontWall { get => frontWall; set => frontWall = value; }
 
+    private void Update()
+    {
+        if (HasPlayerInside)
+        {
+            EnableFrontWallRenderers();
+        } 
+        else
+        {
+            DisableFrontWallRenderers();
+        }
+    }
+
     public void SpawnTrash()
     {
         Trash currentTrash = trash[Random.Range(0, trash.Count)];
         currentTrash.gameObject.SetActive(true);
-        currentTrash.Spawn((TrashType)Random.Range(1,4));
+        currentTrash.Spawn((TrashType)Random.Range(1, 4));
     }
 
     public void SpawnTrashcan(GameObject trashcanPrefab)
-	{
+    {
         Vector3 pos = trashcanSpawns[Random.Range(0, trashcanSpawns.Count)];
         trashcanSpawns.Remove(pos);
-		GameObject go = Instantiate(trashcanPrefab, pos, Quaternion.identity);
+        GameObject go = Instantiate(trashcanPrefab, pos, Quaternion.identity);
         go.transform.SetParent(transform, false);
-	}
+    }
 
-	//Yes this polls every frame whether or not the player is in it but it wouldn't work otherwise
-	private void OnTriggerStay(Collider other)
+    //Yes this polls every frame whether or not the player is in it but it wouldn't work otherwise
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             hasPlayerInside = true;
         }
-        else 
+        else
         {
             hasPlayerInside = false;
         }
@@ -55,4 +67,25 @@ public class Wagon : MonoBehaviour
             hasPlayerInside = false;
         }
     }
+
+    //repeating code, but wouldn't work in the time I had to fix this so this is how it be for now
+    private void EnableFrontWallRenderers()
+    {
+        var wallRenderers = FrontWall.GetComponentsInChildren<MeshRenderer>();
+        for (int j = 0; j < wallRenderers.Length; j++)
+        {
+            wallRenderers[j].enabled = false;
+        }
+    }
+
+    private void DisableFrontWallRenderers()
+    {
+        var wallRenderers = FrontWall.GetComponentsInChildren<MeshRenderer>();
+        for (int j = 0; j < wallRenderers.Length; j++)
+        {
+            wallRenderers[j].enabled = true;
+        }
+    }
+
+
 }

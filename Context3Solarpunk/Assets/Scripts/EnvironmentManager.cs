@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 
-enum MovementState
+public enum MovementState
 {
     isStandingStill = 0,
     isAccelerating = 1,
@@ -14,13 +14,13 @@ enum MovementState
 public class EnvironmentManager : MonoBehaviour
 {
     [SerializeField] private GameObject landscapePrefab;
+    [SerializeField] private GameObject platformPrefab;
     [SerializeField] private int amountOfTiles = 5;
 
     [SerializeField] private MovementState movementState = MovementState.isStandingStill;
 
     //For now this class is written in 2D, an eventual 3D implementation is possible in the future
     [SerializeField] private List<GroundObject> groundObjects = new List<GroundObject>();
-
 
     [SerializeField] private float maxSpeed = 5.0f;
     [SerializeField] private float acceleration = 0.01f;
@@ -47,7 +47,7 @@ public class EnvironmentManager : MonoBehaviour
             }
         }
         wrapPosition = groundObjects[groundObjects.Count - 1].transform.position;
-        Debug.Log(wrapPosition);
+        gameObject.transform.position -= new Vector3(wrapPosition.x / 2, 0,0);
     }
 
     // Update is called once per frame
@@ -94,7 +94,7 @@ public class EnvironmentManager : MonoBehaviour
         for (int i = 0; i < groundObjects.Count; i++)
         {
             groundObjects[i].transform.position += new Vector3(currentSpeed, 0, 0);
-            if (groundObjects[i].transform.position.x < 0)
+            if (groundObjects[i].transform.position.x < (wrapPosition.x * -1))
             {
                 groundObjects[i].transform.position = wrapPosition;
             }

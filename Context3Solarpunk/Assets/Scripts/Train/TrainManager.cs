@@ -88,52 +88,50 @@ public class TrainManager : MonoBehaviour
     //TODO: remove code below and make it actually good
     public void SetDesiredLocationLeft()
     {
-        desiredPosition = new Vector3(-100, 0, 5);
+        desiredPosition = new Vector3(-100, 0, 7.8f);
         Debug.Log("left");
     }
 
     public void SetDesiredLocationRight()
     {
-        desiredPosition = new Vector3(100, 0, 5);
+        desiredPosition = new Vector3(100, 0, 7.8f);
         Debug.Log("right");
     }
 
     public void SetDesiredLocationHome()
     {
-        desiredPosition = new Vector3(0, 0, 5);
+        desiredPosition = new Vector3(0, 0, 7.8f);
         Debug.Log("home");
     }
 
     public void CheckIfPlayerOnTrain()
     {
+        int x = 0;
         for (int i = 0; i < train.wagons.Count; i++)
         {
             if (train.wagons[i].wagonObject.GetComponent<Wagon>().HasPlayerInside)
             {
+                x++;
+            }
+        }
+
+        if (x > 0) //has player inside
+        {
+            if (playerInTrain == false)
+            {
                 playerInTrain = true;
-                //GameManager.Instance.GameStateManager.SetState(new OnTrainState());
+                GameManager.Instance.GameStateManager.SetState(new OnTrainState());
                 Debug.Log("Player on train, current state: " + GameManager.Instance.GameStateManager.GetState());
-                var wallRenderers = train.wagons[i].wagon.FrontWall.GetComponentsInChildren<MeshRenderer>();
-                for (int j = 0; j < wallRenderers.Length; j++)
-                {
-                    wallRenderers[j].enabled = false;
-                }
-                break; //Player is in one of the wagons so the other wagons don't have to check anymore because the player is inside the train
-            } 
-            else
+            }
+        }
+        else
+        {
+            if (playerInTrain == true)
             {
                 playerInTrain = false;
-                //GameManager.Instance.GameStateManager.SetState(new OnPlatformState()); //TODO: stop creating new ones every frame
+                GameManager.Instance.GameStateManager.SetState(new OnPlatformState()); //TODO: stop creating new ones every frame
                 Debug.Log("Player on platform, current state: " + GameManager.Instance.GameStateManager.GetState());
-                var wallRenderers = train.wagons[i].wagon.FrontWall.GetComponentsInChildren<MeshRenderer>();
-                for (int j = 0; j < wallRenderers.Length; j++)
-                {
-                    wallRenderers[j].enabled = true;
-                }
             }
         }
     }
-
-
-
 }
