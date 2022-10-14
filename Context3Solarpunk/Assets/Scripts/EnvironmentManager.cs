@@ -46,8 +46,8 @@ public class EnvironmentManager : MonoBehaviour
                 tile.transform.position = new Vector3(i * groundObject.RightAnchor.transform.position.x, 0, 0);
             }
         }
-        wrapPosition = groundObjects[groundObjects.Count - 1].transform.position;
-        gameObject.transform.position -= new Vector3(wrapPosition.x / 2, 0,0);
+        wrapPosition = new Vector3((groundObjects[groundObjects.Count - 1].transform.position.x / 2) - 4, 0, 0);// groundObjects[groundObjects.Count - 1].transform.position;
+        gameObject.transform.position -= new Vector3(wrapPosition.x / 2, 0, 0);
     }
 
     // Update is called once per frame
@@ -94,12 +94,13 @@ public class EnvironmentManager : MonoBehaviour
         for (int i = 0; i < groundObjects.Count; i++)
         {
             groundObjects[i].transform.position += new Vector3(currentSpeed, 0, 0);
-            if (groundObjects[i].transform.position.x < (wrapPosition.x * -1))
+            if (groundObjects[i].transform.position.x < ((wrapPosition.x / 2) * -1))
             {
                 groundObjects[i].transform.position = wrapPosition;
             }
         }
     }
+
     [Button]
     public void ToggleTrain()
     {

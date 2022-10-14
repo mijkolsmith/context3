@@ -19,6 +19,7 @@ public class TrainManager : MonoBehaviour
     private void Start()
     {
         InstantiateWagons();
+        SetDesiredLocationHome(); //This is to make the train drive into the scene at the start
     }
 
     private void Update()
