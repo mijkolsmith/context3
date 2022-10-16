@@ -14,22 +14,27 @@ public class Wagon : MonoBehaviour
     [SerializeField] private List<Vector3> trashcanSpawns;
 
     [SerializeField] private GameObject frontWall;
+    [SerializeField] private Material[] materials;
 
     public Transform LeftWagonAttachPoint { get => leftWagonAttachPoint; private set => leftWagonAttachPoint = value; }
     public Transform RightWagonAttachPoint { get => rightWagonAttachPoint; private set => rightWagonAttachPoint = value; }
     public bool HasPlayerInside { get => hasPlayerInside; private set => hasPlayerInside = value; }
     public Unit Unit { get => unit; private set => unit = value; }
-    public GameObject FrontWall { get => frontWall; set => frontWall = value; }
 
     private void Update()
     {
+        Material[] newMaterials = frontWall.GetComponent<Renderer>().materials;
         if (HasPlayerInside)
         {
-            EnableFrontWallRenderers();
+            newMaterials[0] = materials[2];
+            newMaterials[1] = materials[3];
+            frontWall.GetComponent<Renderer>().materials = newMaterials;
         } 
         else
         {
-            DisableFrontWallRenderers();
+            newMaterials[0] = materials[0];
+            newMaterials[1] = materials[1];
+            frontWall.GetComponent<Renderer>().materials = newMaterials;
         }
     }
 
@@ -67,25 +72,4 @@ public class Wagon : MonoBehaviour
             hasPlayerInside = false;
         }
     }
-
-    //repeating code, but wouldn't work in the time I had to fix this so this is how it be for now
-    private void EnableFrontWallRenderers()
-    {
-        var wallRenderers = FrontWall.GetComponentsInChildren<MeshRenderer>();
-        for (int j = 0; j < wallRenderers.Length; j++)
-        {
-            wallRenderers[j].enabled = false;
-        }
-    }
-
-    private void DisableFrontWallRenderers()
-    {
-        var wallRenderers = FrontWall.GetComponentsInChildren<MeshRenderer>();
-        for (int j = 0; j < wallRenderers.Length; j++)
-        {
-            wallRenderers[j].enabled = true;
-        }
-    }
-
-
 }
