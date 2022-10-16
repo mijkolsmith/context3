@@ -56,7 +56,6 @@ public class EnvironmentManager : MonoBehaviour
         MoveTerrain();
     }
 
-
     private void MoveTerrain()
     {
         switch (movementState)
@@ -72,6 +71,7 @@ public class EnvironmentManager : MonoBehaviour
                 else
                 {
                     movementState = MovementState.isGoing;
+                    GameManager.Instance.GameStateManager.SetState(new OnMovingTrainState());
                 }
                 break;
             case MovementState.isGoing:
@@ -85,6 +85,7 @@ public class EnvironmentManager : MonoBehaviour
                 else
                 {
                     movementState = MovementState.isStandingStill;
+                    GameManager.Instance.GameStateManager.SetState(new OnTrainState());
                 }
                 break;
             default:
@@ -113,4 +114,9 @@ public class EnvironmentManager : MonoBehaviour
             movementState = MovementState.isBraking;
         }
     }
+
+    public void SetToMoveInSeconds(float seconds)
+	{
+
+	}
 }

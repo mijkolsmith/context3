@@ -52,6 +52,12 @@ public class OnMovingTrainState : State
 			trashTimer = 0;
 			Debug.Log("spawntrash");
 		}
+
+		if (GameManager.Instance.GetPassengerHappiness() >= 100)
+		{
+			GameManager.Instance.EnvironmentManager.ToggleTrain();
+			GameManager.Instance.ChangePassengerHappiness(-50);
+		}
 	}
 
 	public override IEnumerator Exit()

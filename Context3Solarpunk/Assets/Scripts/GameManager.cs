@@ -8,8 +8,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get => instance; private set => instance = value; }
 
     [SerializeField] private TrainManager trainManager;
+    [SerializeField] private EnvironmentManager environmentManager;
     private GameStateManager gameStateManager;
     public TrainManager TrainManager { get => trainManager; private set => trainManager = value; }
+    public EnvironmentManager EnvironmentManager { get => environmentManager; private set => environmentManager = value; }
     public GameStateManager GameStateManager { get => gameStateManager; private set => gameStateManager = value; }
 
     [SerializeField] private Slider passengerHappinessSlider;
@@ -40,6 +42,11 @@ public class GameManager : MonoBehaviour
 	{
         passengerHappinessSlider.value += amount;
 	}
+
+    public int GetPassengerHappiness()
+    {
+        return (int)passengerHappinessSlider.value;
+    }
 
     public void AddTrashToInventory(TrashType trashType)
 	{
