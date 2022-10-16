@@ -33,11 +33,13 @@ public class OnMovingTrainState : State
 		yield return null;
 
 		//Unit breaking game mechanic
-		if (!isBroken) unitBreakTimer += Time.deltaTime;
+		unitBreakTimer += Time.deltaTime;
 		if (unitBreakTimer > unitBreakTimeNeeded)
 		{
-			isBroken = true;
-			GameManager.Instance.TrainManager.BreakUnit(Random.Range(0, 2));
+			//INFO: Units can break twice over, and if they break twice the indicator will disappear and be toggled the wrong way. Could be fixed but not a big problem.
+			int unit = Random.Range(0, 2);
+			GameManager.Instance.TrainManager.BreakUnit(unit);
+			GameManager.Instance.ToggleIndicator(unit);
 			unitBreakTimeNeeded = Random.Range(25f, 30f);
 			unitBreakTimer = 0;
 		}

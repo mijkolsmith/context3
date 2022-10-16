@@ -10,6 +10,7 @@ public class Unit : MonoBehaviour, IInteractable
 	public bool Broken { get => broken; protected set => broken = value; }
 	[SerializeField] private int breakHappinessValue = -5;
 	[SerializeField] private int fixHappinessValue = 25;
+	[SerializeField] private int unit;
 
 	private void Start()
 	{
@@ -31,7 +32,11 @@ public class Unit : MonoBehaviour, IInteractable
 	private void Fix()
 	{
 		meshRenderer.material = unitWorkingMaterial;
-		if (Broken == true) GameManager.Instance.ChangePassengerHappiness(fixHappinessValue);
+		if (Broken == true)
+		{
+			GameManager.Instance.ChangePassengerHappiness(fixHappinessValue);
+			GameManager.Instance.ToggleIndicator(unit);
+		}
 		Broken = false;
 	}
 }

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [MinValue(0), MaxValue(3), ReadOnly] public int trashCount;
     [SerializeField] private Sprite[] cupSprites;
     [SerializeField] private Image[] trashHolders;
+    [SerializeField] private Image[] indicators;
 
     void Start()
     {
@@ -73,5 +74,10 @@ public class GameManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void ToggleIndicator(int indicator)
+	{
+        indicators[indicator].enabled = indicators[indicator].enabled ? false : true;
     }
 }
