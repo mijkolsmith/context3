@@ -14,7 +14,7 @@ public class Volume : MonoBehaviour
     private void Start()
     {
 		slider.value = PlayerPrefs.GetFloat("Volume", 0.6f);
-		mixer.SetFloat("MasterVol", Mathf.Log10(slider.value + .1f) * 45 + 15);
+		mixer.SetFloat("Master", Mathf.Log10(slider.value + .1f) * 45 + 15);
 
 	}
 
@@ -22,11 +22,11 @@ public class Volume : MonoBehaviour
 	{
 		if (slider.value != 0)
 		{
-			mixer.SetFloat("MasterVol", Mathf.Log10(slider.value + .1f) * 45 + 15);
+			mixer.SetFloat("Master", Mathf.Log10(slider.value + .1f) * 45 + 15);
 		}
 		else
 		{
-			mixer.SetFloat("MasterVol", -60);
+			mixer.SetFloat("Master", -60);
 		}
 		PlayerPrefs.SetFloat("Volume", slider.value);
 	}

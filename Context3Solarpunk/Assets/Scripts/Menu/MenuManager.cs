@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -33,7 +34,19 @@ public class MenuManager : MonoBehaviour
 
 	public void NextScene()
 	{
-		GameManager.Instance.StartCoroutine(GameManager.Instance.SlowLoadScene(SceneManager.GetActiveScene().buildIndex + 1, transition));
+		StartCoroutine(SlowLoadScene(SceneManager.GetActiveScene().buildIndex + 1));
+	}
+
+	public IEnumerator SlowLoadScene(int scene)
+	{
+		for (int i = 0; i < 100; i++)
+		{
+			transition.color = new Color(1 - i / 100f, 1 - i / 100f, 1 - i / 100f, i / 100f);
+			yield return new WaitForSeconds(0.01f);
+		}
+
+		SceneManager.LoadScene(scene);
+		yield return null;
 	}
 
 	public void Quit()
