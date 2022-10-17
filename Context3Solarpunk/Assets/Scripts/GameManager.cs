@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -79,5 +81,17 @@ public class GameManager : MonoBehaviour
     public void ToggleIndicator(int indicator)
 	{
         indicators[indicator].enabled = indicators[indicator].enabled ? false : true;
+    }
+
+    public IEnumerator SlowLoadScene(int scene, Image transition)
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            transition.color = new Color(1 - i / 100f, 1 - i / 100f, 1 - i / 100f, i / 100f);
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        SceneManager.LoadScene(scene);
+        yield return null;
     }
 }
