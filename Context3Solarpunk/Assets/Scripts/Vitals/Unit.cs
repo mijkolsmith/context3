@@ -9,7 +9,7 @@ public class Unit : MonoBehaviour, IInteractable
 	[SerializeField, ReadOnly] protected bool broken;
 	public bool Broken { get => broken; protected set => broken = value; }
 	[SerializeField] private int breakHappinessValue = -5;
-	[SerializeField] private int fixHappinessValue = 25;
+	//[SerializeField] private int fixHappinessValue = 25; moved to unitPopupWindow
 	[SerializeField] private int unit;
 
 	private void Start()
@@ -24,18 +24,22 @@ public class Unit : MonoBehaviour, IInteractable
 
 	public void Break()
 	{
-		meshRenderer.material = unitBrokenMaterial;
-		Broken = true;
+		if (Broken == false)
+		{
+			meshRenderer.material = unitBrokenMaterial;
+			GameManager.Instance.ToggleIndicator(unit);
+			Broken = true;
+		}
 		GameManager.Instance.ChangePassengerHappiness(breakHappinessValue);
 	}
 
 	private void Fix()
 	{
-		meshRenderer.material = unitWorkingMaterial;
 		if (Broken == true)
 		{
-			GameManager.Instance.ChangePassengerHappiness(fixHappinessValue);
+			meshRenderer.material = unitWorkingMaterial;
 			GameManager.Instance.ToggleIndicator(unit);
+			GameManager.Instance.TogglePopupWindow(PopupWindowType.Unit);
 		}
 		Broken = false;
 	}

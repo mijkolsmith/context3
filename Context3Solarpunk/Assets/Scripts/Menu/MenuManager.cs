@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
 	[SerializeField] private Image transition;
-
+	[SerializeField] private GameObject[] menus;
+	[SerializeField] private GameObject[] SelectOrStartButtons;
+	
 	private static MenuManager instance = null;
 	public static MenuManager Instance
 	{
@@ -32,8 +34,24 @@ public class MenuManager : MonoBehaviour
 		}
 	}
 
+	public void ToggleCharacterSelectionMenu()
+	{
+		if (menus[0].activeInHierarchy)
+		{
+			menus[1].SetActive(true);
+			menus[0].SetActive(false);
+		}
+		else
+		{
+			menus[0].SetActive(true);
+			menus[1].SetActive(false);
+		}
+	}
+
 	public void NextScene()
 	{
+		//TODO: Save which character is chosen and then disable the character selection screen
+		//If character is chosen enable SelectOrStartButtons[1] and disable SelectOrStartButtons[0] (playerprefs)
 		StartCoroutine(SlowLoadScene(SceneManager.GetActiveScene().buildIndex + 1));
 	}
 

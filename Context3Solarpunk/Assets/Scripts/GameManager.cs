@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
 using System.Collections;
-using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Sprite[] cupSprites;
     [SerializeField] private Image[] trashHolders;
     [SerializeField] private Image[] indicators;
+    [SerializeField] private PopupWindow[] popupWindows;
 
     void Start()
     {
@@ -80,6 +82,11 @@ public class GameManager : MonoBehaviour
 
     public void ToggleIndicator(int indicator)
 	{
-        indicators[indicator].enabled = indicators[indicator].enabled ? false : true;
+        indicators[indicator].enabled = !indicators[indicator].enabled;
+    }
+
+    public void TogglePopupWindow(PopupWindowType popupWindowType)
+    {
+        popupWindows.Where(x => x.GetPopupWindowType() == popupWindowType).FirstOrDefault().Open();
     }
 }
