@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
                 interactableObject.Interact();
                 interactableObject = null;
 			}
+            //TO DO: highlight object or display "Press "E" to interact."
 		}
         else interactionTimer = 0;
     }
@@ -98,7 +99,7 @@ public class PlayerController : MonoBehaviour
     {
         //is the colliding object interactable? save it, otherwise keep what was saved previously
         interactableObject = other.GetComponent<IInteractable>() != null ? other.GetComponent<IInteractable>() : interactableObject;
-
+        
         //Debug info updater
         if (showDebugInfo)
         {
