@@ -12,10 +12,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TrainManager trainManager;
     [SerializeField] private EnvironmentManager environmentManager;
+    [SerializeField] private CraftingManager craftingManager;
     private GameStateManager gameStateManager;
     public TrainManager TrainManager { get => trainManager; private set => trainManager = value; }
     public EnvironmentManager EnvironmentManager { get => environmentManager; private set => environmentManager = value; }
     public GameStateManager GameStateManager { get => gameStateManager; private set => gameStateManager = value; }
+    public CraftingManager CraftingManager { get => craftingManager; private set => craftingManager = value; }
 
     [SerializeField] private Slider passengerHappinessSlider;
     [MinValue(0), MaxValue(3), ReadOnly] public int trashCount;
@@ -36,11 +38,6 @@ public class GameManager : MonoBehaviour
         }
 
         GameStateManager = gameObject.AddComponent<GameStateManager>();
-    }
-
-    void Update()
-    {
-        
     }
 
     public void ChangePassengerHappiness(int amount)
