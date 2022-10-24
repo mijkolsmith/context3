@@ -15,7 +15,6 @@ public class CraftingManager : MonoBehaviour
         { ResourceType.OldElectronics, typeof(OldElectronics) },
         { ResourceType.Can, typeof(Can) },
         { ResourceType.OldUniform, typeof(OldUniform) },
-        { ResourceType.Tyre, typeof(Tyre) },
         { ResourceType.Leaf, typeof(Leaf) },
         { ResourceType.Furniture, typeof(Furniture) },
         { ResourceType.RainWater, typeof(RainWater) },
@@ -25,7 +24,6 @@ public class CraftingManager : MonoBehaviour
         { ResourceType.Electronics, typeof(Electronics) },
         { ResourceType.Metal, typeof(Metal) },
         { ResourceType.Fabric, typeof(Fabric) },
-        { ResourceType.Rubber, typeof(Rubber) },
         { ResourceType.Compost, typeof(Compost) },
         { ResourceType.Wood, typeof(Wood) },
 
@@ -34,7 +32,6 @@ public class CraftingManager : MonoBehaviour
         { ResourceType.LedLamp, typeof(LedLamp) },
         { ResourceType.Uniform, typeof(Uniform) },
         { ResourceType.Mug, typeof(Mug) },
-        { ResourceType.Isolation, typeof(Isolation) },
         { ResourceType.CompostHeap, typeof(CompostHeap) },
         { ResourceType.Grass, typeof(Grass) },
         { ResourceType.InsectHotel, typeof(InsectHotel) },
