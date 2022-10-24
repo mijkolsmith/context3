@@ -7,12 +7,9 @@ public class UnitPopupWindow : PopupWindow
 	[SerializeField] private GameObject temperatureIndicator;
 	[SerializeField] private Slider temperatureSlider;
 	[SerializeField] private int fixHappinessValue = 25;
-	bool open;
+	private bool open;
 
-	public override PopupWindowType GetPopupWindowType()
-	{
-		return PopupWindowType.Unit;
-	}
+	public override PopupWindowType GetPopupWindowType() => PopupWindowType.Unit;
 
 	private void Update()
 	{
@@ -28,7 +25,6 @@ public class UnitPopupWindow : PopupWindow
 	{
 		popupWindow.SetActive(true);
 		int x = System.Convert.ToBoolean(Random.Range(0, 2)) ? Random.Range(-10, -50) : Random.Range(10, 50);
-		Debug.Log(x);
 		temperatureIndicator.transform.localPosition = new Vector3(x, temperatureIndicator.transform.localPosition.y, temperatureIndicator.transform.localPosition.z);
 		temperatureSlider.value = -x;
 		open = true;

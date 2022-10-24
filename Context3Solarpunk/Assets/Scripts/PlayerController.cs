@@ -24,12 +24,17 @@ public class PlayerController : MonoBehaviour
 
     [Header("Interaction")]
     [ReadOnly] private IInteractable interactableObject;
+    [SerializeField] private KeyCode interactionKey = KeyCode.E;
     [SerializeField] private float interactionTimeNeeded = 1f;
+
+    [Header("Crafting")]
+    [SerializeField] private KeyCode craftingKey = KeyCode.C;
 
     [Space]
     [SerializeField] private bool showDebugInfo = true;
     [Header("Debug")]
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool interactionInput;
+    [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool craftingInput;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private float interactionTimer;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private GameObject interactableGameObject;
 
@@ -74,10 +79,10 @@ public class PlayerController : MonoBehaviour
         }
         Move();
 
-        interactionInput = Input.GetKey(KeyCode.E);
+        interactionInput = Input.GetKey(interactionKey);
         if (interactionInput && interactableObject != null)
 		{
-            //play interaction animation
+            //TODO: play interaction animation
             interactionTimer += Time.deltaTime;
             if (interactionTimer > interactionTimeNeeded)
 			{
@@ -85,9 +90,15 @@ public class PlayerController : MonoBehaviour
                 interactableObject.Interact();
                 interactableObject = null;
 			}
-            //TO DO: highlight object or display "Press "E" to interact."
+            //TODO: highlight object or display "Press "E" to interact."
 		}
         else interactionTimer = 0;
+
+        craftingInput = Input.GetKey(craftingKey);
+        if (craftingInput)
+        {
+            GameManager.Instance.TogglePopupWindow(PopupWindowType.Crafting);
+        }
     }
 
     private void Move()
