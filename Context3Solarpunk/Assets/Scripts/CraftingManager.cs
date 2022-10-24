@@ -60,4 +60,25 @@ public class CraftingManager : MonoBehaviour
 		}
         //resources = craftable.Craft(resources);
     }
+
+    // Serialization & Saving
+    private void SaveInventory()
+	{
+        PlayerPrefs.SetInt("ResourcesCount", resources.Count);
+        for (var i = 0; i < resources.Count; i++)
+        {
+            PlayerPrefs.SetInt("Resource" + i, (int) resources[i].GetResourceType());
+        }
+        PlayerPrefs.Save();
+    }
+
+    // Deserialization & Loading
+    private void LoadInventory()
+	{
+        int resourceCount = PlayerPrefs.GetInt("ResourcesCount");
+        for (var i = 0; i < resourceCount; i++)
+        {
+            resources.Add((Resource) Activator.CreateInstance(resourceTypeMap[(ResourceType) PlayerPrefs.GetInt("Resource" + i)]));
+        }
+    }
 }
