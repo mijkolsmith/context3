@@ -1,14 +1,46 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CraftingManager : MonoBehaviour
 {
     [Header("Resources")]
-    [SerializeField] private List<Resource> resources = new();
+    [SerializeField] private List<ResourceType> resources = new();
+    private Dictionary<ResourceType, Dictionary<ResourceType, int>> craftingRecipes = new()
+    {
+        { ResourceType.OldPlastic, new() { } },
+        { ResourceType.Bottle, new() { } },
+        { ResourceType.OldElectronics, new() { } },
+        { ResourceType.Can, new() { } },
+        { ResourceType.OldUniform, new() { } },
+        { ResourceType.Leaf, new() { } },
+        { ResourceType.Furniture, new() { } },
+        { ResourceType.RainWater, new() { } },
 
-    private Dictionary<ResourceType, Type> resourceTypeMap = new()
+        { ResourceType.Plastic, new() { { ResourceType.OldPlastic, 3 } } },
+        { ResourceType.Glass, new() { { ResourceType.Bottle, 3 } } },
+        { ResourceType.Electronics, new() { { ResourceType.OldElectronics, 3 } } },
+        { ResourceType.Metal, new() { { ResourceType.Can, 3 } } },
+        { ResourceType.Fabric, new() { { ResourceType.OldUniform, 3 } } },
+        { ResourceType.Compost, new() { { ResourceType.Leaf, 9 } } },
+        { ResourceType.Wood, new() { { ResourceType.Furniture, 5 } } },
+
+        { ResourceType.SeparatedBin, new() { { ResourceType.Plastic, 3 } } },
+        { ResourceType.SunPanel, new() { { ResourceType.Glass, 3 }, { ResourceType.Electronics, 3 } } },
+        { ResourceType.LedLamp, new() { { ResourceType.Glass, 3 }, { ResourceType.Metal, 3 } } },
+        { ResourceType.Uniform, new() { { ResourceType.Fabric, 3 } } },
+        { ResourceType.Mug, new() { { ResourceType.Glass, 3 } } },
+        { ResourceType.CompostHeap, new() { { ResourceType.Metal, 3 } } },
+        { ResourceType.Grass, new() { { ResourceType.Compost, 3 } } },
+        { ResourceType.InsectHotel, new() { { ResourceType.Wood, 2 } } },
+        { ResourceType.RainBarrel, new() { { ResourceType.Wood, 2 }, { ResourceType.Plastic, 5 } } },
+        { ResourceType.VegetableGarden, new() { { ResourceType.Compost, 3 }, { ResourceType.RainWater, 3 } } }
+    };
+
+    //PROBABLY not needed anymore but I don't wanna retype it if I need it
+    /*private Dictionary<ResourceType, Type> resourceTypeMap = new()
 	{
         { ResourceType.OldPlastic, typeof(OldPlastic) },
         { ResourceType.Bottle, typeof(Bottle) },
@@ -37,25 +69,47 @@ public class CraftingManager : MonoBehaviour
         { ResourceType.InsectHotel, typeof(InsectHotel) },
         { ResourceType.RainBarrel, typeof(RainBarrel) },
         { ResourceType.VegetableGarden, typeof(VegetableGarden) },
-    };
+    };*/
 
-    public void AddResource(Resource resource)
+    public void AddResource(ResourceType resourceType)
 	{
-        resources.Add(resource);
+        resources.Add(resourceType);
 	}
 
-    public void Craft(ResourceType craftableType)
+    public void Craft(ResourceType resourceType)
 	{
-        ICraftable resource = (ICraftable) Activator.CreateInstance(resourceTypeMap[craftableType]);
+        Dictionary<ResourceType, int> resourcesNeeded = craftingRecipes[resourceType];
 
-        //Do we have the right resources to craft this?
-        var resourcesNeeded = resource.GetResourcesNeeded();
-
-        foreach (ResourceType requiredResource in resourcesNeeded.Keys)
+        foreach (ResourceType resourceNeeded in resourcesNeeded.Keys)
 		{
-
+			for (int i = 0; i < resourcesNeeded[resourceNeeded]; i++)
+			{
+                resources.Remove(resourceNeeded);
+			}
 		}
-        //resources = craftable.Craft(resources);
+
+        resources.Add(resourceType);
+    }
+
+    //Do we have the right resources to craft this?
+    public bool CanCraft(ResourceType resourceType)
+	{
+        Dictionary<ResourceType, int> resourcesNeeded = craftingRecipes[resourceType];
+        List<ResourceType> tempResources = resources;
+
+        foreach (ResourceType resourceNeeded in resourcesNeeded.Keys)
+        {
+            for (int i = 0; i < resourcesNeeded[resourceNeeded]; i++)
+            {
+                ResourceType tempResource = ResourceType.None;
+                tempResource = tempResources.Where(x => x == resourceNeeded).FirstOrDefault();
+                if (tempResource != ResourceType.None)
+                {
+                    tempResources.Remove(tempResource);
+                } else return false;
+            }
+        }
+        return true;
     }
 
     // Serialization & Saving
@@ -64,7 +118,7 @@ public class CraftingManager : MonoBehaviour
         PlayerPrefs.SetInt("ResourcesCount", resources.Count);
         for (var i = 0; i < resources.Count; i++)
         {
-            PlayerPrefs.SetInt("Resource" + i, (int) resources[i].GetResourceType());
+            PlayerPrefs.SetInt("Resource" + i, (int) resources[i]);
         }
         PlayerPrefs.Save();
     }
@@ -75,7 +129,7 @@ public class CraftingManager : MonoBehaviour
         int resourceCount = PlayerPrefs.GetInt("ResourcesCount");
         for (var i = 0; i < resourceCount; i++)
         {
-            resources.Add((Resource) Activator.CreateInstance(resourceTypeMap[(ResourceType) PlayerPrefs.GetInt("Resource" + i)]));
+            resources.Add((ResourceType) PlayerPrefs.GetInt("Resource" + i));
         }
     }
 }

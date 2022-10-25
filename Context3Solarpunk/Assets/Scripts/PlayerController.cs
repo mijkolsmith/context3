@@ -29,13 +29,15 @@ public class PlayerController : MonoBehaviour
 
     [Header("Crafting")]
     [SerializeField] private KeyCode craftingKey = KeyCode.C;
+    [SerializeField] private float craftingTimeCooldown = .5f;
 
     [Space]
     [SerializeField] private bool showDebugInfo = true;
     [Header("Debug")]
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool interactionInput;
-    [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool craftingInput;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private float interactionTimer;
+    [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool craftingInput;
+    [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private float craftingTimer;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private GameObject interactableGameObject;
 
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private Vector3 movementInput;
@@ -95,9 +97,16 @@ public class PlayerController : MonoBehaviour
         else interactionTimer = 0;
 
         craftingInput = Input.GetKey(craftingKey);
-        if (craftingInput)
+        if (craftingTimer <= craftingTimeCooldown)
+		{
+            craftingTimer += Time.deltaTime;
+        }
+        if (craftingInput && (craftingTimer >= craftingTimeCooldown))
         {
-            GameManager.Instance.TogglePopupWindow(PopupWindowType.Crafting);
+            {
+                GameManager.Instance.TogglePopupWindow(PopupWindowType.Crafting);
+                craftingTimer = 0;
+            }
         }
     }
 

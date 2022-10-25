@@ -1,5 +1,7 @@
 public enum ResourceType
 {
+	None,
+
 	OldPlastic,
 	Bottle,
 	OldElectronics,
