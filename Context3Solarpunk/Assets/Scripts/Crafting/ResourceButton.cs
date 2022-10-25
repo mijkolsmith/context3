@@ -11,6 +11,7 @@ public class ResourceButton : MonoBehaviour
 	public void Craft()
 	{
 		GameManager.Instance.CraftingManager.Craft(resourceType);
+		UpdateUI();
 	}
 
 	public void UpdateUI()

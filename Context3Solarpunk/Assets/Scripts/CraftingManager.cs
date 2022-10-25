@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -71,6 +72,16 @@ public class CraftingManager : MonoBehaviour
         { ResourceType.VegetableGarden, typeof(VegetableGarden) },
     };*/
 
+
+    [SerializeField] private bool showDebugInfo = true;
+    [Header("Debug")]
+    [SerializeField, ShowIf("showDebugInfo")] private ResourceType debugResourceToAdd;
+    [Button(enabledMode: EButtonEnableMode.Playmode), ShowIf("showDebugInfo")]
+    public void DebugAddResource()
+    {
+        resources.Add(debugResourceToAdd);
+    }
+
     public void AddResource(ResourceType resourceType)
 	{
         resources.Add(resourceType);
@@ -89,13 +100,14 @@ public class CraftingManager : MonoBehaviour
 		}
 
         resources.Add(resourceType);
+        ((CraftingPopupWindow) GameManager.Instance.PopupWindows.Where(x => x.GetPopupWindowType() == PopupWindowType.Crafting).FirstOrDefault()).UpdateUI();
     }
 
     //Do we have the right resources to craft this?
     public bool CanCraft(ResourceType resourceType)
 	{
         Dictionary<ResourceType, int> resourcesNeeded = craftingRecipes[resourceType];
-        List<ResourceType> tempResources = resources;
+        List<ResourceType> tempResources = new(resources);
 
         foreach (ResourceType resourceNeeded in resourcesNeeded.Keys)
         {

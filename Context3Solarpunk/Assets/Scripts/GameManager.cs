@@ -22,8 +22,9 @@ public class GameManager : MonoBehaviour
     public CraftingManager CraftingManager { get => craftingManager; private set => craftingManager = value; }
     public QuestManager QuestManager { get => questManager; private set => questManager = value; }
     public DialogueManager DialogueManager { get => dialogueManager; private set => dialogueManager = value; }
+	public PopupWindow[] PopupWindows { get => popupWindows; private set => popupWindows = value; }
 
-    [SerializeField] private Slider passengerHappinessSlider;
+	[SerializeField] private Slider passengerHappinessSlider;
     [MinValue(0), MaxValue(3), ReadOnly] public int trashCount;
     [SerializeField] private Sprite[] cupSprites;
     [SerializeField] private Image[] trashHolders;
@@ -88,6 +89,6 @@ public class GameManager : MonoBehaviour
 
     public void TogglePopupWindow(PopupWindowType popupWindowType)
     {
-        popupWindows.Where(x => x.GetPopupWindowType() == popupWindowType).FirstOrDefault().Open();
+        PopupWindows.Where(x => x.GetPopupWindowType() == popupWindowType).FirstOrDefault().Open();
     }
 }

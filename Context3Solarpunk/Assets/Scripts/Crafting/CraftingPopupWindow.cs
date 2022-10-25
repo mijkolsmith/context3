@@ -23,4 +23,12 @@ public class CraftingPopupWindow : PopupWindow
 			}
 		}
 	}
+
+	public void UpdateUI()
+	{
+		foreach (ResourceButton resourceButton in resourceButtons)
+		{
+			resourceButton.UpdateUI();
+		}
+	}
 }
