@@ -8,8 +8,20 @@ public class QuestManager : MonoBehaviour
     private int questNmbr;
     public List<Quest> quests = new List<Quest>();
 
-    private void Start()
+    private void AdvanceQuest(Quest quest)
     {
-
+        if (quest.state == QuestState.Active)
+        {
+            for (int i = 0; i < quest.tasks.Count; i++)
+            {
+                if (quest.tasks[i].objectToInteract.GetComponent<QuestObjectMonoBehaviour>().InteractedWith)
+                {
+                    quest.tasks[i].success = true;
+                }
+            }
+        } else
+        {
+            Debug.LogWarning("Trying to advance a quest that isn't active! Quest state: " + quest.state);
+        }
     }
 }
