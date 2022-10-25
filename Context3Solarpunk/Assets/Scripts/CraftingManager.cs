@@ -104,24 +104,31 @@ public class CraftingManager : MonoBehaviour
     }
 
     //Do we have the right resources to craft this?
-    public bool CanCraft(ResourceType resourceType)
-	{
+    public Dictionary<ResourceType, int> CanCraft(ResourceType resourceType, out bool canCraft)
+    {
         Dictionary<ResourceType, int> resourcesNeeded = craftingRecipes[resourceType];
-        List<ResourceType> tempResources = new(resources);
-
+        Dictionary<ResourceType, int> resourcesCount = new();
         foreach (ResourceType resourceNeeded in resourcesNeeded.Keys)
         {
-            for (int i = 0; i < resourcesNeeded[resourceNeeded]; i++)
+            resourcesCount.Add(resourceNeeded, 0);
+        }
+        List<ResourceType> tempResources = new(resources);
+
+        foreach (ResourceType resource in resourcesNeeded.Keys)
+        {
+            resourcesCount[resource] = tempResources.Where(x => x == resource).Count();
+        }
+
+        foreach (ResourceType resource in resourcesNeeded.Keys)
+        {
+            if (resourcesCount[resource] < resourcesNeeded[resource])
             {
-                ResourceType tempResource = ResourceType.None;
-                tempResource = tempResources.Where(x => x == resourceNeeded).FirstOrDefault();
-                if (tempResource != ResourceType.None)
-                {
-                    tempResources.Remove(tempResource);
-                } else return false;
+                canCraft = false;
+                return resourcesCount;
             }
         }
-        return true;
+        canCraft = true;
+        return resourcesCount;
     }
 
     // Serialization & Saving
