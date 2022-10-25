@@ -23,7 +23,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(string dialogue)
     {
-        //dialoguePanel.SetActive(true);
+        dialoguePanel.SetActive(true);
 
         StopAllCoroutines();
         StartCoroutine(TypeSentence(dialogue));

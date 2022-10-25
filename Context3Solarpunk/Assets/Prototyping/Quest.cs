@@ -11,7 +11,7 @@ public class Quest
     public string uniqueQuestID;
     public QuestState state;
 
-    [SerializeField] private UnityEvent succesEvent;
+    public List<Task> tasks;
     
-    public List<Task> tasksToSucceed;
+    [SerializeField, Header("The event that activates when quest is complete.")] private UnityEvent succesEvent;
 }
