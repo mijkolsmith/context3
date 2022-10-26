@@ -27,9 +27,10 @@ public class ResourceButton : MonoBehaviour
 	{
 		Dictionary<ResourceType, int> resourcesNeeded = GameManager.Instance.CraftingManager.CanCraft(resourceType, out bool canCraft);
 		int i = 0;
+		resourceText.text = string.Empty;
 		foreach (ResourceType resource in resourcesNeeded.Keys)
 		{
-			resourceText.text = resourcesNeeded[resource] + resourceBaseTexts[i];
+			resourceText.text += resourcesNeeded[resource] + resourceBaseTexts[i] + " ";
 			i++;
 		}
 		return canCraft;
