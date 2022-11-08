@@ -47,8 +47,11 @@ public class EnvironmentManager : MonoBehaviour
                 tile.transform.position = new Vector3(i * groundObject.RightAnchor.transform.position.x, 0, 0);
             }
         }
-        wrapPosition = new Vector3((groundObjects[groundObjects.Count - 1].transform.position.x / 2) - 4, 0, 0);// groundObjects[groundObjects.Count - 1].transform.position;
-        gameObject.transform.position -= new Vector3(wrapPosition.x / 2, 0, 0);
+        if (groundObjects.Count > 0)
+        {
+            wrapPosition = new Vector3((groundObjects[groundObjects.Count - 1].transform.position.x / 2) - 4, 0, 0);// groundObjects[groundObjects.Count - 1].transform.position;
+            gameObject.transform.position -= new Vector3(wrapPosition.x / 2, 0, 0);
+        }
     }
 
     // Update is called once per frame
