@@ -19,7 +19,7 @@ public class TrainManager : MonoBehaviour
     private void Start()
     {
         InstantiateWagons();
-        SetDesiredLocationHome(); //This is to make the train drive into the scene at the start
+        //SetDesiredLocationHome(); //This is to make the train drive into the scene at the start
     }
 
     private void Update()
@@ -32,7 +32,7 @@ public class TrainManager : MonoBehaviour
 
     private void InstantiateWagons()
     {
-        desiredPosition = stationLocation.position;
+        //desiredPosition = stationLocation.position;
 
         for (int i = 0; i < train.wagons.Count; i++)
         {
@@ -103,6 +103,11 @@ public class TrainManager : MonoBehaviour
     {
         desiredPosition = new Vector3(0, 0, 7.8f);
         Debug.Log("home");
+    }
+
+    public void BringTrainToBlockoutStation() //Heb even een nieuwe method hiervoor aangemaakt zodat ik niks zou slopen
+    {
+        desiredPosition = new Vector3(-71.5f, 1.87f, 17.33f);
     }
 
     public void CheckIfPlayerOnTrain()
