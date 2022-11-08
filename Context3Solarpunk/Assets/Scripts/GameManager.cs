@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TrainManager trainManager;
     [SerializeField] private EnvironmentManager environmentManager;
     [SerializeField] private CraftingManager craftingManager;
-    private GameStateManager gameStateManager;
+    [SerializeField] private GameStateManager gameStateManager;
     public TrainManager TrainManager { get => trainManager; private set => trainManager = value; }
     public EnvironmentManager EnvironmentManager { get => environmentManager; private set => environmentManager = value; }
     public GameStateManager GameStateManager { get => gameStateManager; private set => gameStateManager = value; }

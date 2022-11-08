@@ -9,6 +9,7 @@ public class CraftingManager : MonoBehaviour
 {
     [Header("Resources")]
     [SerializeField] private List<ResourceType> resources = new();
+
     private Dictionary<ResourceType, Dictionary<ResourceType, int>> craftingRecipes = new()
     {
         { ResourceType.OldPlastic, new() { } },
@@ -76,15 +77,21 @@ public class CraftingManager : MonoBehaviour
     [SerializeField] private bool showDebugInfo = true;
     [Header("Debug")]
     [SerializeField, ShowIf("showDebugInfo")] private ResourceType debugResourceToAdd;
-    [Button(enabledMode: EButtonEnableMode.Playmode), ShowIf("showDebugInfo")]
+
+	[Button(enabledMode: EButtonEnableMode.Playmode), ShowIf("showDebugInfo")]
     public void DebugAddResource()
     {
         resources.Add(debugResourceToAdd);
     }
 
-    public void AddResource(ResourceType resourceType)
+    public void AddResourceToInventory(ResourceType resourceType)
 	{
         resources.Add(resourceType);
+	}
+
+    public bool CheckHasResourceInInventory(ResourceType resourceType)
+	{
+        return resources.Contains(resourceType);
 	}
 
     public void Craft(ResourceType resourceType)

@@ -44,7 +44,7 @@ public class OnMovingTrainState : State
 		}
 
 		//Trash game mechanic
-		if (GameManager.Instance.trashCount <= 3) trashTimer += Time.deltaTime;
+		if (GameManager.Instance.trashCount < 3) trashTimer += Time.deltaTime;
 		if (trashTimer > trashTimeNeeded)
 		{
 			GameManager.Instance.trashCount++;
@@ -56,6 +56,7 @@ public class OnMovingTrainState : State
 
 		if (GameManager.Instance.GetPassengerHappiness() >= 100)
 		{
+			//Travel to future!
 			GameManager.Instance.EnvironmentManager.ToggleTrain();
 			GameManager.Instance.ChangePassengerHappiness(-50);
 		}
@@ -63,6 +64,7 @@ public class OnMovingTrainState : State
 
 	public override IEnumerator Exit()
 	{
+		GameManager.Instance.trashCount = 0;
 		yield return null;
 	}
 }

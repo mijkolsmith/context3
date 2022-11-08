@@ -15,6 +15,7 @@ public class EnvironmentManager : MonoBehaviour
 {
     [SerializeField] private GameObject landscapePrefab;
     [SerializeField] private GameObject platformPrefab;
+    [SerializeField] private GameObject[] gatherableResourcePrefabs;
     [SerializeField] private int amountOfTiles = 5;
 
     [SerializeField] private MovementState movementState = MovementState.isStandingStill;
@@ -46,8 +47,11 @@ public class EnvironmentManager : MonoBehaviour
                 tile.transform.position = new Vector3(i * groundObject.RightAnchor.transform.position.x, 0, 0);
             }
         }
-        wrapPosition = new Vector3((groundObjects[groundObjects.Count - 1].transform.position.x / 2) - 4, 0, 0);// groundObjects[groundObjects.Count - 1].transform.position;
-        gameObject.transform.position -= new Vector3(wrapPosition.x / 2, 0, 0);
+        if (groundObjects.Count > 0)
+        {
+            wrapPosition = new Vector3((groundObjects[groundObjects.Count - 1].transform.position.x / 2) - 4, 0, 0);// groundObjects[groundObjects.Count - 1].transform.position;
+            gameObject.transform.position -= new Vector3(wrapPosition.x / 2, 0, 0);
+        }
     }
 
     // Update is called once per frame
@@ -118,5 +122,14 @@ public class EnvironmentManager : MonoBehaviour
     public void SetToMoveInSeconds(float seconds)
 	{
 
+	}
+
+    public void SpawnGatherableResource()
+	{
+        //For test:
+        float xPos = Random.Range(-8.5f, 18.5f);
+        float zPos = Random.Range(-3.6f, 3.6f);
+
+        Instantiate(gatherableResourcePrefabs[Random.Range(0, gatherableResourcePrefabs.Length)], new Vector3(xPos, 0, zPos), Quaternion.identity);
 	}
 }
