@@ -939,6 +939,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 522162217}
   m_CullTransparentMesh: 1
+--- !u!1 &644365465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 644365466}
+  - component: {fileID: 644365467}
+  - component: {fileID: 644365468}
+  - component: {fileID: 644365469}
+  m_Layer: 0
+  m_Name: Colliders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &644365466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644365465}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2084952626}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &644365467
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644365465}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 223.2213, y: 5.724164, z: 1.6235275}
+  m_Center: {x: 111.11065, y: 1.5198679, z: -5.701867}
+--- !u!65 &644365468
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644365465}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.8157196, y: 11.062708, z: 30.666885}
+  m_Center: {x: 72.83259, y: 1.0944107, z: 8.826038}
+--- !u!65 &644365469
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644365465}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.2920685, y: 11.062708, z: 30.666885}
+  m_Center: {x: 141.9505, y: 1.0944109, z: 8.826038}
 --- !u!1 &711627750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,8 +1276,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4684e3af30bbde45955d37590ba51c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiManager: {fileID: 0}
+  questManager: {fileID: 0}
   trainManager: {fileID: 754711507}
   environmentManager: {fileID: 2084952627}
+  craftingManager: {fileID: 0}
+  gameStateManager: {fileID: 0}
   passengerHappinessSlider: {fileID: 1423142665}
   trashCount: 0
   cupSprites:
@@ -1219,6 +1296,7 @@ MonoBehaviour:
   indicators:
   - {fileID: 162153077}
   - {fileID: 1062815009}
+  popupWindows: []
 --- !u!114 &818546140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1783,10 +1861,15 @@ MonoBehaviour:
   horizontalMovementSpeed: 5
   verticalMovementSpeed: 5
   playerState: 0
+  interactionKey: 101
   interactionTimeNeeded: 1
+  craftingKey: 99
+  craftingTimeCooldown: 0.5
   showDebugInfo: 1
   interactionInput: 0
   interactionTimer: 0
+  craftingInput: 0
+  craftingTimer: 0
   interactableGameObject: {fileID: 0}
   movementInput: {x: 0, y: 0, z: 0}
   movementVector: {x: 0, y: 0, z: 0}
@@ -2095,10 +2178,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084952625}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1458, y: 860, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 644365466}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2116,6 +2200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   landscapePrefab: {fileID: 6736951353357499922, guid: 1e0310a1de26d97479ea2eb375dcc75e, type: 3}
   platformPrefab: {fileID: 0}
+  gatherableResourcePrefabs: []
   amountOfTiles: 35
   movementState: 0
   groundObjects: []

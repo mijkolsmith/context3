@@ -6,7 +6,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
 {
 	public virtual void Gather()
 	{
-		GameManager.Instance.CraftingManager.AddResource(GetResourceType());
+		GameManager.Instance.CraftingManager.AddResourceToInventory(GetResourceType());
 	}
 
 	public virtual void Interact()
