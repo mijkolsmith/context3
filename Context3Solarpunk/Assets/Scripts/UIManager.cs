@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class DialogueManager : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
-    //TODO: Couple with a UIManager 
+
+    [SerializeField] private TextMeshProUGUI questText;
+
+
     [SerializeField]
     private GameObject dialoguePanel;
 
@@ -15,10 +18,11 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI dialogueText;
 
+    public TextMeshProUGUI QuestText { get => questText; set => questText = value; }
 
     private void Start()
     {
-        StartDialogue("Dit is een heel cool startverhaaltje die niet erg logisch is maar wel een verhaaltje is.");
+        StartDialogue("");
     }
 
     public void StartDialogue(string dialogue)

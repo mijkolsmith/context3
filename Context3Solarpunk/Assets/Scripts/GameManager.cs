@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     private static GameManager instance = null;
     public static GameManager Instance { get => instance; private set => instance = value; }
 
-    [SerializeField] private DialogueManager dialogueManager;
+    [SerializeField] private UIManager uiManager;
     [SerializeField] private QuestManager questManager;
     [SerializeField] private TrainManager trainManager;
     [SerializeField] private EnvironmentManager environmentManager;
@@ -21,10 +21,11 @@ public class GameManager : MonoBehaviour
     public GameStateManager GameStateManager { get => gameStateManager; private set => gameStateManager = value; }
     public CraftingManager CraftingManager { get => craftingManager; private set => craftingManager = value; }
     public QuestManager QuestManager { get => questManager; private set => questManager = value; }
-    public DialogueManager DialogueManager { get => dialogueManager; private set => dialogueManager = value; }
+    public UIManager DialogueManager { get => uiManager; private set => uiManager = value; }
 	public PopupWindow[] PopupWindows { get => popupWindows; private set => popupWindows = value; }
+    public UIManager UiManager { get => uiManager; set => uiManager = value; }
 
-	[SerializeField] private Slider passengerHappinessSlider;
+    [SerializeField] private Slider passengerHappinessSlider;
     [MinValue(0), MaxValue(3), ReadOnly] public int trashCount;
     [SerializeField] private Sprite[] cupSprites;
     [SerializeField] private Image[] trashHolders;
