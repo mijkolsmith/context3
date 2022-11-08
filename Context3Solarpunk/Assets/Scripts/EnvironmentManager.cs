@@ -15,6 +15,7 @@ public class EnvironmentManager : MonoBehaviour
 {
     [SerializeField] private GameObject landscapePrefab;
     [SerializeField] private GameObject platformPrefab;
+    [SerializeField] private GameObject trashPrefab;
     [SerializeField] private int amountOfTiles = 5;
 
     [SerializeField] private MovementState movementState = MovementState.isStandingStill;

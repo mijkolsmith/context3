@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnPlatformState : State
+public class InPastOnPlatformState : State
 {
 	public override IEnumerator Start()
 	{

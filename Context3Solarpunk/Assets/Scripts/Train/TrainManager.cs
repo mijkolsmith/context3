@@ -130,7 +130,7 @@ public class TrainManager : MonoBehaviour
             if (playerInTrain == true)
             {
                 playerInTrain = false;
-                GameManager.Instance.GameStateManager.SetState(new OnPlatformState()); //TODO: stop creating new ones every frame
+                GameManager.Instance.GameStateManager.SetState(new InPastOnPlatformState()); //TODO: stop creating new ones every frame
                 Debug.Log("Player on platform, current state: " + GameManager.Instance.GameStateManager.GetState());
             }
         }
