@@ -12,5 +12,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
 	public virtual void Interact()
 	{
 		Gather();
+		GameManager.Instance.trashCount--;
+		Destroy(gameObject);
 	}
 }

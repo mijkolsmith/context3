@@ -44,7 +44,7 @@ public class OnMovingTrainState : State
 		}
 
 		//Trash game mechanic
-		if (GameManager.Instance.trashCount <= 3) trashTimer += Time.deltaTime;
+		if (GameManager.Instance.trashCount < 3) trashTimer += Time.deltaTime;
 		if (trashTimer > trashTimeNeeded)
 		{
 			GameManager.Instance.trashCount++;

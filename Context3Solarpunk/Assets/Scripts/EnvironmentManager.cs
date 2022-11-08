@@ -15,7 +15,7 @@ public class EnvironmentManager : MonoBehaviour
 {
     [SerializeField] private GameObject landscapePrefab;
     [SerializeField] private GameObject platformPrefab;
-    [SerializeField] private GameObject trashPrefab;
+    [SerializeField] private GameObject[] gatherableResourcePrefabs;
     [SerializeField] private int amountOfTiles = 5;
 
     [SerializeField] private MovementState movementState = MovementState.isStandingStill;
@@ -122,5 +122,14 @@ public class EnvironmentManager : MonoBehaviour
     public void SetToMoveInSeconds(float seconds)
 	{
 
+	}
+
+    public void SpawnGatherableResource()
+	{
+        //For test:
+        float xPos = Random.Range(-8.5f, 18.5f);
+        float zPos = Random.Range(-3.6f, 3.6f);
+
+        Instantiate(gatherableResourcePrefabs[Random.Range(0, gatherableResourcePrefabs.Length)], new Vector3(xPos, 0, zPos), Quaternion.identity);
 	}
 }

@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
         }
 
         GameStateManager = gameObject.AddComponent<GameStateManager>();
-        GameStateManager.SetState(startState);
     }
 
     public void ChangePassengerHappiness(int amount)

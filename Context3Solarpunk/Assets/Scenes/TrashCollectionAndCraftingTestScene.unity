@@ -10792,7 +10792,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   landscapePrefab: {fileID: 6736951353357499922, guid: 1e0310a1de26d97479ea2eb375dcc75e, type: 3}
   platformPrefab: {fileID: 0}
-  trashPrefab: {fileID: 7954028394289499076, guid: 60e7a5d61bb66a14a9deeac559b691f5, type: 3}
+  gatherableResourcePrefabs:
+  - {fileID: 7954028394289499076, guid: 60e7a5d61bb66a14a9deeac559b691f5, type: 3}
   amountOfTiles: 0
   movementState: 0
   groundObjects: []
