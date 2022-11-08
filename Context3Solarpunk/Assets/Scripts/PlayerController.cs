@@ -16,8 +16,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] bool canMoveInThreeDimensions = false;
-    [SerializeField] private float horizontalMovementSpeed = 1f; //Walking speed side to side
-    [SerializeField, EnableIf("canMoveInThreeDimensions")] private float verticalMovementSpeed = 1f; //Walking speed up and down
+    [SerializeField] private float horizontalMovementSpeed = 5f; //Walking speed side to side
+    [SerializeField, EnableIf("canMoveInThreeDimensions")] private float verticalMovementSpeed = 5f; //Walking speed up and down
 
     [Header("State")]
     [SerializeField, ReadOnly] private PlayerStates playerState = PlayerStates.idle; //Player is currently... (insert state here)
@@ -31,6 +31,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private KeyCode craftingKey = KeyCode.C;
     [SerializeField] private float craftingTimeCooldown = .5f;
 
+    [Header("Crafting")]
+    [SerializeField] private KeyCode respawnKey = KeyCode.F5;
+    [SerializeField] private Vector3 respawnLocation = Vector3.zero;
+
     [Space]
     [SerializeField] private bool showDebugInfo = true;
     [Header("Debug")]
@@ -39,6 +43,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool craftingInput;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private float craftingTimer;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private GameObject interactableGameObject;
+    [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool respawnInput;
 
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private Vector3 movementInput;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private Vector3 movementVector;
@@ -65,12 +70,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // Movement
+        // TODO: for some reason, you can walk in between colliders, we should fix this in the future
+
         //if (canMoveInThreeDimensions) depthInput = Input.GetAxisRaw("Vertical") else depthInput = 0;
-        
         depthInput = canMoveInThreeDimensions ? Input.GetAxisRaw("Vertical") : 0; //If can move in 3D, 
         movementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0 , depthInput); //Set movementVector
+
         if (movementInput != Vector3.zero)
         {
+            // TODO: should be normalized, otherwise diagonal walking is always fastest, but how do you get different movement speeds then?
             movementVector = new Vector3(MovementInput.x * horizontalMovementSpeed, 0f, MovementInput.z * verticalMovementSpeed) * Time.fixedDeltaTime;
             playerState = PlayerStates.walking;
         } 
@@ -81,6 +90,7 @@ public class PlayerController : MonoBehaviour
         }
         Move();
 
+        // Interaction
         interactionInput = Input.GetKey(interactionKey);
         if (interactionInput && interactableObject != null)
 		{
@@ -96,6 +106,7 @@ public class PlayerController : MonoBehaviour
 		}
         else interactionTimer = 0;
 
+        // Crafting menu
         craftingInput = Input.GetKey(craftingKey);
         if (craftingTimer <= craftingTimeCooldown)
 		{
@@ -107,6 +118,13 @@ public class PlayerController : MonoBehaviour
                 GameManager.Instance.TogglePopupWindow(PopupWindowType.Crafting);
                 craftingTimer = 0;
             }
+        }
+
+        // Respawning
+        respawnInput = Input.GetKey(respawnKey);
+        if (respawnInput)
+        {
+            transform.position = respawnLocation;
         }
     }
 
