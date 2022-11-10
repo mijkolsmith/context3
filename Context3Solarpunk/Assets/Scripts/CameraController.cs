@@ -8,6 +8,8 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private float speed = 1f;
 
+    //Camera movement behaviour always has to be in LateUpdate to fix choppyness
+    //It fixes choppyness by being moved after physics movement calculations have been done
     private void LateUpdate()
     {
         CameraFollow(objectToFollow.transform.position);
