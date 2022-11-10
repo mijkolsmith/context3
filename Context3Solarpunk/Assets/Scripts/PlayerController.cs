@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     [ReadOnly] private IInteractable interactableObject;
     [SerializeField] private KeyCode interactionKey = KeyCode.E;
     [SerializeField] private float interactionTimeNeeded = 1f;
+    [SerializeField] private GameObject pickupBeamPrefab;
+    [SerializeField, ReadOnly] private GameObject pickupBeam;
 
     [Header("Crafting")]
     [SerializeField] private KeyCode craftingKey = KeyCode.C;
@@ -93,18 +95,24 @@ public class PlayerController : MonoBehaviour
         // Interaction
         interactionInput = Input.GetKey(interactionKey);
         if (interactionInput && interactableObject != null)
-		{
-            //TODO: play interaction animation
+        {
+            if (pickupBeam == null) pickupBeam = Instantiate(pickupBeamPrefab, interactableGameObject.transform.position, Quaternion.LookRotation(transform.position - interactableGameObject.transform.position), transform);
+
             interactionTimer += Time.deltaTime;
             if (interactionTimer > interactionTimeNeeded)
-			{
+            {
+                Destroy(pickupBeam);
                 interactionTimer = 0;
                 interactableObject.Interact();
                 interactableObject = null;
-			}
+            }
             //TODO: highlight object or display "Press "E" to interact."
-		}
-        else interactionTimer = 0;
+        }
+        else
+        {
+            interactionTimer = 0;
+            Destroy(pickupBeam);
+        }
 
         // Crafting menu
         craftingInput = Input.GetKey(craftingKey);

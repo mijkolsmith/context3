@@ -5,7 +5,7 @@ using UnityEngine;
 public class InPastOnPlatformState : State
 {
 	private float resourceSpawnTimer = 0f;
-	private float resourceSpawnTimeNeeded = Random.Range(10f, 15f); // This should depend on how far you've progressed in the game
+	private float resourceSpawnTimeNeeded = Random.Range(2f, 5f); // This should depend on how far you've progressed in the game / needs tweaking
 
 	public override IEnumerator Start()
 	{
@@ -20,7 +20,7 @@ public class InPastOnPlatformState : State
 		{
 			GameManager.Instance.trashCount++;
 			GameManager.Instance.EnvironmentManager.SpawnGatherableResource();
-			resourceSpawnTimeNeeded = Random.Range(10f, 15f);
+			resourceSpawnTimeNeeded = Random.Range(5f, 15f);
 			resourceSpawnTimer = 0;
 		}
 		yield return null;

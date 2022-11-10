@@ -37,7 +37,7 @@ public class CraftingManager : MonoBehaviour
         { ResourceType.CompostHeap, new() { { ResourceType.Metal, 3 } } },
         { ResourceType.Grass, new() { { ResourceType.Compost, 3 } } },
         { ResourceType.InsectHotel, new() { { ResourceType.Wood, 2 } } },
-        { ResourceType.RainBarrel, new() { { ResourceType.Wood, 2 }, { ResourceType.Plastic, 5 } } },
+        { ResourceType.RainBarrel, new() { { ResourceType.Wood, 2 }, { ResourceType.Plastic, 3 } } },
         { ResourceType.VegetableGarden, new() { { ResourceType.Compost, 3 }, { ResourceType.RainWater, 3 } } }
     };
 

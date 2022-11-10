@@ -7,7 +7,6 @@ public enum ResourceType
 	OldElectronics,
 	Can,
 	OldUniform,
-	Tyre,
 	Leaf,
 	Furniture,
 	RainWater,
@@ -17,7 +16,6 @@ public enum ResourceType
 	Electronics,
 	Metal,
 	Fabric,
-	Rubber,
 	Compost,
 	Wood,
 
