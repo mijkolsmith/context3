@@ -36,6 +36,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector3 respawnLocation = Vector3.zero;
 
     [Space]
+    [SerializeField] private GameObject companionPositionGameObject;
+    [Header("Debug")]
+
+    [Space]
     [SerializeField] private bool showDebugInfo = true;
     [Header("Debug")]
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool interactionInput;
@@ -60,6 +64,7 @@ public class PlayerController : MonoBehaviour
     public float HorizontalMovementSpeed { get => horizontalMovementSpeed; set => horizontalMovementSpeed = value; }
     public float VerticalMovementSpeed { get => verticalMovementSpeed; set => verticalMovementSpeed = value; }
     internal PlayerStates PlayerState { get => playerState; set => playerState = value; }
+    public GameObject CompanionPositionGameObject { get => companionPositionGameObject; set => companionPositionGameObject = value; }
     #endregion
 
     private void Start()
@@ -130,6 +135,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+        //TODO: Make this addforce or charactercontroller based movement
         rb.MovePosition(transform.position + movementVector);
     }
 
