@@ -5,20 +5,21 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-
     [SerializeField] private TextMeshProUGUI questText;
-
-
-    [SerializeField]
-    private GameObject dialoguePanel;
-
+    [SerializeField] private GameObject dialoguePanel;
     [SerializeField, Range(0.001f,0.2f)] private float textSpeed = 0.02f;
+    [SerializeField] private TextMeshProUGUI dialogueText;
+
+    [SerializeField] private GameObject canInteractPopupUIObject;
+
 
     float timer = 0;
-    [SerializeField]
-    private TextMeshProUGUI dialogueText;
+
+
+
 
     public TextMeshProUGUI QuestText { get => questText; set => questText = value; }
+    public GameObject CanInteractPopupUIObject { get => canInteractPopupUIObject; set => canInteractPopupUIObject = value; }
 
     private void Start()
     {

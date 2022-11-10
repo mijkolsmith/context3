@@ -28,6 +28,18 @@ public class Lamp : QuestObjectMonoBehaviour, IInteractable
                         }
                     }
                 }
+                else
+                {
+                    for (int j = 0; j < q.tasks.Count; j++)
+                    {
+
+                        if (q.tasks[j].objectToInteract == gameObject)
+                        {
+                            q.tasks[j].success = true;
+                            q.tasks[j].succesEvent?.Invoke();
+                        }
+                    }
+                }
             }
             else
             {
