@@ -16,8 +16,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] bool canMoveInThreeDimensions = false;
-    [SerializeField] private float horizontalMovementSpeed = 5f; //Walking speed side to side
-    [SerializeField, EnableIf("canMoveInThreeDimensions")] private float verticalMovementSpeed = 5f; //Walking speed up and down
+    [SerializeField] private float movementSpeed = 5f; //Walking speed side to side
+    [SerializeField] private float playerGravity = -9.81f;
 
     [Header("State")]
     [SerializeField, ReadOnly] private PlayerStates playerState = PlayerStates.idle; //Player is currently... (insert state here)
@@ -56,13 +56,13 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
     private Animator anim;
+    private CharacterController charController;
 
     #endregion
 
     #region Properties
     private Vector3 MovementInput { get => movementInput; set => movementInput = value; }
-    public float HorizontalMovementSpeed { get => horizontalMovementSpeed; set => horizontalMovementSpeed = value; }
-    public float VerticalMovementSpeed { get => verticalMovementSpeed; set => verticalMovementSpeed = value; }
+    public float HorizontalMovementSpeed { get => movementSpeed; set => movementSpeed = value; }
     internal PlayerStates PlayerState { get => playerState; set => playerState = value; }
     public GameObject CompanionPositionGameObject { get => companionPositionGameObject; set => companionPositionGameObject = value; }
     #endregion
@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        charController = GetComponent<CharacterController>();
     }
 
     private void Update()
@@ -82,17 +83,7 @@ public class PlayerController : MonoBehaviour
         depthInput = canMoveInThreeDimensions ? Input.GetAxisRaw("Vertical") : 0; //If can move in 3D, 
         movementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, depthInput); //Set movementVector
 
-        if (movementInput != Vector3.zero)
-        {
-            // TODO: should be normalized, otherwise diagonal walking is always fastest, but how do you get different movement speeds then?
-            movementVector = new Vector3(MovementInput.x * horizontalMovementSpeed, 0f, MovementInput.z * verticalMovementSpeed) * Time.fixedDeltaTime;
-            playerState = PlayerStates.walking;
-        }
-        else
-        {
-            movementVector = Vector3.zero;
-            playerState = PlayerStates.idle;
-        }
+        
         Move();
 
         // Interaction
@@ -141,8 +132,22 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+
+        if (movementInput != Vector3.zero)
+        {
+            // TODO: should be normalized, otherwise diagonal walking is always fastest, but how do you get different movement speeds then?
+            movementVector = new Vector3(MovementInput.x * movementSpeed, 0f, MovementInput.z * movementSpeed) * Time.fixedDeltaTime;
+            playerState = PlayerStates.walking;
+        }
+        else
+        {
+            movementVector = Vector3.zero;
+            playerState = PlayerStates.idle;
+        }
         //TODO: Make this addforce or charactercontroller based movement
-        rb.MovePosition(transform.position + movementVector);
+        var mvmnt = movementVector * Time.deltaTime * movementSpeed;
+        var grvty = playerGravity * Time.deltaTime;
+        charController.Move(new Vector3(mvmnt.x, grvty, mvmnt.z));
     }
 
     private void OnTriggerEnter(Collider other)
