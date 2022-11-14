@@ -110,6 +110,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Crafting menu
+        // TODO: use GetKeyDown instead of GetKey and a timer
         craftingInput = Input.GetKey(craftingKey);
         if (craftingTimer <= craftingTimeCooldown)
         {
@@ -122,8 +123,6 @@ public class PlayerController : MonoBehaviour
                 craftingTimer = 0;
             }
         }
-
-       
 
         // Respawning
         respawnInput = Input.GetKey(respawnKey);

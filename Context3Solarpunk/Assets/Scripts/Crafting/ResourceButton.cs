@@ -29,6 +29,7 @@ public class ResourceButton : MonoBehaviour
 
 	private void Update()
 	{
+		//TODO: make the system so multiple can activate
 		if (crafted)
 		{
 			craftedText.gameObject.SetActive(true);
