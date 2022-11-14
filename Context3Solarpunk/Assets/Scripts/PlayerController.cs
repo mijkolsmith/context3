@@ -122,6 +122,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+       
+
         // Respawning
         respawnInput = Input.GetKey(respawnKey);
         if (respawnInput)
