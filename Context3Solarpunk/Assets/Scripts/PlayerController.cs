@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private KeyCode craftingKey = KeyCode.C;
     [SerializeField] private float craftingTimeCooldown = .5f;
 
-    [Header("Crafting")]
+    [Header("Respawning")]
     [SerializeField] private KeyCode respawnKey = KeyCode.F5;
     [SerializeField] private Vector3 respawnLocation = Vector3.zero;
 
@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
         Move();
 
         // Interaction
+        interactionInput = Input.GetKey(interactionKey);
         if (interactableObject != null)
         {
             if (interactionInput)
@@ -99,12 +100,12 @@ public class PlayerController : MonoBehaviour
                     interactableObject = null;
                 }
             }
-            GameManager.Instance.UiManager.CanInteractPopupUIObject.SetActive(true);
+            //GameManager.Instance.UiManager.CanInteractPopupUIObject.SetActive(true);
         }
         else
         {
             Destroy(pickupBeam);
-            GameManager.Instance.UiManager.CanInteractPopupUIObject.SetActive(false);
+            //GameManager.Instance.UiManager.CanInteractPopupUIObject.SetActive(false);
             interactionTimer = 0;
         }
 
