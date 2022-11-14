@@ -30,7 +30,7 @@ public class RobotCompanion : MonoBehaviour
         if (Vector3.Distance(transform.position,desiredPosition) > followDistance)
         {
             transform.position = Vector3.Lerp(transform.position, desiredPosition, speed * Time.deltaTime);
-            transform.LookAt(player.gameObject.transform.position);
+            transform.LookAt(desiredPosition);
         }
 
     //    var step = speed * Time.deltaTime;
