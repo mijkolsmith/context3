@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     [Header("Debug")]
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool interactionInput;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private float interactionTimer;
+    [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool craftingInput;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private GameObject interactableGameObject;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool respawnInput;
 
