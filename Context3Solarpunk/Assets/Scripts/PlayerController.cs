@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Crafting")]
     [SerializeField] private KeyCode craftingKey = KeyCode.C;
-    [SerializeField] private float craftingTimeCooldown = .5f;
 
     [Header("Respawning")]
     [SerializeField] private KeyCode respawnKey = KeyCode.F5;
@@ -46,8 +45,6 @@ public class PlayerController : MonoBehaviour
     [Header("Debug")]
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool interactionInput;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private float interactionTimer;
-    [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool craftingInput;
-    [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private float craftingTimer;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private GameObject interactableGameObject;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool respawnInput;
 
@@ -110,17 +107,12 @@ public class PlayerController : MonoBehaviour
         }
 
         // Crafting menu
-        // TODO: use GetKeyDown instead of GetKey and a timer
-        craftingInput = Input.GetKey(craftingKey);
-        if (craftingTimer <= craftingTimeCooldown)
-        {
-            craftingTimer += Time.deltaTime;
-        }
-        if (craftingInput && (craftingTimer >= craftingTimeCooldown))
+        // TODO: player should only be able to do this close to the recycle machine
+        craftingInput = Input.GetKeyDown(craftingKey);
+        if (craftingInput)
         {
             {
                 GameManager.Instance.TogglePopupWindow(PopupWindowType.Crafting);
-                craftingTimer = 0;
             }
         }
 
