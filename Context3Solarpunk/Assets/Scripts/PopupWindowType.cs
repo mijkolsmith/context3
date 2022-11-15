@@ -1,5 +1,6 @@
 public enum PopupWindowType
 {
     Unit,
-    Crafting
+    Crafting,
+    Dorien
 }

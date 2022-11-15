@@ -48,7 +48,6 @@ public class UIManager : MonoBehaviour
             if (dialogueText.text.Length > 1)
             {
                 string s = dialogueText.text.Substring(dialogueText.text.Length - 1);
-                Debug.Log(s);
                 if (s == "|")
                 {
                     paused = true;

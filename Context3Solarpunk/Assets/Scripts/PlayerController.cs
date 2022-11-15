@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using System.Linq;
 
 enum PlayerStates
 {
@@ -31,6 +32,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Crafting")]
     [SerializeField] private KeyCode craftingKey = KeyCode.C;
+    
+    [Header("Dorien")]
+    [SerializeField] private KeyCode dorienKey = KeyCode.I;
 
     [Header("Respawning")]
     [SerializeField] private KeyCode respawnKey = KeyCode.F5;
@@ -46,6 +50,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool interactionInput;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private float interactionTimer;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool craftingInput;
+    [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool dorienInput;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private GameObject interactableGameObject;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private bool respawnInput;
 
@@ -61,6 +66,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Properties
+    public static PlayerController Player { get ; private set; }
     private Vector3 MovementInput { get => movementInput; set => movementInput = value; }
     public float HorizontalMovementSpeed { get => movementSpeed; set => movementSpeed = value; }
     internal PlayerStates PlayerState { get => playerState; set => playerState = value; }
@@ -72,6 +78,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
+        Player = GetComponent<PlayerController>();
     }
 
     private void Update()
@@ -112,9 +119,14 @@ public class PlayerController : MonoBehaviour
         craftingInput = Input.GetKeyDown(craftingKey);
         if (craftingInput)
         {
-            {
-                GameManager.Instance.TogglePopupWindow(PopupWindowType.Crafting);
-            }
+            GameManager.Instance.TogglePopupWindow(PopupWindowType.Crafting);
+        }
+
+        // Dorien menu
+        dorienInput = Input.GetKeyDown(dorienKey);
+        if (dorienInput)
+        {
+            GameManager.Instance.TogglePopupWindow(PopupWindowType.Dorien);
         }
 
         // Respawning
