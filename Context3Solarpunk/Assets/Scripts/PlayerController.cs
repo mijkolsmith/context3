@@ -100,12 +100,12 @@ public class PlayerController : MonoBehaviour
                     interactableObject = null;
                 }
             }
-            //GameManager.Instance.UiManager.CanInteractPopupUIObject.SetActive(true);
+            GameManager.Instance.UiManager.CanInteractPopupUIObject.SetActive(true);
         }
         else
         {
             Destroy(pickupBeam);
-            //GameManager.Instance.UiManager.CanInteractPopupUIObject.SetActive(false);
+            GameManager.Instance.UiManager.CanInteractPopupUIObject.SetActive(false);
             interactionTimer = 0;
         }
 
