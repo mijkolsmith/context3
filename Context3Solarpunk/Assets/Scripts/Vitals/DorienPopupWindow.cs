@@ -33,8 +33,8 @@ public class DorienPopupWindow : PopupWindow
 			popupWindow.SetActive(true);
 
 			cameraController.objectToFollow = gameObject;
-			cameraController.cameraDistance = 1;
-			cameraController.cameraHeight = 0.2f;
+			cameraController.cameraDistance = 1.2f;
+			cameraController.cameraHeight = 0.1f;
 		}
 	}
 
