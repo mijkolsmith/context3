@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lamp : QuestObjectMonoBehaviour, IInteractable
+//Was voorheen Lamp.cs
+//TODO: Integreer GatherableResource met questprogression
+public class QuestObject : QuestObjectMonoBehaviour, IInteractable
 {
     public void Interact()
     {
