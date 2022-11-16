@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     [Label("Enable depth movement")]
 
     [Header("Movement")]
-    [SerializeField] bool canMoveInThreeDimensions = false;
     [SerializeField] private float movementSpeed = 5f; //Walking speed side to side
     [SerializeField] private float playerGravity = -9.81f;
 
@@ -32,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Crafting")]
     [SerializeField] private KeyCode craftingKey = KeyCode.C;
+    [SerializeField] private bool canCraft = false;
     
     [Header("Dorien")]
     [SerializeField] private KeyCode dorienKey = KeyCode.I;
@@ -56,8 +56,6 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private Vector3 movementInput;
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private Vector3 movementVector;
-
-    float depthInput = 0;
 
     private Rigidbody rb;
     private Animator anim;
@@ -85,8 +83,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // Movement
-        depthInput = canMoveInThreeDimensions ? Input.GetAxisRaw("Vertical") : 0; //If can move in 3D, 
-        movementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, depthInput); //Set movementVector
+        movementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")); //Set movementVector
         Move();
 
         // Interaction
@@ -116,9 +113,8 @@ public class PlayerController : MonoBehaviour
         }
 
         // Crafting menu
-        // TODO: player should only be able to do this close to the recycle machine
         craftingInput = Input.GetKeyDown(craftingKey);
-        if (craftingInput)
+        if (craftingInput && canCraft)
         {
             GameManager.Instance.TogglePopupWindow(PopupWindowType.Crafting);
         }
@@ -161,6 +157,11 @@ public class PlayerController : MonoBehaviour
         //Is the colliding object interactable? save it, otherwise keep what was saved previously
         interactableObject = other.GetComponent<IInteractable>() != null ? other.GetComponent<IInteractable>() : interactableObject;
 
+        if (other.tag == "CraftingMachine")
+		{
+            canCraft = true;
+		}
+
         //Debug info updater
         if (showDebugInfo)
         {
@@ -181,6 +182,11 @@ public class PlayerController : MonoBehaviour
     {
         //Is the colliding object interactable? remove it
         interactableObject = other.GetComponent<IInteractable>() != null ? null : interactableObject;
+
+        if (other.tag == "CraftingMachine")
+        {
+            canCraft = false;
+        }
 
         //Debug info updater
         if (showDebugInfo)
