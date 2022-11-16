@@ -17,10 +17,7 @@ public class CraftingPopupWindow : PopupWindow
 		{
 			popupWindow.SetActive(true);
 			if (!resourceButtons.Any()) resourceButtons = GetComponentsInChildren<ResourceButton>(true).ToList();
-			foreach(ResourceButton resourceButton in resourceButtons)
-			{
-				resourceButton.UpdateUI();
-			}
+			UpdateUI();
 		}
 	}
 
