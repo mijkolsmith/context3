@@ -123,6 +123,7 @@ public class PlayerController : MonoBehaviour
         dorienInput = Input.GetKeyDown(dorienKey);
         if (dorienInput)
         {
+            GameManager.Instance.UiManager.DorienPopupUIObject.SetActive(false);
             GameManager.Instance.TogglePopupWindow(PopupWindowType.Dorien);
         }
 
@@ -157,10 +158,11 @@ public class PlayerController : MonoBehaviour
         //Is the colliding object interactable? save it, otherwise keep what was saved previously
         interactableObject = other.GetComponent<IInteractable>() != null ? other.GetComponent<IInteractable>() : interactableObject;
 
-        if (other.tag == "CraftingMachine")
+        if (other.CompareTag("CraftingMachine"))
 		{
             canCraft = true;
-		}
+            GameManager.Instance.UiManager.CanCraftPopupUIObject.SetActive(true);
+        }
 
         //Debug info updater
         if (showDebugInfo)
@@ -183,9 +185,10 @@ public class PlayerController : MonoBehaviour
         //Is the colliding object interactable? remove it
         interactableObject = other.GetComponent<IInteractable>() != null ? null : interactableObject;
 
-        if (other.tag == "CraftingMachine")
+        if (other.CompareTag("CraftingMachine"))
         {
             canCraft = false;
+            GameManager.Instance.UiManager.CanCraftPopupUIObject.SetActive(false);
         }
 
         //Debug info updater

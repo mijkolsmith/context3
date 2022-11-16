@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
 
     [SerializeField] private GameObject canInteractPopupUIObject;
+    [SerializeField] private GameObject canCraftPopupUIObject;
+    [SerializeField] private GameObject dorienPopupUIObject;
 
     [SerializeField] private bool paused = false;
 
@@ -19,8 +21,10 @@ public class UIManager : MonoBehaviour
 
     public TextMeshProUGUI QuestText { get => questText; set => questText = value; }
     public GameObject CanInteractPopupUIObject { get => canInteractPopupUIObject; set => canInteractPopupUIObject = value; }
+	public GameObject CanCraftPopupUIObject { get => canCraftPopupUIObject; set => canCraftPopupUIObject = value; }
+	public GameObject DorienPopupUIObject { get => dorienPopupUIObject; set => dorienPopupUIObject = value; }
 
-    private void Start()
+	private void Start()
     {
         StartDialogue("");
     }
