@@ -2289,7 +2289,7 @@ MonoBehaviour:
   popupWindows:
   - {fileID: 1422887942}
   - {fileID: 1444520928}
-  - {fileID: 1284438087}
+  - {fileID: 0}
 --- !u!114 &818546140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2630,8 +2630,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToFollow: {fileID: 1545867731}
-  moveSpeed: 4
-  zoomSpeed: 4
+  moveSpeed: 1
+  zoomSpeed: 2
   cameraDistance: 11.7
   cameraHeight: 3
 --- !u!1 &965942881
@@ -3329,17 +3329,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2197820331430667572, guid: 7ca663471ef6418419d1bb8a955147f0, type: 3}
   m_PrefabInstance: {fileID: 2197820330431520114}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1284438087 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2197820331430667573, guid: 7ca663471ef6418419d1bb8a955147f0, type: 3}
-  m_PrefabInstance: {fileID: 2197820330431520114}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f33d1fcf0f4dce1478d753420527df92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1413768133
 GameObject:
   m_ObjectHideFlags: 0

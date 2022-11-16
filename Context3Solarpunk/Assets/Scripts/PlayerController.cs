@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
     public float HorizontalMovementSpeed { get => movementSpeed; set => movementSpeed = value; }
     internal PlayerStates PlayerState { get => playerState; set => playerState = value; }
     public GameObject CompanionPositionGameObject { get => companionPositionGameObject; set => companionPositionGameObject = value; }
+    public GameObject InteractableGameObject { get => interactableGameObject; set => interactableGameObject = value; }
     #endregion
 
     private void Start()
