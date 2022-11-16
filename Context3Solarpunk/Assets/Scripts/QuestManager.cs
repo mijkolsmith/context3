@@ -12,6 +12,7 @@ public class QuestManager : MonoBehaviour
 
     private void Start()
     {
+        questNmbr = 0;
         if (quests.Count > 0)
         {
             StartQuest(quests[0]);
@@ -26,12 +27,18 @@ public class QuestManager : MonoBehaviour
         {
             quest.currentTask = quest.tasks[0];
         }
+        currentQuest = quest;
         quest.activateEvent?.Invoke();
     }
+    public void startsecondquest()
+    {
+        StartQuest(quests[1]);
+    }
+
 
     public void AdvanceTasks()
     {
-        bool allTasksAreDone = false;
+        bool allTasksAreDone = true;
         for (int i = 0; i < quests.Count; i++) //For all the quests
         {
             Quest q = quests[i];
@@ -70,16 +77,10 @@ public class QuestManager : MonoBehaviour
                         allTasksAreDone = false;
                     }
                 }
-            }
-            else
-            {
-                for (int j = 0; j < q.tasks.Count; j++) //Get the tasks of the active ones
+                if (allTasksAreDone)
                 {
-                    if (q.tasks[j].objectToInteract == gameObject && q.tasks[j].success == false) //Get this interacted object
-                    {
-                        q.tasks[j].success = true; //Set this interacted object interactedBool success
-                        q.tasks[j].succesEvent?.Invoke(); //Activate the event when task succeeds
-                    }
+                    q.succesEvent?.Invoke();
+                    q.state = QuestState.Completed;
                 }
             }
         }
