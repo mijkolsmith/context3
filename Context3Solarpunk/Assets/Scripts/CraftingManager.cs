@@ -78,6 +78,8 @@ public class CraftingManager : MonoBehaviour
     [Header("Debug")]
     [SerializeField, ShowIf("showDebugInfo")] private ResourceType debugResourceToAdd;
 
+	public List<ResourceType> Resources { get => resources; private set => resources = value; }
+
 	[Button(enabledMode: EButtonEnableMode.Playmode), ShowIf("showDebugInfo")]
     public void DebugAddResource()
     {

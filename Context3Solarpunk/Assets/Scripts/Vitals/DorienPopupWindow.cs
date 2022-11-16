@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,9 +8,12 @@ public class DorienPopupWindow : PopupWindow
 	public override PopupWindowType GetPopupWindowType() => PopupWindowType.Dorien;
 
 	[SerializeField] private CameraController cameraController;
+	[SerializeField] private GameObject scrollviewContent;
 	private float startDistanceToPlayer;
 	private float startHeight;
 	private bool open;
+	private Dictionary<ResourceType, int> inventory = new();
+	[SerializeField] private Dictionary<ResourceType, Image> resourceSprites = new();
 
 	private void Start()
 	{
@@ -38,8 +42,11 @@ public class DorienPopupWindow : PopupWindow
 		}
 	}
 
-	public void UpdateUI()
+	public void LoadInventory()
 	{
-		
+		foreach(var resource in GameManager.Instance.CraftingManager.Resources)
+		{
+
+		}
 	}
 }
