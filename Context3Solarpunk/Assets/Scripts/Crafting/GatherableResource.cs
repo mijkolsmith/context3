@@ -13,6 +13,8 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
 	{
 		Gather();
 		GameManager.Instance.trashCount--;
-		Destroy(gameObject);
-	}
+        GameManager.Instance.QuestManager.AdvanceTasks();
+        //This happens in questmanager for now
+        //gameObject.SetActive(false);
+    }
 }
