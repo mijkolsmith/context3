@@ -9,7 +9,7 @@ public class Trash : MonoBehaviour, IInteractable
 	public void Interact()
 	{
 		Pickup();
-	}
+    }
 
 	public void Spawn(TrashType trashType)
 	{

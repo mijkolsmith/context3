@@ -5,6 +5,7 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
     [HideInInspector] public Quest currentQuest;
+    [SerializeField] private PlayerController player;
     private int questNmbr;
     public List<Quest> quests = new List<Quest>();
     bool questNotDone = true;
@@ -28,26 +29,59 @@ public class QuestManager : MonoBehaviour
         quest.activateEvent?.Invoke();
     }
 
-    private void Update()
+    public void AdvanceTasks()
     {
-        if (currentQuest != null)
+        bool allTasksAreDone = false;
+        for (int i = 0; i < quests.Count; i++) //For all the quests
         {
-            for (int i = 0; i < currentQuest.tasks.Count; i++)
+            Quest q = quests[i];
+
+            if (q.state == QuestState.Active) //Get all the active ones
             {
-                if (!currentQuest.tasks[i].success)
+                if (q.sequential) //If quest is sequential
                 {
-                    questNotDone = true;
+                    if (q.currentTask.objectToInteract == player.InteractableGameObject)
+                    {
+                        q.currentTask.success = true;
+                        q.currentTask.succesEvent?.Invoke();
+                        q.taskNmbr++;
+                        if (q.taskNmbr < q.tasks.Count)
+                        {
+                            q.currentTask = q.tasks[q.taskNmbr];
+                        }
+                    }
                 }
-                else
+                else //Not sequential quest
                 {
-                    questNotDone = false;
+                    for (int j = 0; j < q.tasks.Count; j++)
+                    {
+                        if (q.tasks[j].objectToInteract == player.InteractableGameObject)
+                        {
+                            q.tasks[j].success = true;
+                            q.tasks[j].succesEvent?.Invoke();
+                        }
+                    }
+                }
+                //Check if all tasks are done
+                for(int z = 0; z < q.tasks.Count; z++)
+                {
+                    if (!q.tasks[z].success)
+                    {
+                        allTasksAreDone = false;
+                    }
                 }
             }
-        }
-        if (questNotDone == false)
-        {
-            currentQuest.succesEvent?.Invoke();
-            currentQuest.state = QuestState.Completed;
+            else
+            {
+                for (int j = 0; j < q.tasks.Count; j++) //Get the tasks of the active ones
+                {
+                    if (q.tasks[j].objectToInteract == gameObject && q.tasks[j].success == false) //Get this interacted object
+                    {
+                        q.tasks[j].success = true; //Set this interacted object interactedBool success
+                        q.tasks[j].succesEvent?.Invoke(); //Activate the event when task succeeds
+                    }
+                }
+            }
         }
     }
 }
