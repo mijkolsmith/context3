@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+//TODO: Cleanup / Remove all unnecessary code
+//TODO: Add Summaries
+
 public class CraftingManager : MonoBehaviour
 {
     [Header("Resources")]

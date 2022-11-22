@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: add comments
+
 public class QuestActivator : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)

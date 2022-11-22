@@ -11,7 +11,7 @@ public class PlayerControllerPointClick : MonoBehaviour
     [SerializeField] private KeyCode moveKey = KeyCode.Mouse1;
     [SerializeField] private LayerMask walkableLayer;
     [SerializeField] private GameObject targetDestination;
-    private NavMeshAgent player;
+    private NavMeshAgent agent;
 
     [Header("State")]
     [SerializeField, ReadOnly] private PlayerStates playerState = PlayerStates.idle; //Player is currently... (insert state here)
@@ -60,7 +60,7 @@ public class PlayerControllerPointClick : MonoBehaviour
 
     private void Start()
     {
-        player = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
@@ -75,7 +75,7 @@ public class PlayerControllerPointClick : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, walkableLayer))
 			{
                 targetDestination.transform.position = hit.point;
-                player.SetDestination(hit.point);
+                agent.SetDestination(hit.point);
 			}
 		}
 

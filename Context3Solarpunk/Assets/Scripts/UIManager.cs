@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+//TODO: Maak dit het enige script dat iets te doen heeft met UI, maak 1 huidige UI instance die als enige tegelijk open kan staan.
+
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI questText;

@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: Cleanup / Remove all unnecessary code
+//TODO: Add Summaries
+
 public class QuestManager : MonoBehaviour
 {
     [HideInInspector] public Quest currentQuest;

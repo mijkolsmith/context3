@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: Add summaries & comments
+
 public class CameraController : MonoBehaviour
 {
     public GameObject objectToFollow;

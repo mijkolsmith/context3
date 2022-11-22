@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: add summaries / comments
 public class RobotRotate : MonoBehaviour
 {
     [SerializeField] private GameObject playerCompanionParent;

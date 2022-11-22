@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+//TODO: Cleanup / Remove all unnecessary code, remove this script?
 public class TrainManager : MonoBehaviour
 {
     [SerializeField] private Transform stationLocation; //Could be done with Vector3 but transforms are easier

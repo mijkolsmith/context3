@@ -5,6 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+//TODO: Cleanup / Remove all unnecessary code
+//TODO: Add Summaries
+
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
