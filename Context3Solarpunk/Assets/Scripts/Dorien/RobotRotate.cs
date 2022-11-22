@@ -2,18 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO: add summaries / comments
 public class RobotRotate : MonoBehaviour
 {
     [SerializeField] private GameObject playerCompanionParent;
 
+    /// <summary>
+    /// To fix choppiness, call the LookAtPlayer method in the LateUpdate method.
+    /// </summary>
     void LateUpdate()
     {
-        FollowPlayer(playerCompanionParent.transform.position);
+        LookAtPlayer(playerCompanionParent.transform.position);
     }
 
-    void FollowPlayer(Vector3 desiredPosition)
+    /// <summary>
+    /// Make the robot look at the player.
+    /// </summary>
+    void LookAtPlayer(Vector3 playerPosition)
     {
-        transform.LookAt(desiredPosition);
+        transform.LookAt(playerPosition);
     }
 }

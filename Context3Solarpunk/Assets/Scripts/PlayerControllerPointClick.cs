@@ -20,9 +20,6 @@ public class PlayerControllerPointClick : MonoBehaviour
     [ReadOnly] private IInteractable interactableObject;
     [SerializeField] private KeyCode interactionKey = KeyCode.Mouse1;
     [SerializeField] private LayerMask interactableLayer;
-    [SerializeField] private float interactionTimeNeeded = 1f;
-    [SerializeField] private GameObject pickupBeamPrefab;
-    [SerializeField, ReadOnly] private GameObject pickupBeam;
 
     [Header("Crafting")]
     [SerializeField] private KeyCode craftingKey = KeyCode.C;
@@ -58,11 +55,20 @@ public class PlayerControllerPointClick : MonoBehaviour
     public GameObject CompanionPositionGameObject { get => companionPositionGameObject; set => companionPositionGameObject = value; }
     #endregion
 
+    /// <summary>
+    /// Get the navMeshAgent in the Start method.
+    /// </summary>
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
     }
 
+    /// <summary>
+    /// Check for movement input, interacion input, crafting input or respawn input in the Update method.
+    /// If there's movement input, apply the new target position to the agent.
+    /// If there's interaction or crafting input, open the respective popup window if applicable.
+    /// If there's respawn input, reset the player's position.
+    /// </summary>
     private void Update()
     {
         // Movement
@@ -92,6 +98,7 @@ public class PlayerControllerPointClick : MonoBehaviour
                 {
                     interactableObject.Interact();
                     interactableObject = null;
+                    //TODO: fix bug where it doesn't pick a new interactable object
                 }
             }
         }
@@ -118,9 +125,13 @@ public class PlayerControllerPointClick : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Get the new interactable object if it enters the trigger collider on this object.
+    /// Is the new colliding object interactable? Save it, otherwise keep what was saved previously.
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        //Is the colliding object interactable? save it, otherwise keep what was saved previously
         interactableObject = other.GetComponent<IInteractable>() != null ? other.GetComponent<IInteractable>() : interactableObject;
 
         //Debug info updater
@@ -130,15 +141,22 @@ public class PlayerControllerPointClick : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Is the colliding object interactable & do we not have an interactable object saved yet? Save it, otherwise keep what was saved previously.
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerStay(Collider other)
     {
-        //Is the colliding object interactable? save it, otherwise keep what was saved previously
         if (interactableObject == null && other.GetComponent<IInteractable>() != null)
         {
             interactableObject = other.GetComponent<IInteractable>();
         }
     }
 
+    /// <summary>
+    /// Was the colliding object interactable? Remove the current saved interactable object.
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerExit(Collider other)
     {
         //Is the colliding object interactable? remove it

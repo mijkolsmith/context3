@@ -22,6 +22,9 @@ public class MenuManager : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Singleton pattern.
+	/// </summary>
 	private void Awake()
 	{
 		if (instance == null)
@@ -34,6 +37,9 @@ public class MenuManager : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Simple UI toggle.
+	/// </summary>
 	public void ToggleCharacterSelectionMenu()
 	{
 		if (menus[0].activeInHierarchy)
@@ -48,6 +54,9 @@ public class MenuManager : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Load next Scene with current character.
+	/// </summary>
 	public void NextScene()
 	{
 		//TODO: Save which character is chosen and then disable the character selection screen
@@ -55,6 +64,11 @@ public class MenuManager : MonoBehaviour
 		StartCoroutine(SlowLoadScene(SceneManager.GetActiveScene().buildIndex + 1));
 	}
 
+	/// <summary>
+	/// A fade out for the scene load.
+	/// </summary>
+	/// <param name="scene"></param>
+	/// <returns></returns>
 	public IEnumerator SlowLoadScene(int scene)
 	{
 		for (int i = 0; i < 100; i++)
@@ -67,6 +81,9 @@ public class MenuManager : MonoBehaviour
 		yield return null;
 	}
 
+	/// <summary>
+	/// Method to quit the game.
+	/// </summary>
 	public void Quit()
 	{
 		Application.Quit();

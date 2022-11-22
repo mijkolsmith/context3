@@ -1,3 +1,6 @@
+/// <summary>
+/// An enumerator containing all the wagon types.
+/// </summary>
 public enum WagonType
 {
     WAGON,

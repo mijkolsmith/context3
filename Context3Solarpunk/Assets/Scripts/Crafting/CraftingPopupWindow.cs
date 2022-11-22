@@ -9,9 +9,9 @@ public class CraftingPopupWindow : PopupWindow
 
 	public override PopupWindowType GetPopupWindowType() => PopupWindowType.Crafting;
 	[SerializeField, ReadOnly] private List<ResourceButton> resourceButtons = new();
-	
+
 	/// <summary>
-	/// The Toggle function gets called from the PopupWindow Class.
+	/// The Toggle method gets called from the PopupWindow Class.
 	/// Grabs all the UI elements.
 	/// </summary>
 	public override void Toggle()

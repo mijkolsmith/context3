@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
     [MinValue(0), MaxValue(3), ReadOnly] public int trashCount;
     [SerializeField] private PopupWindow[] popupWindows;
 
+    /// <summary>
+    /// Singleton pattern and assign managers.
+    /// </summary>
     void Start()
     {
         if (Instance == null)
@@ -45,9 +48,14 @@ public class GameManager : MonoBehaviour
         GameStateManager = gameObject.AddComponent<GameStateManager>();
     }
 
+    /// <summary>
+    /// Toggle a certain popupWindow.
+    /// </summary>
+    /// <param name="popupWindowType"></param>
     public void TogglePopupWindow(PopupWindowType popupWindowType)
     {
         //TODO: move to UIManager
+        //TODO: only one should be able to open at a time.
         PopupWindows.Where(x => x.GetPopupWindowType() == popupWindowType).FirstOrDefault().Toggle();
     }
 }

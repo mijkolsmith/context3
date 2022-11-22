@@ -22,7 +22,7 @@ public class DorienPopupWindow : PopupWindow
 	[SerializeField, ReadOnly] private List<InventoryUIElement> resourceUIElements = new();
 
 	/// <summary>
-	/// Grab the start distance and height in the Start function
+	/// Grab the start distance and height in the Start method.
 	/// </summary>
 	private void Start()
 	{
@@ -31,7 +31,7 @@ public class DorienPopupWindow : PopupWindow
 	}
 
 	/// <summary>
-	/// The Toggle function gets called from the PopupWindow Class.
+	/// The Toggle method gets called from the PopupWindow Class.
 	/// It triggers the zoom-in animation to Dorien.
 	/// Grabs all the UI elements.
 	/// </summary>

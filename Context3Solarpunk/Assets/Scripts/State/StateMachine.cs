@@ -6,29 +6,34 @@ public abstract class StateMachine : MonoBehaviour
     [SerializeField, ReadOnly] private State state;
     [SerializeField, ReadOnly] private string currentStateInformation;
 
-    protected State State { get => state; private set => state = value; }
-    public string CurrentStateInformation
-    {
-        get => currentStateInformation;
-        set => currentStateInformation = value;
-    }
-
+    /// <summary>
+    /// Set a new state.
+    /// Call the previous state's Exit method and the new state's Start method.
+    /// </summary>
+    /// <param name="_state"></param>
     public void SetState(State _state)
     {
-        if (State != null)
-        { StartCoroutine(State.Exit()); }
-        State = _state;
+        if (state != null)
+        { StartCoroutine(state.Exit()); }
+        state = _state;
         currentStateInformation = _state.ToString();
-        StartCoroutine(State.Start());
+        StartCoroutine(state.Start());
     }
 
+    /// <summary>
+    /// Get the current state.
+    /// </summary>
+    /// <returns></returns>
     public State GetState()
     {
-        return State;
+        return state;
     }
 
+    /// <summary>
+    /// Call the state's Update method in the Update method.
+    /// </summary>
     public void Update()
     {
-        StartCoroutine(State.Update());
+        StartCoroutine(state.Update());
     }
 }

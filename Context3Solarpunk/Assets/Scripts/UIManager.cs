@@ -18,9 +18,6 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private bool paused = false;
 
-
-    float timer = 0;
-
     public TextMeshProUGUI QuestText { get => questText; set => questText = value; }
     public GameObject CanInteractPopupUIObject { get => canInteractPopupUIObject; set => canInteractPopupUIObject = value; }
 	public GameObject CanCraftPopupUIObject { get => canCraftPopupUIObject; set => canCraftPopupUIObject = value; }

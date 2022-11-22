@@ -9,13 +9,13 @@ public class QuestManager : MonoBehaviour
 {
     [HideInInspector] public Quest currentQuest;
     [SerializeField] private PlayerController player;
-    private int questNmbr;
+    //private int questNmbr;
     public List<Quest> quests = new List<Quest>();
     bool questNotDone = true;
 
     private void Start()
     {
-        questNmbr = 0;
+        //questNmbr = 0;
         if (quests.Count > 0)
         {
             StartQuest(quests[0]);
