@@ -135,6 +135,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks for input and moves the player in corresponding direction of input. Should be run every frame.
+    /// </summary>
     private void Move()
     {
         if (movementInput != Vector3.zero)

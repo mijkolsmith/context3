@@ -13,6 +13,7 @@ public class QuestManager : MonoBehaviour
     public List<Quest> quests = new List<Quest>();
     bool questNotDone = true;
 
+
     private void Start()
     {
         //questNmbr = 0;
@@ -22,6 +23,10 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Starts the param quest by quest type
+    /// </summary>
+    /// <param name="quest"></param>
     public void StartQuest(Quest quest)
     {
         quest.state = QuestState.Active;
@@ -33,12 +38,16 @@ public class QuestManager : MonoBehaviour
         currentQuest = quest;
         quest.activateEvent?.Invoke();
     }
+
+    //TODO: remove this
     public void startsecondquest()
     {
         StartQuest(quests[1]);
     }
 
-
+    /// <summary>
+    /// Advances through the tasks of current quest and invokes all related events to succeeding a task.
+    /// </summary>
     public void AdvanceTasks()
     {
         bool allTasksAreDone = true;

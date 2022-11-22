@@ -28,6 +28,18 @@ public class UIManager : MonoBehaviour
         StartDialogue("");
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            ContinueDialogue();
+        }
+    }
+
+    /// <summary>
+    /// Starts dialogue in dialogueText object.
+    /// </summary>
+    /// <param name="dialogue"></param>
     public void StartDialogue(string dialogue)
     {
         //dialoguePanel.SetActive(true);
@@ -36,12 +48,22 @@ public class UIManager : MonoBehaviour
         StartCoroutine(TypeSentence(dialogue));
     }
 
+
+
+    /// <summary>
+    /// Sets "paused" bool to false so 
+    /// </summary>
     [ContextMenu("ContinueDialogueDebug")]
     public void ContinueDialogue()
     {
         paused = false;
     }
 
+    /// <summary>
+    /// Enumerator that actually types the sentence and pauses when "paused" bool is set to true.
+    /// </summary>
+    /// <param name="sentence"></param>
+    /// <returns></returns>
     public IEnumerator TypeSentence(string sentence)
     {
         dialogueText.text = "";
@@ -63,16 +85,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets the dialogue screen gameobject to active or not depending on param
+    /// </summary>
+    /// <param name="show"></param>
     public void ShowDialogueScreen(bool show)
     {
         dialoguePanel.SetActive(show);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            ContinueDialogue();
-        }
     }
 }
