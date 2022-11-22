@@ -1,12 +1,7 @@
-
-
-
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using NaughtyAttributes;
 
 public class ResourceButton : MonoBehaviour
 {
@@ -18,6 +13,9 @@ public class ResourceButton : MonoBehaviour
 	private string craftedString;
 	private bool crafted;
 
+	/// <summary>
+	/// Call the CraftingManager to craft a resource, and start the animation.
+	/// </summary>
 	public void Craft()
 	{
 		GameManager.Instance.CraftingManager.Craft(resourceType);
@@ -25,11 +23,17 @@ public class ResourceButton : MonoBehaviour
 		UpdateUI();
 	}
 
+	/// <summary>
+	/// Get the associated text object for the animation in the Start function.
+	/// </summary>
 	private void Start()
 	{
 		craftedString = craftedText?.text;
 	}
 
+	/// <summary>
+	/// If crafted is true, play an animation in the Update function.
+	/// </summary>
 	private void Update()
 	{
 		//TODO: make the system so multiple can activate
@@ -52,11 +56,20 @@ public class ResourceButton : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Update the button UI.
+	/// Make it interactable or invisible depending on whether it's craftable.
+	/// </summary>
 	public void UpdateUI()
 	{
+		//TODO: Do not display the button if the amount craftable is 0
 		button.interactable = CanCraft();
 	}
 
+	/// <summary>
+	/// Check whether the resource this button is for is craftable.
+	/// </summary>
+	/// <returns></returns>
 	private bool CanCraft()
 	{
 		Dictionary<ResourceType, int> resourcesNeeded = GameManager.Instance.CraftingManager.CanCraft(resourceType, out bool canCraft);

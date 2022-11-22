@@ -56,36 +56,7 @@ public class TrainManager : MonoBehaviour
                 train.wagons[i] = wr;
             }
         }
-
-        //Spawn trashcans
-        List<WagonReference> unusedWagons = new List<WagonReference>(train.wagons);
-        WagonReference wagonReference;
-
-        trashcanPrefab.GetComponent<MeshRenderer>().material = trashcanMaterials[0];
-        trashcanPrefab.GetComponent<Trashcan>().trashType = TrashType.TRASH1;
-        wagonReference = unusedWagons[Random.Range(0, unusedWagons.Count)];
-        wagonReference.wagon.SpawnTrashcan(trashcanPrefab);
-        unusedWagons.Remove(wagonReference);
-
-        trashcanPrefab.GetComponent<MeshRenderer>().material = trashcanMaterials[1];
-        trashcanPrefab.GetComponent<Trashcan>().trashType = TrashType.TRASH2;
-        wagonReference = unusedWagons[Random.Range(0, unusedWagons.Count)];
-        wagonReference.wagon.SpawnTrashcan(trashcanPrefab);
-        unusedWagons.Remove(wagonReference);
-
-        trashcanPrefab.GetComponent<MeshRenderer>().material = trashcanMaterials[2];
-        trashcanPrefab.GetComponent<Trashcan>().trashType = TrashType.TRASH3;
-        wagonReference = unusedWagons[Random.Range(0, unusedWagons.Count)];
-        wagonReference.wagon.SpawnTrashcan(trashcanPrefab);
-        unusedWagons.Remove(wagonReference);
     }
-
-    public void BreakUnit(int unit)
-    {
-        if (unit == 0) train.wagons.Where(x => x.wagonType == WagonType.WAGON_HEATING_UNIT).FirstOrDefault().wagon.Unit.Break();
-        else if (unit == 1) train.wagons.Where(x => x.wagonType == WagonType.WAGON_COOLING_UNIT).FirstOrDefault().wagon.Unit.Break();
-    }
-
 
     //TODO: remove code below and make it actually good
     public void SetDesiredLocationLeft()

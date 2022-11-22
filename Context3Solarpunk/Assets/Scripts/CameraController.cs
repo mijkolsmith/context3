@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO: Add summaries & comments
-
 public class CameraController : MonoBehaviour
 {
     public GameObject objectToFollow;
@@ -13,18 +11,27 @@ public class CameraController : MonoBehaviour
     [SerializeField] public float cameraHeight = 3f;
     private new Camera camera;
 
+    /// <summary>
+    /// Get the main camera object.
+    /// </summary>
     private void Start()
     {
         camera = Camera.main;
     }
 
-    //Camera movement behaviour always has to be in LateUpdate to fix choppyness
-    //It fixes choppyness by being moved after physics movement calculations have been done
+    /// <summary>
+    /// To fix choppyness, Camera movement behaviour has to be in the LateUpdate function. 
+    /// It does this by being moved after physics movement calculations have been done.
+    /// </summary>
     private void LateUpdate()
     {
         CameraFollow(objectToFollow.transform.position);
     }
 
+    /// <summary>
+    /// Make the camera follow the correct object using the eventual new height and distance modifiers.
+    /// </summary>
+    /// <param name="desiredPosition"></param>
     private void CameraFollow(Vector3 desiredPosition)
     {
         transform.position = Vector3.Lerp(transform.position, desiredPosition, moveSpeed * Time.deltaTime);

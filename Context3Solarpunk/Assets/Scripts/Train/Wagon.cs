@@ -9,8 +9,6 @@ public class Wagon : MonoBehaviour
     [SerializeField] private Transform rightWagonAttachPoint;
 
     [SerializeField] private bool hasPlayerInside = false;
-    [SerializeField] private Unit unit;
-    [SerializeField] private List<Trash> trash;
     [SerializeField] private List<Vector3> trashcanSpawns;
 
     [SerializeField] private GameObject frontWall;
@@ -19,7 +17,6 @@ public class Wagon : MonoBehaviour
     public Transform LeftWagonAttachPoint { get => leftWagonAttachPoint; private set => leftWagonAttachPoint = value; }
     public Transform RightWagonAttachPoint { get => rightWagonAttachPoint; private set => rightWagonAttachPoint = value; }
     public bool HasPlayerInside { get => hasPlayerInside; private set => hasPlayerInside = value; }
-    public Unit Unit { get => unit; private set => unit = value; }
 
     private void Update()
     {
@@ -36,21 +33,6 @@ public class Wagon : MonoBehaviour
             newMaterials[1] = materials[1];
             frontWall.GetComponent<Renderer>().materials = newMaterials;
         }
-    }
-
-    public void SpawnTrash()
-    {
-        Trash currentTrash = trash[Random.Range(0, trash.Count)];
-        currentTrash.gameObject.SetActive(true);
-        currentTrash.Spawn((TrashType)Random.Range(1, 4));
-    }
-
-    public void SpawnTrashcan(GameObject trashcanPrefab)
-    {
-        Vector3 pos = trashcanSpawns[Random.Range(0, trashcanSpawns.Count)];
-        trashcanSpawns.Remove(pos);
-        GameObject go = Instantiate(trashcanPrefab, pos, Quaternion.identity);
-        go.transform.SetParent(transform, false);
     }
 
     //Yes this polls every frame whether or not the player is in it but it wouldn't work otherwise

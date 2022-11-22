@@ -16,17 +16,26 @@ public class DorienPopupWindow : PopupWindow
 	private float startHeight;
 
 	//UI
-	private Dictionary<ResourceType, int> inventory = new();
-	[SerializeField] private Dictionary<ResourceType, Image> resourceSprites = new();
+	/*Please keep these unused variables for now, -Michael 22/11/22
+	/private Dictionary<ResourceType, int> inventory = new();
+	/[SerializeField] private Dictionary<ResourceType, Image> resourceSprites = new();*/
 	[SerializeField, ReadOnly] private List<InventoryUIElement> resourceUIElements = new();
 
+	/// <summary>
+	/// Grab the start distance and height in the Start function
+	/// </summary>
 	private void Start()
 	{
 		startDistanceToPlayer = -Camera.main.transform.localPosition.z;
 		startHeight = Camera.main.transform.localPosition.y;
 	}
 
-	public override void Open()
+	/// <summary>
+	/// The Toggle function gets called from the PopupWindow Class.
+	/// It triggers the zoom-in animation to Dorien.
+	/// Grabs all the UI elements.
+	/// </summary>
+	public override void Toggle()
 	{
 		if (popupWindow.activeInHierarchy)
 		{
@@ -48,6 +57,9 @@ public class DorienPopupWindow : PopupWindow
 		}
 	}
 
+	/// <summary>
+	/// Updates each UI element.
+	/// </summary>
 	public void UpdateUI()
 	{
 		foreach (InventoryUIElement inventoryUIElement in resourceUIElements)

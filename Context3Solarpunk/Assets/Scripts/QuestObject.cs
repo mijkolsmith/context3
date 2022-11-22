@@ -11,4 +11,3 @@ public class QuestObject : MonoBehaviour, IInteractable
         GameManager.Instance.QuestManager.AdvanceTasks();
     }
 }
-

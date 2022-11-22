@@ -5,5 +5,5 @@ using UnityEngine;
 public abstract class PopupWindow : MonoBehaviour, IPopupWindow
 {
 	public abstract PopupWindowType GetPopupWindowType();
-	public abstract void Open();
+	public abstract void Toggle();
 }

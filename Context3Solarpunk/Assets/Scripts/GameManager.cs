@@ -28,11 +28,7 @@ public class GameManager : MonoBehaviour
 	public PopupWindow[] PopupWindows { get => popupWindows; private set => popupWindows = value; }
     public UIManager UiManager { get => uiManager; set => uiManager = value; }
 
-    [SerializeField] private Slider passengerHappinessSlider;
     [MinValue(0), MaxValue(3), ReadOnly] public int trashCount;
-    [SerializeField] private Sprite[] cupSprites;
-    [SerializeField] private Image[] trashHolders;
-    [SerializeField] private Image[] indicators;
     [SerializeField] private PopupWindow[] popupWindows;
 
     void Start()
@@ -49,50 +45,9 @@ public class GameManager : MonoBehaviour
         GameStateManager = gameObject.AddComponent<GameStateManager>();
     }
 
-    public void ChangePassengerHappiness(int amount)
-	{
-        passengerHappinessSlider.value += amount;
-	}
-
-    public int GetPassengerHappiness()
-    {
-        return (int)passengerHappinessSlider.value;
-    }
-
-    public void AddTrashToInventory(TrashType trashType)
-	{
-        foreach (Image trashHolder in trashHolders)
-		{
-            if (trashHolder.sprite == cupSprites[0])
-			{
-                trashHolder.sprite = cupSprites[(int)trashType];
-                break;
-            }
-		}
-	}
-
-    public bool RemoveTrashFromInventory(TrashType trashType)
-    {
-        foreach (Image trashHolder in trashHolders)
-        {
-            if (trashHolder.sprite == cupSprites[1] && trashType == TrashType.TRASH1 || 
-                trashHolder.sprite == cupSprites[2] && trashType == TrashType.TRASH2 || 
-                trashHolder.sprite == cupSprites[3] && trashType == TrashType.TRASH3)
-            {
-                trashHolder.sprite = cupSprites[0];
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void ToggleIndicator(int indicator)
-	{
-        indicators[indicator].enabled = !indicators[indicator].enabled;
-    }
-
     public void TogglePopupWindow(PopupWindowType popupWindowType)
     {
-        PopupWindows.Where(x => x.GetPopupWindowType() == popupWindowType).FirstOrDefault().Open();
+        //TODO: move to UIManager
+        PopupWindows.Where(x => x.GetPopupWindowType() == popupWindowType).FirstOrDefault().Toggle();
     }
 }

@@ -1,18 +1,14 @@
 using NaughtyAttributes;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
-//TODO: Cleanup / Remove all unnecessary code
-//TODO: Add Summaries
 
 public class CraftingManager : MonoBehaviour
 {
     [Header("Resources")]
     [SerializeField] private List<ResourceType> resources = new();
 
+    //A dictionary which contains all of the crafting recipes.
     private Dictionary<ResourceType, Dictionary<ResourceType, int>> craftingRecipes = new()
     {
         { ResourceType.OldPlastic, new() { } },
@@ -44,61 +40,45 @@ public class CraftingManager : MonoBehaviour
         { ResourceType.VegetableGarden, new() { { ResourceType.Compost, 3 }, { ResourceType.RainWater, 3 } } }
     };
 
-    //PROBABLY not needed anymore but I don't wanna retype it if I need it
-    /*private Dictionary<ResourceType, Type> resourceTypeMap = new()
-	{
-        { ResourceType.OldPlastic, typeof(OldPlastic) },
-        { ResourceType.Bottle, typeof(Bottle) },
-        { ResourceType.OldElectronics, typeof(OldElectronics) },
-        { ResourceType.Can, typeof(Can) },
-        { ResourceType.OldUniform, typeof(OldUniform) },
-        { ResourceType.Leaf, typeof(Leaf) },
-        { ResourceType.Furniture, typeof(Furniture) },
-        { ResourceType.RainWater, typeof(RainWater) },
-
-        { ResourceType.Plastic, typeof(Plastic) },
-        { ResourceType.Glass, typeof(Glass) },
-        { ResourceType.Electronics, typeof(Electronics) },
-        { ResourceType.Metal, typeof(Metal) },
-        { ResourceType.Fabric, typeof(Fabric) },
-        { ResourceType.Compost, typeof(Compost) },
-        { ResourceType.Wood, typeof(Wood) },
-
-        { ResourceType.SeparatedBin, typeof(SeparatedBin) },
-        { ResourceType.SunPanel, typeof(SunPanel) },
-        { ResourceType.LedLamp, typeof(LedLamp) },
-        { ResourceType.Uniform, typeof(Uniform) },
-        { ResourceType.Mug, typeof(Mug) },
-        { ResourceType.CompostHeap, typeof(CompostHeap) },
-        { ResourceType.Grass, typeof(Grass) },
-        { ResourceType.InsectHotel, typeof(InsectHotel) },
-        { ResourceType.RainBarrel, typeof(RainBarrel) },
-        { ResourceType.VegetableGarden, typeof(VegetableGarden) },
-    };*/
-
-
     [SerializeField] private bool showDebugInfo = true;
     [Header("Debug")]
     [SerializeField, ShowIf("showDebugInfo")] private ResourceType debugResourceToAdd;
 
 	public List<ResourceType> Resources { get => resources; private set => resources = value; }
 
+    /// <summary>
+    /// A Debug method to add resources to the inventory.
+    /// </summary>
 	[Button(enabledMode: EButtonEnableMode.Playmode), ShowIf("showDebugInfo")]
     public void DebugAddResource()
     {
         resources.Add(debugResourceToAdd);
     }
 
+    /// <summary>
+    /// This method gets called when picking up new resources and adds them to the inventory.
+    /// </summary>
+    /// <param name="resourceType"></param>
     public void AddResourceToInventory(ResourceType resourceType)
 	{
         resources.Add(resourceType);
 	}
 
+    /// <summary>
+    /// Check if the inventory contains a certain resource.
+    /// </summary>
+    /// <param name="resourceType"></param>
+    /// <returns></returns>
     public bool CheckHasResourceInInventory(ResourceType resourceType)
 	{
         return resources.Contains(resourceType);
 	}
 
+    /// <summary>
+    /// Craft a new resource using the resources available in the inventory.
+    /// Updates the crafting UI afterwards.
+    /// </summary>
+    /// <param name="resourceType"></param>
     public void Craft(ResourceType resourceType)
 	{
         Dictionary<ResourceType, int> resourcesNeeded = craftingRecipes[resourceType];
@@ -115,7 +95,12 @@ public class CraftingManager : MonoBehaviour
         ((CraftingPopupWindow) GameManager.Instance.PopupWindows.Where(x => x.GetPopupWindowType() == PopupWindowType.Crafting).FirstOrDefault()).UpdateUI();
     }
 
-    //Do we have the right resources to craft this?
+    /// <summary>
+    /// Checks if we have the right resources to craft an object.
+    /// </summary>
+    /// <param name="resourceType"></param>
+    /// <param name="canCraft"></param>
+    /// <returns></returns>
     public Dictionary<ResourceType, int> CanCraft(ResourceType resourceType, out bool canCraft)
     {
         Dictionary<ResourceType, int> resourcesNeeded = craftingRecipes[resourceType];
@@ -143,7 +128,9 @@ public class CraftingManager : MonoBehaviour
         return resourcesCount;
     }
 
-    // Serialization & Saving
+    /// <summary>
+    /// Serialization & Saving
+    /// </summary>
     private void SaveInventory()
 	{
         PlayerPrefs.SetInt("ResourcesCount", resources.Count);
@@ -154,7 +141,9 @@ public class CraftingManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // Deserialization & Loading
+    /// <summary>
+    /// Deserialization & Loading
+    /// </summary>
     private void LoadInventory()
 	{
         int resourceCount = PlayerPrefs.GetInt("ResourcesCount");

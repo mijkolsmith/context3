@@ -9,8 +9,12 @@ public class CraftingPopupWindow : PopupWindow
 
 	public override PopupWindowType GetPopupWindowType() => PopupWindowType.Crafting;
 	[SerializeField, ReadOnly] private List<ResourceButton> resourceButtons = new();
-
-	public override void Open()
+	
+	/// <summary>
+	/// The Toggle function gets called from the PopupWindow Class.
+	/// Grabs all the UI elements.
+	/// </summary>
+	public override void Toggle()
 	{
 		if (popupWindow.activeInHierarchy) popupWindow.SetActive(false);
 		else
@@ -21,6 +25,9 @@ public class CraftingPopupWindow : PopupWindow
 		}
 	}
 
+	/// <summary>
+	/// Updates each UI element.
+	/// </summary>
 	public void UpdateUI()
 	{
 		foreach (ResourceButton resourceButton in resourceButtons)

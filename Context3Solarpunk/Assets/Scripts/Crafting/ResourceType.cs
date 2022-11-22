@@ -1,3 +1,6 @@
+/// <summary>
+/// An enumerator containing all the resource types available in our game.
+/// </summary>
 public enum ResourceType
 {
 	None,

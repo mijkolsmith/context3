@@ -10,8 +10,13 @@ public class InventoryUIElement : Resource
 	[SerializeField] public TextMeshProUGUI amountText;
 	public override ResourceType GetResourceType() => resourceType;
 
+	/// <summary>
+	/// Update the inventory UI.
+	/// Update it's amount and make it invisible if it's 0.
+	/// </summary>
 	public void UpdateUI()
 	{
+		//TODO: make invisible if 0
 		amountText.text = GameManager.Instance.CraftingManager.Resources.Where(x => x == resourceType).Count().ToString();
 	}
 }

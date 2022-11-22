@@ -5,17 +5,6 @@ using NaughtyAttributes;
 
 public class OnMovingTrainState : State
 {
-	private float unitBreakTimer = 0f;
-	//exact numbers need to be tested
-	private float unitBreakTimeNeeded = Random.Range(5f, 10f);
-	public bool isBroken = false;
-
-	private float happinessTickdownTimer = 0f;
-	private float happinessTickdownTimeNeeded = 5f;
-
-	private float trashTimer = 0f;
-	private float trashTimeNeeded = Random.Range(15f, 30f);
-
 	public override IEnumerator Start()
 	{
 		yield return null;
@@ -23,43 +12,7 @@ public class OnMovingTrainState : State
 
 	public override IEnumerator Update()
 	{
-		//Passenger happiness game mechanic
-		happinessTickdownTimer += Time.deltaTime;
-		if (happinessTickdownTimer > happinessTickdownTimeNeeded)
-		{
-			GameManager.Instance.ChangePassengerHappiness(- GameManager.Instance.trashCount - 1);
-			happinessTickdownTimer = 0;
-		}
 		yield return null;
-
-		//Unit breaking game mechanic
-		unitBreakTimer += Time.deltaTime;
-		if (unitBreakTimer > unitBreakTimeNeeded)
-		{
-			int unit = Random.Range(0, 2);
-			Debug.Log((System.Convert.ToBoolean(unit) ? "Right" : "Left") + " unit breaks");
-			GameManager.Instance.TrainManager.BreakUnit(unit);
-			unitBreakTimeNeeded = Random.Range(25f, 30f);
-			unitBreakTimer = 0;
-		}
-
-		//Trash game mechanic
-		if (GameManager.Instance.trashCount < 3) trashTimer += Time.deltaTime;
-		if (trashTimer > trashTimeNeeded)
-		{
-			GameManager.Instance.trashCount++;
-			GameManager.Instance.TrainManager.train.wagons[Random.Range(0, GameManager.Instance.TrainManager.train.wagons.Count)].wagon.SpawnTrash();
-			trashTimeNeeded = Random.Range(15f, 30f);
-			trashTimer = 0;
-			Debug.Log("spawntrash");
-		}
-
-		if (GameManager.Instance.GetPassengerHappiness() >= 100)
-		{
-			//Travel to future!
-			GameManager.Instance.EnvironmentManager.ToggleTrain();
-			GameManager.Instance.ChangePassengerHappiness(-50);
-		}
 	}
 
 	public override IEnumerator Exit()
