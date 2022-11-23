@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     [MinValue(0), MaxValue(3), ReadOnly] public int trashCount;
     [SerializeField] private PopupWindow[] popupWindows;
+    public PopupWindowType popupWindowOpenType = PopupWindowType.None;
 
     /// <summary>
     /// Singleton pattern and assign managers.
@@ -56,9 +57,26 @@ public class GameManager : MonoBehaviour
     /// <param name="popupWindowType"></param>
     public void TogglePopupWindow(PopupWindowType popupWindowType)
     {
-        //TODO: move to UIManager
-        //TODO: only one should be able to open at a time.
-        PopupWindows.Where(x => x.GetPopupWindowType() == popupWindowType).FirstOrDefault().Toggle();
+        if (popupWindowType == popupWindowOpenType || popupWindowOpenType == PopupWindowType.None)
+        {
+            //TODO: move to UIManager
+            //TODO: only one should be able to open at a time.
+            PopupWindows.Where(x => x.GetPopupWindowType() == popupWindowType).FirstOrDefault().Toggle();
+        }
+    }
+
+    /// <summary>
+    /// Toggle a certain popupWindow with a button.
+    /// </summary>
+    /// <param name="popupWindowComponent"></param>
+    public void TogglePopupWindow(PopupWindowComponent popupWindowComponent)
+    {
+        if (popupWindowComponent.popupWindow == popupWindowOpenType || popupWindowOpenType == PopupWindowType.None)
+        {
+            //TODO: move to UIManager
+            //TODO: only one should be able to open at a time.
+            PopupWindows.Where(x => x.GetPopupWindowType() == popupWindowComponent.popupWindow).FirstOrDefault().Toggle();
+        }
     }
 
     public void RefreshNavMesh()

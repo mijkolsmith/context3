@@ -5,7 +5,7 @@ using NaughtyAttributes;
 
 public class CraftingPopupWindow : PopupWindow
 {
-	[SerializeField] private GameObject popupWindow;
+	[field: SerializeField] protected override GameObject PopupWindowObject { get; set; }
 
 	public override PopupWindowType GetPopupWindowType() => PopupWindowType.Crafting;
 	[SerializeField, ReadOnly] private List<ResourceButton> resourceButtons = new();
@@ -16,10 +16,15 @@ public class CraftingPopupWindow : PopupWindow
 	/// </summary>
 	public override void Toggle()
 	{
-		if (popupWindow.activeInHierarchy) popupWindow.SetActive(false);
+		if (PopupWindowObject.activeInHierarchy)
+		{
+			PopupWindowObject.SetActive(false);
+			GameManager.Instance.popupWindowOpenType = PopupWindowType.None;
+		}
 		else
 		{
-			popupWindow.SetActive(true);
+			PopupWindowObject.SetActive(true);
+			GameManager.Instance.popupWindowOpenType = PopupWindowType.Crafting;
 			if (!resourceButtons.Any()) resourceButtons = GetComponentsInChildren<ResourceButton>(true).ToList();
 			UpdateUI();
 		}

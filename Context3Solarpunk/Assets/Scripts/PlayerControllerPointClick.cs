@@ -47,6 +47,7 @@ public class PlayerControllerPointClick : MonoBehaviour
     #endregion
 
     #region Properties
+    public static GameObject Player { get; private set; }
     internal PlayerStates PlayerState { get => playerState; set => playerState = value; }
     public GameObject CompanionPositionGameObject { get => companionPositionGameObject; set => companionPositionGameObject = value; }
     #endregion
@@ -57,6 +58,8 @@ public class PlayerControllerPointClick : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
+        Player = gameObject;
     }
 
     /// <summary>
@@ -67,44 +70,53 @@ public class PlayerControllerPointClick : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        // Movement
-        movementInput = Input.GetKey(moveKey);
-        if (movementInput)
-		{
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, walkableLayer))
-			{
-                targetDestination.transform.position = hit.point;
-                agent.SetDestination(hit.point);
-			}
-		}
-
-        // Interaction
-        interactionInput = Input.GetKeyDown(interactionKey);
-        if (interactableObject != null)
+        // UI Open Check
+        if (GameManager.Instance.popupWindowOpenType == PopupWindowType.None)
         {
-            if (interactionInput)
+            // Movement
+            movementInput = Input.GetKey(moveKey);
+            if (movementInput)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
 
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, interactableLayer))
+                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, walkableLayer))
                 {
-                    interactableObject.Interact();
-                    interactableObject = null;
-                    GameManager.Instance.RefreshNavMesh();
-                    //TODO: fix bug where it doesn't pick a new interactable object
+                    Debug.Log(hit.collider.gameObject.name);
+                    if (hit.collider.gameObject.layer != LayerMask.NameToLayer("UI"))
+                    {
+                        targetDestination.transform.position = hit.point;
+                        agent.SetDestination(hit.point);
+                    }
                 }
             }
-        }
 
-        // Respawning
-        respawnInput = Input.GetKeyDown(respawnKey);
-        if (respawnInput)
-        {
-            transform.position = respawnLocation;
+            // Interaction
+            interactionInput = Input.GetKeyDown(interactionKey);
+            if (interactableObject != null)
+            {
+                if (interactionInput)
+                {
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                    if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, interactableLayer))
+                    {
+                        if (hit.collider.gameObject.layer != LayerMask.NameToLayer("UI"))
+                        {
+                            interactableObject.Interact();
+                            interactableObject = null;
+                            GameManager.Instance.RefreshNavMesh();
+                            //TODO: fix bug where it doesn't pick a new interactable object
+                        }
+                    }
+                }
+            }
+
+            // Respawning
+            respawnInput = Input.GetKeyDown(respawnKey);
+            if (respawnInput)
+            {
+                transform.position = respawnLocation;
+            }
         }
     }
 

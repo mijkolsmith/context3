@@ -2,11 +2,10 @@ using NaughtyAttributes;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DorienPopupWindow : PopupWindow
 {
-	[SerializeField] private GameObject popupWindow;
+	[field: SerializeField] protected override GameObject PopupWindowObject { get; set; }
 	public override PopupWindowType GetPopupWindowType() => PopupWindowType.Dorien;
 
 	//Animation
@@ -37,17 +36,20 @@ public class DorienPopupWindow : PopupWindow
 	/// </summary>
 	public override void Toggle()
 	{
-		if (popupWindow.activeInHierarchy)
+		if (PopupWindowObject.activeInHierarchy)
 		{
-			popupWindow.SetActive(false);
+			PopupWindowObject.SetActive(false);
+			GameManager.Instance.popupWindowOpenType = PopupWindowType.None;
 
-			cameraController.objectToFollow = PlayerController.Player.gameObject;
+			cameraController.objectToFollow = PlayerControllerPointClick.Player;
 			cameraController.cameraDistance = startDistanceToPlayer;
 			cameraController.cameraHeight = startHeight;
 		}
 		else
 		{
-			popupWindow.SetActive(true);
+			PopupWindowObject.SetActive(true);
+			GameManager.Instance.popupWindowOpenType = PopupWindowType.Dorien;
+
 			if (!resourceUIElements.Any()) resourceUIElements = GetComponentsInChildren<InventoryUIElement>(true).ToList();
 			UpdateUI();
 
