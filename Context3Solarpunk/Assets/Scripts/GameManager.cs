@@ -4,6 +4,7 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.AI.Navigation;
 
 //TODO: Cleanup / Remove all unnecessary code
 //TODO: Add Summaries
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EnvironmentManager environmentManager;
     [SerializeField] private CraftingManager craftingManager;
     [SerializeField] private GameStateManager gameStateManager;
+    [SerializeField] private NavMeshSurface surface;
     public TrainManager TrainManager { get => trainManager; private set => trainManager = value; }
     public EnvironmentManager EnvironmentManager { get => environmentManager; private set => environmentManager = value; }
     public GameStateManager GameStateManager { get => gameStateManager; private set => gameStateManager = value; }
@@ -57,5 +59,10 @@ public class GameManager : MonoBehaviour
         //TODO: move to UIManager
         //TODO: only one should be able to open at a time.
         PopupWindows.Where(x => x.GetPopupWindowType() == popupWindowType).FirstOrDefault().Toggle();
+    }
+
+    public void RefreshNavMesh()
+	{
+        surface.BuildNavMesh();
     }
 }

@@ -94,6 +94,7 @@ public class PlayerControllerPointClick : MonoBehaviour
                 {
                     interactableObject.Interact();
                     interactableObject = null;
+                    GameManager.Instance.RefreshNavMesh();
                     //TODO: fix bug where it doesn't pick a new interactable object
                 }
             }

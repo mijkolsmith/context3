@@ -145,7 +145,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -185,8 +185,6 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 64
-  craftingKey: 99
-  craftingTimeCooldown: 0.5
   respawnKey: 286
   respawnLocation: {x: -27.19, y: 3.1, z: -3.94}
   companionPositionGameObject: {fileID: 0}
@@ -208,7 +206,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 668230995828949949}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.3
+  m_Radius: 0.2
   m_Speed: 4
   m_Acceleration: 40
   avoidancePriority: 50

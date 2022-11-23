@@ -11,7 +11,7 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private PlayerController player;
     //private int questNmbr;
     public List<Quest> quests = new List<Quest>();
-    bool questNotDone = true;
+    //bool questNotDone = true;
 
 
     private void Start()
