@@ -72,7 +72,7 @@ public class PlayerControllerPointClick : MonoBehaviour
     private void Update()
     {
         // Movement
-        movementInput = Input.GetKeyDown(moveKey);
+        movementInput = Input.GetKey(moveKey);
         if (movementInput)
 		{
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -86,7 +86,7 @@ public class PlayerControllerPointClick : MonoBehaviour
 		}
 
         // Interaction
-        interactionInput = Input.GetKey(interactionKey);
+        interactionInput = Input.GetKeyDown(interactionKey);
         if (interactableObject != null)
         {
             if (interactionInput)
@@ -103,22 +103,8 @@ public class PlayerControllerPointClick : MonoBehaviour
             }
         }
 
-        // Crafting menu
-        craftingInput = Input.GetKey(craftingKey);
-        if (craftingTimer <= craftingTimeCooldown)
-        {
-            craftingTimer += Time.deltaTime;
-        }
-        if (craftingInput && (craftingTimer >= craftingTimeCooldown))
-        {
-            {
-                GameManager.Instance.TogglePopupWindow(PopupWindowType.Crafting);
-                craftingTimer = 0;
-            }
-        }
-
         // Respawning
-        respawnInput = Input.GetKey(respawnKey);
+        respawnInput = Input.GetKeyDown(respawnKey);
         if (respawnInput)
         {
             transform.position = respawnLocation;
@@ -131,21 +117,21 @@ public class PlayerControllerPointClick : MonoBehaviour
     /// </summary>
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
-    {
-        interactableObject = other.GetComponent<IInteractable>() != null ? other.GetComponent<IInteractable>() : interactableObject;
+	{
+		interactableObject = other.GetComponent<IInteractable>() != null ? other.GetComponent<IInteractable>() : interactableObject;
 
-        //Debug info updater
-        if (showDebugInfo)
-        {
-            interactableGameObject = other.GetComponent<IInteractable>() != null ? other.gameObject : interactableGameObject;
-        }
-    }
+		//Debug info updater
+		if (showDebugInfo)
+		{
+			interactableGameObject = other.GetComponent<IInteractable>() != null ? other.gameObject : interactableGameObject;
+		}
+	}
 
-    /// <summary>
-    /// Is the colliding object interactable & do we not have an interactable object saved yet? Save it, otherwise keep what was saved previously.
-    /// </summary>
-    /// <param name="other"></param>
-    private void OnTriggerStay(Collider other)
+	/// <summary>
+	/// Is the colliding object interactable & do we not have an interactable object saved yet? Save it, otherwise keep what was saved previously.
+	/// </summary>
+	/// <param name="other"></param>
+	private void OnTriggerStay(Collider other)
     {
         if (interactableObject == null && other.GetComponent<IInteractable>() != null)
         {
@@ -159,7 +145,6 @@ public class PlayerControllerPointClick : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerExit(Collider other)
     {
-        //Is the colliding object interactable? remove it
         interactableObject = other.GetComponent<IInteractable>() != null ? null : interactableObject;
 
         //Debug info updater

@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668230995706237578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.74, z: 0}
+  m_LocalPosition: {x: 0, y: 1.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 668230995828949943}
   - component: {fileID: 668230995828949940}
   - component: {fileID: 701689747781303773}
-  - component: {fileID: 668230995828949941}
+  - component: {fileID: 1359714933}
   m_Layer: 0
   m_Name: CapsulePlayer
   m_TagString: Player
@@ -68,7 +68,7 @@ Transform:
   m_Children:
   - {fileID: 668230995706237579}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &668230995828949944
 MeshFilter:
@@ -181,14 +181,14 @@ MonoBehaviour:
     m_Bits: 8
   targetDestination: {fileID: 0}
   playerState: 1
-  interactionKey: 324
+  interactionKey: 323
   interactableLayer:
     serializedVersion: 2
     m_Bits: 64
   craftingKey: 99
   craftingTimeCooldown: 0.5
   respawnKey: 286
-  respawnLocation: {x: 0, y: 0, z: 0}
+  respawnLocation: {x: -27.19, y: 3.1, z: -3.94}
   companionPositionGameObject: {fileID: 0}
   showDebugInfo: 1
   interactionInput: 0
@@ -199,21 +199,25 @@ MonoBehaviour:
   respawnInput: 0
   movementInput: 0
   movementVector: {x: 0, y: 0, z: 0}
---- !u!143 &668230995828949941
-CharacterController:
+--- !u!195 &1359714933
+NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668230995828949949}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1.8
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.4
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_AgentTypeID: 0
+  m_Radius: 0.3
+  m_Speed: 4
+  m_Acceleration: 40
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
