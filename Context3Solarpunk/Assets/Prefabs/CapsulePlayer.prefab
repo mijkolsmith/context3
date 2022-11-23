@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 668230995828949946}
   - component: {fileID: 668230995828949943}
   - component: {fileID: 668230995828949940}
-  - component: {fileID: 668230995828949942}
+  - component: {fileID: 701689747781303773}
   - component: {fileID: 668230995828949941}
   m_Layer: 0
   m_Name: CapsulePlayer
@@ -68,7 +68,7 @@ Transform:
   m_Children:
   - {fileID: 668230995706237579}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &668230995828949944
 MeshFilter:
@@ -163,7 +163,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.75
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &668230995828949942
+--- !u!114 &701689747781303773
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,30 +172,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 668230995828949949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96563a32e4dd7a0479504558f4986bf1, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b497278ea9fbb441801c4b3b9423c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 15
-  playerGravity: -9.81
-  playerState: 0
-  interactionKey: 101
-  interactionTimeNeeded: 1
-  pickupBeamPrefab: {fileID: 6760919245874301972, guid: dfaf9b8927ce9054ca5cfcbf80840cb3, type: 3}
-  pickupBeam: {fileID: 0}
+  moveKey: 324
+  walkableLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  targetDestination: {fileID: 0}
+  playerState: 1
+  interactionKey: 324
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 64
   craftingKey: 99
-  canCraft: 0
-  dorienKey: 105
+  craftingTimeCooldown: 0.5
   respawnKey: 286
-  respawnLocation: {x: 0, y: 2, z: 8}
+  respawnLocation: {x: 0, y: 0, z: 0}
   companionPositionGameObject: {fileID: 0}
   showDebugInfo: 1
   interactionInput: 0
   interactionTimer: 0
   craftingInput: 0
-  dorienInput: 0
+  craftingTimer: 0
   interactableGameObject: {fileID: 0}
   respawnInput: 0
-  movementInput: {x: 0, y: 0, z: 0}
+  movementInput: 0
   movementVector: {x: 0, y: 0, z: 0}
 --- !u!143 &668230995828949941
 CharacterController:

@@ -7684,6 +7684,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OldPlastic
       objectReference: {fileID: 0}
+    - target: {fileID: 7954028394289499076, guid: 60e7a5d61bb66a14a9deeac559b691f5, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 60e7a5d61bb66a14a9deeac559b691f5, type: 3}
@@ -8632,14 +8636,6 @@ PrefabInstance:
     - target: {fileID: 8520004809675995955, guid: 4fc9fdb2e20c25d419698aa4965f0ec1, type: 3}
       propertyPath: m_Name
       value: RecyclingMachine
-      objectReference: {fileID: 0}
-    - target: {fileID: 8520004809675995955, guid: 4fc9fdb2e20c25d419698aa4965f0ec1, type: 3}
-      propertyPath: m_TagString
-      value: CraftingMachine
-      objectReference: {fileID: 0}
-    - target: {fileID: 8862040537160267593, guid: 4fc9fdb2e20c25d419698aa4965f0ec1, type: 3}
-      propertyPath: m_TagString
-      value: CraftingMachine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -10764,22 +10760,9 @@ MonoBehaviour:
   environmentManager: {fileID: 0}
   craftingManager: {fileID: 818546141}
   gameStateManager: {fileID: 0}
-  passengerHappinessSlider: {fileID: 1423142665}
   trashCount: 0
-  cupSprites:
-  - {fileID: 21300000, guid: 0334171f88bce0d4e84b6a9aa065d3fa, type: 3}
-  - {fileID: 21300000, guid: b8882d2986c7f8a48abc5d45e48896ae, type: 3}
-  - {fileID: 21300000, guid: f56ed400c6a326c4eb5d0606545eab10, type: 3}
-  - {fileID: 21300000, guid: 584cf36cd6fff3446871233c23b301ea, type: 3}
-  trashHolders:
-  - {fileID: 965942883}
-  - {fileID: 1970220924}
-  - {fileID: 711627752}
-  indicators:
-  - {fileID: 162153077}
-  - {fileID: 1062815009}
   popupWindows:
-  - {fileID: 1422887942}
+  - {fileID: 0}
   - {fileID: 1444520928}
   - {fileID: 1858019175}
 --- !u!114 &818546140
@@ -11672,6 +11655,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950474791}
   m_Mesh: {fileID: 8211372540250625004, guid: bc71f0c2447aa5445945e7ae17efbf72, type: 3}
+--- !u!1 &965694769 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3986027681976257562, guid: 22fae05f3e578794491356a98fcd1a5e, type: 3}
+  m_PrefabInstance: {fileID: 1290220311}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &965694770
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965694769}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4858960472486237887, guid: 22fae05f3e578794491356a98fcd1a5e, type: 3}
 --- !u!1 &965942881
 GameObject:
   m_ObjectHideFlags: 0
@@ -19249,7 +19251,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: CapsulePlayer
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 701689747781303773, guid: fa9ee64057b5e6d49a7090c003af23e6, type: 3}
+      propertyPath: respawnLocation.x
+      value: -27.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 701689747781303773, guid: fa9ee64057b5e6d49a7090c003af23e6, type: 3}
+      propertyPath: respawnLocation.y
+      value: 3.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 701689747781303773, guid: fa9ee64057b5e6d49a7090c003af23e6, type: 3}
+      propertyPath: respawnLocation.z
+      value: -3.94
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 668230995828949942, guid: fa9ee64057b5e6d49a7090c003af23e6, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fa9ee64057b5e6d49a7090c003af23e6, type: 3}
 --- !u!1 &2108065000

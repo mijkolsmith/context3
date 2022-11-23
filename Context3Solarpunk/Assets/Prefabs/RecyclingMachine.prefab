@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8520004809675995954}
   m_Layer: 0
   m_Name: RecyclingMachine
-  m_TagString: Untagged
+  m_TagString: CraftingMachine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8520004809675995955}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: -8.77, y: 3.54, z: 0.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -98,6 +98,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 16534e834b9d1b948b0b4c830499d44d, type: 3}
       propertyPath: m_Name
+      value: CraftingMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 16534e834b9d1b948b0b4c830499d44d, type: 3}
+      propertyPath: m_TagString
       value: CraftingMachine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -181,5 +185,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 11.030119, y: 5.9144945, z: 10.639004}
-  m_Center: {x: 0, y: 1.0482488, z: 3.4841805}
+  m_Size: {x: 6.5129576, y: 4.4053698, z: 3.9053748}
+  m_Center: {x: -0.05862856, y: -0.059175014, z: 0.11736572}
