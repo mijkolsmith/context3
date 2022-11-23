@@ -21,10 +21,6 @@ public class PlayerControllerPointClick : MonoBehaviour
     [SerializeField] private KeyCode interactionKey = KeyCode.Mouse1;
     [SerializeField] private LayerMask interactableLayer;
 
-    [Header("Crafting")]
-    [SerializeField] private KeyCode craftingKey = KeyCode.C;
-    [SerializeField] private float craftingTimeCooldown = .5f;
-
     [Header("Respawning")]
     [SerializeField] private KeyCode respawnKey = KeyCode.F5;
     [SerializeField] private Vector3 respawnLocation = Vector3.zero;
