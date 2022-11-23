@@ -31,7 +31,7 @@ public class OnTrainState : State
 			moveTimer += Time.deltaTime;
 			if (moveTimer > moveTimeNeeded)
 			{
-				GameManager.Instance.EnvironmentManager.ToggleTrain();
+				//GameManager.Instance.EnvironmentManager.ToggleTrain();
 			}
 		}
 	}

@@ -28,7 +28,7 @@ public class InPastOnPlatformState : State
 		if (resourceSpawnTimer > resourceSpawnTimeNeeded)
 		{
 			GameManager.Instance.trashCount++;
-			GameManager.Instance.EnvironmentManager.SpawnGatherableResource();
+			//GameManager.Instance.EnvironmentManager.SpawnGatherableResource();
 			resourceSpawnTimeNeeded = Random.Range(5f, 15f);
 			resourceSpawnTimer = 0;
 		}
