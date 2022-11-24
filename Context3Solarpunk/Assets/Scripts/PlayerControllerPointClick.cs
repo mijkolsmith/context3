@@ -88,7 +88,7 @@ public class PlayerControllerPointClick : MonoBehaviour
             }
 
             // Interaction
-            interactionInput = Input.GetKeyDown(interactionKey);
+            interactionInput = Input.GetKey(interactionKey);
             if (interactableObject != null)
             {
                 if (interactionInput)
@@ -97,10 +97,12 @@ public class PlayerControllerPointClick : MonoBehaviour
 
                     if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, interactableLayer))
                     {
-						interactableObject.Interact();
-						interactableObject = null;
-						GameManager.Instance.RefreshNavMesh();
-						//TODO: fix bug where it doesn't pick a new interactable object
+                        if (hit.collider.gameObject.GetComponent<IInteractable>() == interactableObject)
+                        {
+                            interactableObject.Interact();
+                            interactableObject = null;
+                            GameManager.Instance.RefreshNavMesh();
+                        }
 					}
 				}
             }
