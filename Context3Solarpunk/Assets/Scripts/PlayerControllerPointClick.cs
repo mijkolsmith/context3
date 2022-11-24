@@ -82,13 +82,9 @@ public class PlayerControllerPointClick : MonoBehaviour
 
                 if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, walkableLayer))
                 {
-                    //Debug.Log(hit.collider.gameObject.name);
-                    if (hit.collider.gameObject.layer != LayerMask.NameToLayer("UI"))
-                    {
-                        targetDestination.transform.position = hit.point;
-                        agent.SetDestination(hit.point);
-                    }
-                }
+					targetDestination.transform.position = hit.point;
+					agent.SetDestination(hit.point);
+				}
             }
 
             // Interaction
@@ -101,15 +97,12 @@ public class PlayerControllerPointClick : MonoBehaviour
 
                     if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, interactableLayer))
                     {
-                        if (hit.collider.gameObject.layer != LayerMask.NameToLayer("UI"))
-                        {
-                            interactableObject.Interact();
-                            interactableObject = null;
-                            GameManager.Instance.RefreshNavMesh();
-                            //TODO: fix bug where it doesn't pick a new interactable object
-                        }
-                    }
-                }
+						interactableObject.Interact();
+						interactableObject = null;
+						GameManager.Instance.RefreshNavMesh();
+						//TODO: fix bug where it doesn't pick a new interactable object
+					}
+				}
             }
 
             // Respawning
