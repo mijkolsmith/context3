@@ -21,6 +21,6 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
 		Gather();
 		GameManager.Instance.trashCount--;
 		gameObject.SetActive(false);
-        //GameManager.Instance.QuestManager.AdvanceTasks();
+        GameManager.Instance.QuestManager.AdvanceTasks();
     }
 }

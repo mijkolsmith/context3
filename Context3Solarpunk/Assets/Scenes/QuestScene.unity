@@ -11339,7 +11339,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818546134}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca128563a412b0f459bec2fefbd27de2, type: 3}
   m_Name: 
@@ -11366,7 +11366,7 @@ MonoBehaviour:
     succesEvent:
       m_PersistentCalls:
         m_Calls: []
-  player: {fileID: 0}
+  player: {fileID: 1359714926}
   quests:
   - Name: Ruim het afval van het platform op!
     Description: Test quest waarin de speler het afval moet opruimen voor het Arriva
@@ -14169,6 +14169,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 668230995828949949, guid: fa9ee64057b5e6d49a7090c003af23e6, type: 3}
   m_PrefabInstance: {fileID: 2101060610}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1359714926 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 701689747781303773, guid: fa9ee64057b5e6d49a7090c003af23e6, type: 3}
+  m_PrefabInstance: {fileID: 2101060610}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359714924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b497278ea9fbb441801c4b3b9423c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1359772587
 GameObject:
   m_ObjectHideFlags: 0

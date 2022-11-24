@@ -8,7 +8,7 @@ public class PlayerControllerPointClick : MonoBehaviour
 {
     #region Variables
     [Header("Movement")]
-    [SerializeField] private KeyCode moveKey = KeyCode.Mouse1;
+    [SerializeField] private KeyCode moveKey = KeyCode.Mouse1; //Als je KeyCode.Mouse gebruikt werkt het niet op tablets, just a headsup
     [SerializeField] private LayerMask walkableLayer;
     [SerializeField] private GameObject targetDestination;
     private NavMeshAgent agent;
@@ -18,7 +18,7 @@ public class PlayerControllerPointClick : MonoBehaviour
 
     [Header("Interaction")]
     [ReadOnly] private IInteractable interactableObject;
-    [SerializeField] private KeyCode interactionKey = KeyCode.Mouse1;
+    [SerializeField] private KeyCode interactionKey = KeyCode.Mouse1; //Als je KeyCode.Mouse gebruikt werkt het niet op tablets, just a headsup
     [SerializeField] private LayerMask interactableLayer;
 
     [Header("Respawning")]
@@ -50,6 +50,7 @@ public class PlayerControllerPointClick : MonoBehaviour
     public static GameObject Player { get; private set; }
     internal PlayerStates PlayerState { get => playerState; set => playerState = value; }
     public GameObject CompanionPositionGameObject { get => companionPositionGameObject; set => companionPositionGameObject = value; }
+    public IInteractable InteractableObject { get => interactableObject; set => interactableObject = value; }
     #endregion
 
     /// <summary>
@@ -81,7 +82,7 @@ public class PlayerControllerPointClick : MonoBehaviour
 
                 if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, walkableLayer))
                 {
-                    Debug.Log(hit.collider.gameObject.name);
+                    //Debug.Log(hit.collider.gameObject.name);
                     if (hit.collider.gameObject.layer != LayerMask.NameToLayer("UI"))
                     {
                         targetDestination.transform.position = hit.point;

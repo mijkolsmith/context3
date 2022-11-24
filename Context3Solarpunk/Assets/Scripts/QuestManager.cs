@@ -8,7 +8,7 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
     [HideInInspector] public Quest currentQuest;
-    [SerializeField] private PlayerController player;
+    [SerializeField] private PlayerControllerPointClick player;
     //private int questNmbr;
     public List<Quest> quests = new List<Quest>();
     //bool questNotDone = true;
@@ -29,6 +29,7 @@ public class QuestManager : MonoBehaviour
     /// <param name="quest"></param>
     public void StartQuest(Quest quest)
     {
+        Debug.Log("Quest started! Name of quest: " + quest.Name);
         quest.state = QuestState.Active;
         GameManager.Instance.UiManager.QuestText.text = quest.Name;
         if (quest.sequential)
@@ -59,7 +60,7 @@ public class QuestManager : MonoBehaviour
             {
                 if (q.sequential) //If quest is sequential
                 {
-                    if (q.currentTask.objectToInteract == player.InteractableGameObject)
+                    if (q.currentTask.objectToInteract.GetComponent<IInteractable>() == player.InteractableObject)
                     {
                         q.currentTask.success = true;
                         q.currentTask.succesEvent?.Invoke();
@@ -74,7 +75,7 @@ public class QuestManager : MonoBehaviour
                 {
                     for (int j = 0; j < q.tasks.Count; j++)
                     {
-                        if (q.tasks[j].objectToInteract == player.InteractableGameObject)
+                        if (q.tasks[j].objectToInteract.GetComponent<IInteractable>() == player.InteractableObject)
                         {
                             q.tasks[j].success = true;
                             q.tasks[j].succesEvent?.Invoke();
