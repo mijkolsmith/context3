@@ -20,12 +20,14 @@ public class CraftingPopupWindow : PopupWindow
 		{
 			PopupWindowObject.SetActive(false);
 			GameManager.Instance.popupWindowOpenType = PopupWindowType.None;
+			
 		}
 		else
 		{
 			PopupWindowObject.SetActive(true);
 			GameManager.Instance.popupWindowOpenType = PopupWindowType.Crafting;
 			if (!resourceButtons.Any()) resourceButtons = GetComponentsInChildren<ResourceButton>(true).ToList();
+			ClearAnimations();
 			UpdateUI();
 		}
 	}
@@ -38,6 +40,17 @@ public class CraftingPopupWindow : PopupWindow
 		foreach (ResourceButton resourceButton in resourceButtons)
 		{
 			resourceButton.UpdateUI();
+		}
+	}
+
+	/// <summary>
+	/// Destroys all old animation objects.
+	/// </summary>
+	public void ClearAnimations()
+	{
+		foreach (ResourceButton resourceButton in resourceButtons)
+		{
+			resourceButton.ClearCraftedTextObjects();
 		}
 	}
 }

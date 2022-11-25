@@ -49,8 +49,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
 	}
 
 	/// <summary>
-	/// Remove the trash from the count, and advance eventual quest tasks. 
-	/// Deactivates quest objects in the QuestManager.
+	/// Drag the trash around on X and Y axis following the mouse, and disable the colliders.
 	/// </summary>
 	public virtual void Interact()
 	{
@@ -69,15 +68,20 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
 		navMeshObstacle.enabled = false;
 	}
 
+	/// <summary>
+	/// If the object is dragged to Dorien, remove the trash from the count, and advance eventual quest tasks. 
+	/// Deactivates quest objects in the QuestManager.
+	/// </summary>
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.CompareTag("Dorien"))
+		if (other.CompareTag("Dorien") && navMeshObstacle.enabled == false)
 		{
-			Debug.Log("onTriggerEnter");
 			Gather();
 			GameManager.Instance.trashCount--;
 
-			GameManager.Instance.QuestManager.AdvanceTasks();
+			//TEMP questmanager doesnt work always yet, so to make testing easier:
+			gameObject.SetActive(false);
+			//GameManager.Instance.QuestManager.AdvanceTasks();
 		}
 	}
 }

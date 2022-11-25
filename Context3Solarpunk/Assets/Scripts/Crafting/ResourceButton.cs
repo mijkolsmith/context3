@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using NaughtyAttributes;
 
 public class ResourceButton : MonoBehaviour
 {
@@ -9,9 +10,10 @@ public class ResourceButton : MonoBehaviour
 	[SerializeField] private ResourceType resourceType;
 	[SerializeField] private string[] resourceBaseTexts;
 	[SerializeField] private TextMeshProUGUI resourceText;
-	[SerializeField] private TextMeshProUGUI craftedText;
-	private string craftedString;
-	private bool crafted;
+	[SerializeField] private GameObject craftedObjectPrefab;
+	[SerializeField, ReadOnly] private List<TextMeshProUGUI> craftedTextObjects;
+	private string craftedText;
+	private TextMeshProUGUI textObjectToRemove;
 
 	/// <summary>
 	/// Call the CraftingManager to craft a resource, and start the animation.
@@ -19,41 +21,16 @@ public class ResourceButton : MonoBehaviour
 	public void Craft()
 	{
 		GameManager.Instance.CraftingManager.Craft(resourceType);
-		crafted = true;
+		craftedTextObjects.Add(Instantiate(craftedObjectPrefab, new Vector3(transform.position.x, transform.position.y + 10f, transform.position.z), Quaternion.identity, transform.parent).GetComponent<TextMeshProUGUI>());
 		UpdateUI();
 	}
 
 	/// <summary>
-	/// Get the associated text object for the animation in the Start function.
-	/// </summary>
-	private void Start()
-	{
-		craftedString = craftedText?.text;
-	}
-
-	/// <summary>
-	/// If crafted is true, play an animation in the Update function.
+	/// Check for destroyed objects and remove reference in the craftedTextObjects List in the Update method.
 	/// </summary>
 	private void Update()
 	{
-		//TODO: make the system so multiple can activate
-		if (crafted)
-		{
-			craftedText.gameObject.SetActive(true);
-			craftedText.transform.localPosition = new Vector3(craftedText.transform.localPosition.x, craftedText.transform.localPosition.y + Time.deltaTime * 30, craftedText.transform.localPosition.z);
-			
-			int alpha = 255 - (int)Mathf.Clamp(craftedText.transform.localPosition.y / 50f * 255f, 0f, 255f);
-			alpha = alpha < 16 ? 16 : alpha;
-			string alphaHex = alpha.ToString("X");
-			craftedText.text = "<alpha=#" + alphaHex + ">" + craftedString;
-
-			if (craftedText.transform.localPosition.y > 50)
-			{
-				crafted = false;
-				craftedText.transform.localPosition = new Vector3(craftedText.transform.localPosition.x, 0, craftedText.transform.localPosition.z);
-				craftedText.gameObject.SetActive(false);
-			}
-		}
+		craftedTextObjects.RemoveAll(x => x == null);
 	}
 
 	/// <summary>
@@ -62,8 +39,20 @@ public class ResourceButton : MonoBehaviour
 	/// </summary>
 	public void UpdateUI()
 	{
-		//TODO: Do not display the button if the amount craftable is 0
-		button.interactable = CanCraft();
+		bool canCraft = CanCraft();
+		button.interactable = canCraft;
+	}
+
+	/// <summary>
+	/// Destroys all items in craftedTextObjects and clears the list.
+	/// </summary>
+	public void ClearCraftedTextObjects()
+	{
+		foreach(var craftedObject in craftedTextObjects)
+		{
+			Destroy(craftedObject.gameObject);
+		}
+		craftedTextObjects.Clear();
 	}
 
 	/// <summary>
@@ -73,13 +62,22 @@ public class ResourceButton : MonoBehaviour
 	private bool CanCraft()
 	{
 		Dictionary<ResourceType, int> resourcesNeeded = GameManager.Instance.CraftingManager.CanCraft(resourceType, out bool canCraft);
+
+		bool displayButton = false;
 		int i = 0;
 		resourceText.text = string.Empty;
 		foreach (ResourceType resource in resourcesNeeded.Keys)
 		{
 			resourceText.text += resourcesNeeded[resource] + resourceBaseTexts[i] + " ";
 			i++;
+			if (resourcesNeeded[resource] > 0)
+			{
+				displayButton = true;
+			}
 		}
+
+		button.gameObject.SetActive(displayButton);
+
 		return canCraft;
 	}
 }

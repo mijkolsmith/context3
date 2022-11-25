@@ -16,7 +16,8 @@ public class InventoryUIElement : Resource
 	/// </summary>
 	public void UpdateUI()
 	{
-		//TODO: make invisible if 0
-		amountText.text = GameManager.Instance.CraftingManager.Resources.Where(x => x == resourceType).Count().ToString();
+		int count = GameManager.Instance.CraftingManager.Resources.Where(x => x == resourceType).Count();
+		amountText.text = count.ToString();
+		gameObject.SetActive(count > 0);
 	}
 }
