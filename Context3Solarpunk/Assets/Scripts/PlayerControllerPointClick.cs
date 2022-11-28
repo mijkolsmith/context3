@@ -10,7 +10,8 @@ public class PlayerControllerPointClick : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private KeyCode moveKey = KeyCode.Mouse1; //Als je KeyCode.Mouse gebruikt werkt het niet op tablets, just a headsup
     [SerializeField] private LayerMask walkableLayer;
-    [SerializeField] private GameObject targetDestination;
+    [SerializeField] private GameObject targetDestinationGameObject;
+    [SerializeField] private float targetGameObjectDisappearDistance = 2f;
     private NavMeshAgent agent;
 
     [Header("State")]
@@ -82,7 +83,7 @@ public class PlayerControllerPointClick : MonoBehaviour
 
                 if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, walkableLayer))
                 {
-					targetDestination.transform.position = hit.point;
+					targetDestinationGameObject.transform.position = hit.point;
 					agent.SetDestination(hit.point);
 				}
             }
@@ -113,6 +114,14 @@ public class PlayerControllerPointClick : MonoBehaviour
             {
                 transform.position = respawnLocation;
             }
+        }
+        if (Vector3.Distance(gameObject.transform.position, targetDestinationGameObject.transform.position) < targetGameObjectDisappearDistance)
+        {
+            targetDestinationGameObject.SetActive(false);
+        }
+        else
+        {
+            targetDestinationGameObject.SetActive(true);
         }
     }
 

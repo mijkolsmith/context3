@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 //TODO: Maak dit het enige script dat iets te doen heeft met UI, maak 1 huidige UI instance die als enige tegelijk open kan staan.
 
 public class UIManager : MonoBehaviour
 {
+
     [SerializeField] private TextMeshProUGUI questText;
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField, Range(0.001f, 0.2f)] private float textSpeed = 0.02f;
@@ -18,12 +20,21 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private bool paused = false;
 
+    [SerializeField] private GameObject blackoutSquare;
+    [SerializeField] private TextMeshProUGUI currentYearText;
+    [SerializeField] private TextMeshProUGUI currentYearAmountText;
+
+    private bool screenfaded = false;
+
     public TextMeshProUGUI QuestText { get => questText; set => questText = value; }
     public GameObject CanInteractPopupUIObject { get => canInteractPopupUIObject; set => canInteractPopupUIObject = value; }
-	public GameObject CanCraftPopupUIObject { get => canCraftPopupUIObject; set => canCraftPopupUIObject = value; }
-	public GameObject DorienPopupUIObject { get => dorienPopupUIObject; set => dorienPopupUIObject = value; }
+    public GameObject CanCraftPopupUIObject { get => canCraftPopupUIObject; set => canCraftPopupUIObject = value; }
+    public GameObject DorienPopupUIObject { get => dorienPopupUIObject; set => dorienPopupUIObject = value; }
+    public TextMeshProUGUI CurrentYearText { get => currentYearText; set => currentYearText = value; }
+    public TextMeshProUGUI CurrentYearAmountText { get => currentYearAmountText; set => currentYearAmountText = value; }
+    public float TextSpeed { get => textSpeed; set => textSpeed = value; }
 
-	private void Start()
+    private void Start()
     {
         StartDialogue("");
     }
@@ -92,5 +103,5 @@ public class UIManager : MonoBehaviour
     public void ShowDialogueScreen(bool show)
     {
         dialoguePanel.SetActive(show);
-    }
+    }    
 }
