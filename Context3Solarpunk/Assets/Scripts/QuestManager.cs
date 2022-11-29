@@ -31,7 +31,7 @@ public class QuestManager : MonoBehaviour
     /// <param name="quest"></param>
     public void StartQuest(Quest quest)
     {
-        Debug.Log("Quest started! Name of quest: " + quest.Name);
+        Debug.Log("Quest started! Quest ID: " + quest.uniqueQuestID);
         quest.state = QuestState.Active;
         GameManager.Instance.UiManager.QuestText.text = quest.Name;
         if (quest.sequential)
@@ -104,8 +104,12 @@ public class QuestManager : MonoBehaviour
                 }
                 if (allTasksAreDone)
                 {
+                    Debug.Log("Quest " + q.uniqueQuestID + "is completed.");
                     q.succesEvent?.Invoke();
-                    currentQuest = null;
+                    if (currentQuest == q)
+                    {
+                        currentQuest = null;
+                    }
                     q.state = QuestState.Completed;
                 }
             }
