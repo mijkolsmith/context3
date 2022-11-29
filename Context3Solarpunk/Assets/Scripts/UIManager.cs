@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using NaughtyAttributes;
 
 //TODO: Maak dit het enige script dat iets te doen heeft met UI, maak 1 huidige UI instance die als enige tegelijk open kan staan.
 
@@ -19,6 +20,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject dorienPopupUIObject;
 
     [SerializeField] private bool paused = false;
+    [SerializeField, ReadOnly] private bool dialogueFinished = false;
 
     [SerializeField] private GameObject blackoutSquare;
     [SerializeField] private TextMeshProUGUI currentYearText;
@@ -56,6 +58,7 @@ public class UIManager : MonoBehaviour
         //dialoguePanel.SetActive(true);
 
         StopAllCoroutines();
+        dialoguePanel.SetActive(true);
         StartCoroutine(TypeSentence(dialogue));
     }
 
@@ -68,6 +71,12 @@ public class UIManager : MonoBehaviour
     public void ContinueDialogue()
     {
         paused = false;
+        if (dialogueFinished)
+        {
+            dialoguePanel.SetActive(false);
+            dialogueFinished = false;
+        }
+        
     }
 
     /// <summary>
@@ -86,10 +95,16 @@ public class UIManager : MonoBehaviour
                 string s = dialogueText.text.Substring(dialogueText.text.Length - 1);
                 if (s == "|")
                 {
-                    paused = true;
-                    dialogueText.text = dialogueText.text.Substring(0, dialogueText.text.Length - 2);
+                    paused = true; //Pause the dialogue
+                    dialogueText.text = dialogueText.text.Substring(0, dialogueText.text.Length - 1); //Takes the last character away from the text (presumably a "|")
                     yield return new WaitUntil(() => !paused/*Input.GetKeyDown(KeyCode.Return)*/);
+                    dialogueFinished = false;
                     dialogueText.text = "";
+                } 
+                else if (s == "*")
+                {
+                    dialogueText.text = dialogueText.text.Substring(0, dialogueText.text.Length - 1);
+                    dialogueFinished = true;
                 }
             }
             yield return new WaitForSeconds(textSpeed);
