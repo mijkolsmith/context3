@@ -8,7 +8,7 @@ public class Quest
 {
     public string Name;
     public string Description;
-    public string uniqueQuestID;
+    public int uniqueQuestID;
     public bool sequential;
     public QuestState state;
 

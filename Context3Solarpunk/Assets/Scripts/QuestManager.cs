@@ -13,7 +13,9 @@ public class QuestManager : MonoBehaviour
     public List<Quest> quests = new List<Quest>();
     //bool questNotDone = true;
 
-
+    /// <summary>
+    /// Start quest 0 in Start method
+    /// </summary>
     private void Start()
     {
         //questNmbr = 0;
@@ -29,7 +31,7 @@ public class QuestManager : MonoBehaviour
     /// <param name="quest"></param>
     public void StartQuest(Quest quest)
     {
-        Debug.Log("Quest started! Name of quest: " + quest.Name);
+        Debug.Log("Quest started! Quest ID: " + quest.uniqueQuestID);
         quest.state = QuestState.Active;
         GameManager.Instance.UiManager.QuestText.text = quest.Name;
         if (quest.sequential)
@@ -40,11 +42,21 @@ public class QuestManager : MonoBehaviour
         quest.activateEvent?.Invoke();
     }
 
-    //TODO: remove this
-    public void startsecondquest()
+    /// <summary>
+    /// Start the quest with the corresponding ID
+    /// </summary>
+    /// <param name="id"></param>
+    public void StartQuestByID(int id)
     {
-        StartQuest(quests[1]);
+        for (int i = 0; i < quests.Count; i++)
+        {
+            if (quests[i].uniqueQuestID == id)
+            {
+                StartQuest(quests[i]);
+            }
+        }
     }
+
 
     /// <summary>
     /// Advances through the tasks of current quest and invokes all related events to succeeding a task.
@@ -92,7 +104,12 @@ public class QuestManager : MonoBehaviour
                 }
                 if (allTasksAreDone)
                 {
+                    Debug.Log("Quest " + q.uniqueQuestID + "is completed.");
                     q.succesEvent?.Invoke();
+                    if (currentQuest == q)
+                    {
+                        currentQuest = null;
+                    }
                     q.state = QuestState.Completed;
                 }
             }
