@@ -77,7 +77,6 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
     public virtual void Interact()
     {
         timeElapsed = 0;
-
         var mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(
             Input.mousePosition.x,
             Input.mousePosition.y,
@@ -105,7 +104,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
 
             //TEMP questmanager doesnt work always yet, so to make testing easier:
             gameObject.SetActive(false);
-            //GameManager.Instance.QuestManager.AdvanceTasks();
+            GameManager.Instance.QuestManager.AdvanceTasks();
         }
     }
 }
