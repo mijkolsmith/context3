@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
         craftingInput = Input.GetKeyDown(craftingKey);
         if (craftingInput && canCraft)
         {
-            GameManager.Instance.TogglePopupWindow(PopupWindowType.Crafting);
+            GameManager.Instance.UiManager.TogglePopupWindow(PopupWindowType.Crafting);
         }
 
         // Dorien menu
@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
         if (dorienInput)
         {
             GameManager.Instance.UiManager.DorienPopupUIObject.SetActive(false);
-            GameManager.Instance.TogglePopupWindow(PopupWindowType.Dorien);
+            GameManager.Instance.UiManager.TogglePopupWindow(PopupWindowType.Dorien);
         }
 
         // Respawning

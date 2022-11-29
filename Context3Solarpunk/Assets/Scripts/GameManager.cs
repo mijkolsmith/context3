@@ -5,9 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.AI.Navigation;
-
-//TODO: Cleanup / Remove all unnecessary code
-//TODO: Add Summaries
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,12 +25,9 @@ public class GameManager : MonoBehaviour
     public CraftingManager CraftingManager { get => craftingManager; private set => craftingManager = value; }
     public QuestManager QuestManager { get => questManager; private set => questManager = value; }
     public UIManager DialogueManager { get => uiManager; private set => uiManager = value; }
-	public PopupWindow[] PopupWindows { get => popupWindows; private set => popupWindows = value; }
     public UIManager UiManager { get => uiManager; set => uiManager = value; }
 
     [MinValue(0), MaxValue(3), ReadOnly] public int trashCount;
-    [SerializeField] private PopupWindow[] popupWindows;
-    public PopupWindowType popupWindowOpenType = PopupWindowType.None;
 
     /// <summary>
     /// Singleton pattern and assign managers.
@@ -52,33 +47,22 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Toggle a certain popupWindow.
+    /// Serializes & Saves position, quest progress and inventory
     /// </summary>
-    /// <param name="popupWindowType"></param>
-    public void TogglePopupWindow(PopupWindowType popupWindowType)
-    {
-        if (popupWindowType == popupWindowOpenType || popupWindowOpenType == PopupWindowType.None)
-        {
-            //TODO: move to UIManager
-            //TODO: only one should be able to open at a time.
-            PopupWindows.Where(x => x.GetPopupWindowType() == popupWindowType).FirstOrDefault().Toggle();
-        }
+    public void SaveAndQuit()
+	{
+        //TODO: Save quest progress
+        //TODO: Save position
+        CraftingManager.SaveInventory();
+
+        //TODO: Loading
+
+        SceneManager.LoadScene(0);
     }
 
     /// <summary>
-    /// Toggle a certain popupWindow with a button.
+    /// Refreshes the NavMesh after changing the environment during playmode.
     /// </summary>
-    /// <param name="popupWindowComponent"></param>
-    public void TogglePopupWindow(PopupWindowComponent popupWindowComponent)
-    {
-        if (popupWindowComponent.popupWindow == popupWindowOpenType || popupWindowOpenType == PopupWindowType.None)
-        {
-            //TODO: move to UIManager
-            //TODO: only one should be able to open at a time.
-            PopupWindows.Where(x => x.GetPopupWindowType() == popupWindowComponent.popupWindow).FirstOrDefault().Toggle();
-        }
-    }
-
     public void RefreshNavMesh()
 	{
         surface.BuildNavMesh();

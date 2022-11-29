@@ -6,7 +6,7 @@ using NaughtyAttributes;
 
 public class PlayerControllerPointClick : MonoBehaviour
 {
-    #region Variables
+#region Variables
     [Header("Movement")]
     [SerializeField] private KeyCode moveKey = KeyCode.Mouse1; //Als je KeyCode.Mouse gebruikt werkt het niet op tablets, just a headsup
     [SerializeField] private LayerMask walkableLayer;
@@ -44,15 +44,14 @@ public class PlayerControllerPointClick : MonoBehaviour
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private Vector3 movementVector;
 
     private Animator anim;
+#endregion
 
-    #endregion
-
-    #region Properties
+#region Properties
     public static GameObject Player { get; private set; }
     internal PlayerStates PlayerState { get => playerState; set => playerState = value; }
     public GameObject CompanionPositionGameObject { get => companionPositionGameObject; set => companionPositionGameObject = value; }
     public IInteractable InteractableObject { get => interactableObject; set => interactableObject = value; }
-    #endregion
+#endregion
 
     /// <summary>
     /// Get the navMeshAgent in the Start method.
@@ -73,7 +72,7 @@ public class PlayerControllerPointClick : MonoBehaviour
     private void Update()
     {
         // UI Open Check
-        if (GameManager.Instance.popupWindowOpenType == PopupWindowType.None)
+        if (GameManager.Instance.UiManager.popupWindowOpenType == PopupWindowType.None)
         {
             // Movement
             movementInput = Input.GetKey(moveKey);

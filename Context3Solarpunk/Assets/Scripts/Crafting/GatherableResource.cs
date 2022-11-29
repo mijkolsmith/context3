@@ -45,21 +45,16 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
             navMeshObstacle.enabled = true;
         }
 
-        //highlight on hover code
+        // Highlight on hover code
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        var hoverOverObject = false;
+
+        objectOutline.OutlineWidth = 0f;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Interactable")))
         {
-            hoverOverObject = false;
             if (hit.collider.gameObject == gameObject)
             {
-                hoverOverObject = true;
                 objectOutline.OutlineWidth = 5f;
             }
-        }
-        if (!hoverOverObject)
-        {
-            objectOutline.OutlineWidth = 0f;
         }
     }
 

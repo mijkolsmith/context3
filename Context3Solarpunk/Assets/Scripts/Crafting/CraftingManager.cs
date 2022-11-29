@@ -92,7 +92,7 @@ public class CraftingManager : MonoBehaviour
 		}
 
         resources.Add(resourceType);
-        ((CraftingPopupWindow) GameManager.Instance.PopupWindows.Where(x => x.GetPopupWindowType() == PopupWindowType.Crafting).FirstOrDefault()).UpdateUI();
+        ((CraftingPopupWindow) GameManager.Instance.UiManager.PopupWindows.Where(x => x.GetPopupWindowType() == PopupWindowType.Crafting).FirstOrDefault()).UpdateUI();
     }
 
     /// <summary>
@@ -131,7 +131,7 @@ public class CraftingManager : MonoBehaviour
     /// <summary>
     /// Serialization & Saving
     /// </summary>
-    private void SaveInventory()
+    public void SaveInventory()
 	{
         PlayerPrefs.SetInt("ResourcesCount", resources.Count);
         for (var i = 0; i < resources.Count; i++)
@@ -144,7 +144,7 @@ public class CraftingManager : MonoBehaviour
     /// <summary>
     /// Deserialization & Loading
     /// </summary>
-    private void LoadInventory()
+    public void LoadInventory()
 	{
         int resourceCount = PlayerPrefs.GetInt("ResourcesCount");
         for (var i = 0; i < resourceCount; i++)

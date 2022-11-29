@@ -15,9 +15,6 @@ public class DorienPopupWindow : PopupWindow
 	private float startHeight;
 
 	//UI
-	/*Please keep these unused variables for now, -Michael 22/11/22
-	/private Dictionary<ResourceType, int> inventory = new();
-	/[SerializeField] private Dictionary<ResourceType, Image> resourceSprites = new();*/
 	[SerializeField, ReadOnly] private List<InventoryUIElement> resourceUIElements = new();
 
 	/// <summary>
@@ -39,7 +36,7 @@ public class DorienPopupWindow : PopupWindow
 		if (PopupWindowObject.activeInHierarchy)
 		{
 			PopupWindowObject.SetActive(false);
-			GameManager.Instance.popupWindowOpenType = PopupWindowType.None;
+			GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.None;
 
 			cameraController.objectToFollow = PlayerControllerPointClick.Player;
 			cameraController.cameraDistance = startDistanceToPlayer;
@@ -48,7 +45,7 @@ public class DorienPopupWindow : PopupWindow
 		else
 		{
 			PopupWindowObject.SetActive(true);
-			GameManager.Instance.popupWindowOpenType = PopupWindowType.Dorien;
+			GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.Dorien;
 
 			if (!resourceUIElements.Any()) resourceUIElements = GetComponentsInChildren<InventoryUIElement>(true).ToList();
 			UpdateUI();

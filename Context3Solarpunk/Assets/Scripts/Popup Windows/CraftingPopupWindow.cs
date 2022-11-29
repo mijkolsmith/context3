@@ -19,13 +19,13 @@ public class CraftingPopupWindow : PopupWindow
 		if (PopupWindowObject.activeInHierarchy)
 		{
 			PopupWindowObject.SetActive(false);
-			GameManager.Instance.popupWindowOpenType = PopupWindowType.None;
+			GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.None;
 			
 		}
 		else
 		{
 			PopupWindowObject.SetActive(true);
-			GameManager.Instance.popupWindowOpenType = PopupWindowType.Crafting;
+			GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.Crafting;
 			if (!resourceButtons.Any()) resourceButtons = GetComponentsInChildren<ResourceButton>(true).ToList();
 			ClearAnimations();
 			UpdateUI();
