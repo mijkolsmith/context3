@@ -21,6 +21,9 @@ public class PlayerControllerPointClick : MonoBehaviour
     [ReadOnly] private IInteractable interactableObject;
     [SerializeField] private KeyCode interactionKey = KeyCode.Mouse1; //Als je KeyCode.Mouse gebruikt werkt het niet op tablets, just a headsup
     [SerializeField] private LayerMask interactableLayer;
+    [SerializeField] private float interactionDistance = 3f;
+    [SerializeField] private Color canInteractColor = Color.green;
+    [SerializeField] private Color cantInteractColor = Color.red;
 
     [Header("Respawning")]
     [SerializeField] private KeyCode respawnKey = KeyCode.F5;
@@ -74,41 +77,41 @@ public class PlayerControllerPointClick : MonoBehaviour
         // UI Open Check
         if (GameManager.Instance.UiManager.popupWindowOpenType == PopupWindowType.None)
         {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
             // Movement
             movementInput = Input.GetKey(moveKey);
             if (movementInput)
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, walkableLayer))
+                if (Physics.Raycast(ray, out RaycastHit targetHit, Mathf.Infinity, walkableLayer))
                 {
-					targetDestinationGameObject.transform.position = hit.point;
-					agent.SetDestination(hit.point);
+					targetDestinationGameObject.transform.position = targetHit.point;
+					agent.SetDestination(targetHit.point);
 				}
             }
 
             // Interaction
             interactionInput = Input.GetKey(interactionKey);
-            if (interactableObject != null)
-            {
-                if (interactionInput)
-                {
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                    if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, interactableLayer))
-                    {
-                        if (hit.collider.gameObject.GetComponent<IInteractable>() == interactableObject)
-                        {
-                            interactableObject.Interact();
-                            interactableObject = null;
-                            GameManager.Instance.RefreshNavMesh();
-                        }
+			if (Physics.Raycast(ray, out RaycastHit interactionHit, Mathf.Infinity, interactableLayer))
+			{
+                interactableObject = interactionHit.collider.GetComponent<IInteractable>();
+                interactableGameObject = interactionHit.collider.gameObject;
+
+                if (Vector3.Distance(interactionHit.collider.transform.position, transform.position) < interactionDistance)
+				{
+					interactableObject.Highlight(canInteractColor);
+					if (interactionInput)
+					{
+						interactableObject.Interact();
+						GameManager.Instance.RefreshNavMesh();
 					}
 				}
-            }
+				else interactableObject.Highlight(cantInteractColor);
+			}
 
-            // Respawning
-            respawnInput = Input.GetKeyDown(respawnKey);
+			// Respawning
+			respawnInput = Input.GetKeyDown(respawnKey);
             if (respawnInput)
             {
                 transform.position = respawnLocation;
@@ -121,49 +124,6 @@ public class PlayerControllerPointClick : MonoBehaviour
         else
         {
             targetDestinationGameObject.SetActive(true);
-        }
-    }
-
-    /// <summary>
-    /// Get the new interactable object if it enters the trigger collider on this object.
-    /// Is the new colliding object interactable? Save it, otherwise keep what was saved previously.
-    /// </summary>
-    /// <param name="other"></param>
-    private void OnTriggerEnter(Collider other)
-	{
-		interactableObject = other.GetComponent<IInteractable>() != null ? other.GetComponent<IInteractable>() : interactableObject;
-
-		//Debug info updater
-		if (showDebugInfo)
-		{
-			interactableGameObject = other.GetComponent<IInteractable>() != null ? other.gameObject : interactableGameObject;
-		}
-	}
-
-	/// <summary>
-	/// Is the colliding object interactable & do we not have an interactable object saved yet? Save it, otherwise keep what was saved previously.
-	/// </summary>
-	/// <param name="other"></param>
-	private void OnTriggerStay(Collider other)
-    {
-        if (interactableObject == null && other.GetComponent<IInteractable>() != null)
-        {
-            interactableObject = other.GetComponent<IInteractable>();
-        }
-    }
-
-    /// <summary>
-    /// Was the colliding object interactable? Remove the current saved interactable object.
-    /// </summary>
-    /// <param name="other"></param>
-    private void OnTriggerExit(Collider other)
-    {
-        interactableObject = other.GetComponent<IInteractable>() != null ? null : interactableObject;
-
-        //Debug info updater
-        if (showDebugInfo)
-        {
-            interactableGameObject = other.GetComponent<IInteractable>() != null ? null : interactableGameObject;
         }
     }
 }

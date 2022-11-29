@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestAdvancer : MonoBehaviour, IInteractable
+public class QuestAdvancer : MonoBehaviour
 {
     [SerializeField] private GameObject playerObject;
     [SerializeField] private QuestManager questManager;

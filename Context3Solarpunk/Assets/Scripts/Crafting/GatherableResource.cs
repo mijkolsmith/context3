@@ -10,9 +10,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
     [SerializeField, ReadOnly] private Vector3 startPos;
     [SerializeField, ReadOnly] private float timeElapsed = 0f;
     [SerializeField] private float lerpDuration = 3f;
-
-    private Ray ray; //For onhover, could be temporary
-    private RaycastHit hit; //For onhover, could be temporary
+    private bool highlight;
 
     /// <summary>
     /// Assign some components in the start method
@@ -38,24 +36,27 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
             t = t * t * (3f - 2f * t);
             transform.position = Vector3.Lerp(transform.position, startPos, t);
         }
-        else if (timeElapsed >= lerpDuration)
+
+        if (timeElapsed >= lerpDuration || Vector3.Distance(transform.position, startPos) < 0.05f)
         {
+            timeElapsed = lerpDuration;
+
             transform.position = startPos;
             hitboxCollider.isTrigger = false;
             navMeshObstacle.enabled = true;
-        }
 
-        // Highlight on hover code
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        objectOutline.OutlineWidth = 0f;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Interactable")))
-        {
-            if (hit.collider.gameObject == gameObject)
-            {
-                objectOutline.OutlineWidth = 5f;
-            }
+            //Reset outline
+            objectOutline.OutlineWidth = 0f;
         }
+    }
+
+    /// <summary>
+    /// Highlight on mousehover
+    /// </summary>
+    public virtual void Highlight(Color color)
+    {
+        objectOutline.OutlineWidth = 5f;
+        objectOutline.OutlineColor = color;
     }
 
     /// <summary>

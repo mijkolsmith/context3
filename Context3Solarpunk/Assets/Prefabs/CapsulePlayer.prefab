@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 668230995828949947}
   - component: {fileID: 668230995828949946}
   - component: {fileID: 668230995828949943}
-  - component: {fileID: 668230995828949940}
   - component: {fileID: 701689747781303773}
   - component: {fileID: 1359714933}
   m_Layer: 0
@@ -68,7 +67,7 @@ Transform:
   m_Children:
   - {fileID: 668230995706237579}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &668230995828949944
 MeshFilter:
@@ -150,19 +149,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!135 &668230995828949940
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 668230995828949949}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.75
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &701689747781303773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,12 +165,16 @@ MonoBehaviour:
   walkableLayer:
     serializedVersion: 2
     m_Bits: 8
-  targetDestination: {fileID: 0}
+  targetDestinationGameObject: {fileID: 0}
+  targetGameObjectDisappearDistance: 1.4
   playerState: 1
   interactionKey: 323
   interactableLayer:
     serializedVersion: 2
     m_Bits: 64
+  interactionDistance: 3
+  canInteractColor: {r: 0, g: 1, b: 0, a: 1}
+  cantInteractColor: {r: 1, g: 0, b: 0, a: 1}
   respawnKey: 286
   respawnLocation: {x: -27.19, y: 3.1, z: -3.94}
   companionPositionGameObject: {fileID: 0}
