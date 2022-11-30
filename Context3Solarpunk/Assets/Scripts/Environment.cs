@@ -6,5 +6,6 @@ using UnityEngine;
 public class Environment
 {
     public string name;
+    public bool foggy;
     public List<GameObject> objects;
 }
