@@ -11,6 +11,8 @@ public class CraftingManager : MonoBehaviour
     //A dictionary which contains all of the crafting recipes.
     private Dictionary<ResourceType, Dictionary<ResourceType, int>> craftingRecipes = new()
     {
+        { ResourceType.None, new() { } },
+
         { ResourceType.OldPlastic, new() { } },
         { ResourceType.Bottle, new() { } },
         { ResourceType.OldElectronics, new() { } },
@@ -20,24 +22,16 @@ public class CraftingManager : MonoBehaviour
         { ResourceType.Furniture, new() { } },
         { ResourceType.RainWater, new() { } },
 
-        { ResourceType.Plastic, new() { { ResourceType.OldPlastic, 3 } } },
-        { ResourceType.Glass, new() { { ResourceType.Bottle, 3 } } },
-        { ResourceType.Electronics, new() { { ResourceType.OldElectronics, 3 } } },
-        { ResourceType.Metal, new() { { ResourceType.Can, 3 } } },
-        { ResourceType.Fabric, new() { { ResourceType.OldUniform, 3 } } },
-        { ResourceType.Compost, new() { { ResourceType.Leaf, 9 } } },
-        { ResourceType.Wood, new() { { ResourceType.Furniture, 5 } } },
-
-        { ResourceType.SeparatedBin, new() { { ResourceType.Plastic, 3 } } },
-        { ResourceType.SunPanel, new() { { ResourceType.Glass, 3 }, { ResourceType.Electronics, 3 } } },
-        { ResourceType.LedLamp, new() { { ResourceType.Glass, 3 }, { ResourceType.Metal, 3 } } },
-        { ResourceType.Uniform, new() { { ResourceType.Fabric, 3 } } },
-        { ResourceType.Mug, new() { { ResourceType.Glass, 3 } } },
-        { ResourceType.CompostHeap, new() { { ResourceType.Metal, 3 } } },
-        { ResourceType.Grass, new() { { ResourceType.Compost, 3 } } },
-        { ResourceType.InsectHotel, new() { { ResourceType.Wood, 2 } } },
-        { ResourceType.RainBarrel, new() { { ResourceType.Wood, 2 }, { ResourceType.Plastic, 3 } } },
-        { ResourceType.VegetableGarden, new() { { ResourceType.Compost, 3 }, { ResourceType.RainWater, 3 } } }
+        { ResourceType.SeparatedBin, new() { { ResourceType.OldPlastic, 4 } } },
+        { ResourceType.SunPanel, new() { { ResourceType.Bottle, 3 }, { ResourceType.OldElectronics, 3 } } },
+        { ResourceType.LedLamp, new() { { ResourceType.Bottle, 2 }, { ResourceType.Can, 4 } } },
+        { ResourceType.Uniform, new() { { ResourceType.OldUniform, 5 } } },
+        { ResourceType.Mug, new() { { ResourceType.Bottle, 3 } } },
+        { ResourceType.CompostHeap, new() { { ResourceType.Can, 5 } } },
+        { ResourceType.Grass, new() { { ResourceType.Leaf, 9 } } },
+        { ResourceType.InsectHotel, new() { { ResourceType.Furniture, 3 } } },
+        { ResourceType.RainBarrel, new() { { ResourceType.Furniture, 4 }, { ResourceType.OldPlastic, 3 } } },
+        { ResourceType.VegetableGarden, new() { { ResourceType.Leaf, 3 }, { ResourceType.RainWater, 3 } } }
     };
 
     [SerializeField] private bool showDebugInfo = true;
@@ -126,6 +120,11 @@ public class CraftingManager : MonoBehaviour
         }
         canCraft = true;
         return resourcesCount;
+    }
+
+    public Dictionary<ResourceType, int> GetCraftingRecipe(ResourceType resourceType)
+	{
+        return craftingRecipes[resourceType];
     }
 
     /// <summary>

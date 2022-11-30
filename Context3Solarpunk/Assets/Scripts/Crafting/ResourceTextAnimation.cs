@@ -6,6 +6,8 @@ public class ResourceTextAnimation : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI textComponent;
 	private string text;
 	private float startHeight;
+	[SerializeField] private ResourceType resourceType;
+	public ResourceType GetResourceType() => resourceType;
 
 	/// <summary>
 	/// Get the text from the component in the Start method.

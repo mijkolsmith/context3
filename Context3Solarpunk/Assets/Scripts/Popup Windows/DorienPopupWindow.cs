@@ -15,7 +15,7 @@ public class DorienPopupWindow : PopupWindow
 	private float startHeight;
 
 	//UI
-	[SerializeField, ReadOnly] private List<InventoryUIElement> resourceUIElements = new();
+	[SerializeField, ReadOnly] private List<InventoryUiElement> inventoryUIElements = new();
 
 	/// <summary>
 	/// Grab the start distance and height in the Start method.
@@ -47,7 +47,7 @@ public class DorienPopupWindow : PopupWindow
 			PopupWindowObject.SetActive(true);
 			GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.Dorien;
 
-			if (!resourceUIElements.Any()) resourceUIElements = GetComponentsInChildren<InventoryUIElement>(true).ToList();
+			if (!inventoryUIElements.Any()) inventoryUIElements = GetComponentsInChildren<InventoryUiElement>(true).ToList();
 			UpdateUI();
 
 			cameraController.objectToFollow = gameObject;
@@ -61,7 +61,7 @@ public class DorienPopupWindow : PopupWindow
 	/// </summary>
 	public void UpdateUI()
 	{
-		foreach (InventoryUIElement inventoryUIElement in resourceUIElements)
+		foreach (InventoryUiElement inventoryUIElement in inventoryUIElements)
 		{
 			inventoryUIElement.UpdateUI();
 		}
