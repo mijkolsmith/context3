@@ -14,18 +14,18 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private UIManager uiManager;
     [SerializeField] private QuestManager questManager;
-    [SerializeField] private TrainManager trainManager;
     [SerializeField] private EnvironmentManager environmentManager;
     [SerializeField] private CraftingManager craftingManager;
     [SerializeField] private GameStateManager gameStateManager;
+    [SerializeField] private SequenceManager sequenceManager;
     [SerializeField] private NavMeshSurface surface;
-    public TrainManager TrainManager { get => trainManager; private set => trainManager = value; }
     public EnvironmentManager EnvironmentManager { get => environmentManager; private set => environmentManager = value; }
     public GameStateManager GameStateManager { get => gameStateManager; private set => gameStateManager = value; }
     public CraftingManager CraftingManager { get => craftingManager; private set => craftingManager = value; }
     public QuestManager QuestManager { get => questManager; private set => questManager = value; }
     public UIManager DialogueManager { get => uiManager; private set => uiManager = value; }
     public UIManager UiManager { get => uiManager; set => uiManager = value; }
+    public SequenceManager SequenceManager { get => sequenceManager; set => sequenceManager = value; }
 
     [MinValue(0), MaxValue(3), ReadOnly] public int trashCount;
 
@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
         }
 
         GameStateManager = gameObject.AddComponent<GameStateManager>();
+        sequenceManager = GetComponent<SequenceManager>();
     }
 
     /// <summary>

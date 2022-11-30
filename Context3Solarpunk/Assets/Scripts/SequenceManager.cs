@@ -19,15 +19,22 @@ public class SequenceManager : MonoBehaviour
 
     [SerializeField] private sequenceState currentSequenceState = sequenceState.notInSequence;
     [SerializeField] private GameObject blackoutSquareUI;
-    [SerializeField] private float transitionSpeed = 0.001f;
-    [SerializeField] private float timeTravelSpeed = 0.2f;
+    [SerializeField] private float transitionSpeed = 0.0025f;
+    [SerializeField] private float timeTravelSpeed = 15f;
 
     private float fadeSpeed = 5f;
 
     [SerializeField, ReadOnly] private int targetYear;
 
+    public void TimeTravel(int year)
+    {
+        targetYear = year;
+        timeTravelling = true;
+        currentSequenceState = sequenceState.sequenceFadingIn;
+    }
+
     [ContextMenu("Run travel sequence to the future")]
-    private void TimeTravelToTheFuture()
+    public void TimeTravelToTheFuture()
     {
         targetYear = 2082;
         timeTravelling = true;
@@ -35,7 +42,7 @@ public class SequenceManager : MonoBehaviour
     }
 
     [ContextMenu("Run travel sequence to the past")]
-    private void TimeTravelToThePast()
+    public void TimeTravelToThePast()
     {
         targetYear = 2022;
         timeTravelling = true;
@@ -82,10 +89,14 @@ public class SequenceManager : MonoBehaviour
                 currentYear--;
                 GameManager.Instance.UiManager.CurrentYearAmountText.text = currentYear.ToString();
                 yield return new WaitForSeconds(timeTravelSpeed);
-
             }
         }
-        //Debug.LogError("Couldn't go to requested year amount");
+        GameManager.Instance.EnvironmentManager.Progress = 0;
+        if (targetYearAmount > 5000)
+        {
+            GameManager.Instance.EnvironmentManager.Progress = 1;
+        }
+        yield return new WaitForSeconds(1f);
         currentSequenceState = sequenceState.SequenceFadingOut;
         yield return null;
     }
@@ -102,7 +113,7 @@ public class SequenceManager : MonoBehaviour
                 GameManager.Instance.UiManager.CurrentYearText.color = new Color(255, 255, 255, amount);
                 GameManager.Instance.UiManager.CurrentYearAmountText.color = new Color(255, 255, 255, amount);
                 blackoutSquareUI.GetComponent<Image>().color = objectColor;
-                if (Mathf.Abs(objectColor.a - amount) < 0.1f)
+                if (Mathf.Abs(objectColor.a - amount) < 0.01f)
                 {
                     objectColor.a = amount;
                 }
@@ -115,7 +126,7 @@ public class SequenceManager : MonoBehaviour
                 GameManager.Instance.UiManager.CurrentYearText.color = new Color(255, 255, 255, amount);
                 GameManager.Instance.UiManager.CurrentYearAmountText.color = new Color(255, 255, 255, amount);
                 blackoutSquareUI.GetComponent<Image>().color = objectColor;
-                if (Mathf.Abs(objectColor.a - amount) < 0.1f)
+                if (Mathf.Abs(objectColor.a - amount) < 0.01f)
                 {
                     objectColor.a = amount;
                 }
