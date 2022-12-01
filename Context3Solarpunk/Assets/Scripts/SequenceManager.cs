@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
+
+/// <summary>
+/// Shows what state the sequence is in and handles 
+/// </summary>
 public enum sequenceState
 {
     notInSequence = 0,
@@ -26,6 +30,10 @@ public class SequenceManager : MonoBehaviour
 
     [SerializeField, ReadOnly] private int targetYear;
 
+    /// <summary>
+    /// Preset method that can be executed in the inspector to go to any year with param
+    /// </summary>
+    /// <param name="year"></param>
     public void TimeTravel(int year)
     {
         targetYear = year;
@@ -33,6 +41,9 @@ public class SequenceManager : MonoBehaviour
         currentSequenceState = sequenceState.sequenceFadingIn;
     }
 
+    /// <summary>
+    /// Preset method that can be executed in the inspector to go to 2082 with sequence
+    /// </summary>
     [ContextMenu("Run travel sequence to the future")]
     public void TimeTravelToTheFuture()
     {
@@ -41,6 +52,9 @@ public class SequenceManager : MonoBehaviour
         currentSequenceState = sequenceState.sequenceFadingIn;
     }
 
+    /// <summary>
+    /// Preset method that can be executed in the inspector to go to 2022 with sequence
+    /// </summary>
     [ContextMenu("Run travel sequence to the past")]
     public void TimeTravelToThePast()
     {
@@ -72,7 +86,11 @@ public class SequenceManager : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Change year text in the sequence gradually
+    /// </summary>
+    /// <param name="targetYearAmount"></param>
+    /// <returns></returns>
     public IEnumerator ChangeYearAmount(int targetYearAmount)
     {
         while (currentYear != targetYearAmount)
@@ -101,6 +119,11 @@ public class SequenceManager : MonoBehaviour
         yield return null;
     }
 
+    /// <summary>
+    /// This fades the screen with the amount given by param, minus makes screen invisible and positive hides it
+    /// </summary>
+    /// <param name="amount"></param>
+    /// <returns></returns>
     public IEnumerator ChangeScreenFade(int amount)
     {
         Color objectColor = blackoutSquareUI.GetComponent<Image>().color;
@@ -117,7 +140,7 @@ public class SequenceManager : MonoBehaviour
                 {
                     objectColor.a = amount;
                 }
-                yield return new WaitForSeconds(GameManager.Instance.UiManager.TextSpeed);
+                yield return new WaitForSeconds(GameManager.Instance.UiManager.TextSpeed * Time.deltaTime);
             }
             else
             if (objectColor.a >= amount)
@@ -130,7 +153,7 @@ public class SequenceManager : MonoBehaviour
                 {
                     objectColor.a = amount;
                 }
-                yield return new WaitForSeconds(GameManager.Instance.UiManager.TextSpeed);
+                yield return new WaitForSeconds(GameManager.Instance.UiManager.TextSpeed * Time.deltaTime);
 
             }
         }
