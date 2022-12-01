@@ -56,12 +56,6 @@ public class UIManager : MonoBehaviour
         }
     }
 #endregion
-
-	private void Start()
-    {
-        StartDialogue("");
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
@@ -77,7 +71,7 @@ public class UIManager : MonoBehaviour
     public void StartDialogue(string dialogue)
     {
         StopAllCoroutines();
-        CheckBlocking();
+        CheckBlockingToggle();
         StartCoroutine(TypeSentence(dialogue));
     }
 
@@ -90,22 +84,22 @@ public class UIManager : MonoBehaviour
         paused = false;
         if (dialogueFinished)
         {
-            CheckBlocking();
+            CheckBlockingToggle();
             dialogueFinished = false;
         }
     }
 
-    private void CheckBlocking()
+    private void CheckBlockingToggle()
 	{
         if (!blocking)
         {
-            dialoguePanel.SetActive(false);
+            dialoguePanel.SetActive(!dialoguePanel.activeInHierarchy);
             activeDialogueText = dialogueTexts[0];
         }
         else
         {
             TogglePopupWindow(PopupWindowType.Dialogue);
-            activeDialogueText = dialogueTexts[0];
+            activeDialogueText = dialogueTexts[1];
         }
     }
 

@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Singleton pattern and assign managers.
     /// </summary>
-    void Start()
+    private void Awake()
     {
         if (Instance == null)
         {
