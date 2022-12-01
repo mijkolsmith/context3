@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Base resource class containing base resource functionality to get the resource type.
+/// Base resource class containing functionality to get the resource type and monobehaviour.
 /// </summary>
 public abstract class Resource : MonoBehaviour
 {
