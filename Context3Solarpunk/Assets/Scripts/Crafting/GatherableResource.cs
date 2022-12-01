@@ -10,7 +10,6 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
     [SerializeField, ReadOnly] private Vector3 startPos;
     [SerializeField, ReadOnly] private float timeElapsed = 0f;
     [SerializeField] private float lerpDuration = 3f;
-    private bool highlight;
 
     /// <summary>
     /// Assign some components in the start method

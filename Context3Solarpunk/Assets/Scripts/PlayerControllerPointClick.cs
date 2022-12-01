@@ -115,6 +115,11 @@ public class PlayerControllerPointClick : MonoBehaviour
                 transform.position = respawnLocation;
             }
         }
+        else
+		{
+            agent.SetDestination(transform.position);
+        }
+
         if (Vector3.Distance(gameObject.transform.position, targetDestinationGameObject.transform.position) < targetGameObjectDisappearDistance)
         {
             targetDestinationGameObject.SetActive(false);

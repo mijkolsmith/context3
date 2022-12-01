@@ -101,7 +101,6 @@ public class Outline : MonoBehaviour {
 
   void OnEnable() {
     foreach (var renderer in renderers) {
-
       // Append outline shaders
       var materials = renderer.sharedMaterials.ToList();
 
@@ -163,7 +162,7 @@ public class Outline : MonoBehaviour {
     var bakedMeshes = new HashSet<Mesh>();
 
     foreach (var meshFilter in GetComponentsInChildren<MeshFilter>()) {
-
+            
       // Skip duplicates
       if (!bakedMeshes.Add(meshFilter.sharedMesh)) {
         continue;
