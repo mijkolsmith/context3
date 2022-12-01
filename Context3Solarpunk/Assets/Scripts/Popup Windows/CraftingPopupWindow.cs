@@ -61,34 +61,9 @@ public class CraftingPopupWindow : PopupWindow
 			}
 
 			if (!inventoryUiElements.Any()) inventoryUiElements = GetComponentsInChildren<InventoryUiElement>(true).ToList();
-			//ClearAnimations();
+			ClearAnimations();
 			UpdateUI();
 		}
-	}
-
-	[Button(enabledMode: EButtonEnableMode.Playmode)]
-	public void DebugUpdateUI()
-	{
-		GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.Crafting;
-
-		resourceToCraft = ResourceType.SeparatedBin;
-
-		Dictionary<ResourceType, int> craftingRecipe = GameManager.Instance.CraftingManager.GetCraftingRecipe(resourceToCraft);
-		int i = 0;
-		foreach (var resourceType in craftingRecipe.Keys.ToList())
-		{
-			for (; i < craftingRecipe[resourceType]; i++)
-			{
-				Transform parent;
-				if (i < 5) parent = parents[0];
-				else parent = parents[1];
-				craftingUiElements.Add(Instantiate(craftingUiElementPrefabs.Where(x => x.GetComponent<CraftingUiElement>().GetResourceType() == resourceType).FirstOrDefault(), parent).GetComponent<CraftingUiElement>());
-			}
-		}
-
-		if (!inventoryUiElements.Any()) inventoryUiElements = GetComponentsInChildren<InventoryUiElement>(true).ToList();
-		//ClearAnimations();
-		UpdateUI();
 	}
 
 	/// <summary>
@@ -124,6 +99,7 @@ public class CraftingPopupWindow : PopupWindow
 
 	/// <summary>
 	/// Fill a spot, remove only visually from the inventory
+	/// If all spots are filled, craft the resourceToCraft & clear the UI
 	/// </summary>
 	/// <param name="resourceType"></param>
 	public void Fill(ResourceType resourceType)
@@ -133,8 +109,9 @@ public class CraftingPopupWindow : PopupWindow
 			craftingUiElements.Where(x => x.GetResourceType() == resourceType && x.activated == false).FirstOrDefault().Activate();
 			inventoryUiElements.Where(x => x.GetResourceType() == resourceType).FirstOrDefault().TemporarilyRemove();
 			if (craftingUiElements.Where(x => x.activated == false).ToList().Count == 0)
-			{
-				GameManager.Instance.CraftingManager.Craft(resourceType);
+			{//Craft the resourceToCraft
+
+				GameManager.Instance.CraftingManager.Craft(resourceToCraft);
 				StartAnimation();
 
 				//Clear the Ui elements.
