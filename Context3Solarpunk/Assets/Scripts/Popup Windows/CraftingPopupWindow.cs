@@ -45,7 +45,14 @@ public class CraftingPopupWindow : PopupWindow
 
 			// TODO: Get current resource to craft from the questmanager and set it
 			resourceToCraft = ResourceType.SeparatedBin;
-			
+
+			// Clear the craftingUiElements
+			foreach (var craftingUiElement in craftingUiElements)
+			{
+				Destroy(craftingUiElement.gameObject);
+			}
+			craftingUiElements.Clear();
+
 			// Dynamically add the resources to fill
 			Dictionary<ResourceType, int> craftingRecipe = GameManager.Instance.CraftingManager.GetCraftingRecipe(resourceToCraft);
 			int i = 0;
