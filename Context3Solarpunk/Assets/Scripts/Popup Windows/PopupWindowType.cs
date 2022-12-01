@@ -9,5 +9,6 @@ public enum PopupWindowType
     None,
     Crafting,
     Dorien,
-    Settings
+    Settings,
+    Dialogue
 }

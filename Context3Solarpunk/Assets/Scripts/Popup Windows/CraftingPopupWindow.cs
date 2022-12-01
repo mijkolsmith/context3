@@ -13,7 +13,7 @@ public class CraftingPopupWindow : PopupWindow
 	[SerializeField, ReadOnly] private List<InventoryUiElement> inventoryUiElements = new();
 	[SerializeField] private GameObject draggableObjectPrefab;
 	[SerializeField] private GameObject craftingPanel;
-	[SerializeField] private ResourceType resourceToCraft;
+	[SerializeField, ReadOnly] private ResourceType resourceToCraft;
 	[SerializeField] private List<GameObject> craftingUiElementPrefabs = new();
 	[SerializeField] private List<CraftingUiElement> craftingUiElements = new();
 	[SerializeField] private List<GameObject> craftedTextAnimationPrefabs = new();

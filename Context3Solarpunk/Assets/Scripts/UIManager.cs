@@ -14,7 +14,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI questText;
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField, Range(0.001f, 0.2f)] private float textSpeed = 0.02f;
-    [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private TextMeshProUGUI[] dialogueTexts;
+    [SerializeField] private TextMeshProUGUI activeDialogueText;
 
     [SerializeField] private GameObject canInteractPopupUIObject;
     [SerializeField] private GameObject canCraftPopupUIObject;
@@ -36,6 +37,7 @@ public class UIManager : MonoBehaviour
     private float fontSizeModifier = 1f;
 
     private bool screenfaded = false;
+    public bool blocking = true;
 #endregion
 
 #region Properties
@@ -74,14 +76,10 @@ public class UIManager : MonoBehaviour
     /// <param name="dialogue"></param>
     public void StartDialogue(string dialogue)
     {
-        //dialoguePanel.SetActive(true);
-
         StopAllCoroutines();
-        dialoguePanel.SetActive(true);
+        CheckBlocking();
         StartCoroutine(TypeSentence(dialogue));
     }
-
-
 
     /// <summary>
     /// Sets "paused" bool to false so 
@@ -92,10 +90,23 @@ public class UIManager : MonoBehaviour
         paused = false;
         if (dialogueFinished)
         {
-            dialoguePanel.SetActive(false);
+            CheckBlocking();
             dialogueFinished = false;
         }
-        
+    }
+
+    private void CheckBlocking()
+	{
+        if (!blocking)
+        {
+            dialoguePanel.SetActive(false);
+            activeDialogueText = dialogueTexts[0];
+        }
+        else
+        {
+            TogglePopupWindow(PopupWindowType.Dialogue);
+            activeDialogueText = dialogueTexts[0];
+        }
     }
 
     /// <summary>
@@ -105,40 +116,30 @@ public class UIManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator TypeSentence(string sentence)
     {
-        dialogueText.text = "";
+        activeDialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
-            dialogueText.text += letter;
-            if (dialogueText.text.Length > 1)
+            activeDialogueText.text += letter;
+            if (activeDialogueText.text.Length > 1)
             {
-                string s = dialogueText.text.Substring(dialogueText.text.Length - 1);
+                string s = activeDialogueText.text.Substring(activeDialogueText.text.Length - 1);
                 if (s == "|")
                 {
                     paused = true; //Pause the dialogue
-                    dialogueText.text = dialogueText.text.Substring(0, dialogueText.text.Length - 1); //Takes the last character away from the text (presumably a "|")
+                    activeDialogueText.text = activeDialogueText.text.Substring(0, activeDialogueText.text.Length - 1); //Takes the last character away from the text (presumably a "|")
                     yield return new WaitUntil(() => !paused/*Input.GetKeyDown(KeyCode.Return)*/);
                     dialogueFinished = false;
-                    dialogueText.text = "";
+                    activeDialogueText.text = "";
                 } 
                 else if (s == "*")
                 {
-                    dialogueText.text = dialogueText.text.Substring(0, dialogueText.text.Length - 1);
+                    activeDialogueText.text = activeDialogueText.text.Substring(0, activeDialogueText.text.Length - 1);
                     dialogueFinished = true;
                 }
             }
             yield return new WaitForSeconds(textSpeed);
         }
     }
-
-    /// <summary>
-    /// Sets the dialogue screen gameobject to active or not depending on param
-    /// </summary>
-    /// <param name="show"></param>
-    public void ShowDialogueScreen(bool show)
-    {
-        dialoguePanel.SetActive(show);
-    }
-
 
     /// <summary>
     /// Toggle a certain popupWindow.
