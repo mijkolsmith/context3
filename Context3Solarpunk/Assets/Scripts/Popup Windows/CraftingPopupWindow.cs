@@ -29,12 +29,7 @@ public class CraftingPopupWindow : PopupWindow
 	{
 		if (PopupWindowObject.activeInHierarchy)
 		{
-			//Clear the Ui elements.
-			foreach (var craftingUiElement in craftingUiElements)
-			{
-				Destroy(craftingUiElement);
-			}
-			craftingUiElements.Clear();
+			ClearInventoryUIElements();
 
 			PopupWindowObject.SetActive(false);
 			GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.None;
@@ -47,12 +42,7 @@ public class CraftingPopupWindow : PopupWindow
 			// TODO: Get current resource to craft from the questmanager and set it
 			resourceToCraft = ResourceType.SeparatedBin;
 
-			// Clear the craftingUiElements
-			foreach (var craftingUiElement in craftingUiElements)
-			{
-				Destroy(craftingUiElement.gameObject);
-			}
-			craftingUiElements.Clear();
+			ClearInventoryUIElements();
 
 			// Dynamically add the resources to fill
 			Dictionary<ResourceType, int> craftingRecipe = GameManager.Instance.CraftingManager.GetCraftingRecipe(resourceToCraft);
@@ -95,6 +85,18 @@ public class CraftingPopupWindow : PopupWindow
 	}
 
 	/// <summary>
+	/// Destroys all the craftingUiElements and clears the list.
+	/// </summary>
+	private void ClearInventoryUIElements()
+	{
+		foreach (var craftingUiElement in craftingUiElements)
+		{
+			Destroy(craftingUiElement.gameObject);
+		}
+		craftingUiElements.Clear();
+	}
+
+	/// <summary>
 	/// Create a new Draggable Object on given position with given resourceType and Sprite.
 	/// </summary>
 	/// <param name="position"></param>
@@ -133,12 +135,8 @@ public class CraftingPopupWindow : PopupWindow
 				GameManager.Instance.CraftingManager.Craft(resourceToCraft);
 				StartAnimation();
 
-				//Clear the Ui elements.
-				foreach (var craftingUiElement in craftingUiElements)
-				{
-					Destroy(craftingUiElement.gameObject);
-				}
-				craftingUiElements.Clear();
+				ClearInventoryUIElements();
+
 				resourceToCraft = ResourceType.None;
 
 				UpdateUI();
