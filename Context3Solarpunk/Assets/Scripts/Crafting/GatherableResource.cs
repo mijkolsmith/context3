@@ -12,7 +12,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
     [SerializeField] private float lerpDuration = 3f;
 
     /// <summary>
-    /// Assign some components in the start method
+    /// Assign some components in the start method.
     /// </summary>
     private void Start()
     {
@@ -24,7 +24,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
     }
 
     /// <summary>
-    /// Lerp the Resource to it's starting position in the Update method if the Resource is not being interacted with
+    /// Lerp the Resource to it's starting position in the Update method if the Resource is not being interacted with.
     /// </summary>
     private void Update()
     {
@@ -50,8 +50,9 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
     }
 
     /// <summary>
-    /// Highlight on mousehover
+    /// Activate the highlight outline.
     /// </summary>
+    /// <param name="color"></param>
     public virtual void Highlight(Color color)
     {
         objectOutline.OutlineWidth = 5f;
@@ -90,6 +91,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
     /// If the object is dragged to Dorien, remove the trash from the count, and advance eventual quest tasks. 
     /// Deactivates quest objects in the QuestManager.
     /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Dorien") && navMeshObstacle.enabled == false)

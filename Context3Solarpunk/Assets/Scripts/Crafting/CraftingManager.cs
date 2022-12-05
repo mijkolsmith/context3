@@ -62,7 +62,7 @@ public class CraftingManager : MonoBehaviour
     /// Check if the inventory contains a certain resource.
     /// </summary>
     /// <param name="resourceType"></param>
-    /// <returns></returns>
+    /// <returns>True if the resource is in the inventory</returns>
     public bool CheckHasResourceInInventory(ResourceType resourceType)
 	{
         return resources.Contains(resourceType);
@@ -94,7 +94,7 @@ public class CraftingManager : MonoBehaviour
     /// </summary>
     /// <param name="resourceType"></param>
     /// <param name="canCraft"></param>
-    /// <returns></returns>
+    /// <returns>Amount of resources in the Crafting Recipe</returns>
     public Dictionary<ResourceType, int> CanCraft(ResourceType resourceType, out bool canCraft)
     {
         Dictionary<ResourceType, int> resourcesNeeded = craftingRecipes[resourceType];
@@ -122,6 +122,11 @@ public class CraftingManager : MonoBehaviour
         return resourcesCount;
     }
 
+    /// <summary>
+    /// Return the crafting recipe for the given resourceType.
+    /// </summary>
+    /// <param name="resourceType"></param>
+    /// <returns>Crafting Recipe</returns>
     public Dictionary<ResourceType, int> GetCraftingRecipe(ResourceType resourceType)
 	{
         return craftingRecipes[resourceType];

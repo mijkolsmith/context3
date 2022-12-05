@@ -27,7 +27,7 @@ public class DraggableObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 	/// <param name="resourceType"></param>
 	/// <param name="sprite"></param>
 	/// <param name="craftingPopupWindow"></param>
-	/// <returns></returns>
+	/// <returns>This initialized GameObject</returns>
 	public GameObject Initialize(ResourceType resourceType, Sprite sprite, CraftingPopupWindow craftingPopupWindow)
 	{
 		this.resourceType = resourceType;
@@ -61,7 +61,7 @@ public class DraggableObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 
 	/// <summary>
 	/// Unity default interface function to check if a drag is ended.
-	/// 
+	/// Fill a slot of the craftingWindow requirements.
 	/// </summary>
 	/// <param name="eventData"></param>
 	public void OnEndDrag(PointerEventData eventData)

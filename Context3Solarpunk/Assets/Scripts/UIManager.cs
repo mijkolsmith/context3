@@ -56,6 +56,7 @@ public class UIManager : MonoBehaviour
         }
     }
 #endregion
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))

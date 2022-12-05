@@ -9,7 +9,6 @@ public class CraftingPopupWindow : PopupWindow
 	[field: SerializeField] protected override GameObject PopupWindowObject { get; set; }
 
 	public override PopupWindowType GetPopupWindowType() => PopupWindowType.Crafting;
-	//[SerializeField, ReadOnly] private List<ResourceButton> resourceButtons = new();
 	[SerializeField, ReadOnly] private List<InventoryUiElement> inventoryUiElements = new();
 	[SerializeField] private GameObject draggableObjectPrefab;
 	[SerializeField] private GameObject craftingPanel;
@@ -22,7 +21,9 @@ public class CraftingPopupWindow : PopupWindow
 
 	/// <summary>
 	/// The Toggle method gets called from the PopupWindow Class.
-	/// Grabs all the UI elements.
+	/// Clear old crafting UI Elements and animations.
+	/// Creates new crafting UI Elements.
+	/// Grabs the inventory UI Elements.
 	/// </summary>
 	public override void Toggle()
 	{
@@ -93,12 +94,23 @@ public class CraftingPopupWindow : PopupWindow
 		craftingTextAnimations.Clear();
 	}
 
+	/// <summary>
+	/// Create a new Draggable Object on given position with given resourceType and Sprite.
+	/// </summary>
+	/// <param name="position"></param>
+	/// <param name="resourceType"></param>
+	/// <param name="sprite"></param>
+	/// <returns>Draggable Object as GameObject</returns>
 	public GameObject SpawnDraggableObject(Vector3 position, ResourceType resourceType, Sprite sprite)
 	{
 		var initializedDraggableObject = draggableObjectPrefab.GetComponent<DraggableObject>().Initialize(resourceType, sprite, this);
 		return Instantiate(initializedDraggableObject, position, Quaternion.identity, transform);
 	}
 
+	/// <summary>
+	/// Get the Crafting Panel RectTransform.
+	/// </summary>
+	/// <returns>Crafting Panel</returns>
 	public RectTransform GetCraftingPanelRectTransform()
 	{
 		return craftingPanel.transform as RectTransform;
@@ -134,6 +146,9 @@ public class CraftingPopupWindow : PopupWindow
 		}
 	}
 
+	/// <summary>
+	/// Start a new crafting animation.
+	/// </summary>
 	public void StartAnimation()
 	{
 		craftingTextAnimations.Add(Instantiate(craftedTextAnimationPrefabs.Where(x => x.GetComponent<ResourceTextAnimation>().GetResourceType() == resourceToCraft).FirstOrDefault(), craftingPanel.transform.position, Quaternion.identity, craftingPanel.transform).GetComponent<ResourceTextAnimation>());

@@ -51,6 +51,9 @@ public class InventoryUiElement : Resource, IInitializePotentialDragHandler, IDr
 		//empty
 	}
 
+	/// <summary>
+	/// Temporarily change the UI to display one less element.
+	/// </summary>
 	public void TemporarilyRemove()
 	{
 		count--;
