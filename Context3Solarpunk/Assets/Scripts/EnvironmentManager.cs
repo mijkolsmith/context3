@@ -48,7 +48,6 @@ public class EnvironmentManager : MonoBehaviour
                 for (int j = 0; j < environments[i].objects.Count; j++)
                 {
                     environments[i].objects[j].SetActive(true);
-                    Debug.Log(environments[i].foggy);
                     RenderSettings.fog = environments[i].foggy;
                 }
             }

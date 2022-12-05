@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
 
         GameStateManager = gameObject.AddComponent<GameStateManager>();
         sequenceManager = GetComponent<SequenceManager>();
+        environmentManager = GetComponent<EnvironmentManager>();
     }
 
     /// <summary>
