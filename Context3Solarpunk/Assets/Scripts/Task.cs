@@ -11,7 +11,8 @@ public class Task
     public TaskType type;
 
     public GameObject objectToInteract;
-    
+    public ResourceType resourceToGet;
+
     public bool success;
     [Header("The event that activates when the TASK succeeds.")] public UnityEvent succesEvent;
 }

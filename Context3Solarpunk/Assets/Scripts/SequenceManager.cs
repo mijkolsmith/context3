@@ -110,9 +110,6 @@ public class SequenceManager : MonoBehaviour
                 yield return new WaitForSeconds(timeTravelSpeed);
             }
         }
-        Debug.Log(GameManager.Instance);
-        Debug.Log(GameManager.Instance.EnvironmentManager);
-        Debug.Log(GameManager.Instance.EnvironmentManager.Progress);
         GameManager.Instance.EnvironmentManager.Progress = 0;
         if (targetYearAmount > 5000)
         {

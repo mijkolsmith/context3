@@ -85,7 +85,7 @@ public class QuestManager : MonoBehaviour
                 }
                 else //Not sequential quest
                 {
-                    for (int j = 0; j < q.tasks.Count; j++)
+                    for (int j = 0; j < q.tasks.Count; j++) //Check for all tasks in quest
                     {
                         if (q.tasks[j].objectToInteract.GetComponent<IInteractable>() == player.InteractableObject)
                         {
@@ -95,7 +95,7 @@ public class QuestManager : MonoBehaviour
                     }
                 }
                 //Check if all tasks are done
-                for(int z = 0; z < q.tasks.Count; z++)
+                for (int z = 0; z < q.tasks.Count; z++)
                 {
                     if (!q.tasks[z].success)
                     {
@@ -111,6 +111,27 @@ public class QuestManager : MonoBehaviour
                         currentQuest = null;
                     }
                     q.state = QuestState.Completed;
+                }
+            }
+        }
+    }
+    /// <summary>
+    /// Advance the tasks that have a resourcetype to add
+    /// </summary>
+    /// <param name="resourceToCheckOn"></param>
+    public void AdvanceGatherItemTasks(ResourceType resourceToCheckOn)
+    {
+        for (int i = 0; i < quests.Count; i++)
+        {
+            if (quests[i].state == QuestState.Active)
+            {
+                for (int j = 0; j < quests[i].tasks.Count; j++)
+                {
+                    if (quests[i].tasks[j].resourceToGet == resourceToCheckOn) //If resourcetoget has been get
+                    {
+                        quests[i].tasks[j].success = true;
+                        quests[i].tasks[j].succesEvent?.Invoke();
+                    }
                 }
             }
         }
