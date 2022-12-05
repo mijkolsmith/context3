@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
@@ -1208,7 +1208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &101719755
 Transform:
   m_ObjectHideFlags: 0
@@ -1967,7 +1967,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166607529}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -3016,7 +3016,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 220255531}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -9601,6 +9601,7 @@ MonoBehaviour:
       taskName: 
       type: 0
       objectToInteract: {fileID: 0}
+      resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -9624,6 +9625,7 @@ MonoBehaviour:
       taskName: 
       type: 0
       objectToInteract: {fileID: 0}
+      resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -9632,6 +9634,7 @@ MonoBehaviour:
     - taskName: Loop naar rechts met je muis!
       type: 0
       objectToInteract: {fileID: 2108450843}
+      resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -9678,6 +9681,7 @@ MonoBehaviour:
       taskName: 
       type: 0
       objectToInteract: {fileID: 0}
+      resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -9686,6 +9690,7 @@ MonoBehaviour:
     - taskName: Ruim het afval op
       type: 0
       objectToInteract: {fileID: 236340707}
+      resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -9705,6 +9710,7 @@ MonoBehaviour:
     - taskName: Ruim het afval op
       type: 0
       objectToInteract: {fileID: 1880684873}
+      resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -9724,6 +9730,7 @@ MonoBehaviour:
     - taskName: Ruim het afval op
       type: 0
       objectToInteract: {fileID: 585683569}
+      resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -9743,6 +9750,7 @@ MonoBehaviour:
     - taskName: Ruim het afval op
       type: 0
       objectToInteract: {fileID: 1954922637}
+      resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -9762,6 +9770,7 @@ MonoBehaviour:
     - taskName: Ruim het afval op
       type: 0
       objectToInteract: {fileID: 1241556417}
+      resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -9781,6 +9790,7 @@ MonoBehaviour:
     - taskName: Ruim het afval op
       type: 0
       objectToInteract: {fileID: 1908352993}
+      resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -9840,6 +9850,7 @@ MonoBehaviour:
       taskName: 
       type: 0
       objectToInteract: {fileID: 0}
+      resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -9848,6 +9859,7 @@ MonoBehaviour:
     - taskName: Gebruik de recyclemachine
       type: 0
       objectToInteract: {fileID: 1642109989}
+      resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -9905,6 +9917,8 @@ MonoBehaviour:
   blackoutSquareUI: {fileID: 1420531532}
   transitionSpeed: 0.05
   timeTravelSpeed: 0.25
+  countDuration: 2.5
+  fadeDuration: 1.5
   targetYear: 0
 --- !u!114 &818546143
 MonoBehaviour:
@@ -9919,14 +9933,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   environments:
-  - name: Modern
-    foggy: 0
-    objects:
-    - {fileID: 1678009959}
   - name: Dystopie
     foggy: 1
     objects:
     - {fileID: 1516021103}
+  - name: Modern
+    foggy: 0
+    objects:
+    - {fileID: 1678009959}
   progress: 0
 --- !u!1001 &844863456
 PrefabInstance:
@@ -15389,7 +15403,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1365124535}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -17108,7 +17122,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1516021104
 Transform:
   m_ObjectHideFlags: 0
@@ -18781,7 +18795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1678009960
 Transform:
   m_ObjectHideFlags: 0
@@ -19721,7 +19735,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781909687}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

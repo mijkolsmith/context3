@@ -7,7 +7,7 @@ using NaughtyAttributes;
 public class EnvironmentManager : MonoBehaviour
 {
 
-
+    [SerializeField] private bool inThePast = false;
     [SerializeField] private List<Environment> environments;
     [Range(0, 10), SerializeField] private int progress = 0;
 
@@ -23,6 +23,8 @@ public class EnvironmentManager : MonoBehaviour
         }
     }
 
+    public bool InThePast { get => inThePast; set => inThePast = value; }
+
     private void Update()
     {
         if (validated)
@@ -36,6 +38,9 @@ public class EnvironmentManager : MonoBehaviour
     {
         //Dit voelt zeer omslachtig maar dit voorkomt dat de console vol wordt gespamd met 600 warnings, het werkt hierdoor alleen niet buiten playmode
         validated = true;
+        
+        //Als je veel warnings krijgt moet je de regel code hieronder uncommenten
+        AdvanceScene();
     }
 
 

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Train : MonoBehaviour, IInteractable
 {
     [SerializeField] private PlayerControllerPointClick player;
-    
+
     private SequenceManager sequenceManager;
 
     //For outline
@@ -34,7 +34,6 @@ public class Train : MonoBehaviour, IInteractable
     public void Interact()
     {
         //Do the sequencemanager time travel thing
-        int randomInt = Random.Range(0, 10000);
-        sequenceManager.TimeTravel(randomInt);
+        GameManager.Instance.SequenceManager.TimeTravel();
     }
 }

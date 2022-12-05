@@ -9,6 +9,7 @@ public class QuestActivator : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("QuestActivator called");
         if (other.CompareTag("Player"))
         {
             if (GameManager.Instance.QuestManager.currentQuest == null)

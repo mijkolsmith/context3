@@ -19,26 +19,39 @@ public class SequenceManager : MonoBehaviour
 {
     [SerializeField] private bool timeTravelling = false;
 
-    [SerializeField] private int currentYear = 2022;
+    [SerializeField] private int currentYear = 2082;
 
     [SerializeField] private sequenceState currentSequenceState = sequenceState.notInSequence;
     [SerializeField] private GameObject blackoutSquareUI;
     [SerializeField] private float transitionSpeed = 0.0025f;
     [SerializeField] private float timeTravelSpeed = 15f;
 
+    [SerializeField] private float countDuration = 2.5f;
+    [SerializeField] private float fadeDuration = 1.5f;
+
     private float fadeSpeed = 5f;
 
     [SerializeField, ReadOnly] private int targetYear;
+
+    private float t; //a timer
 
     /// <summary>
     /// Preset method that can be executed in the inspector to go to any year with param
     /// </summary>
     /// <param name="year"></param>
-    public void TimeTravel(int year)
+    public void TimeTravel()
     {
-        targetYear = year;
-        timeTravelling = true;
-        currentSequenceState = sequenceState.sequenceFadingIn;
+        if (!timeTravelling)
+        {
+            if (GameManager.Instance.EnvironmentManager.InThePast)
+            {
+                TimeTravelToTheFuture();
+            }
+            else
+            {
+                TimeTravelToThePast();
+            }
+        }
     }
 
     /// <summary>
@@ -72,14 +85,24 @@ public class SequenceManager : MonoBehaviour
                 case sequenceState.notInSequence:
                     break;
                 case sequenceState.sequenceFadingIn:
-                    StartCoroutine(ChangeScreenFade(1));
+                    StartCoroutine(Fade(true));
                     break;
                 case sequenceState.SequenceCenter:
-                    Debug.Log(targetYear);
                     StartCoroutine(ChangeYearAmount(targetYear));
+                    if (GameManager.Instance.EnvironmentManager.InThePast)
+                    {
+                        GameManager.Instance.EnvironmentManager.InThePast = false;
+                        GameManager.Instance.EnvironmentManager.Progress = 0;
+                    } 
+                    else
+                    {
+                        GameManager.Instance.EnvironmentManager.InThePast = true;
+                        GameManager.Instance.EnvironmentManager.Progress = 1;
+                    }
                     break;
                 case sequenceState.SequenceFadingOut:
-                    StartCoroutine(ChangeScreenFade(0));
+                    StartCoroutine(Fade(false));
+                    timeTravelling = false;
                     break;
                 default:
                     break;
@@ -88,10 +111,72 @@ public class SequenceManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Change year text in the sequence gradually
+    /// This either fades or unfades the screen depending on the fadeIn param
     /// </summary>
-    /// <param name="targetYearAmount"></param>
+    /// <param name="fadeIn"></param>
     /// <returns></returns>
+    private IEnumerator Fade(bool fadeIn)
+    {
+        Image fadeImage = blackoutSquareUI.GetComponent<Image>();
+
+        // get the current color of the image
+        Color currentColor = fadeImage.color;
+
+        // create a timer
+        float t = 0f;
+
+        // if fading in
+        if (fadeIn)
+        {
+            // while the timer is less than the duration
+            while (t < fadeDuration)
+            {
+                // set the alpha value of the image based on the timer
+                Color objectColor = new Color(currentColor.r, currentColor.g, currentColor.b, Mathf.Lerp(0f, 1f, t / fadeDuration));
+
+                GameManager.Instance.UiManager.CurrentYearAmountText.color = new Color(255, 255, 255, objectColor.a);
+                GameManager.Instance.UiManager.CurrentYearText.color = new Color(255, 255, 255, objectColor.a);
+
+                fadeImage.color = objectColor;
+
+                // increment the timer
+                t += Time.deltaTime;
+
+                // wait for the next frame
+                yield return null;
+            }
+
+            // set the alpha value of the image to fully opaque
+            currentSequenceState = sequenceState.SequenceCenter;
+            fadeImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1f);
+        }
+        // if fading out
+        else
+        {
+            // while the timer is less than the duration
+            while (t < fadeDuration)
+            {
+                // set the alpha value of the image based on the timer
+                Color objectColor = new Color(currentColor.r, currentColor.g, currentColor.b, Mathf.Lerp(1f, 0f, t / fadeDuration));
+
+                GameManager.Instance.UiManager.CurrentYearAmountText.color = new Color(255, 255, 255, objectColor.a);
+                GameManager.Instance.UiManager.CurrentYearText.color = new Color(255, 255, 255, objectColor.a);
+
+                fadeImage.color = objectColor;
+
+                // increment the timer
+                t += Time.deltaTime;
+
+                // wait for the next frame
+                yield return null;
+            }
+
+            // set the alpha value of the image to fully transparent
+            fadeImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0f);
+            currentSequenceState = sequenceState.notInSequence;
+        }
+    }
+
     public IEnumerator ChangeYearAmount(int targetYearAmount)
     {
         while (currentYear != targetYearAmount)
@@ -117,55 +202,6 @@ public class SequenceManager : MonoBehaviour
         }
         yield return new WaitForSeconds(1f);
         currentSequenceState = sequenceState.SequenceFadingOut;
-        yield return null;
-    }
-
-    /// <summary>
-    /// This fades the screen with the amount given by param, minus makes screen invisible and positive hides it
-    /// </summary>
-    /// <param name="amount"></param>
-    /// <returns></returns>
-    public IEnumerator ChangeScreenFade(int amount)
-    {
-        Color objectColor = blackoutSquareUI.GetComponent<Image>().color;
-
-        while (objectColor.a != amount)
-        {
-            if (objectColor.a <= amount)
-            {
-                objectColor.a += transitionSpeed;
-                GameManager.Instance.UiManager.CurrentYearText.color = new Color(255, 255, 255, amount);
-                GameManager.Instance.UiManager.CurrentYearAmountText.color = new Color(255, 255, 255, amount);
-                blackoutSquareUI.GetComponent<Image>().color = objectColor;
-                if (Mathf.Abs(objectColor.a - amount) < 0.01f)
-                {
-                    objectColor.a = amount;
-                }
-                yield return new WaitForSeconds(GameManager.Instance.UiManager.TextSpeed * Time.deltaTime);
-            }
-            else
-            if (objectColor.a >= amount)
-            {
-                objectColor.a -= transitionSpeed;
-                GameManager.Instance.UiManager.CurrentYearText.color = new Color(255, 255, 255, amount);
-                GameManager.Instance.UiManager.CurrentYearAmountText.color = new Color(255, 255, 255, amount);
-                blackoutSquareUI.GetComponent<Image>().color = objectColor;
-                if (Mathf.Abs(objectColor.a - amount) < 0.01f)
-                {
-                    objectColor.a = amount;
-                }
-                yield return new WaitForSeconds(GameManager.Instance.UiManager.TextSpeed * Time.deltaTime);
-
-            }
-        }
-        if (objectColor.a == 0)
-        {
-            currentSequenceState = sequenceState.notInSequence;
-        }
-        if (objectColor.a == 1)
-        {
-            currentSequenceState = sequenceState.SequenceCenter;
-        }
         yield return null;
     }
 }
