@@ -29,6 +29,8 @@ public class SequenceManager : MonoBehaviour
     [SerializeField] private float countDuration = 2.5f;
     [SerializeField] private float fadeDuration = 1.5f;
 
+    int environmentNumber = 0;
+
     private float fadeSpeed = 5f;
 
     [SerializeField, ReadOnly] private int targetYear;
@@ -52,6 +54,7 @@ public class SequenceManager : MonoBehaviour
                 TimeTravelToThePast();
             }
         }
+        Sequence(environmentNumber);
     }
 
     /// <summary>
@@ -63,6 +66,8 @@ public class SequenceManager : MonoBehaviour
         targetYear = 2082;
         timeTravelling = true;
         currentSequenceState = sequenceState.sequenceFadingIn;
+        environmentNumber = 0;
+        GameManager.Instance.EnvironmentManager.InThePast = false;
     }
 
     /// <summary>
@@ -74,9 +79,11 @@ public class SequenceManager : MonoBehaviour
         targetYear = 2022;
         timeTravelling = true;
         currentSequenceState = sequenceState.sequenceFadingIn;
+        environmentNumber = 1;
+        GameManager.Instance.EnvironmentManager.InThePast = true;
     }
 
-    private void Update()
+    private void Sequence(int environmentNumber)
     {
         if (timeTravelling)
         {
@@ -89,16 +96,7 @@ public class SequenceManager : MonoBehaviour
                     break;
                 case sequenceState.SequenceCenter:
                     StartCoroutine(ChangeYearAmount(targetYear));
-                    if (GameManager.Instance.EnvironmentManager.InThePast)
-                    {
-                        GameManager.Instance.EnvironmentManager.InThePast = false;
-                        GameManager.Instance.EnvironmentManager.Progress = 0;
-                    } 
-                    else
-                    {
-                        GameManager.Instance.EnvironmentManager.InThePast = true;
-                        GameManager.Instance.EnvironmentManager.Progress = 1;
-                    }
+                    GameManager.Instance.EnvironmentManager.Progress = environmentNumber;
                     break;
                 case sequenceState.SequenceFadingOut:
                     StartCoroutine(Fade(false));
@@ -147,8 +145,9 @@ public class SequenceManager : MonoBehaviour
             }
 
             // set the alpha value of the image to fully opaque
-            currentSequenceState = sequenceState.SequenceCenter;
             fadeImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1f);
+            currentSequenceState = sequenceState.SequenceCenter;
+            Sequence(environmentNumber);
         }
         // if fading out
         else
@@ -174,6 +173,7 @@ public class SequenceManager : MonoBehaviour
             // set the alpha value of the image to fully transparent
             fadeImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0f);
             currentSequenceState = sequenceState.notInSequence;
+            Sequence(environmentNumber);
         }
     }
 
@@ -185,23 +185,19 @@ public class SequenceManager : MonoBehaviour
             {
                 currentYear++;
                 GameManager.Instance.UiManager.CurrentYearAmountText.text = currentYear.ToString();
-                yield return new WaitForSeconds(timeTravelSpeed);
+                yield return null;
             }
             else
             if (currentYear >= targetYearAmount)
             {
                 currentYear--;
                 GameManager.Instance.UiManager.CurrentYearAmountText.text = currentYear.ToString();
-                yield return new WaitForSeconds(timeTravelSpeed);
+                yield return null;
             }
-        }
-        GameManager.Instance.EnvironmentManager.Progress = 0;
-        if (targetYearAmount > 5000)
-        {
-            GameManager.Instance.EnvironmentManager.Progress = 1;
         }
         yield return new WaitForSeconds(1f);
         currentSequenceState = sequenceState.SequenceFadingOut;
+        Sequence(environmentNumber);
         yield return null;
     }
 }

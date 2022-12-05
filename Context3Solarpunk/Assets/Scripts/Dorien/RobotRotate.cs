@@ -19,6 +19,6 @@ public class RobotRotate : MonoBehaviour
     /// </summary>
     void LookAtPlayer(Vector3 playerPosition)
     {
-        transform.LookAt(playerPosition);
+        transform.LookAt(new Vector3(playerPosition.x,gameObject.transform.position.y,playerPosition.z));
     }
 }
