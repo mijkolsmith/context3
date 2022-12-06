@@ -19,6 +19,9 @@ public class CraftingPopupWindow : PopupWindow
 	[SerializeField] private List<ResourceTextAnimation> craftingTextAnimations = new();
 	[SerializeField] private Transform[] parents;
 
+	//TEMP FOR PLAYTEST 07 AND 08/12/22
+	[SerializeField] private GameObject questObjectHolder;
+
 	/// <summary>
 	/// The Toggle method gets called from the PopupWindow Class.
 	/// Clear old crafting UI Elements and animations.
@@ -140,6 +143,9 @@ public class CraftingPopupWindow : PopupWindow
 				resourceToCraft = ResourceType.None;
 
 				UpdateUI();
+
+				//TEMP FOR PLAYTEST 07 AND 08/12/22
+				questObjectHolder.SetActive(true);
 			}
 		}
 	}
