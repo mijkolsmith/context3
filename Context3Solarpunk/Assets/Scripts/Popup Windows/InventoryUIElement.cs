@@ -14,7 +14,7 @@ public class InventoryUiElement : Resource, IInitializePotentialDragHandler, IDr
 	[SerializeField] public TextMeshProUGUI amountText;
 	public override ResourceType GetResourceType() => resourceType;
 	[SerializeField] private Image image;
-	public CraftingPopupWindow craftingPopupWindow;
+	[HideInInspector] public CraftingPopupWindow craftingPopupWindow;
 	[SerializeField, ReadOnly] private int count;
 
 	/// <summary>

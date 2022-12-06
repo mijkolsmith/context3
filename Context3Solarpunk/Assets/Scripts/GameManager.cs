@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CraftingManager craftingManager;
     [SerializeField] private GameStateManager gameStateManager;
     [SerializeField] private SequenceManager sequenceManager;
+    [SerializeField] private SoundManager soundManager;
+
     [SerializeField] private NavMeshSurface surface;
     public EnvironmentManager EnvironmentManager { get => environmentManager; private set => environmentManager = value; }
     public GameStateManager GameStateManager { get => gameStateManager; private set => gameStateManager = value; }
@@ -26,8 +28,9 @@ public class GameManager : MonoBehaviour
     public UIManager DialogueManager { get => uiManager; private set => uiManager = value; }
     public UIManager UiManager { get => uiManager; set => uiManager = value; }
     public SequenceManager SequenceManager { get => sequenceManager; set => sequenceManager = value; }
+	public SoundManager SoundManager { get => soundManager; set => soundManager = value; }
 
-    [MinValue(0), MaxValue(3), ReadOnly] public int trashCount;
+	[MinValue(0), MaxValue(3), ReadOnly] public int trashCount;
 
     /// <summary>
     /// Singleton pattern and assign managers.
@@ -44,14 +47,15 @@ public class GameManager : MonoBehaviour
         }
 
         GameStateManager = gameObject.AddComponent<GameStateManager>();
-        sequenceManager = GetComponent<SequenceManager>();
-        environmentManager = GetComponent<EnvironmentManager>();
-    }
+        SequenceManager = GetComponent<SequenceManager>();
+        EnvironmentManager = GetComponent<EnvironmentManager>();
+		SoundManager = GetComponent<SoundManager>();
+	}
 
-    /// <summary>
-    /// Serializes & Saves position, quest progress and inventory
-    /// </summary>
-    public void SaveAndQuit()
+	/// <summary>
+	/// Serializes & Saves position, quest progress and inventory
+	/// </summary>
+	public void SaveAndQuit()
 	{
         //TODO: Save quest progress
         //TODO: Save position
