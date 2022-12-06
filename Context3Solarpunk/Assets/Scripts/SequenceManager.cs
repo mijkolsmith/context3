@@ -185,14 +185,14 @@ public class SequenceManager : MonoBehaviour
             {
                 currentYear++;
                 GameManager.Instance.UiManager.CurrentYearAmountText.text = currentYear.ToString();
-                yield return null;
+                yield return new WaitForSeconds(0.025f);
             }
             else
             if (currentYear >= targetYearAmount)
             {
                 currentYear--;
                 GameManager.Instance.UiManager.CurrentYearAmountText.text = currentYear.ToString();
-                yield return null;
+                yield return new WaitForSeconds(0.025f);
             }
         }
         yield return new WaitForSeconds(1f);
