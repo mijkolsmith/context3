@@ -81,7 +81,18 @@ public class QuestManager : MonoBehaviour
                         {
                             q.currentTask = q.tasks[q.taskNmbr];
                         }
-                    }
+                    } 
+                    else if (q.currentTask.objectToInteract.GetComponent<QuestAdvancer>())
+                    {
+                        q.currentTask.success = true;
+                        q.currentTask.succesEvent?.Invoke();
+                        q.taskNmbr++;
+                        if (q.taskNmbr < q.tasks.Count)
+                        {
+                            q.currentTask = q.tasks[q.taskNmbr];
+                        }
+                    } 
+                    
                 }
                 else //Not sequential quest
                 {

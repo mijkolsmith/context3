@@ -14,6 +14,7 @@ public class QuestActivator : MonoBehaviour
         {
             if (GameManager.Instance.QuestManager.currentQuest == null)
             {
+                Debug.Log("rwerwerwerwerwer");
                 GameManager.Instance.QuestManager.StartQuestByID(questIdToActivate);
             }
         }
