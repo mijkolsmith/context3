@@ -111,6 +111,7 @@ public class UIManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator TypeSentence(string sentence)
     {
+        GameManager.Instance.SoundManager.PlaySound(SoundName.DORIEN_TALKING);
         activeDialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
@@ -120,14 +121,17 @@ public class UIManager : MonoBehaviour
                 string s = activeDialogueText.text.Substring(activeDialogueText.text.Length - 1);
                 if (s == "|")
                 {
+                    GameManager.Instance.SoundManager.PauseSound();
                     paused = true; //Pause the dialogue
                     activeDialogueText.text = activeDialogueText.text.Substring(0, activeDialogueText.text.Length - 1); //Takes the last character away from the text (presumably a "|")
                     yield return new WaitUntil(() => !paused/*Input.GetKeyDown(KeyCode.Return)*/);
+                    GameManager.Instance.SoundManager.PlaySound(SoundName.DORIEN_TALKING);
                     dialogueFinished = false;
                     activeDialogueText.text = "";
                 } 
                 else if (s == "*")
                 {
+                    GameManager.Instance.SoundManager.PauseSound();
                     activeDialogueText.text = activeDialogueText.text.Substring(0, activeDialogueText.text.Length - 1);
                     dialogueFinished = true;
                 }

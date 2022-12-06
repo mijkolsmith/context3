@@ -52,6 +52,7 @@ public class Train : MonoBehaviour, IInteractable
         if (IsInteractable)
         {
             GameManager.Instance.SequenceManager.TimeTravel();
+            GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.TIME_TRAVEL);
         }
         //Do the sequencemanager time travel thing
     }

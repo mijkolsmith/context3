@@ -1,16 +1,12 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
 public class SoundManager : MonoBehaviour
 {
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
     public SoundClass[] sounds;
-
-	private void Start()
-	{
-        audioSource = GetComponent<AudioSource>();
-	}
 
     /// <summary>
     /// Play a one-shot sound by name
@@ -34,8 +30,8 @@ public class SoundManager : MonoBehaviour
     /// <summary>
     /// Stop playing sound
     /// </summary>
-    public void StopSound()
+    public void PauseSound()
     {
-        audioSource.Stop();
+        audioSource.Pause();
     }
 }
