@@ -64,6 +64,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
     /// </summary>
     public virtual void Gather()
     {
+        GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.ITEM_PICKUP);
         GameManager.Instance.CraftingManager.AddResourceToInventory(GetResourceType());
     }
 

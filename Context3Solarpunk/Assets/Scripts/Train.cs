@@ -51,9 +51,23 @@ public class Train : MonoBehaviour, IInteractable
     {
         if (IsInteractable)
         {
-            GameManager.Instance.SequenceManager.TimeTravel();
+            TemporarilyDisableInteraction(.3f);
             GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.TIME_TRAVEL);
+            GameManager.Instance.SequenceManager.TimeTravel();
         }
         //Do the sequencemanager time travel thing
     }
+
+    /// <summary>
+    /// Temporarily disable interaction so you don't get spammed with sounds.
+    /// </summary>
+    /// <param name="seconds"></param>
+    /// <returns></returns>
+    public IEnumerator TemporarilyDisableInteraction(float seconds)
+	{
+        IsInteractable = false;
+        yield return new WaitForSeconds(seconds);
+        IsInteractable = true;
+        yield return null;
+	}
 }

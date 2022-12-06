@@ -71,7 +71,6 @@ public class DraggableObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 		if (craftingPanelRectTransform.rect.Contains(localMousePosition))
 		{
 			craftingPopupWindow.Fill(resourceType);
-			GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.ITEM_PICKUP);
 		}
 		Destroy(gameObject);
 	}
