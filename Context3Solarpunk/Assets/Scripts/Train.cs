@@ -8,10 +8,12 @@ public class Train : MonoBehaviour, IInteractable
     [SerializeField] private PlayerControllerPointClick player;
 
     private SequenceManager sequenceManager;
-
+    [SerializeField] private bool isInteractable;
     //For outline
     private Outline objectOutline;
     private bool highlighting;
+
+    public bool IsInteractable { get => isInteractable; set => isInteractable = value; }
 
     private void Start()
     {
@@ -26,14 +28,31 @@ public class Train : MonoBehaviour, IInteractable
 
     public void Highlight(Color color)
     {
-        objectOutline.OutlineWidth = 5f;
-        objectOutline.OutlineColor = color;
-        highlighting = true;
+        if (isInteractable)
+        {
+            objectOutline.OutlineWidth = 5f;
+            objectOutline.OutlineColor = color;
+            highlighting = true;
+        } 
+        else
+        {
+            objectOutline.OutlineWidth = 5f;
+            objectOutline.OutlineColor = Color.red;
+            highlighting = true;
+        }
+    }
+
+    public void SetInteractable(bool isInteractable)
+    {
+        IsInteractable = isInteractable;
     }
 
     public void Interact()
     {
+        if (IsInteractable)
+        {
+            GameManager.Instance.SequenceManager.TimeTravel();
+        }
         //Do the sequencemanager time travel thing
-        GameManager.Instance.SequenceManager.TimeTravel();
     }
 }
