@@ -81,7 +81,7 @@ public class QuestManager : MonoBehaviour
                         {
                             q.currentTask = q.tasks[q.taskNmbr];
                         }
-                    } 
+                    }
                     else if (q.currentTask.objectToInteract.GetComponent<QuestAdvancer>())
                     {
                         q.currentTask.success = true;
@@ -91,8 +91,8 @@ public class QuestManager : MonoBehaviour
                         {
                             q.currentTask = q.tasks[q.taskNmbr];
                         }
-                    } 
-                    
+                    }
+
                 }
                 else //Not sequential quest
                 {
@@ -117,11 +117,8 @@ public class QuestManager : MonoBehaviour
                 {
                     Debug.Log("Quest " + q.uniqueQuestID + "is completed.");
                     q.succesEvent?.Invoke();
-                    if (currentQuest == q)
-                    {
-                        currentQuest = null;
-                    }
                     q.state = QuestState.Completed;
+                    currentQuest = null;
                 }
             }
         }
@@ -146,5 +143,6 @@ public class QuestManager : MonoBehaviour
                 }
             }
         }
+        AdvanceTasks();
     }
 }

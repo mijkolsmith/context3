@@ -10028,14 +10028,6 @@ MonoBehaviour:
     - taskName: Gebruik de recyclemachine
       type: 0
       objectToInteract: {fileID: 1642109989}
-      resourceToGet: 0
-      success: 0
-      succesEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    - taskName: Gebruik de recyclemachine
-      type: 0
-      objectToInteract: {fileID: 1642109989}
       resourceToGet: 9
       success: 0
       succesEvent:
@@ -10060,7 +10052,20 @@ MonoBehaviour:
           m_CallState: 2
     succesEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 312700401}
+          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+          m_MethodName: StartDialogue
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 'Dorien: Fantastisch! Je kunt nu weer terug gaan naar
+              2082 om het resultaat te zien!*'
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &818546141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20852,7 +20857,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1803585175}
   - component: {fileID: 1803585177}
-  - component: {fileID: 1803585176}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -20884,18 +20888,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1803585176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803585174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c61f2dc74542ad4aa81e3a047c2c7f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1803585177
 MonoBehaviour:
   m_ObjectHideFlags: 0

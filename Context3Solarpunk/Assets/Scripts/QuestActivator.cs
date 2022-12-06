@@ -11,12 +11,12 @@ public class QuestActivator : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("QuestActivator called");
-            if (GameManager.Instance.QuestManager.currentQuest == null)
-            {
+            //if (GameManager.Instance.QuestManager.currentQuest == null)
+            //{
+                Debug.Log("QuestActivator called");
                 GameManager.Instance.QuestManager.StartQuestByID(questIdToActivate);
                 gameObject.SetActive(false);
-            }
+            //}
         }
     }
 }
