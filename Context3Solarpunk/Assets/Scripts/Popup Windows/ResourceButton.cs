@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using NaughtyAttributes;
 
-public class ResourceButton : MonoBehaviour
+/*public class ResourceButton : MonoBehaviour
 {
 	[SerializeField] private Button button;
 	[SerializeField] private ResourceType resourceType;
@@ -80,4 +80,4 @@ public class ResourceButton : MonoBehaviour
 
 		return canCraft;
 	}
-}
+}*/

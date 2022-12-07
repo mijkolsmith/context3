@@ -9,14 +9,14 @@ public class QuestActivator : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("QuestActivator called");
         if (other.CompareTag("Player"))
         {
-            if (GameManager.Instance.QuestManager.currentQuest == null)
-            {
-                Debug.Log("rwerwerwerwerwer");
+            //if (GameManager.Instance.QuestManager.currentQuest == null)
+            //{
+                Debug.Log("QuestActivator called");
                 GameManager.Instance.QuestManager.StartQuestByID(questIdToActivate);
-            }
+                gameObject.SetActive(false);
+            //}
         }
     }
 }

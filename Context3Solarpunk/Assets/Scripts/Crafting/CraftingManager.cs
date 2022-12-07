@@ -78,6 +78,8 @@ public class CraftingManager : MonoBehaviour
 	{
         Dictionary<ResourceType, int> resourcesNeeded = craftingRecipes[resourceType];
 
+        GameManager.Instance.QuestManager.AdvanceGatherItemTasks(resourceType);
+
         foreach (ResourceType resourceNeeded in resourcesNeeded.Keys)
 		{
 			for (int i = 0; i < resourcesNeeded[resourceNeeded]; i++)

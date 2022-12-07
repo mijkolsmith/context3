@@ -40,6 +40,6 @@ public class SoundManager : MonoBehaviour
     /// </summary>
     public void StopSound()
     {
-        audioSource.Pause();
+        audioSource.Stop();
     }
 }

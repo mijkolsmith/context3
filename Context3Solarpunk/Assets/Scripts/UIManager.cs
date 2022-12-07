@@ -111,6 +111,7 @@ public class UIManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator TypeSentence(string sentence)
     {
+        GameManager.Instance.SoundManager.StopSound();
         GameManager.Instance.SoundManager.PlaySound(SoundName.DORIEN_TALKING);
         activeDialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
