@@ -73,4 +73,13 @@ public class GameManager : MonoBehaviour
 	{
         surface.BuildNavMesh();
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F9))
+        {
+            Debug.Log("Scene reset");
+            SceneManager.LoadScene("IntroScene");
+        }
+    }
 }
