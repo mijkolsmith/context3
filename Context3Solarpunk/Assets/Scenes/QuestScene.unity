@@ -5124,10 +5124,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.4
-  m_Height: 6.4646463
+  m_Radius: 0.3
+  m_Height: 8
   m_Direction: 2
-  m_Center: {x: 0, y: 0.5, z: 0.034780502}
+  m_Center: {x: 0, y: 0.5, z: -0.44540215}
 --- !u!54 &775445513
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6250,7 +6250,7 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 'Dorien: Laten we het opgeruimd houden door gescheiden
-              afvalbakken te maken voor de medewerkers.| Dit kan je doen bij de recycle
+              afvalbakken te maken voor de medewerkers.|Dit kan je doen bij de recycle
               machine.*'
             m_BoolArgument: 0
           m_CallState: 2
@@ -6258,8 +6258,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - Name: Ga naar de toekomst!
-    Description: Test quest waarin de speler het afval moet opruimen voor het Arriva
-      gebouw
+    Description: Reis terug naar de toekomst met behulp van de tijdreistrein.
     uniqueQuestID: 3
     sequential: 0
     state: 0
