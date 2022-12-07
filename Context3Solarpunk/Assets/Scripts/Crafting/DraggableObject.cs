@@ -22,6 +22,17 @@ public class DraggableObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 	}
 
 	/// <summary>
+	/// Because of a unity bug with onEndDrag a fix is needed in the update method.
+	/// </summary>
+	private void Update()
+	{
+		if (!Input.GetMouseButton(0))
+		{
+			OnEndDrag(new PointerEventData(FindObjectOfType<EventSystem>()));
+		}
+	}
+
+	/// <summary>
 	/// Initialize some variables and return a new instance with these variables.
 	/// </summary>
 	/// <param name="resourceType"></param>
