@@ -21,24 +21,25 @@ public class Train : MonoBehaviour, IInteractable
 
     private void Update()
     {
-        if (!highlighting) objectOutline.OutlineWidth = 0f;
-        highlighting = false;
+        if (!highlighting)
+        {
+            objectOutline.OutlineWidth = 0f;
+            highlighting = false;
+        }
     }
 
     public void Highlight(Color color)
     {
+        objectOutline.OutlineWidth = 5f;
         if (isInteractable)
         {
-            objectOutline.OutlineWidth = 5f;
             objectOutline.OutlineColor = color;
-            highlighting = true;
         } 
         else
         {
-            objectOutline.OutlineWidth = 5f;
             objectOutline.OutlineColor = Color.red;
-            highlighting = true;
         }
+        highlighting = true;
     }
 
     public void SetInteractable(bool isInteractable)
@@ -57,7 +58,6 @@ public class Train : MonoBehaviour, IInteractable
         }
         //Do the sequencemanager time travel thing
     }
-
     /// <summary>
     /// Temporarily disable interaction so you don't get spammed with sounds.
     /// </summary>
