@@ -4577,8 +4577,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 718336185}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.66, y: 2.24, z: -4.44}
-  m_LocalScale: {x: 1, y: 1, z: 2.9956}
+  m_LocalPosition: {x: -13.57, y: 2.24, z: -4.44}
+  m_LocalScale: {x: 0.44058225, y: 1, z: 2.9956}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 204257912}
@@ -5881,7 +5881,7 @@ MonoBehaviour:
     - taskName: Gebruik de recyclemachine
       type: 0
       objectToInteract: {fileID: 1642109989}
-      resourceToGet: 9
+      resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -5929,20 +5929,7 @@ MonoBehaviour:
           m_CallState: 2
     succesEvent:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 312700401}
-          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-          m_MethodName: StartDialogue
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 'Dorien: Fantastisch! Je kunt nu weer terug gaan naar
-              2082 om het resultaat te zien!*'
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
   - Name: Ga naar de toekomst!
     Description: Test quest waarin de speler het afval moet opruimen voor het Arriva
       gebouw
@@ -8233,8 +8220,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319075006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.66, y: 2.24, z: -4.44}
-  m_LocalScale: {x: 1, y: 1, z: 2.9956}
+  m_LocalPosition: {x: -13.548, y: 2.24, z: -4.44}
+  m_LocalScale: {x: 0.51525, y: 1, z: 2.9956}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 204257912}
