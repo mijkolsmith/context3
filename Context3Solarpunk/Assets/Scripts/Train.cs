@@ -16,11 +16,7 @@ public class Train : MonoBehaviour, IInteractable
 
     private bool highlighting;
 
-
-
     public bool IsInteractable { get => isInteractable; set => isInteractable = value; }
-
-
 
     private void Start()
     {
@@ -29,40 +25,25 @@ public class Train : MonoBehaviour, IInteractable
     }
 
     private void Update()
-
     {
-
         if (!highlighting) objectOutline.OutlineWidth = 0f;
-
         highlighting = false;
-
     }
 
     public void Highlight(Color color)
     {
         if (isInteractable)
-
         {
-
             objectOutline.OutlineWidth = 5f;
-
             objectOutline.OutlineColor = color;
-
             highlighting = true;
-        } 
-
-        else
-
-        {
-
-            objectOutline.OutlineWidth = 5f;
-
-            objectOutline.OutlineColor = Color.red;
-
-            highlighting = true;
-
         }
-
+        else
+        {
+            objectOutline.OutlineWidth = 5f;
+            objectOutline.OutlineColor = Color.red;
+            highlighting = true;
+        }
     }
 
     public void SetInteractable(bool isInteractable)
@@ -75,45 +56,25 @@ public class Train : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-
         if (IsInteractable)
-
         {
-
             TemporarilyDisableInteraction(.3f);
-
             GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.TIME_TRAVEL);
-
             GameManager.Instance.SequenceManager.TimeTravel();
-
             GameManager.Instance.QuestManager.AdvanceTasks();
-
         }
-
         //Do the sequencemanager time travel thing
-
     }
-
     /// <summary>
-
     /// Temporarily disable interaction so you don't get spammed with sounds.
-
     /// </summary>
-
     /// <param name="seconds"></param>
-
     /// <returns></returns>
     public IEnumerator TemporarilyDisableInteraction(float seconds)
-
-	{
-
+    {
         IsInteractable = false;
-
         yield return new WaitForSeconds(seconds);
-
         IsInteractable = true;
-
         yield return null;
-
-	}
+    }
 }
