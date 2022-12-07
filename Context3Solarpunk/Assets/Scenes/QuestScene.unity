@@ -1352,8 +1352,6 @@ Transform:
   - {fileID: 2108450844}
   - {fileID: 1286592573}
   - {fileID: 1047991769}
-  - {fileID: 1092624682}
-  - {fileID: 1004801300}
   - {fileID: 1319075007}
   - {fileID: 718336186}
   m_Father: {fileID: 1803585175}
@@ -2651,7 +2649,13 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5421717848812052675, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 584105282}
+    - targetCorrespondingSourceObject: {fileID: 5421717848812052675, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1865093585}
   m_SourcePrefab: {fileID: 100100000, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
 --- !u!4 &350258231 stripped
 Transform:
@@ -3456,6 +3460,103 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577844878}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &584105281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 584105282}
+  - component: {fileID: 584105285}
+  - component: {fileID: 584105284}
+  - component: {fileID: 584105283}
+  m_Layer: 0
+  m_Name: Cube (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &584105282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584105281}
+  m_LocalRotation: {x: -0.02214446, y: 0.69181955, z: -0.023090059, w: 0.7213614}
+  m_LocalPosition: {x: 32.85, y: 15.1, z: -450.21045}
+  m_LocalScale: {x: 4.2910557, y: 3.3865001, z: 0.32163465}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 350258231}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 87.605, z: -3.667}
+--- !u!65 &584105283
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584105281}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &584105284
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584105281}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 87eade1c83bf7574b983d070221b03db, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &584105285
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584105281}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &585683569 stripped
 GameObject:
@@ -5105,7 +5206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775445509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -65.17, y: 4.76, z: 12.44}
+  m_LocalPosition: {x: -24.93, y: 4.11, z: -2.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5245,7 +5346,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 786196465}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5256,7 +5357,7 @@ Transform:
   - {fileID: 1065911206}
   - {fileID: 280792918}
   - {fileID: 1149850624}
-  m_Father: {fileID: 1803585175}
+  m_Father: {fileID: 1678009960}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &789969010
@@ -5919,7 +6020,7 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
     tasks:
-    - taskName: Loop naar rechts met je muis!
+    - taskName: Loop naar links met je muis!
       type: 0
       objectToInteract: {fileID: 2108450843}
       resourceToGet: 0
@@ -5936,7 +6037,8 @@ MonoBehaviour:
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: 'Dorien: Super! Loop maar richting de trein.|De eerste
+              m_StringArgument: 'Dorien: Super! Zoals je kan zien is het kantoor
+                gesloten.|Loop anders maar naar links richting de trein.|De eerste
                 keer tijdreizen is ingewikkeld dus ik zal je ermee helpen.|Als je
                 eenmaal bent ingestapt gaat het tijdreizen vanzelf!|Zodra je dicht
                 bij de deuren van de trein bent kun je de rechtermuisknop gebruiken
@@ -5963,7 +6065,7 @@ MonoBehaviour:
       succesEvent:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1004801299}
+          - m_Target: {fileID: 1286592572}
             m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_MethodName: SetActive
             m_Mode: 6
@@ -5973,7 +6075,7 @@ MonoBehaviour:
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
-              m_BoolArgument: 0
+              m_BoolArgument: 1
             m_CallState: 2
     - taskName: Loop een klein stukje naar rechts
       type: 0
@@ -6008,7 +6110,8 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 'Dorien: Welkom bij onze game!|Je kunt rondlopen door
-              de linkermuisknop te gebruiken.|Loop alvast maar een stukje naar rechts!*'
+              de linkermuisknop te gebruiken.|Loop alvast maar een stukje naar links
+              richting de trein!*'
             m_BoolArgument: 0
           m_CallState: 2
     succesEvent:
@@ -6027,6 +6130,18 @@ MonoBehaviour:
               Arriva kantoor.|Als je niet weet wat je moet doen, kun je linksonder
               op mijn knop drukken.*'
             m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1047991768}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
           m_CallState: 2
   - Name: Ruim het afval van het platform op!
     Description: Quest waarin de speler het afval moet opruimen voor het Arriva gebouw
@@ -6176,9 +6291,9 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Wat een rommel... het afval blokkeert de ingang van
-              het Arriva hoofdkantoor!|Je kunt mij gebruiken om het afval op te ruimen.|Loop
-              naar het afval toe en sleep het naar mij!*
+            m_StringArgument: 'Dorien: Wat een rommel... het afval blokkeert de ingang
+              van het Arriva hoofdkantoor!|Je kunt mij gebruiken om het afval op
+              te ruimen.|Loop naar het afval toe en sleep het naar mij!*'
             m_BoolArgument: 0
           m_CallState: 2
     succesEvent:
@@ -6193,12 +6308,12 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Dat ziet er al veel beter uit!*
+            m_StringArgument: 'Dorien: Goed opgeruimd, dat ziet er al veel beter
+              uit!*'
             m_BoolArgument: 0
           m_CallState: 2
-  - Name: Gebruik de recyclemachine!
-    Description: Test quest waarin de speler het afval moet opruimen voor het Arriva
-      gebouw
+  - Name: Gebruik de recyclemachine met rechtermuisknop!
+    Description: Quest waarin de speler het afval moet opruimen voor het Arriva gebouw
     uniqueQuestID: 2
     sequential: 0
     state: 0
@@ -6221,18 +6336,6 @@ MonoBehaviour:
       succesEvent:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 718336185}
-            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_MethodName: SetActive
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 1
-            m_CallState: 2
           - m_Target: {fileID: 818546142}
             m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
             m_MethodName: AdvanceFuture
@@ -6262,9 +6365,33 @@ MonoBehaviour:
               machine.*'
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1319075006}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     succesEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 718336185}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - Name: Ga naar de toekomst!
     Description: Reis terug naar de toekomst met behulp van de tijdreistrein.
     uniqueQuestID: 3
@@ -7296,51 +7423,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001993876}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1004801299
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1004801300}
-  - component: {fileID: 1004801301}
-  m_Layer: 0
-  m_Name: ToggleCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1004801300
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004801299}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -54.522, y: 3.197, z: 10.63}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 204257912}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1004801301
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004801299}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 3.5849752, z: 8.829593}
-  m_Center: {x: 0, y: 1.2924876, z: -0.24011564}
 --- !u!1 &1047991768
 GameObject:
   m_ObjectHideFlags: 0
@@ -7358,7 +7440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1047991769
 Transform:
   m_ObjectHideFlags: 0
@@ -7582,66 +7664,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2500, y: 500, z: 360}
   m_Center: {x: 0, y: 240.92, z: 0}
---- !u!1 &1092624681
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1092624682}
-  - component: {fileID: 1092624684}
-  - component: {fileID: 1092624683}
-  m_Layer: 0
-  m_Name: WalkToArrivaQuestHitbox
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1092624682
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1092624681}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -53.54, y: 2.7947185, z: 10.5}
-  m_LocalScale: {x: 1, y: 1, z: 2.9956}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 204257912}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1092624683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1092624681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdf0bc82e60923345a949052f32f2f96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerObject: {fileID: 1359714924}
-  questManager: {fileID: 818546140}
---- !u!65 &1092624684
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1092624681}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 3.2749546, z: 3.8777807}
-  m_Center: {x: 0, y: 1.1374773, z: -0.013240525}
 --- !u!1 &1146463302
 GameObject:
   m_ObjectHideFlags: 0
@@ -8223,8 +8245,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286592572}
   m_LocalRotation: {x: -0, y: 0.035934895, z: -0, w: 0.9993541}
-  m_LocalPosition: {x: -57.66, y: 2.7947185, z: 10.211}
-  m_LocalScale: {x: 1, y: 1, z: 3.296358}
+  m_LocalPosition: {x: -56.01, y: 2.6323, z: 10.03}
+  m_LocalScale: {x: 1, y: 1.1982, z: 3.296358}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 204257912}
@@ -9771,7 +9793,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1678009960}
   m_Layer: 0
-  m_Name: DaraEnvironmentModern
+  m_Name: DaraEnvironmentHeden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9794,6 +9816,7 @@ Transform:
   - {fileID: 239198914}
   - {fileID: 1485072364}
   - {fileID: 776981882}
+  - {fileID: 786196466}
   m_Father: {fileID: 1365162627}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10167,7 +10190,6 @@ Transform:
   - {fileID: 630429039}
   - {fileID: 1365162627}
   - {fileID: 211419473}
-  - {fileID: 786196466}
   - {fileID: 1755746735}
   - {fileID: 204257912}
   m_Father: {fileID: 0}
@@ -10336,6 +10358,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33d1fcf0f4dce1478d753420527df92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1865093584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1865093585}
+  - component: {fileID: 1865093588}
+  - component: {fileID: 1865093587}
+  - component: {fileID: 1865093586}
+  m_Layer: 0
+  m_Name: Cube (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1865093585
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865093584}
+  m_LocalRotation: {x: -0.27525553, y: 0.65410197, z: -0.25556114, w: 0.656562}
+  m_LocalPosition: {x: 32.65, y: 15.9, z: -449.97}
+  m_LocalScale: {x: 5.51701, y: 0.42432848, z: 0.32163465}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 350258231}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: -1.554, y: 90.414, z: -44.101}
+--- !u!65 &1865093586
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865093584}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1865093587
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865093584}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 90767b1381c30b3448d520e9cca36471, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1865093588
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865093584}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1880684873 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7954028394289499076, guid: 60e7a5d61bb66a14a9deeac559b691f5, type: 3}
@@ -16431,15 +16550,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 668230995828949945, guid: fa9ee64057b5e6d49a7090c003af23e6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -67.384
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 668230995828949945, guid: fa9ee64057b5e6d49a7090c003af23e6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.82
+      value: 2.94
       objectReference: {fileID: 0}
     - target: {fileID: 668230995828949945, guid: fa9ee64057b5e6d49a7090c003af23e6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.73
+      value: -4.22
       objectReference: {fileID: 0}
     - target: {fileID: 668230995828949945, guid: fa9ee64057b5e6d49a7090c003af23e6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16506,8 +16625,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108450843}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -63.44, y: 2.7947185, z: 10.5}
-  m_LocalScale: {x: 1, y: 1, z: 2.9956}
+  m_LocalPosition: {x: -28.14, y: 1.66, z: -2.07}
+  m_LocalScale: {x: 1, y: 1, z: 3.262508}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 204257912}
@@ -16746,7 +16865,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135556688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -66.59, y: 4.05, z: 6.25}
+  m_LocalPosition: {x: -25, y: 2.8396792, z: -4.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
