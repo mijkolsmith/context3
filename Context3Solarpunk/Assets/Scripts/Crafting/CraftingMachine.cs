@@ -4,7 +4,7 @@ using UnityEngine;
 public class CraftingMachine : MonoBehaviour, IInteractable
 {
 	[SerializeField, ReadOnly] private Outline objectOutline;
-	private bool highlighting;
+	private bool highlighting = false;
 
 	/// <summary>
 	/// Assign Outline component in the start method.
@@ -19,11 +19,11 @@ public class CraftingMachine : MonoBehaviour, IInteractable
 	/// </summary>
 	private void Update()
 	{
-		if (highlighting)
+		if (!highlighting)
 		{
 			objectOutline.OutlineWidth = 0f;
-			highlighting = false;
 		}
+		highlighting = false;
 	}
 
 	/// <summary>

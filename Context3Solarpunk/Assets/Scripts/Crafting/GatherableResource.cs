@@ -44,12 +44,12 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
             hitboxCollider.isTrigger = false;
             navMeshObstacle.enabled = true;
 
-            //Reset outline
-            if (highlighting)
+            //Reset the outline if it's not reactivated each frame.
+            if (!highlighting)
             {
                 objectOutline.OutlineWidth = 0f;
-                highlighting = false;
             }
+            highlighting = false;
         }
     }
 

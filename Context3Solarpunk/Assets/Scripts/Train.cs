@@ -5,48 +5,55 @@ using UnityEngine;
 [RequireComponent(typeof(Outline))]
 public class Train : MonoBehaviour, IInteractable
 {
-    [SerializeField] private PlayerControllerPointClick player;
-    private SequenceManager sequenceManager;
     [SerializeField] private bool isInteractable;
     //For outline
     private Outline objectOutline;
-    private bool highlighting;
+    private bool highlighting = false;
     public bool IsInteractable { get => isInteractable; private set => isInteractable = value; }
 
+    /// <summary>
+	/// Assign Outline component in the start method.
+	/// </summary>
     private void Start()
     {
         objectOutline = GetComponent<Outline>();
-        sequenceManager = GameManager.Instance.SequenceManager;
     }
 
+    /// <summary>
+	/// Reset the outline if it's not reactivated each frame.
+	/// </summary>
     private void Update()
     {
-        if (highlighting)
+        if (!highlighting)
         {
             objectOutline.OutlineWidth = 0f;
-            highlighting = false;
         }
+        highlighting = false;
     }
 
+    /// <summary>
+	/// Activate the highlight outline.
+	/// </summary>
+	/// <param name="color"></param>
     public void Highlight(Color color)
     {
         objectOutline.OutlineWidth = 5f;
-        if (isInteractable)
-        {
-            objectOutline.OutlineColor = color;
-        } 
-        else
-        {
-            objectOutline.OutlineColor = Color.red;
-        }
+        objectOutline.OutlineColor = isInteractable ? color : Color.red;
         highlighting = true;
     }
 
+    /// <summary>
+    /// Method that can be used by a button to set the isInteractable variable.
+    /// </summary>
+    /// <param name="isInteractable"></param>
     public void SetInteractable(bool isInteractable)
     {
         IsInteractable = isInteractable;
     }
 
+    /// <summary>
+    /// Time travel, play sound
+    /// </summary>
     public void Interact()
     {
         if (IsInteractable)
@@ -56,8 +63,8 @@ public class Train : MonoBehaviour, IInteractable
             GameManager.Instance.SequenceManager.TimeTravel();
             GameManager.Instance.QuestManager.AdvanceTasks(this);
         }
-        //Do the sequencemanager time travel thing
     }
+
     /// <summary>
     /// Temporarily disable interaction so you don't get spammed with sounds.
     /// </summary>
