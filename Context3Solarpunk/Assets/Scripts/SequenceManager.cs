@@ -31,6 +31,8 @@ public class SequenceManager : MonoBehaviour
 
     int environmentNumber = 0;
 
+    private bool advanced = false;
+
     private float fadeSpeed = 5f;
 
     [SerializeField, ReadOnly] private int targetYear;
@@ -66,8 +68,21 @@ public class SequenceManager : MonoBehaviour
         targetYear = 2082;
         timeTravelling = true;
         currentSequenceState = sequenceState.sequenceFadingIn;
-        environmentNumber = 0;
+        if (!advanced)
+        {
+            environmentNumber = 0;
+        }
+        else
+        {
+            environmentNumber = 2;
+        }
         GameManager.Instance.EnvironmentManager.InThePast = false;
+    }
+
+    public void AdvanceFuture()
+    {
+        Debug.Log("Future advanced");
+        advanced = true;
     }
 
     /// <summary>
