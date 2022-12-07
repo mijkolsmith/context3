@@ -55,8 +55,8 @@ public class CraftingPopupWindow : PopupWindow
 				for (; i < craftingRecipe[resourceType]; i++)
 				{
 					Transform parent;
-					if (i < 5) parent = parents[0];
-					else parent = parents[1];
+					/*if (i < 5)*/ parent = parents[0]; //UNCOMMENTED SOME CODE FOR PLAYTEST DECEMBER 8TH
+					//else parent = parents[1];
 					craftingUiElements.Add(Instantiate(craftingUiElementPrefabs.Where(x => x.GetComponent<CraftingUiElement>().GetResourceType() == resourceType).FirstOrDefault(), parent).GetComponent<CraftingUiElement>());
 				}
 			}
