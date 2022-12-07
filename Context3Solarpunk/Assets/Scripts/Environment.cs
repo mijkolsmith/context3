@@ -7,5 +7,6 @@ public class Environment
 {
     public string name;
     public bool foggy;
+    public Material skyboxMaterial;
     public List<GameObject> objects;
 }

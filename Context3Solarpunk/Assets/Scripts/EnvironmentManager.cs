@@ -54,6 +54,7 @@ public class EnvironmentManager : MonoBehaviour
                 {
                     environments[i].objects[j].SetActive(true);
                     RenderSettings.fog = environments[i].foggy;
+                    RenderSettings.skybox = environments[i].skyboxMaterial;
                 }
             }
             else
