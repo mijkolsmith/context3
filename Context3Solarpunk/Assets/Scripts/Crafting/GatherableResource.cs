@@ -10,7 +10,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
     [SerializeField, ReadOnly] private Vector3 startPos;
     [SerializeField, ReadOnly] private float timeElapsed = 0f;
     [SerializeField] private float lerpDuration = 3f;
-
+    private bool highlighting = false;
     /// <summary>
     /// Assign some components in the start method.
     /// </summary>
@@ -45,7 +45,8 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
             navMeshObstacle.enabled = true;
 
             //Reset outline
-            objectOutline.OutlineWidth = 0f;
+            if (!highlighting) objectOutline.OutlineWidth = 0f;
+            highlighting = false;
         }
     }
 
@@ -55,6 +56,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
     /// <param name="color"></param>
     public virtual void Highlight(Color color)
     {
+        highlighting = true;
         objectOutline.OutlineWidth = 5f;
         objectOutline.OutlineColor = color;
     }
