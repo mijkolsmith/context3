@@ -14,8 +14,7 @@ public class QuestAdvancer : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        questManager.AdvanceTasks();
-        gameObject.SetActive(false);
+        questManager.AdvanceTasks(this);
     }
 
     private void OnTriggerEnter(Collider other)

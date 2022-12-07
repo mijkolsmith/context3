@@ -45,8 +45,11 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
             navMeshObstacle.enabled = true;
 
             //Reset outline
-            if (!highlighting) objectOutline.OutlineWidth = 0f;
-            highlighting = false;
+            if (!highlighting)
+            {
+                objectOutline.OutlineWidth = 0f;
+                highlighting = false;
+            }
         }
     }
 
@@ -104,7 +107,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
 
             //TEMP questmanager doesnt work always yet, so to make testing easier:
             gameObject.SetActive(false);
-            GameManager.Instance.QuestManager.AdvanceTasks();
+            GameManager.Instance.QuestManager.AdvanceTasks(this);
         }
     }
 }

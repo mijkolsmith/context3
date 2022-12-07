@@ -6,16 +6,11 @@ using UnityEngine;
 public class Train : MonoBehaviour, IInteractable
 {
     [SerializeField] private PlayerControllerPointClick player;
-
-
-
     private SequenceManager sequenceManager;
     [SerializeField] private bool isInteractable;
     //For outline
     private Outline objectOutline;
-
     private bool highlighting;
-
     public bool IsInteractable { get => isInteractable; set => isInteractable = value; }
 
     private void Start()
@@ -26,32 +21,30 @@ public class Train : MonoBehaviour, IInteractable
 
     private void Update()
     {
-        if (!highlighting) objectOutline.OutlineWidth = 0f;
-        highlighting = false;
+        if (!highlighting)
+        {
+            objectOutline.OutlineWidth = 0f;
+            highlighting = false;
+        }
     }
 
     public void Highlight(Color color)
     {
+        objectOutline.OutlineWidth = 5f;
         if (isInteractable)
         {
-            objectOutline.OutlineWidth = 5f;
             objectOutline.OutlineColor = color;
-            highlighting = true;
-        }
+        } 
         else
         {
-            objectOutline.OutlineWidth = 5f;
             objectOutline.OutlineColor = Color.red;
-            highlighting = true;
         }
+        highlighting = true;
     }
 
     public void SetInteractable(bool isInteractable)
-
     {
-
         IsInteractable = isInteractable;
-
     }
 
     public void Interact()
@@ -61,7 +54,7 @@ public class Train : MonoBehaviour, IInteractable
             TemporarilyDisableInteraction(.3f);
             GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.TIME_TRAVEL);
             GameManager.Instance.SequenceManager.TimeTravel();
-            GameManager.Instance.QuestManager.AdvanceTasks();
+            GameManager.Instance.QuestManager.AdvanceTasks(this);
         }
         //Do the sequencemanager time travel thing
     }
@@ -71,10 +64,10 @@ public class Train : MonoBehaviour, IInteractable
     /// <param name="seconds"></param>
     /// <returns></returns>
     public IEnumerator TemporarilyDisableInteraction(float seconds)
-    {
+	{
         IsInteractable = false;
         yield return new WaitForSeconds(seconds);
         IsInteractable = true;
         yield return null;
-    }
+	}
 }
