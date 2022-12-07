@@ -5608,18 +5608,6 @@ MonoBehaviour:
                 om in te stappen.*'
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1993676011}
-            m_TargetAssemblyTypeName: Train, Assembly-CSharp
-            m_MethodName: SetInteractable
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 1
-            m_CallState: 2
           - m_Target: {fileID: 972472365}
             m_TargetAssemblyTypeName: Train, Assembly-CSharp
             m_MethodName: SetInteractable
@@ -5640,6 +5628,26 @@ MonoBehaviour:
       succesEvent:
         m_PersistentCalls:
           m_Calls:
+          - m_Target: {fileID: 1004801299}
+            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_MethodName: SetActive
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    - taskName: Loop een klein stukje naar rechts
+      type: 0
+      objectToInteract: {fileID: 1286592572}
+      resourceToGet: 0
+      success: 0
+      succesEvent:
+        m_PersistentCalls:
+          m_Calls:
           - m_Target: {fileID: 1286592572}
             m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_MethodName: SetActive
@@ -5650,7 +5658,7 @@ MonoBehaviour:
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
-              m_BoolArgument: 1
+              m_BoolArgument: 0
             m_CallState: 2
     activateEvent:
       m_PersistentCalls:
@@ -5664,8 +5672,8 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 'Dorien: Welkom bij onze game!| Je kunt rondlopen door
-              de linkermuisknop te gebruiken.| Loop alvast maar een stukje naar rechts!*'
+            m_StringArgument: 'Dorien: Welkom bij onze game!|Je kunt rondlopen door
+              de linkermuisknop te gebruiken.|Loop alvast maar een stukje naar rechts!*'
             m_BoolArgument: 0
           m_CallState: 2
     succesEvent:
@@ -5680,24 +5688,13 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Goed werk!|Nu kun je verder lopen naar het Arriva kantoor*
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1004801299}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
+            m_StringArgument: 'Dorien: Goed werk!|Nu kun je verder lopen naar het
+              Arriva kantoor.|Als je niet weet wat je moet doen, kun je linksonder
+              op mijn knop drukken.*'
             m_BoolArgument: 0
           m_CallState: 2
   - Name: Ruim het afval van het platform op!
-    Description: Test quest waarin de speler het afval moet opruimen voor het Arriva
-      gebouw
+    Description: Quest waarin de speler het afval moet opruimen voor het Arriva gebouw
     uniqueQuestID: 1
     sequential: 0
     state: 0
@@ -5970,7 +5967,39 @@ MonoBehaviour:
       success: 0
       succesEvent:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 1286592572}
+            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_MethodName: SetActive
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
+    - taskName: Loop een klein stukje naar rechts
+      type: 0
+      objectToInteract: {fileID: 1286592572}
+      resourceToGet: 0
+      success: 0
+      succesEvent:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1286592572}
+            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_MethodName: SetActive
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
     activateEvent:
       m_PersistentCalls:
         m_Calls:
@@ -7847,7 +7876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1286592573
 Transform:
   m_ObjectHideFlags: 0
@@ -7855,14 +7884,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286592572}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -56.71, y: 2.7947185, z: 10.5}
-  m_LocalScale: {x: 1, y: 1, z: 2.9956}
+  m_LocalRotation: {x: -0, y: 0.035934895, z: -0, w: 0.9993541}
+  m_LocalPosition: {x: -57.66, y: 2.7947185, z: 10.211}
+  m_LocalScale: {x: 1, y: 1, z: 3.296358}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 204257912}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 4.119, z: 0}
 --- !u!114 &1286592574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7888,8 +7917,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.326113, z: 3.0035393}
-  m_Center: {x: 0, y: 0.74534476, z: -0.23402515}
+  m_Size: {x: 1, y: 1.326113, z: 3.470955}
+  m_Center: {x: 0, y: 0.74534476, z: -0.13729769}
 --- !u!1001 &1301536029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16207,8 +16236,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.326113, z: 3.0035393}
-  m_Center: {x: 0, y: 0.74534476, z: -0.23402515}
+  m_Size: {x: 1, y: 1.326113, z: 3.2501154}
+  m_Center: {x: 0, y: 0.74534476, z: -0.20975709}
 --- !u!114 &2108450846
 MonoBehaviour:
   m_ObjectHideFlags: 0

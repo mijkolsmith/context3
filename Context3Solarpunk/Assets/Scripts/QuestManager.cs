@@ -61,7 +61,7 @@ public class QuestManager : MonoBehaviour
     /// <summary>
     /// Advances through the tasks of current quest and invokes all related events to succeeding a task.
     /// </summary>
-    public void AdvanceTasks()
+    public void AdvanceTasks(IInteractable interactableObject)
     {
         bool allTasksAreDone = true;
         for (int i = 0; i < quests.Count; i++) //For all the quests
@@ -72,7 +72,7 @@ public class QuestManager : MonoBehaviour
             {
                 if (q.sequential) //If quest is sequential
                 {
-                    if (q.currentTask.objectToInteract.GetComponent<IInteractable>() == player.InteractableObject)
+                    if (q.currentTask.objectToInteract.GetComponent<IInteractable>() == interactableObject)
                     {
                         q.currentTask.success = true;
                         q.currentTask.succesEvent?.Invoke();
@@ -82,23 +82,12 @@ public class QuestManager : MonoBehaviour
                             q.currentTask = q.tasks[q.taskNmbr];
                         }
                     }
-                    else if (q.currentTask.objectToInteract.GetComponent<QuestAdvancer>())
-                    {
-                        q.currentTask.success = true;
-                        q.currentTask.succesEvent?.Invoke();
-                        q.taskNmbr++;
-                        if (q.taskNmbr < q.tasks.Count)
-                        {
-                            q.currentTask = q.tasks[q.taskNmbr];
-                        }
-                    }
-
                 }
                 else //Not sequential quest
                 {
                     for (int j = 0; j < q.tasks.Count; j++) //Check for all tasks in quest
                     {
-                        if (q.tasks[j].objectToInteract.GetComponent<IInteractable>() == player.InteractableObject)
+                        if (q.tasks[j].objectToInteract.GetComponent<IInteractable>() == interactableObject)
                         {
                             q.tasks[j].success = true;
                             q.tasks[j].succesEvent?.Invoke();
@@ -123,11 +112,13 @@ public class QuestManager : MonoBehaviour
             }
         }
     }
+
     /// <summary>
-    /// Advance the tasks that have a resourcetype to add
+    /// Advance the tasks that have a resourcetype to add.
+    /// TODO: This needs to be rewritten
     /// </summary>
     /// <param name="resourceToCheckOn"></param>
-    public void AdvanceGatherItemTasks(ResourceType resourceToCheckOn)
+    /*public void AdvanceGatherItemTasks(ResourceType resourceToCheckOn)
     {
         for (int i = 0; i < quests.Count; i++)
         {
@@ -143,6 +134,7 @@ public class QuestManager : MonoBehaviour
                 }
             }
         }
-        AdvanceTasks();
-    }
+    //This call can't be made because AdvanceTasks requires an interactableObject.
+    AdvanceTasks();
+    }*/
 }
