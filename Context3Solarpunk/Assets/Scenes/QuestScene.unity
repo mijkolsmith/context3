@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trashcan-Full 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6cb7ea58ff871cf489439adf3f33eb53, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cb7ea58ff871cf489439adf3f33eb53, type: 3}
@@ -9610,8 +9614,8 @@ MonoBehaviour:
               m_StringArgument: 'Dorien: Super! Loop maar richting de trein.|De eerste
                 keer tijdreizen is ingewikkeld dus ik zal je ermee helpen.|Zodra
                 je eenmaal bent ingestapt gaat het tijdreizen vanzelf!|Zodra je dicht
-                bij de deuren van de trein bent kun je rechtermuisklik gebruiken
-                om in te stappen.*'
+                bij de deuren van de trein bent, klik je met de rechtermuisknop op
+                de deuren om in te stappen.*'
               m_BoolArgument: 0
             m_CallState: 2
           - m_Target: {fileID: 1993676011}
@@ -9657,7 +9661,20 @@ MonoBehaviour:
       success: 0
       succesEvent:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 312700401}
+            m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+            m_MethodName: StartDialogue
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: Goed werk!|Nu kun je verder lopen naar het Arriva
+                kantoor*
+              m_BoolArgument: 0
+            m_CallState: 2
     activateEvent:
       m_PersistentCalls:
         m_Calls:
@@ -9677,18 +9694,6 @@ MonoBehaviour:
     succesEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 312700401}
-          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-          m_MethodName: StartDialogue
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Goed werk!|Nu kun je verder lopen naar het Arriva kantoor*
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 1004801299}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
@@ -20515,7 +20520,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1803585175}
   - component: {fileID: 1803585177}
-  - component: {fileID: 1803585176}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -20547,18 +20551,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1803585176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803585174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c61f2dc74542ad4aa81e3a047c2c7f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1803585177
 MonoBehaviour:
   m_ObjectHideFlags: 0

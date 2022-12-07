@@ -196,6 +196,7 @@ public class SequenceManager : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(1f);
+
         currentSequenceState = sequenceState.SequenceFadingOut;
         Sequence(environmentNumber);
         yield return null;

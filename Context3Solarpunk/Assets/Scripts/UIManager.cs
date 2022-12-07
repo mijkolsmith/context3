@@ -131,7 +131,7 @@ public class UIManager : MonoBehaviour
                 } 
                 else if (s == "*")
                 {
-                    GameManager.Instance.SoundManager.PauseSound();
+                    GameManager.Instance.SoundManager.StopSound();
                     activeDialogueText.text = activeDialogueText.text.Substring(0, activeDialogueText.text.Length - 1);
                     dialogueFinished = true;
                 }

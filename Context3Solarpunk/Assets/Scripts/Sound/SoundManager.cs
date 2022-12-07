@@ -28,9 +28,17 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Stop playing sound
+    /// Pause playing sound
     /// </summary>
     public void PauseSound()
+    {
+        audioSource.Pause();
+    }
+
+    /// <summary>
+    /// Stop playing sound
+    /// </summary>
+    public void StopSound()
     {
         audioSource.Pause();
     }
