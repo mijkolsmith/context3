@@ -19,8 +19,11 @@ public class CraftingMachine : MonoBehaviour, IInteractable
 	/// </summary>
 	private void Update()
 	{
-		if (!highlighting) objectOutline.OutlineWidth = 0f;
-		highlighting = false;
+		if (highlighting)
+		{
+			objectOutline.OutlineWidth = 0f;
+			highlighting = false;
+		}
 	}
 
 	/// <summary>

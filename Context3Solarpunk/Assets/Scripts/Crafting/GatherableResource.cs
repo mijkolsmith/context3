@@ -45,7 +45,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
             navMeshObstacle.enabled = true;
 
             //Reset outline
-            if (!highlighting)
+            if (highlighting)
             {
                 objectOutline.OutlineWidth = 0f;
                 highlighting = false;

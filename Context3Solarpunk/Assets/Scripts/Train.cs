@@ -11,7 +11,7 @@ public class Train : MonoBehaviour, IInteractable
     //For outline
     private Outline objectOutline;
     private bool highlighting;
-    public bool IsInteractable { get => isInteractable; set => isInteractable = value; }
+    public bool IsInteractable { get => isInteractable; private set => isInteractable = value; }
 
     private void Start()
     {
@@ -21,7 +21,7 @@ public class Train : MonoBehaviour, IInteractable
 
     private void Update()
     {
-        if (!highlighting)
+        if (highlighting)
         {
             objectOutline.OutlineWidth = 0f;
             highlighting = false;
