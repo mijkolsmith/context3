@@ -2205,11 +2205,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1420531533}
   - {fileID: 877693438}
   - {fileID: 1996765208}
   - {fileID: 1820568103}
   - {fileID: 689008612}
-  - {fileID: 1420531533}
   - {fileID: 518548773}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -6287,10 +6287,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 312700401}
-    - target: {fileID: 1245208960417733826, guid: 4f3496bb0e874fd4bbd0a7d18350532c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TogglePopupWindow
-      objectReference: {fileID: 0}
     - target: {fileID: 4132951295329935383, guid: 4f3496bb0e874fd4bbd0a7d18350532c, type: 3}
       propertyPath: questObjectHolder
       value: 
