@@ -17,7 +17,7 @@ public class CraftingPopupWindow : PopupWindow
 	[SerializeField] private List<CraftingUiElement> craftingUiElements = new();
 	[SerializeField] private List<GameObject> craftedTextAnimationPrefabs = new();
 	[SerializeField] private List<ResourceTextAnimation> craftingTextAnimations = new();
-	[SerializeField] private Transform[] parents;
+	[SerializeField] private Transform gridLayoutGroup;
 
 	//TEMP FOR PLAYTEST 07 AND 08/12/22
 	[SerializeField] private GameObject questObjectHolder;
@@ -42,22 +42,18 @@ public class CraftingPopupWindow : PopupWindow
 			PopupWindowObject.SetActive(true);
 			GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.Crafting;
 
-			// TODO: Get current resource to craft from the questmanager and set it
+			// TODO: Set the current resource to craft from the questmanager
 			resourceToCraft = ResourceType.SeparatedBin;
 
 			ClearInventoryUIElements();
 
 			// Dynamically add the resources to fill
 			Dictionary<ResourceType, int> craftingRecipe = GameManager.Instance.CraftingManager.GetCraftingRecipe(resourceToCraft);
-			int i = 0;
 			foreach (var resourceType in craftingRecipe.Keys.ToList())
 			{
-				for (; i < craftingRecipe[resourceType]; i++)
+				for (int i = 0; i < craftingRecipe[resourceType]; i++)
 				{
-					Transform parent;
-					/*if (i < 5)*/ parent = parents[0]; //UNCOMMENTED SOME CODE FOR PLAYTEST DECEMBER 8TH
-					//else parent = parents[1];
-					craftingUiElements.Add(Instantiate(craftingUiElementPrefabs.Where(x => x.GetComponent<CraftingUiElement>().GetResourceType() == resourceType).FirstOrDefault(), parent).GetComponent<CraftingUiElement>());
+					craftingUiElements.Add(Instantiate(craftingUiElementPrefabs.Where(x => x.GetComponent<CraftingUiElement>().GetResourceType() == resourceType).FirstOrDefault(), gridLayoutGroup).GetComponent<CraftingUiElement>());
 				}
 			}
 
