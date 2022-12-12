@@ -13,12 +13,26 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
     [SerializeField] private float lerpDuration = 3f;
     private bool highlighting = false;
 
+    [SerializeField] private GameObject resourceModel;
+    [SerializeField] private GameObject resourceSprite;
     private bool dragging = false;
 
-    /// <summary>
-    /// Assign some components in the start method.
-    /// </summary>
-    private void Start()
+	private bool Dragging
+    {
+        get => dragging;
+        set
+        {
+            dragging = value;
+            (GameManager.Instance.UiManager.PopupWindows.Where(x => x.GetPopupWindowType() == PopupWindowType.Dorien).FirstOrDefault() as DorienPopupWindow).draggingIndicator.SetActive(value);
+            resourceModel.SetActive(!value);
+            resourceSprite.SetActive(value);
+        }
+    }
+
+	/// <summary>
+	/// Assign some components in the start method.
+	/// </summary>
+	private void Start()
     {
         hitboxCollider = GetComponent<Collider>();
         navMeshObstacle = GetComponent<NavMeshObstacle>();
@@ -58,8 +72,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
 
         if (Input.GetButtonUp("InteractionKey"))
 		{
-            ToggleDraggingIndicator(false);
-            dragging = false;
+            Dragging = false;
         }
     }
 
@@ -72,11 +85,6 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
         highlighting = true;
         objectOutline.OutlineWidth = 5f;
         objectOutline.OutlineColor = color;
-    }
-
-    private void ToggleDraggingIndicator(bool activate)
-	{
-        (GameManager.Instance.UiManager.PopupWindows.Where(x => x.GetPopupWindowType() == PopupWindowType.Dorien).FirstOrDefault() as DorienPopupWindow).draggingIndicator.SetActive(activate);
     }
 
     /// <summary>
@@ -107,10 +115,9 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
         hitboxCollider.isTrigger = true;
         navMeshObstacle.enabled = false;
         
-        if (!dragging)
+        if (!Dragging)
 		{
-            dragging = true;
-            ToggleDraggingIndicator(true);
+            Dragging = true;
 		}
     }
 
@@ -123,7 +130,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
     {
         if (other.CompareTag("Dorien") && navMeshObstacle.enabled == false)
         {
-            dragging = false;
+            Dragging = false;
             Gather();
             GameManager.Instance.trashCount--;
 
