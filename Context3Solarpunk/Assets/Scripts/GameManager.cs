@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameStateManager gameStateManager;
     [SerializeField] private SequenceManager sequenceManager;
     [SerializeField] private SoundManager soundManager;
+    [SerializeField] private InputManager inputManager;
 
     [SerializeField] private NavMeshSurface surface;
     public EnvironmentManager EnvironmentManager { get => environmentManager; private set => environmentManager = value; }
@@ -29,8 +30,9 @@ public class GameManager : MonoBehaviour
     public UIManager UiManager { get => uiManager; set => uiManager = value; }
     public SequenceManager SequenceManager { get => sequenceManager; set => sequenceManager = value; }
 	public SoundManager SoundManager { get => soundManager; set => soundManager = value; }
+    public InputManager InputManager { get => inputManager; set => inputManager = value; }
 
-	[MinValue(0), MaxValue(3), ReadOnly] public int trashCount;
+    [MinValue(0), MaxValue(3), ReadOnly] public int trashCount;
 
     /// <summary>
     /// Singleton pattern and assign managers.
@@ -50,7 +52,8 @@ public class GameManager : MonoBehaviour
         SequenceManager = GetComponent<SequenceManager>();
         EnvironmentManager = GetComponent<EnvironmentManager>();
 		SoundManager = GetComponent<SoundManager>();
-	}
+		InputManager = GetComponent<InputManager>();
+    }
 
 	/// <summary>
 	/// Serializes & Saves position, quest progress and inventory
