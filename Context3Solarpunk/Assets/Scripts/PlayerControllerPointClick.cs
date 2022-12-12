@@ -45,9 +45,15 @@ public class PlayerControllerPointClick : MonoBehaviour
     [SerializeField, ReadOnly, ShowIf("showDebugInfo")] private Vector3 movementVector;
 
     private Animator anim;
-#endregion
 
-#region Properties
+    private float firstClickTime = 0f;
+    private float timeBetweenClicks = 0.2f;
+    private int clickCounter = 0;
+
+
+    #endregion
+
+    #region Properties
     public static GameObject Player { get; private set; }
     internal PlayerStates PlayerState { get => playerState; set => playerState = value; }
     public GameObject CompanionPositionGameObject { get => companionPositionGameObject; set => companionPositionGameObject = value; }
@@ -99,7 +105,7 @@ public class PlayerControllerPointClick : MonoBehaviour
                 if (Vector3.Distance(interactionHit.collider.transform.position, transform.position) < interactionDistance)
 				{
 					interactableObject.Highlight(canInteractColor);
-					if (interactionInput)
+					if (interactionInput || DoubleClick())
 					{
 						interactableObject.Interact();
 						GameManager.Instance.RefreshNavMesh();
@@ -128,5 +134,29 @@ public class PlayerControllerPointClick : MonoBehaviour
         {
             targetDestinationGameObject.SetActive(true);
         }
+    }
+
+    //DoubleClick behaviour
+    private bool DoubleClick()
+    {
+        if (Input.GetKeyDown(moveKey))
+        {
+            clickCounter++;
+            if (clickCounter == 1) firstClickTime = Time.time;
+        }
+        if (Time.time - firstClickTime < timeBetweenClicks)
+        {
+            if (clickCounter > 1)
+            {
+                Debug.Log("DoubleClicked!");
+                return true;
+            }
+        }
+        else
+        {
+            clickCounter = 0;
+            firstClickTime = 0;
+        }
+        return false;
     }
 }
