@@ -33,10 +33,10 @@ public class QuestManager : MonoBehaviour
     {
         Debug.Log("Quest started! Quest ID: " + quest.uniqueQuestID);
         quest.state = QuestState.Active;
-        GameManager.Instance.UiManager.QuestText.text = quest.Name;
         if (quest.sequential)
         {
             quest.currentTask = quest.tasks[0];
+            GameManager.Instance.UiManager.QuestText.text = quest.currentTask.taskName;
         }
         currentQuest = quest;
         quest.activateEvent?.Invoke();
@@ -76,6 +76,8 @@ public class QuestManager : MonoBehaviour
                     {
                         q.currentTask.success = true;
                         q.currentTask.succesEvent?.Invoke();
+                        GameManager.Instance.UiManager.QuestText.text = q.currentTask.taskName;
+
                         q.taskNmbr++;
                         if (q.taskNmbr < q.tasks.Count)
                         {
