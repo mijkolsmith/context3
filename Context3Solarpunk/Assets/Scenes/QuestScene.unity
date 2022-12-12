@@ -5600,6 +5600,7 @@ GameObject:
   - component: {fileID: 818546143}
   - component: {fileID: 818546145}
   - component: {fileID: 818546144}
+  - component: {fileID: 818546146}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6009,7 +6010,7 @@ MonoBehaviour:
     - taskName: Gebruik de recyclemachine
       type: 0
       objectToInteract: {fileID: 1642109989}
-      resourceToGet: 0
+      resourceToGet: 9
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -6341,6 +6342,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &818546146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818546134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919b26f43e6075448a1fba960611639a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!64 &857980314
 MeshCollider:
   m_ObjectHideFlags: 0
