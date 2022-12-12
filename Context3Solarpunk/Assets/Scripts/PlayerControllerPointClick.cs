@@ -6,7 +6,6 @@ public class PlayerControllerPointClick : MonoBehaviour
 {
 #region Variables
     [Header("Movement")]
-    [SerializeField] private KeyCode moveKey = KeyCode.Mouse1; //Als je KeyCode.Mouse gebruikt werkt het niet op tablets, just a headsup
     [SerializeField] private LayerMask walkableLayer;
     [SerializeField] private GameObject targetDestinationGameObject;
     [SerializeField] private float targetGameObjectDisappearDistance = 2f;
@@ -17,14 +16,12 @@ public class PlayerControllerPointClick : MonoBehaviour
 
     [Header("Interaction")]
     [ReadOnly] private IInteractable interactableObject;
-    [SerializeField] private KeyCode interactionKey = KeyCode.Mouse1; //Als je KeyCode.Mouse gebruikt werkt het niet op tablets, just a headsup
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private float interactionDistance = 3f;
     [SerializeField] private Color canInteractColor = Color.green;
     [SerializeField] private Color cantInteractColor = Color.red;
 
     [Header("Respawning")]
-    [SerializeField] private KeyCode respawnKey = KeyCode.F5;
     [SerializeField] private Vector3 respawnLocation = Vector3.zero;
 
     [Space]
@@ -84,7 +81,7 @@ public class PlayerControllerPointClick : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             // Movement
-            movementInput = Input.GetKey(moveKey);
+            movementInput = Input.GetButton("MoveKey");
             if (movementInput)
             {
                 if (Physics.Raycast(ray, out RaycastHit targetHit, Mathf.Infinity, walkableLayer))
@@ -95,7 +92,7 @@ public class PlayerControllerPointClick : MonoBehaviour
             }
 
             // Interaction
-            interactionInput = Input.GetKey(interactionKey);
+            interactionInput = Input.GetButton("InteractionKey");
 
 			if (Physics.Raycast(ray, out RaycastHit interactionHit, Mathf.Infinity, interactableLayer))
 			{
@@ -115,7 +112,7 @@ public class PlayerControllerPointClick : MonoBehaviour
 			}
 
 			// Respawning
-			respawnInput = Input.GetKeyDown(respawnKey);
+			respawnInput = Input.GetButtonDown("RespawnKey");
             if (respawnInput)
             {
                 transform.position = respawnLocation;
@@ -139,7 +136,7 @@ public class PlayerControllerPointClick : MonoBehaviour
     //DoubleClick behaviour
     private bool DoubleClick()
     {
-        if (Input.GetKeyDown(moveKey))
+        if (Input.GetButtonDown("MoveKey"))
         {
             clickCounter++;
             if (clickCounter == 1) firstClickTime = Time.time;
@@ -148,7 +145,6 @@ public class PlayerControllerPointClick : MonoBehaviour
         {
             if (clickCounter > 1)
             {
-                Debug.Log("DoubleClicked!");
                 return true;
             }
         }

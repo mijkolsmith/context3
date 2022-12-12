@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,6 +12,9 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
     [SerializeField, ReadOnly] private float timeElapsed = 0f;
     [SerializeField] private float lerpDuration = 3f;
     private bool highlighting = false;
+
+    private bool dragging = false;
+
     /// <summary>
     /// Assign some components in the start method.
     /// </summary>
@@ -51,6 +55,12 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
             }
             highlighting = false;
         }
+
+        if (Input.GetButtonUp("InteractionKey"))
+		{
+            ToggleDraggingIndicator(false);
+            dragging = false;
+        }
     }
 
     /// <summary>
@@ -62,6 +72,11 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
         highlighting = true;
         objectOutline.OutlineWidth = 5f;
         objectOutline.OutlineColor = color;
+    }
+
+    private void ToggleDraggingIndicator(bool activate)
+	{
+        (GameManager.Instance.UiManager.PopupWindows.Where(x => x.GetPopupWindowType() == PopupWindowType.Dorien).FirstOrDefault() as DorienPopupWindow).draggingIndicator.SetActive(activate);
     }
 
     /// <summary>
@@ -91,6 +106,12 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
 
         hitboxCollider.isTrigger = true;
         navMeshObstacle.enabled = false;
+        
+        if (!dragging)
+		{
+            dragging = true;
+            ToggleDraggingIndicator(true);
+		}
     }
 
     /// <summary>
@@ -102,6 +123,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
     {
         if (other.CompareTag("Dorien") && navMeshObstacle.enabled == false)
         {
+            dragging = false;
             Gather();
             GameManager.Instance.trashCount--;
 

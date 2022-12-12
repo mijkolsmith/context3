@@ -10,12 +10,12 @@ public class DorienPopupWindow : PopupWindow
 
 	//Animation
 	[SerializeField] private CameraController cameraController;
-	[SerializeField] private GameObject scrollviewContent;
 	private float startDistanceToPlayer;
 	private float startHeight;
 
 	//UI
 	[SerializeField, ReadOnly] private List<InventoryUiElement> inventoryUIElements = new();
+	public GameObject draggingIndicator;
 
 	/// <summary>
 	/// Grab the start distance and height in the Start method.
