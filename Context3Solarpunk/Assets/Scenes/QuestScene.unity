@@ -4710,6 +4710,8 @@ GameObject:
   - component: {fileID: 718336186}
   - component: {fileID: 718336188}
   - component: {fileID: 718336187}
+  - component: {fileID: 718336190}
+  - component: {fileID: 718336189}
   m_Layer: 0
   m_Name: GoToTheFutureQuest
   m_TagString: Untagged
@@ -4756,8 +4758,34 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.926918, y: 3.6760051, z: 5.3032303}
-  m_Center: {x: -0.8000603, y: 0.936952, z: 0.699486}
+  m_Size: {x: 2.813509, y: 2.7218997, z: 2.3923063}
+  m_Center: {x: -1.3567657, y: 0.4598993, z: 1.2738827}
+--- !u!65 &718336189
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718336185}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.4051008, y: 2.8713493, z: 2.419315}
+  m_Center: {x: 21.26454, y: 0.590647, z: 1.2199261}
+--- !u!65 &718336190
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718336185}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 21.780172, y: 2.8049068, z: 0.30205548}
+  m_Center: {x: 10.390078, y: 0.49763894, z: 0.08670072}
 --- !u!64 &726718013
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5713,12 +5741,12 @@ MonoBehaviour:
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: 'Dorien: Super! Zoals je kan zien is het kantoor
-                gesloten.|Loop anders maar naar links richting de trein.|De eerste
-                keer tijdreizen is ingewikkeld dus ik zal je ermee helpen.|Als je
-                eenmaal bent ingestapt gaat het tijdreizen vanzelf!|Zodra je dichtbij
-                de deuren van de trein bent kun je de rechtermuisknop gebruiken om
-                in te stappen.*'
+              m_StringArgument: 'Dorien: Super! Het Arriva kantoor ziet er gesloten
+                uit...|Loop anders maar naar links richting de trein.|De eerste keer
+                tijdreizen is ingewikkeld dus ik zal je ermee helpen.|Als je eenmaal
+                bent ingestapt gaat het tijdreizen vanzelf!|Zodra je dichtbij de
+                deuren van de trein bent kun je de rechtermuisknop gebruiken om in
+                te stappen.*'
               m_BoolArgument: 0
             m_CallState: 2
           - m_Target: {fileID: 972472365}
@@ -5786,8 +5814,7 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 'Dorien: Welkom bij onze game!|Je kunt rondlopen door
-              de linkermuisknop te gebruiken.|Loop alvast maar een stukje naar links
-              richting de trein!*'
+              de linkermuisknop te gebruiken.|Probeer maar een stukje te lopen!*'
             m_BoolArgument: 0
           m_CallState: 2
     succesEvent:
@@ -8429,8 +8456,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.926918, y: 3.6760051, z: 5.3032303}
-  m_Center: {x: -0.8000603, y: 0.936952, z: 0.699486}
+  m_Size: {x: 1.9386865, y: 2.9089577, z: 4.522651}
+  m_Center: {x: -1.7941762, y: 0.5534283, z: 0.3990217}
 --- !u!1 &1359714924 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 668230995828949949, guid: fa9ee64057b5e6d49a7090c003af23e6, type: 3}
@@ -16332,6 +16359,9 @@ GameObject:
   - component: {fileID: 2108450844}
   - component: {fileID: 2108450845}
   - component: {fileID: 2108450846}
+  - component: {fileID: 2108450849}
+  - component: {fileID: 2108450848}
+  - component: {fileID: 2108450847}
   m_Layer: 0
   m_Name: IntroQuestHitbox
   m_TagString: Untagged
@@ -16347,8 +16377,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108450843}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.14, y: 1.66, z: -2.07}
-  m_LocalScale: {x: 1, y: 1, z: 3.262508}
+  m_LocalPosition: {x: -27.41, y: 1.66, z: -4.2}
+  m_LocalScale: {x: 1, y: 1, z: 1.4609184}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 204257912}
@@ -16365,8 +16395,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.326113, z: 3.2501154}
-  m_Center: {x: 0, y: 0.74534476, z: -0.20975709}
+  m_Size: {x: 0.8324375, y: 1.326113, z: 3.7673073}
+  m_Center: {x: -0.08378124, y: 0.74534476, z: 0.048838392}
 --- !u!114 &2108450846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16381,6 +16411,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerObject: {fileID: 1359714924}
   questManager: {fileID: 818546140}
+--- !u!65 &2108450847
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108450843}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.4284286, y: 1.2606258, z: 0.5332147}
+  m_Center: {x: 2.2142143, y: 0.86475813, z: -1.807596}
+--- !u!65 &2108450848
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108450843}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.47686768, y: 1.4913495, z: 3.8791401}
+  m_Center: {x: 4.7003956, y: 0.8785951, z: -0.19327573}
+--- !u!65 &2108450849
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108450843}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.4484577, y: 1.3752892, z: 0.54388505}
+  m_Center: {x: 2.2242289, y: 0.7961347, z: 1.9408882}
 --- !u!1001 &2112349071
 PrefabInstance:
   m_ObjectHideFlags: 0
