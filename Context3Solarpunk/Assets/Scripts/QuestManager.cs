@@ -63,80 +63,144 @@ public class QuestManager : MonoBehaviour
     /// </summary>
     public void AdvanceTasks(IInteractable interactableObject)
     {
-        bool allTasksAreDone = true;
         for (int i = 0; i < quests.Count; i++) //For all the quests
         {
             Quest q = quests[i];
 
             if (q.state == QuestState.Active) //Get all the active ones
             {
-                if (q.sequential) //If quest is sequential
+                //If quest is sequential
+                if (q.sequential)
                 {
-                    if (q.currentTask.objectToInteract.GetComponent<IInteractable>() == interactableObject)
+                    ProgressSequentialQuest(q);
+                }
+                else //Not sequential
+                {
+                    for (int j = 0; j < q.tasks.Count; j++)
                     {
-                        q.currentTask.success = true;
-                        q.currentTask.succesEvent?.Invoke();
-                        GameManager.Instance.UiManager.QuestText.text = q.currentTask.taskName;
+                        switch (q.tasks[j].type)
+                        {
+                            case TaskType.None:
+                                break;
+                            case TaskType.Interact:
+                                ProgressInteractQuest(q.tasks[j], interactableObject);
+                                break;
+                            case TaskType.Craft:
+                                //ProgressCraftQuest(q);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
 
-                        q.taskNmbr++;
-                        if (q.taskNmbr < q.tasks.Count)
-                        {
-                            q.currentTask = q.tasks[q.taskNmbr];
-                        }
-                    }
-                }
-                else //Not sequential quest
-                {
-                    for (int j = 0; j < q.tasks.Count; j++) //Check for all tasks in quest
-                    {
-                        if (q.tasks[j].objectToInteract.GetComponent<IInteractable>() == interactableObject)
-                        {
-                            q.tasks[j].success = true;
-                            q.tasks[j].succesEvent?.Invoke();
-                        }
-                    }
-                }
                 //Check if all tasks are done
-                for (int z = 0; z < q.tasks.Count; z++)
-                {
-                    if (!q.tasks[z].success)
-                    {
-                        allTasksAreDone = false;
-                    }
-                }
-                if (allTasksAreDone)
-                {
-                    Debug.Log("Quest " + q.uniqueQuestID + "is completed.");
-                    q.succesEvent?.Invoke();
-                    q.state = QuestState.Completed;
-                    currentQuest = null;
-                }
+                CheckIfAllTasksAreDone(q);
             }
         }
     }
 
     /// <summary>
-    /// Advance the tasks that have a resourcetype to add.
-    /// TODO: This needs to be rewritten
+    /// Progress the task in sequential quests 
     /// </summary>
-    /// <param name="resourceToCheckOn"></param>
-    /*public void AdvanceGatherItemTasks(ResourceType resourceToCheckOn)
+    /// <param name="q"></param>
+    public void ProgressSequentialQuest(Quest q)
     {
-        for (int i = 0; i < quests.Count; i++)
+        q.currentTask.success = true;
+        q.currentTask.succesEvent?.Invoke();
+        GameManager.Instance.UiManager.QuestText.text = q.currentTask.taskName;
+
+        q.taskNmbr++;
+        if (q.taskNmbr < q.tasks.Count)
         {
-            if (quests[i].state == QuestState.Active)
+            q.currentTask = q.tasks[q.taskNmbr];
+        }
+    }
+
+    /// <summary>
+    /// Progress a quest where you have to interact with an assigned interactable
+    /// </summary>
+    /// <param name="task"></param>
+    /// <param name="interactable"></param>
+    public void ProgressInteractQuest(Task task, IInteractable interactable)
+    {
+
+        //if (task.objectToInteract == null) continue;
+        if (task.objectToInteract.GetComponent<IInteractable>() == interactable)
+        {
+            task.success = true;
+            task.succesEvent?.Invoke();
+        }
+
+    }
+
+    /// <summary>
+    /// Get resource type from task, used by crafting machine to know what has to be crafted
+    /// </summary>
+    /// <returns></returns>
+    public ResourceType GetResourceTypeFromTask()
+    {
+        for (int j = 0; j < currentQuest.tasks.Count; j++) //Check for all tasks in quest
+        {
+            if (!currentQuest.tasks[j].success && currentQuest.tasks[j].resourceToGet != ResourceType.None)
             {
-                for (int j = 0; j < quests[i].tasks.Count; j++)
-                {
-                    if (quests[i].tasks[j].resourceToGet == resourceToCheckOn) //If resourcetoget has been get
-                    {
-                        quests[i].tasks[j].success = true;
-                        quests[i].tasks[j].succesEvent?.Invoke();
-                    }
-                }
+                Debug.Log("Got resourcetoget!");
+                return currentQuest.tasks[j].resourceToGet;
             }
         }
-    //This call can't be made because AdvanceTasks requires an interactableObject.
-    AdvanceTasks();
-    }*/
+        Debug.Log("Didn't get resourcetoget!");
+        return ResourceType.None;
+    }
+
+    /// <summary>
+    /// Progress a quest where you have to craft something.
+    /// </summary>
+    /// <param name="q"></param>
+    public void ProgressCraftQuest(Quest q)
+    {
+        for (int j = 0; j < q.tasks.Count; j++) //Check for all tasks in quest
+        {
+            if (q.tasks[j].resourceToGet != ResourceType.None)
+            {
+                q.tasks[j].success = true;
+                q.tasks[j].succesEvent?.Invoke();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Progress a quest where you have to craft something using currentquest instead of a specific one by parameter
+    /// </summary>
+    public void ProgressCraftQuest()
+    {
+        for (int j = 0; j < currentQuest.tasks.Count; j++) //Check for all tasks in quest
+        {
+            if (currentQuest.tasks[j].resourceToGet != ResourceType.None)
+            {
+                currentQuest.tasks[j].success = true;
+                currentQuest.tasks[j].succesEvent?.Invoke();
+            }
+        }
+        CheckIfAllTasksAreDone(currentQuest);
+    }
+
+    private bool CheckIfAllTasksAreDone(Quest q)
+    {
+        bool allTasksAreDone = true;
+        for (int j = 0; j < q.tasks.Count; j++)
+        {
+            if (!q.tasks[j].success)
+            {
+                allTasksAreDone = false;
+            }
+        }
+        if (allTasksAreDone)
+        {
+            Debug.Log("Quest " + q.uniqueQuestID + "is completed.");
+            q.succesEvent?.Invoke();
+            q.state = QuestState.Completed;
+            currentQuest = null;
+        }
+        return allTasksAreDone;
+    }
 }

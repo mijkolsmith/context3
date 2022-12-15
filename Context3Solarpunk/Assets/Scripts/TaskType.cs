@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum TaskType
 {
-    Fetch = 0,
+    None = 0,
     Interact = 1,
-    Lamp = 2
+    Craft = 2
 }

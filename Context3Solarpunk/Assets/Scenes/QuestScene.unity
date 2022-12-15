@@ -466,6 +466,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 16030165}
   m_CullTransparentMesh: 1
+--- !u!1 &18087665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 18087666}
+  m_Layer: 0
+  m_Name: CraftedObjects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &18087666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18087665}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 543450653551527073}
+  m_Father: {fileID: 184155911}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &34414401
 GameObject:
   m_ObjectHideFlags: 0
@@ -6196,7 +6228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 184155911}
   m_Layer: 0
-  m_Name: DaraEnvironmentHedenQ2
+  m_Name: EnvironmentPresentQ2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6221,6 +6253,7 @@ Transform:
   - {fileID: 478314510}
   - {fileID: 1696925602}
   - {fileID: 2104761222}
+  - {fileID: 18087666}
   m_Father: {fileID: 1365162627}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7386,7 +7419,7 @@ RectTransform:
   - {fileID: 1996765208}
   - {fileID: 1820568103}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7663,41 +7696,25 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1365162627}
     m_Modifications:
-    - target: {fileID: 2108450843, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5421717847055112874, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
       propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5421717847055112875, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
-      propertyPath: m_Bindings.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5421717848508359494, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
-      propertyPath: m_Bindings.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848508359513, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848793049192, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
       propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5421717848793049193, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
-      propertyPath: m_Bindings.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848812052672, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
       propertyPath: m_Name
-      value: DaraEnvironmentBegin
+      value: EnvironmentFutureQ1
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848812052672, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848812052675, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
       propertyPath: m_RootOrder
@@ -7745,11 +7762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848862916366, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
       propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5421717848862916367, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
-      propertyPath: m_Bindings.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -7762,6 +7775,11 @@ Transform:
 --- !u!1 &350258232 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5421717848812052672, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
+  m_PrefabInstance: {fileID: 350258230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &350258233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2108450843, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
   m_PrefabInstance: {fileID: 350258230}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &382423370
@@ -10760,7 +10778,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 718336185}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.4051008, y: 2.8713493, z: 2.419315}
@@ -10773,7 +10791,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 718336185}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 21.780172, y: 2.8049068, z: 0.30205548}
@@ -11355,7 +11373,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775445509}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -24.93, y: 4.11, z: -2.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11363,7 +11381,7 @@ Transform:
   - {fileID: 239190714}
   - {fileID: 714153426}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &776981881
 GameObject:
@@ -11976,7 +11994,7 @@ MonoBehaviour:
     tasks:
     - taskName: Loop naar links met je muis!
       type: 0
-      objectToInteract: {fileID: 2108450843}
+      objectToInteract: {fileID: 350258233}
       resourceToGet: 0
       success: 0
       succesEvent:
@@ -12012,7 +12030,7 @@ MonoBehaviour:
               m_BoolArgument: 1
             m_CallState: 2
     - taskName: Ga nu tijdreizen!
-      type: 0
+      type: 1
       objectToInteract: {fileID: 972472360}
       resourceToGet: 0
       success: 0
@@ -12101,7 +12119,7 @@ MonoBehaviour:
           m_Calls: []
     tasks:
     - taskName: Ruim het afval op
-      type: 0
+      type: 1
       objectToInteract: {fileID: 236340707}
       resourceToGet: 0
       success: 0
@@ -12121,7 +12139,7 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
     - taskName: Ruim het afval op
-      type: 0
+      type: 1
       objectToInteract: {fileID: 1880684873}
       resourceToGet: 0
       success: 0
@@ -12141,7 +12159,7 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
     - taskName: Ruim het afval op
-      type: 0
+      type: 1
       objectToInteract: {fileID: 585683569}
       resourceToGet: 0
       success: 0
@@ -12161,7 +12179,7 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
     - taskName: Ruim het afval op
-      type: 0
+      type: 1
       objectToInteract: {fileID: 1954922637}
       resourceToGet: 0
       success: 0
@@ -12181,7 +12199,7 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
     - taskName: Ruim het afval op
-      type: 0
+      type: 1
       objectToInteract: {fileID: 1241556417}
       resourceToGet: 0
       success: 0
@@ -12201,7 +12219,7 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
     - taskName: Ruim het afval op
-      type: 0
+      type: 1
       objectToInteract: {fileID: 1908352993}
       resourceToGet: 0
       success: 0
@@ -12265,6 +12283,18 @@ MonoBehaviour:
               uit!*'
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1319075006}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - Name: 'Quest 1.2: Gebruik de recyclemachine met rechtermuisknop!'
     Description: Quest waarin de speler het afval moet opruimen voor het Arriva gebouw
     uniqueQuestID: 2
@@ -12282,7 +12312,7 @@ MonoBehaviour:
           m_Calls: []
     tasks:
     - taskName: Gebruik de recyclemachine
-      type: 0
+      type: 2
       objectToInteract: {fileID: 1642109989}
       resourceToGet: 9
       success: 0
@@ -12362,7 +12392,7 @@ MonoBehaviour:
           m_Calls: []
     tasks:
     - taskName: Ga terug naar de toekomst!
-      type: 0
+      type: 1
       objectToInteract: {fileID: 972472360}
       resourceToGet: 0
       success: 0
@@ -12417,8 +12447,9 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 'Dorien: Wow, zo veel schoner dan eerst!|Ik ben benieuwd
-              wat we nog meer kunnen verbeteren.|Laten we het gebouw binnen gaan!*'
+            m_StringArgument: 'Dorien: Wow, het is zo veel schoner dan eerst!|Ik
+              ben benieuwd wat we nog meer kunnen verbeteren.|Laten we het gebouw
+              binnen gaan!*'
             m_BoolArgument: 0
           m_CallState: 2
   - Name: 'Quest 2.4: Het kantoor'
@@ -12438,7 +12469,7 @@ MonoBehaviour:
           m_Calls: []
     tasks:
     - taskName: Ga naar het verleden!
-      type: 0
+      type: 1
       objectToInteract: {fileID: 972472360}
       resourceToGet: 0
       success: 0
@@ -12457,7 +12488,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 'Dorien: Jeetje, wat is het hier donker. De oude gloeilampen
+            m_StringArgument: 'Dorien: Jeetje, wat is het hier donker.|De oude gloeilampen
               hebben het al lang opgegeven.|Je nieuwe opdracht is om terug de tijd
               in te gaan en daar de gloeilampen te vervangen met LED-lampen.|Misschien
               kunnen we dan beter zien!|Als je niet meer weet wat je moet doen, druk
@@ -12484,7 +12515,7 @@ MonoBehaviour:
           m_Calls: []
     tasks:
     - taskName: Ruim het afval op
-      type: 0
+      type: 1
       objectToInteract: {fileID: 1858942057}
       resourceToGet: 0
       success: 0
@@ -12492,7 +12523,7 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
     - taskName: Ruim het afval op
-      type: 0
+      type: 1
       objectToInteract: {fileID: 382423372}
       resourceToGet: 0
       success: 0
@@ -12511,9 +12542,9 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 'Dorien: De medewerkers lijken hun afval steeds beter
-              op te ruimen, wat goed!|Laten we ze nog een handje helpen met dit andere
-              afval.*'
+            m_StringArgument: 'Dorien: De andere medewerkers lijken hun afval steeds
+              beter op te ruimen, wat goed!|Laten we ze nog een handje helpen met
+              dit andere afval.*'
             m_BoolArgument: 0
           m_CallState: 2
     succesEvent:
@@ -12561,7 +12592,7 @@ MonoBehaviour:
           m_Calls: []
     tasks:
     - taskName: Probeer LED-lampen te maken in de recyclemachine
-      type: 0
+      type: 1
       objectToInteract: {fileID: 1642109989}
       resourceToGet: 0
       success: 0
@@ -13528,7 +13559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8783054870406185284, guid: b92d958fcfccf5a42996602c3d407387, type: 3}
       propertyPath: m_Name
-      value: DaraEnvironmentPostQ1
+      value: EnvironmentFutureQ2
       objectReference: {fileID: 0}
     - target: {fileID: 8783054870406185284, guid: b92d958fcfccf5a42996602c3d407387, type: 3}
       propertyPath: m_IsActive
@@ -17502,14 +17533,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562406405}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.750202, y: 14.28857, z: -451.20047}
+  m_LocalRotation: {x: -0, y: 0.108687624, z: -0, w: 0.99407595}
+  m_LocalPosition: {x: 5.718315, y: 14.28857, z: -447.8534}
   m_LocalScale: {x: 1, y: 1, z: 2.9956}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2104761222}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 12.479, z: 0}
 --- !u!65 &1562406408
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18164,7 +18195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1678009960}
   m_Layer: 0
-  m_Name: DaraEnvironmentHedenQ1
+  m_Name: EnvironmentPresentQ1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18661,7 +18692,7 @@ Transform:
   - {fileID: 211419473}
   - {fileID: 1755746735}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1803585177
 MonoBehaviour:
@@ -25874,11 +25905,6 @@ Transform:
   m_Father: {fileID: 184155911}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2108450843 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2108450843, guid: 5ccc769bbce227b408c225497fc73eb0, type: 3}
-  m_PrefabInstance: {fileID: 350258230}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2112349071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26091,7 +26117,7 @@ Transform:
   m_Children:
   - {fileID: 769698488}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2141604685
 GameObject:
@@ -26405,6 +26431,11 @@ Transform:
   m_Father: {fileID: 1803585175}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!4 &543450653551527073 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5948600941877723461, guid: 21b9eb5429cf82e4594f8d9227ec10ae, type: 3}
+  m_PrefabInstance: {fileID: 6126888320850560484}
+  m_PrefabAsset: {fileID: 0}
 --- !u!33 &605851705086150956
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -29193,6 +29224,65 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &6126888320850560484
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 18087666}
+    m_Modifications:
+    - target: {fileID: 5948600941877723461, guid: 21b9eb5429cf82e4594f8d9227ec10ae, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948600941877723461, guid: 21b9eb5429cf82e4594f8d9227ec10ae, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948600941877723461, guid: 21b9eb5429cf82e4594f8d9227ec10ae, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948600941877723461, guid: 21b9eb5429cf82e4594f8d9227ec10ae, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948600941877723461, guid: 21b9eb5429cf82e4594f8d9227ec10ae, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948600941877723461, guid: 21b9eb5429cf82e4594f8d9227ec10ae, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948600941877723461, guid: 21b9eb5429cf82e4594f8d9227ec10ae, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948600941877723461, guid: 21b9eb5429cf82e4594f8d9227ec10ae, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948600941877723461, guid: 21b9eb5429cf82e4594f8d9227ec10ae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948600941877723461, guid: 21b9eb5429cf82e4594f8d9227ec10ae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948600941877723461, guid: 21b9eb5429cf82e4594f8d9227ec10ae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6468996069796436991, guid: 21b9eb5429cf82e4594f8d9227ec10ae, type: 3}
+      propertyPath: m_Name
+      value: RecycleBin
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 21b9eb5429cf82e4594f8d9227ec10ae, type: 3}
 --- !u!4 &6140136331512865315
 Transform:
   m_ObjectHideFlags: 0

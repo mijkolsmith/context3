@@ -81,7 +81,6 @@ public class SequenceManager : MonoBehaviour
 
     public void AdvanceFuture()
     {
-        Debug.Log("Future advanced");
         advanced = true;
     }
 

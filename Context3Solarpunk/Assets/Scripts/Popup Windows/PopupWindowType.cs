@@ -10,5 +10,6 @@ public enum PopupWindowType
     Crafting,
     Dorien,
     Settings,
-    Dialogue
+    Dialogue,
+    RecycleBin
 }
