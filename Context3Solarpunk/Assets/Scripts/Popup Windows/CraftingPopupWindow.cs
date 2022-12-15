@@ -43,7 +43,7 @@ public class CraftingPopupWindow : PopupWindow
             GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.Crafting;
 
             //QUALITY CONTROL, will probably throw errors if the resourceToGet = ResourceType.None
-            resourceToCraft = GameManager.Instance.QuestManager.currentQuest.currentTask.resourceToGet;
+            resourceToCraft = GameManager.Instance.QuestManager.GetResourceTypeFromTask();
 
             ClearInventoryUIElements();
 
@@ -141,6 +141,7 @@ public class CraftingPopupWindow : PopupWindow
                 UpdateUI();
 
                 GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.CRAFTING_MACHINE);
+                GameManager.Instance.QuestManager.ProgressCraftQuest();
 
                 //TEMP FOR PLAYTEST 07 AND 08/12/22
                 questObjectHolder.SetActive(true);
