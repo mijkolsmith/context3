@@ -100,6 +100,10 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Progress the task in sequential quests 
+    /// </summary>
+    /// <param name="q"></param>
     public void ProgressSequentialQuest(Quest q)
     {
         q.currentTask.success = true;
@@ -113,6 +117,11 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Progress a quest where you have to interact with an assigned interactable
+    /// </summary>
+    /// <param name="task"></param>
+    /// <param name="interactable"></param>
     public void ProgressInteractQuest(Task task, IInteractable interactable)
     {
 
@@ -125,6 +134,10 @@ public class QuestManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Get resource type from task, used by crafting machine to know what has to be crafted
+    /// </summary>
+    /// <returns></returns>
     public ResourceType GetResourceTypeFromTask()
     {
         for (int j = 0; j < currentQuest.tasks.Count; j++) //Check for all tasks in quest
@@ -139,6 +152,10 @@ public class QuestManager : MonoBehaviour
         return ResourceType.None;
     }
 
+    /// <summary>
+    /// Progress a quest where you have to craft something.
+    /// </summary>
+    /// <param name="q"></param>
     public void ProgressCraftQuest(Quest q)
     {
         for (int j = 0; j < q.tasks.Count; j++) //Check for all tasks in quest
@@ -151,15 +168,13 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Progress a quest where you have to craft something using currentquest instead of a specific one by parameter
+    /// </summary>
     public void ProgressCraftQuest()
     {
         for (int j = 0; j < currentQuest.tasks.Count; j++) //Check for all tasks in quest
         {
-            Debug.Log(currentQuest);
-            Debug.Log(currentQuest.tasks[j]);
-            Debug.Log(currentQuest.tasks[j].resourceToGet);
-
             if (currentQuest.tasks[j].resourceToGet != ResourceType.None)
             {
                 currentQuest.tasks[j].success = true;
