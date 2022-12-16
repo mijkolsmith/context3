@@ -6,7 +6,9 @@ using UnityEngine;
 public class DorienPopupWindow : PopupWindow
 {
 	[field: SerializeField] protected override GameObject PopupWindowObject { get; set; }
+	[field: SerializeField] protected override GameObject EndDragPanel { get; set; }
 	public override PopupWindowType GetPopupWindowType() => PopupWindowType.Dorien;
+	public override RectTransform GetEndDragPanelRectTransform() => EndDragPanel.transform as RectTransform;
 
 	//Animation
 	[SerializeField] private CameraController cameraController;
@@ -59,7 +61,7 @@ public class DorienPopupWindow : PopupWindow
 	/// <summary>
 	/// Updates each UI element.
 	/// </summary>
-	public void UpdateUI()
+	public override void UpdateUI()
 	{
 		foreach (InventoryUiElement inventoryUIElement in inventoryUIElements)
 		{

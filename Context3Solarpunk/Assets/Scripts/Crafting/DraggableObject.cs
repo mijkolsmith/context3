@@ -7,7 +7,7 @@ public class DraggableObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 	private RectTransform rectTransform;
 	private Vector3 velocity = Vector3.zero;
 	[SerializeField] private float dampingSpeed = .005f;
-	[SerializeField] private CraftingPopupWindow craftingPopupWindow;
+	[SerializeField] private PopupWindow popupWindow;
 	[SerializeField] private ResourceType resourceType;
 	[SerializeField] private Image image;
 
@@ -39,11 +39,11 @@ public class DraggableObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 	/// <param name="sprite"></param>
 	/// <param name="craftingPopupWindow"></param>
 	/// <returns>This initialized GameObject</returns>
-	public GameObject Initialize(ResourceType resourceType, Sprite sprite, CraftingPopupWindow craftingPopupWindow)
+	public GameObject Initialize(ResourceType resourceType, Sprite sprite, PopupWindow popupWindow)
 	{
 		this.resourceType = resourceType;
 		image.sprite = sprite;
-		this.craftingPopupWindow = craftingPopupWindow;
+		this.popupWindow = popupWindow;
 		return gameObject;
 	}
 
@@ -67,7 +67,7 @@ public class DraggableObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 	/// <param name="eventData"></param>
 	public void OnBeginDrag(PointerEventData eventData)
 	{
-		transform.SetParent(craftingPopupWindow.transform);
+		transform.SetParent(popupWindow.transform);
 	}
 
 	/// <summary>
@@ -77,11 +77,20 @@ public class DraggableObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 	/// <param name="eventData"></param>
 	public void OnEndDrag(PointerEventData eventData)
 	{
-		RectTransform craftingPanelRectTransform = craftingPopupWindow.GetCraftingPanelRectTransform();
-		Vector2 localMousePosition = craftingPanelRectTransform.InverseTransformPoint(Input.mousePosition);
-		if (craftingPanelRectTransform.rect.Contains(localMousePosition))
+		RectTransform endDragPanelRectTransform = popupWindow.GetEndDragPanelRectTransform();
+
+		Vector2 localMousePosition = endDragPanelRectTransform.InverseTransformPoint(Input.mousePosition);
+		if (endDragPanelRectTransform.rect.Contains(localMousePosition))
 		{
-			craftingPopupWindow.Fill(resourceType);
+			if (popupWindow.GetPopupWindowType() == PopupWindowType.Crafting)
+			{
+				((CraftingPopupWindow)popupWindow).Fill(resourceType);
+			}
+			else if (popupWindow.GetPopupWindowType() == PopupWindowType.RecycleBin)
+			{
+				GameManager.Instance.CraftingManager.AddResourceToInventory(resourceType);
+				popupWindow.UpdateUI();
+			}
 		}
 		Destroy(gameObject);
 	}

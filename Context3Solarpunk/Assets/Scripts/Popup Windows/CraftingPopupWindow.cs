@@ -2,16 +2,16 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
-using UnityEngine.UI;
 
 public class CraftingPopupWindow : PopupWindow
 {
     [field: SerializeField] protected override GameObject PopupWindowObject { get; set; }
-
+    [field: SerializeField] protected override GameObject EndDragPanel { get; set; }
     public override PopupWindowType GetPopupWindowType() => PopupWindowType.Crafting;
+    public override RectTransform GetEndDragPanelRectTransform() => EndDragPanel.transform as RectTransform;
+
     [SerializeField, ReadOnly] private List<InventoryUiElement> inventoryUiElements = new();
     [SerializeField] private GameObject draggableObjectPrefab;
-    [SerializeField] private GameObject craftingPanel;
     [SerializeField, ReadOnly] private ResourceType resourceToCraft;
     [SerializeField] private List<GameObject> craftingUiElementPrefabs = new();
     [SerializeField] private List<CraftingUiElement> craftingUiElements = new();
@@ -32,7 +32,7 @@ public class CraftingPopupWindow : PopupWindow
     {
         if (PopupWindowObject.activeInHierarchy)
         {
-            ClearInventoryUIElements();
+            ClearCraftingUIElements();
 
             PopupWindowObject.SetActive(false);
             GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.None;
@@ -45,7 +45,7 @@ public class CraftingPopupWindow : PopupWindow
             //QUALITY CONTROL, will probably throw errors if the resourceToGet = ResourceType.None
             resourceToCraft = GameManager.Instance.QuestManager.GetResourceTypeFromTask();
 
-            ClearInventoryUIElements();
+            ClearCraftingUIElements();
 
             // Dynamically add the resources to fill
             Dictionary<ResourceType, int> craftingRecipe = GameManager.Instance.CraftingManager.GetCraftingRecipe(resourceToCraft);
@@ -66,12 +66,12 @@ public class CraftingPopupWindow : PopupWindow
     /// <summary>
     /// Updates each UI element.
     /// </summary>
-    public void UpdateUI()
+    public override void UpdateUI()
     {
         foreach (InventoryUiElement inventoryUIElement in inventoryUiElements)
         {
             inventoryUIElement.UpdateUI();
-            if (inventoryUIElement.craftingPopupWindow == null) inventoryUIElement.craftingPopupWindow = this;
+            if (inventoryUIElement.popupWindow == null) inventoryUIElement.popupWindow = this;
         }
     }
 
@@ -86,7 +86,7 @@ public class CraftingPopupWindow : PopupWindow
     /// <summary>
     /// Destroys all the craftingUiElements and clears the list.
     /// </summary>
-    private void ClearInventoryUIElements()
+    private void ClearCraftingUIElements()
     {
         foreach (var craftingUiElement in craftingUiElements)
         {
@@ -109,15 +109,6 @@ public class CraftingPopupWindow : PopupWindow
     }
 
     /// <summary>
-    /// Get the Crafting Panel RectTransform.
-    /// </summary>
-    /// <returns>Crafting Panel</returns>
-    public RectTransform GetCraftingPanelRectTransform()
-    {
-        return craftingPanel.transform as RectTransform;
-    }
-
-    /// <summary>
     /// Fill a spot, remove only visually from the inventory
     /// If all spots are filled, craft the resourceToCraft & clear the UI
     /// </summary>
@@ -134,7 +125,7 @@ public class CraftingPopupWindow : PopupWindow
                 GameManager.Instance.CraftingManager.Craft(resourceToCraft);
                 StartAnimation();
 
-                ClearInventoryUIElements();
+                ClearCraftingUIElements();
 
                 resourceToCraft = ResourceType.None;
 
@@ -154,6 +145,6 @@ public class CraftingPopupWindow : PopupWindow
     /// </summary>
     public void StartAnimation()
     {
-        craftingTextAnimations.Add(Instantiate(craftedTextAnimationPrefabs.Where(x => x.GetComponent<ResourceTextAnimation>().GetResourceType() == resourceToCraft).FirstOrDefault(), craftingPanel.transform.position, Quaternion.identity, craftingPanel.transform).GetComponent<ResourceTextAnimation>());
+        craftingTextAnimations.Add(Instantiate(craftedTextAnimationPrefabs.Where(x => x.GetComponent<ResourceTextAnimation>().GetResourceType() == resourceToCraft).FirstOrDefault(), EndDragPanel.transform.position, Quaternion.identity, EndDragPanel.transform).GetComponent<ResourceTextAnimation>());
     }
 }
