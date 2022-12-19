@@ -1,4 +1,5 @@
 public class Mug : Resource, ICraftable
 {
-	public override ResourceType GetResourceType() => ResourceType.Mug;
+	protected override ResourceType ResourceType { get; set; } = ResourceType.Mug;
+	public override ResourceType GetResourceType() => ResourceType;
 }

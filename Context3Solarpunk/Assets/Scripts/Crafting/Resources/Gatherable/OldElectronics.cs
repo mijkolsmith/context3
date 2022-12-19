@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class OldElectronics : GatherableResource
 {
-	public override ResourceType GetResourceType() => ResourceType.OldElectronics;
+	protected override ResourceType ResourceType { get; set; } = ResourceType.OldElectronics;
+	public override ResourceType GetResourceType() => ResourceType;
 }

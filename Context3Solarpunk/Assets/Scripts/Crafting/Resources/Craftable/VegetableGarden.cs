@@ -1,4 +1,5 @@
 public class VegetableGarden : Resource, ICraftable
 {
-	public override ResourceType GetResourceType() => ResourceType.VegetableGarden;
+	protected override ResourceType ResourceType { get; set; } = ResourceType.VegetableGarden;
+	public override ResourceType GetResourceType() => ResourceType;
 }

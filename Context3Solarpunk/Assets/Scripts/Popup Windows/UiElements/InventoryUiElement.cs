@@ -5,13 +5,14 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using NaughtyAttributes;
 
-public class InventoryUiElement : Resource, IInitializePotentialDragHandler, IDragHandler
+public class InventoryUiElement : DraggableUiElement
 {
-	[SerializeField] private ResourceType resourceType;
-	[SerializeField] public TextMeshProUGUI amountText;
-	public override ResourceType GetResourceType() => resourceType;
-	[SerializeField] private Image image;
-	[HideInInspector] public PopupWindow popupWindow;
+	[field: SerializeField] protected override ResourceType ResourceType { set; get; }
+	[field: SerializeField] public override Image Image { get; set; }
+	public override PopupWindow PopupWindow { get; set; }
+	public override ResourceType GetResourceType() => ResourceType;
+
+	public TextMeshProUGUI amountText;
 	[SerializeField, ReadOnly] private int count;
 
 	/// <summary>
@@ -20,7 +21,7 @@ public class InventoryUiElement : Resource, IInitializePotentialDragHandler, IDr
 	/// </summary>
 	public void UpdateUI()
 	{
-		count = GameManager.Instance.CraftingManager.Resources.Where(x => x == resourceType).Count();
+		count = GameManager.Instance.CraftingManager.Resources.Where(x => x == ResourceType).Count();
 		amountText.text = count.ToString();
 		gameObject.SetActive(count > 0);
 	}
@@ -30,11 +31,11 @@ public class InventoryUiElement : Resource, IInitializePotentialDragHandler, IDr
 	/// Change the eventData with a new initialized object which is draggable.
 	/// </summary>
 	/// <param name="eventData"></param>
-	public void OnInitializePotentialDrag(PointerEventData eventData)
+	public override void OnInitializePotentialDrag(PointerEventData eventData)
 	{
-		if (popupWindow != null && count > 0)
+		if (PopupWindow != null && count > 0)
 		{
-			eventData.pointerDrag = popupWindow.GetComponent<CraftingPopupWindow>().SpawnDraggableObject(transform.position, resourceType, image.sprite);
+			eventData.pointerDrag = PopupWindow.GetComponent<CraftingPopupWindow>().SpawnDraggableObject(transform.position, ResourceType, Image.sprite);
 		}
 	}
 
@@ -43,7 +44,7 @@ public class InventoryUiElement : Resource, IInitializePotentialDragHandler, IDr
 	/// Empty function but the dragging does not work without calling it.
 	/// </summary>
 	/// <param name="eventData"></param>
-	public void OnDrag(PointerEventData eventData)
+	public override void OnDrag(PointerEventData eventData)
 	{
 		//empty
 	}

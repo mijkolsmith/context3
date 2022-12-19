@@ -71,7 +71,7 @@ public class CraftingPopupWindow : PopupWindow
         foreach (InventoryUiElement inventoryUIElement in inventoryUiElements)
         {
             inventoryUIElement.UpdateUI();
-            if (inventoryUIElement.popupWindow == null) inventoryUIElement.popupWindow = this;
+            if (inventoryUIElement.PopupWindow == null) inventoryUIElement.PopupWindow = this;
         }
     }
 

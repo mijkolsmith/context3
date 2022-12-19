@@ -1,4 +1,5 @@
 public class InsectHotel : Resource, ICraftable
 {
-	public override ResourceType GetResourceType() => ResourceType.InsectHotel;
+	protected override ResourceType ResourceType { get; set; } = ResourceType.InsectHotel;
+	public override ResourceType GetResourceType() => ResourceType;
 }

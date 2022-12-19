@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Leaf : GatherableResource
 {
-	public override ResourceType GetResourceType() => ResourceType.Leaf;
+	protected override ResourceType ResourceType { get; set; } = ResourceType.Leaf;
+	public override ResourceType GetResourceType() => ResourceType;
 }

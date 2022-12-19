@@ -1,4 +1,5 @@
 public class SunPanel : Resource, ICraftable
 {
-	public override ResourceType GetResourceType() => ResourceType.SunPanel;
+	protected override ResourceType ResourceType { get; set; } = ResourceType.SunPanel;
+	public override ResourceType GetResourceType() => ResourceType;
 }

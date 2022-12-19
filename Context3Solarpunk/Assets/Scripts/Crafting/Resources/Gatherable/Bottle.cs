@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Bottle : GatherableResource
 {
-	public override ResourceType GetResourceType() => ResourceType.Bottle;
+	protected override ResourceType ResourceType { get; set; } = ResourceType.Bottle;
+	public override ResourceType GetResourceType() => ResourceType;
 }

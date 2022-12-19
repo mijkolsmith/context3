@@ -1,4 +1,5 @@
 public class CompostHeap : Resource, ICraftable
 {
-	public override ResourceType GetResourceType() => ResourceType.CompostHeap;
+	protected override ResourceType ResourceType { get; set; } = ResourceType.CompostHeap;
+	public override ResourceType GetResourceType() => ResourceType;
 }

@@ -1,4 +1,5 @@
 public class SeparatedBin : Resource, ICraftable
 {
-	public override ResourceType GetResourceType() => ResourceType.SeparatedBin;
+	protected override ResourceType ResourceType { get; set; } = ResourceType.SeparatedBin;
+	public override ResourceType GetResourceType() => ResourceType;
 }

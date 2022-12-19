@@ -1,4 +1,5 @@
 public class LedLamp : Resource, ICraftable
 {
-	public override ResourceType GetResourceType() => ResourceType.LedLamp;
+	protected override ResourceType ResourceType { get; set; } = ResourceType.LedLamp;
+	public override ResourceType GetResourceType() => ResourceType;
 }

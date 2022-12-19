@@ -1,4 +1,5 @@
 public class Uniform : Resource, ICraftable
 {
-	public override ResourceType GetResourceType() => ResourceType.Uniform;
+	protected override ResourceType ResourceType { get; set; } = ResourceType.Uniform;
+	public override ResourceType GetResourceType() => ResourceType;
 }
