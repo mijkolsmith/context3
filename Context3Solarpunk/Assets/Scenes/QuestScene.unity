@@ -6233,7 +6233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &184155911
 Transform:
   m_ObjectHideFlags: 0
@@ -12635,8 +12635,8 @@ MonoBehaviour:
             m_CallState: 2
     - taskName: Verzamel tenminste een flesje en een blikje uit de afvalbakken
       type: 0
-      objectToInteract: {fileID: 970810674}
-      resourceToGet: 0
+      objectToInteract: {fileID: 919132149344689691}
+      resourceToGet: 2
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -26568,6 +26568,11 @@ Transform:
   m_Father: {fileID: 3900002543674456649}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &919132149344689691 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6468996069796436991, guid: 21b9eb5429cf82e4594f8d9227ec10ae, type: 3}
+  m_PrefabInstance: {fileID: 6126888320850560484}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &919132149563169133
 GameObject:
   m_ObjectHideFlags: 0
