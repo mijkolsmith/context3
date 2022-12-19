@@ -4,7 +4,7 @@ public class DialoguePopupWindow : PopupWindow
 {
 	[field: SerializeField] protected override GameObject PopupWindowObject { get; set; }
 	[field: SerializeField] protected override GameObject EndDragPanel { get; set; }
-	public override PopupWindowType GetPopupWindowType() => PopupWindowType.Crafting;
+	public override PopupWindowType GetPopupWindowType() => PopupWindowType.Dialogue;
 	public override RectTransform GetEndDragPanelRectTransform() => EndDragPanel.transform as RectTransform;
 
 	public override void Toggle()

@@ -140,12 +140,15 @@ public class QuestManager : MonoBehaviour
     /// <returns></returns>
     public ResourceType GetResourceTypeFromTask()
     {
-        for (int j = 0; j < currentQuest.tasks.Count; j++) //Check for all tasks in quest
+        if (currentQuest != null)
         {
-            if (!currentQuest.tasks[j].success && currentQuest.tasks[j].resourceToGet != ResourceType.None)
+            for (int j = 0; j < currentQuest.tasks.Count; j++) //Check for all tasks in quest
             {
-                Debug.Log("Got resourcetoget!");
-                return currentQuest.tasks[j].resourceToGet;
+                if (!currentQuest.tasks[j].success && currentQuest.tasks[j].resourceToGet != ResourceType.None)
+                {
+                    Debug.Log("Got resourcetoget!");
+                    return currentQuest.tasks[j].resourceToGet;
+                }
             }
         }
         Debug.Log("Didn't get resourcetoget!");

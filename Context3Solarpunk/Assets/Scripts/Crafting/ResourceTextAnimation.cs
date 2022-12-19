@@ -1,13 +1,13 @@
 using UnityEngine;
 using TMPro;
 
-public class ResourceTextAnimation : MonoBehaviour
+public class ResourceTextAnimation : Resource
 {
+	[field: SerializeField] protected override ResourceType ResourceType { get; set; }
+	public override ResourceType GetResourceType() => ResourceType;
 	[SerializeField] private TextMeshProUGUI textComponent;
 	private string text;
 	private float startHeight;
-	[SerializeField] private ResourceType resourceType;
-	public ResourceType GetResourceType() => resourceType;
 
 	/// <summary>
 	/// Get the text from the component in the Start method.

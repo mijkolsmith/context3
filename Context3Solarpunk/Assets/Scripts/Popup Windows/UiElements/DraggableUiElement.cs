@@ -6,7 +6,7 @@ public abstract class DraggableUiElement : Resource, IInitializePotentialDragHan
 	protected override abstract ResourceType ResourceType { get; set; }
 	public override abstract ResourceType GetResourceType();
 
-	public abstract Image Image { get; set; }
+	protected abstract Image Image { get; set; }
 	public abstract PopupWindow PopupWindow { get; set; }
 	public abstract void OnDrag(PointerEventData eventData);
 	public abstract void OnInitializePotentialDrag(PointerEventData eventData);

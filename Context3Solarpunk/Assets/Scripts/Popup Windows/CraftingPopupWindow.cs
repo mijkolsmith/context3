@@ -134,7 +134,8 @@ public class CraftingPopupWindow : PopupWindow
                 GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.CRAFTING_MACHINE);
                 GameManager.Instance.QuestManager.ProgressCraftQuest();
 
-                //TEMP FOR PLAYTEST 07 AND 08/12/22
+                //TEMP FOR PLAYTEST 19/12/22
+                GameManager.Instance.UiManager.TogglePopupWindow(PopupWindowType.Crafting);
                 questObjectHolder.SetActive(true);
             }
         }

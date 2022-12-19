@@ -11,7 +11,6 @@ public class EnvironmentManager : MonoBehaviour
     [SerializeField] private List<Environment> environments;
     [Range(0, 10), SerializeField] private int progress = 0;
 
-
     private bool validated = false;
 
     public int Progress { 

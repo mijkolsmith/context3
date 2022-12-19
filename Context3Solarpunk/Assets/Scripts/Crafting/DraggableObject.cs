@@ -88,8 +88,7 @@ public class DraggableObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 			}
 			else if (popupWindow.GetPopupWindowType() == PopupWindowType.RecycleBin)
 			{
-				GameManager.Instance.CraftingManager.AddResourceToInventory(resourceType);
-				popupWindow.UpdateUI();
+				((RecycleBinPopupWindow)popupWindow).AddResourceToInventory(resourceType);
 			}
 		}
 		Destroy(gameObject);

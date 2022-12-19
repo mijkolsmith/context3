@@ -12,7 +12,7 @@ public class RecycleBinPopupWindow : PopupWindow
 
     [SerializeField, ReadOnly] private List<InventoryUiElement> inventoryUiElements = new();
     [SerializeField] private List<GameObject> recycleBinUiElementPrefabs = new();
-    [SerializeField] private List<GameObject> recycleBinUiElementHolders = new();
+    [SerializeField] private List<Transform> recycleBinUiElementHolders = new();
     [SerializeField] private List<RecycleBinUiElement> recycleBinUiElements = new();
 
     [SerializeField] private GameObject draggableObjectPrefab;
@@ -48,7 +48,9 @@ public class RecycleBinPopupWindow : PopupWindow
             {
                 for (int i = 0; i < recycleBinContents[resourceType]; i++)
                 {
-                    recycleBinUiElements.Add(Instantiate(recycleBinUiElementPrefabs.Where(x => x.GetComponent<CraftingUiElement>().GetResourceType() == resourceType).FirstOrDefault(), recycleBinUiElementHolders[i].transform).GetComponent<RecycleBinUiElement>());
+                    // Add each resourceType UiElement to the respective UiElementHolder and to a list
+                    recycleBinUiElements.Add(Instantiate(recycleBinUiElementPrefabs.Where(x => x.GetComponent<RecycleBinUiElement>().GetResourceType() == resourceType).FirstOrDefault(), 
+                        recycleBinUiElementHolders.Where(x => x.GetComponent<RecycleBinUiElementHolder>().GetResourceType() == resourceType).FirstOrDefault()).GetComponent<RecycleBinUiElement>());
                 }
             }
 
@@ -84,5 +86,12 @@ public class RecycleBinPopupWindow : PopupWindow
     {
         var initializedDraggableObject = draggableObjectPrefab.GetComponent<DraggableObject>().Initialize(resourceType, sprite, this);
         return Instantiate(initializedDraggableObject, position, Quaternion.identity, transform);
+    }
+
+    public void AddResourceToInventory(ResourceType resourceType)
+	{
+        Destroy(recycleBinUiElements.Where(x => x.GetResourceType() == resourceType).FirstOrDefault().gameObject);
+        GameManager.Instance.CraftingManager.AddResourceToInventory(resourceType);
+        UpdateUI();
     }
 }

@@ -47,6 +47,10 @@ public class SequenceManager : MonoBehaviour
     {
         if (!timeTravelling)
         {
+            timeTravelling = true;
+            currentSequenceState = sequenceState.sequenceFadingIn;
+            //TODO: only change environment if advanced > quest completion
+            environmentNumber++;
             if (GameManager.Instance.EnvironmentManager.InThePast)
             {
                 TimeTravelToTheFuture();
@@ -66,16 +70,6 @@ public class SequenceManager : MonoBehaviour
     public void TimeTravelToTheFuture()
     {
         targetYear = 2082;
-        timeTravelling = true;
-        currentSequenceState = sequenceState.sequenceFadingIn;
-        if (!advanced)
-        {
-            environmentNumber = 0;
-        }
-        else
-        {
-            environmentNumber = 2;
-        }
         GameManager.Instance.EnvironmentManager.InThePast = false;
     }
 
@@ -91,9 +85,6 @@ public class SequenceManager : MonoBehaviour
     public void TimeTravelToThePast()
     {
         targetYear = 2022;
-        timeTravelling = true;
-        currentSequenceState = sequenceState.sequenceFadingIn;
-        environmentNumber = 1;
         GameManager.Instance.EnvironmentManager.InThePast = true;
     }
 

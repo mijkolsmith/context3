@@ -6,7 +6,7 @@ public class CraftingUiElement : Resource
     [field: SerializeField] protected override ResourceType ResourceType { get; set; }
     public override ResourceType GetResourceType() => ResourceType;
 
-    [SerializeField] protected Image Image;
+    [SerializeField] private Image image;
     public bool activated = false;
 
     /// <summary>
@@ -14,7 +14,7 @@ public class CraftingUiElement : Resource
     /// </summary>
     public void Activate()
 	{
-        Image.color = new Color(Image.color.r, Image.color.g, Image.color.b, 255);
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 255);
         activated = true;
 	}
 }

@@ -369,6 +369,7 @@ GameObject:
   - component: {fileID: 1245208960004385097}
   - component: {fileID: 1245208960004385103}
   - component: {fileID: 1534878691677359569}
+  - component: {fileID: 5798917180410674432}
   m_Layer: 5
   m_Name: GridLayoutGroupBottle
   m_TagString: Untagged
@@ -428,6 +429,19 @@ MonoBehaviour:
   m_Spacing: {x: 50, y: 50}
   m_Constraint: 2
   m_ConstraintCount: 4
+--- !u!114 &5798917180410674432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245208960004385096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f920e5a6b7b15f4d9884b101069e320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ResourceType>k__BackingField: 2
 --- !u!1 &1245208960843153436
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,6 +491,7 @@ GameObject:
   - component: {fileID: 6950603330813079083}
   - component: {fileID: 328104099523600329}
   - component: {fileID: 7046655914784819676}
+  - component: {fileID: 4083215015562124339}
   m_Layer: 5
   m_Name: GridLayoutGroupOldPlastic
   m_TagString: Untagged
@@ -536,6 +551,19 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 50}
   m_Constraint: 2
   m_ConstraintCount: 4
+--- !u!114 &4083215015562124339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2629380546235113295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f920e5a6b7b15f4d9884b101069e320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ResourceType>k__BackingField: 1
 --- !u!1 &2702869598315176071
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,6 +651,7 @@ GameObject:
   - component: {fileID: 8686485453754589539}
   - component: {fileID: 737454700083458942}
   - component: {fileID: 6933735744054218353}
+  - component: {fileID: 8062234058135168859}
   m_Layer: 5
   m_Name: GridLayoutGroupOldElectronics
   m_TagString: Untagged
@@ -682,6 +711,19 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 50}
   m_Constraint: 2
   m_ConstraintCount: 4
+--- !u!114 &8062234058135168859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3476353091336706687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f920e5a6b7b15f4d9884b101069e320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ResourceType>k__BackingField: 3
 --- !u!1 &3588097393193483141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,6 +1207,17 @@ MonoBehaviour:
   <PopupWindowObject>k__BackingField: {fileID: 1245208960843153436}
   <EndDragPanel>k__BackingField: {fileID: 1245208959649630910}
   inventoryUiElements: []
+  recycleBinUiElementPrefabs:
+  - {fileID: 8685520767902670397, guid: 60c0ee380f4f16049950b7de10ba32f4, type: 3}
+  - {fileID: 6331842083044769602, guid: 6dc5e3e010369f44592fda6775363e00, type: 3}
+  - {fileID: 5448643370654542334, guid: 3cb8f1c6df3c6f1469bc673321d45f2e, type: 3}
+  - {fileID: 4398809787888089429, guid: 01cd7946e71953e44a1fe42237f7a602, type: 3}
+  recycleBinUiElementHolders:
+  - {fileID: 1245208960004385097}
+  - {fileID: 8686485453754589539}
+  - {fileID: 6950603330813079083}
+  - {fileID: 1390405008570199561}
+  recycleBinUiElements: []
   draggableObjectPrefab: {fileID: 9218807310006740288, guid: 1b7e24d05ab7a9e4ea6a9d9d312658ac, type: 3}
 --- !u!1 &5378315985816376652
 GameObject:
@@ -1325,6 +1378,7 @@ GameObject:
   - component: {fileID: 1390405008570199561}
   - component: {fileID: 1253361344796797063}
   - component: {fileID: 7924933868314943117}
+  - component: {fileID: 6385611624423733067}
   m_Layer: 5
   m_Name: GridLayoutGroupLeaf
   m_TagString: Untagged
@@ -1384,6 +1438,19 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 50}
   m_Constraint: 2
   m_ConstraintCount: 4
+--- !u!114 &6385611624423733067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8714353026720198851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f920e5a6b7b15f4d9884b101069e320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ResourceType>k__BackingField: 6
 --- !u!1001 &984330552487573581
 PrefabInstance:
   m_ObjectHideFlags: 0

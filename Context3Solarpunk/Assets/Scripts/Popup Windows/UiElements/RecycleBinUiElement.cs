@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class RecycleBinUiElement : DraggableUiElement
 {
 	[field: SerializeField] protected override ResourceType ResourceType { set; get; }
-	[field: SerializeField] public override Image Image { get; set; }
+	[field: SerializeField] protected override Image Image { get; set; }
 	public override PopupWindow PopupWindow { get; set; }
 	public override ResourceType GetResourceType() => ResourceType;
 
