@@ -3,7 +3,9 @@ using UnityEngine;
 public class DialoguePopupWindow : PopupWindow
 {
 	[field: SerializeField] protected override GameObject PopupWindowObject { get; set; }
-	public override PopupWindowType GetPopupWindowType() => PopupWindowType.Dialogue;
+	[field: SerializeField] protected override GameObject EndDragPanel { get; set; }
+	public override PopupWindowType GetPopupWindowType() => PopupWindowType.Crafting;
+	public override RectTransform GetEndDragPanelRectTransform() => EndDragPanel.transform as RectTransform;
 
 	public override void Toggle()
 	{
@@ -17,5 +19,10 @@ public class DialoguePopupWindow : PopupWindow
 			PopupWindowObject.SetActive(true);
 			GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.Dialogue;
 		}
+	}
+
+	public override void UpdateUI()
+	{
+		
 	}
 }

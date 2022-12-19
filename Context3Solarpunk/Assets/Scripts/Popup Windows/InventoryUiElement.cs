@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System;
 using NaughtyAttributes;
 
 public class InventoryUiElement : Resource, IInitializePotentialDragHandler, IDragHandler
@@ -14,7 +11,7 @@ public class InventoryUiElement : Resource, IInitializePotentialDragHandler, IDr
 	[SerializeField] public TextMeshProUGUI amountText;
 	public override ResourceType GetResourceType() => resourceType;
 	[SerializeField] private Image image;
-	[HideInInspector] public CraftingPopupWindow craftingPopupWindow;
+	[HideInInspector] public PopupWindow popupWindow;
 	[SerializeField, ReadOnly] private int count;
 
 	/// <summary>
@@ -35,9 +32,9 @@ public class InventoryUiElement : Resource, IInitializePotentialDragHandler, IDr
 	/// <param name="eventData"></param>
 	public void OnInitializePotentialDrag(PointerEventData eventData)
 	{
-		if (craftingPopupWindow != null && count > 0)
+		if (popupWindow != null && count > 0)
 		{
-			eventData.pointerDrag = craftingPopupWindow.GetComponent<CraftingPopupWindow>().SpawnDraggableObject(transform.position, resourceType, image.sprite);
+			eventData.pointerDrag = popupWindow.GetComponent<CraftingPopupWindow>().SpawnDraggableObject(transform.position, resourceType, image.sprite);
 		}
 	}
 
