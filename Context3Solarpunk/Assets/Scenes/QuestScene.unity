@@ -3621,7 +3621,7 @@ MonoBehaviour:
           m_Calls: []
     tasks:
     - taskName: Loop naar links met je muis!
-      type: 0
+      type: 1
       objectToInteract: {fileID: 350258233}
       resourceToGet: 0
       success: 0
@@ -3678,7 +3678,7 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
     - taskName: Loop een klein stukje naar rechts
-      type: 0
+      type: 1
       objectToInteract: {fileID: 643524434}
       resourceToGet: 0
       success: 0
@@ -4040,7 +4040,7 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
     - taskName: Loop een klein stukje naar rechts
-      type: 0
+      type: 1
       objectToInteract: {fileID: 891824314}
       resourceToGet: 0
       success: 0
@@ -4234,7 +4234,7 @@ MonoBehaviour:
     - taskName: Probeer LED-lampen te maken in de recyclemachine
       type: 1
       objectToInteract: {fileID: 1642109989}
-      resourceToGet: 0
+      resourceToGet: 11
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -4252,64 +4252,90 @@ MonoBehaviour:
               m_BoolArgument: 1
             m_CallState: 2
     - taskName: Loop weg van de machine
-      type: 0
+      type: 1
+      objectToInteract: {fileID: 970810674}
+      resourceToGet: 11
+      success: 0
+      succesEvent:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 312700401}
+            m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+            m_MethodName: StartDialogue
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 'Dorien: We hebben niet genoeg spullen om LED-lampen
+                te maken...|Laten we in de nieuwe recyclebakken kijken of de werknemers
+                hun flesjes en blikjes hebben gesorteerd.*'
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 970810674}
+            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_MethodName: SetActive
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    - taskName: Verzamel tenminste een flesje en een blikje uit de afvalbakken
+      type: 1
+      objectToInteract: {fileID: 1769934392}
+      resourceToGet: 11
+      success: 0
+      succesEvent:
+        m_PersistentCalls:
+          m_Calls: []
+    - taskName: Maak LED-lampen in de recycle machine
+      type: 2
+      objectToInteract: {fileID: 1642109989}
+      resourceToGet: 11
+      success: 0
+      succesEvent:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 970810674}
+            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_MethodName: SetActive
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
+    - taskName: Loop een klein beetje
+      type: 1
       objectToInteract: {fileID: 970810674}
       resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 312700401}
-            m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-            m_MethodName: StartDialogue
-            m_Mode: 5
+          - m_Target: {fileID: 970810674}
+            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_MethodName: SetActive
+            m_Mode: 6
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: 'Dorien: We hebben niet genoeg spullen om LED-lampen
-                te maken...|Laten we in de nieuwe recyclebakken kijken of de werknemers
-                hun flesjes en blikjes hebben gesorteerd.*'
-              m_BoolArgument: 0
-            m_CallState: 2
-    - taskName: Verzamel tenminste een flesje en een blikje uit de afvalbakken
-      type: 0
-      objectToInteract: {fileID: 0}
-      resourceToGet: 2
-      success: 0
-      succesEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 312700401}
-            m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-            m_MethodName: StartDialogue
-            m_Mode: 5
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 'Dorien: We hebben niet genoeg spullen om LED-lampen
-                te maken...|Laten we in de nieuwe recyclebakken kijken of de werknemers
-                hun flesjes en blikjes hebben gesorteerd.*'
+              m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
     activateEvent:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5777400}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
     succesEvent:
       m_PersistentCalls:
         m_Calls:
@@ -4322,7 +4348,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 
+            m_StringArgument: 'Dorien: Goed gedaan! Einde playtest.*'
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!114 &818546141
@@ -4694,6 +4720,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1365162627}
     m_Modifications:
+    - target: {fileID: 891824315, guid: 06ffe0028cfe4844d9b4fa5b5fc8ac56, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 891824315, guid: 06ffe0028cfe4844d9b4fa5b5fc8ac56, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -449.52
+      objectReference: {fileID: 0}
     - target: {fileID: 8783054870406185284, guid: 06ffe0028cfe4844d9b4fa5b5fc8ac56, type: 3}
       propertyPath: m_Name
       value: EnvironmentFutureQ2
@@ -11019,6 +11053,22 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1365162627}
     m_Modifications:
+    - target: {fileID: 6234852457686480824, guid: 4e8961545023d6548bd76822368e2313, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6234852457686480825, guid: 4e8961545023d6548bd76822368e2313, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6234852457686480830, guid: 4e8961545023d6548bd76822368e2313, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6234852458348868980, guid: 4e8961545023d6548bd76822368e2313, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6234852458443255178, guid: 4e8961545023d6548bd76822368e2313, type: 3}
       propertyPath: m_Name
       value: EnvironmentPresentQ2

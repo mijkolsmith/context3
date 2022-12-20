@@ -148,4 +148,9 @@ public class CraftingPopupWindow : PopupWindow
     {
         craftingTextAnimations.Add(Instantiate(craftedTextAnimationPrefabs.Where(x => x.GetComponent<ResourceTextAnimation>().GetResourceType() == resourceToCraft).FirstOrDefault(), EndDragPanel.transform.position, Quaternion.identity, EndDragPanel.transform).GetComponent<ResourceTextAnimation>());
     }
+
+    public void SetResourceToCraft(ResourceType resourceType)
+	{
+        resourceToCraft = resourceType;
+	}
 }
