@@ -29,7 +29,9 @@ public class SequenceManager : MonoBehaviour
     [SerializeField] private float countDuration = 2.5f;
     [SerializeField] private float fadeDuration = 1.5f;
 
+    //delayed dialogue
     private string savedDelayedDialogue;
+    private bool startDelayedDialogue;
 
     int environmentNumber = 0;
 
@@ -213,12 +215,17 @@ public class SequenceManager : MonoBehaviour
         currentSequenceState = sequenceState.SequenceFadingOut;
         Sequence(environmentNumber);
 
-        GameManager.Instance.UiManager.StartDialogue(savedDelayedDialogue);
+        if (startDelayedDialogue)
+        {
+            GameManager.Instance.UiManager.StartDialogue(savedDelayedDialogue);
+            startDelayedDialogue = false;
+        }
         yield return null;
     }
 
     public void TimeTravelSetDelayedDialogue(string dialogue)
 	{
         savedDelayedDialogue = dialogue;
+        startDelayedDialogue = true;
     }
 }

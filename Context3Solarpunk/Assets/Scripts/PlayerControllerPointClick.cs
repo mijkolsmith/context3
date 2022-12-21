@@ -4,15 +4,12 @@ using NaughtyAttributes;
 
 public class PlayerControllerPointClick : MonoBehaviour
 {
-#region Variables
+    #region Variables
     [Header("Movement")]
     [SerializeField] private LayerMask walkableLayer;
     [SerializeField] private GameObject targetDestinationGameObject;
     [SerializeField] private float targetGameObjectDisappearDistance = 2f;
     private NavMeshAgent agent;
-
-    [Header("State")]
-    [SerializeField, ReadOnly] private PlayerStates playerState = PlayerStates.idle; //Player is currently... (insert state here)
 
     [Header("Interaction")]
     [ReadOnly] private IInteractable interactableObject;
@@ -47,7 +44,6 @@ public class PlayerControllerPointClick : MonoBehaviour
 
     #region Properties
     public static GameObject Player { get; private set; }
-    internal PlayerStates PlayerState { get => playerState; set => playerState = value; }
     public GameObject CompanionPositionGameObject { get => companionPositionGameObject; set => companionPositionGameObject = value; }
     public IInteractable InteractableObject { get => interactableObject; set => interactableObject = value; }
 #endregion
@@ -99,7 +95,9 @@ public class PlayerControllerPointClick : MonoBehaviour
 					interactableObject.Highlight(canInteractColor);
 					if (interactionInput || GameManager.Instance.InputManager.DoubleClick())
 					{
-						interactableObject.Interact();
+                        CancelMovement();
+
+                        interactableObject.Interact();
 						GameManager.Instance.RefreshNavMesh();
 					}
 				}
@@ -115,7 +113,7 @@ public class PlayerControllerPointClick : MonoBehaviour
         }
         else
 		{
-            agent.SetDestination(transform.position);
+            CancelMovement();
         }
 
         if (Vector3.Distance(gameObject.transform.position, targetDestinationGameObject.transform.position) < targetGameObjectDisappearDistance)
@@ -126,5 +124,14 @@ public class PlayerControllerPointClick : MonoBehaviour
         {
             targetDestinationGameObject.SetActive(true);
         }
+    }
+
+    /// <summary>
+    /// Cancel the player movement
+    /// </summary>
+    private void CancelMovement()
+	{
+        targetDestinationGameObject.transform.position = transform.position;
+        agent.SetDestination(transform.position);
     }
 }
