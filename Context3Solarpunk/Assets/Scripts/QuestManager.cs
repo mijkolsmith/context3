@@ -71,7 +71,7 @@ public class QuestManager : MonoBehaviour
             if (q.state == QuestState.Active) //Get all the active ones
             {
                 //If quest is sequential
-                if (q.sequential)
+                if (q.sequential && q.currentTask.objectToInteract.GetComponent<IInteractable>() == interactableObject)
                 {
                     ProgressSequentialQuest(q);
                 }
@@ -123,10 +123,10 @@ public class QuestManager : MonoBehaviour
     /// </summary>
     /// <param name="task"></param>
     /// <param name="interactable"></param>
-    public void ProgressInteractQuest(Task task, IInteractable interactable)
+    public void ProgressInteractQuest(Task task, IInteractable interactableObject)
     {
         //if (task.objectToInteract == null) continue;
-        if (task.objectToInteract.GetComponent<IInteractable>() == interactable)
+        if (task.objectToInteract.GetComponent<IInteractable>() == interactableObject)
         {
             task.success = true;
             task.succesEvent?.Invoke();
