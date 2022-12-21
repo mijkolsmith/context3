@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 8f2c8ef98c47442d4b0e1896539bf7f1, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.3722968, g: 0.6828077, b: 0.87282574, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -20537,6 +20537,7 @@ Transform:
   - {fileID: 432411248}
   - {fileID: 411558935}
   - {fileID: 352241433}
+  - {fileID: 2064668373}
   - {fileID: 469822196}
   - {fileID: 1374548025}
   m_Father: {fileID: 751730327}
@@ -29319,12 +29320,12 @@ MonoBehaviour:
   environments:
   - name: Modern
     foggy: 0
-    skyboxMaterial: {fileID: 0}
+    skyboxMaterial: {fileID: 2100000, guid: 8f2c8ef98c47442d4b0e1896539bf7f1, type: 2}
     objects:
     - {fileID: 1022434535}
   - name: Dystopie
     foggy: 1
-    skyboxMaterial: {fileID: 0}
+    skyboxMaterial: {fileID: 2100000, guid: 73c551c0f8d890f4f8c85f1604fc776c, type: 2}
     objects:
     - {fileID: 1742907482}
   progress: 0
@@ -31973,7 +31974,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064668372}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -68.45054, y: 10.510105, z: 68.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -32058,8 +32059,8 @@ Transform:
   - {fileID: 960350259}
   - {fileID: 518924801}
   - {fileID: 161162303}
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1022434536}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2080074269
 PrefabInstance:
