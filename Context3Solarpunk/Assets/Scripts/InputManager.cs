@@ -8,7 +8,6 @@ public class InputManager : MonoBehaviour
     float timeBetweenClicks = 0.2f;
     int clickCounter = 0;
 
-
     //DoubleClick behaviour
     public bool DoubleClick()
     {

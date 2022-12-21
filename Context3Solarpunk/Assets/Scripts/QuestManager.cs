@@ -38,6 +38,7 @@ public class QuestManager : MonoBehaviour
             quest.currentTask = quest.tasks[0];
             GameManager.Instance.UiManager.QuestText.text = quest.currentTask.taskName;
         }
+        else GameManager.Instance.UiManager.QuestText.text = quest.tasks[0].taskName;
         currentQuest = quest;
         quest.activateEvent?.Invoke();
     }
@@ -76,6 +77,7 @@ public class QuestManager : MonoBehaviour
                 }
                 else //Not sequential
                 {
+                    GameManager.Instance.UiManager.QuestText.text = q.tasks[0].taskName;
                     for (int j = 0; j < q.tasks.Count; j++)
                     {
                         switch (q.tasks[j].type)
@@ -108,13 +110,12 @@ public class QuestManager : MonoBehaviour
     {
         q.currentTask.success = true;
         q.currentTask.succesEvent?.Invoke();
-        GameManager.Instance.UiManager.QuestText.text = q.currentTask.taskName;
-
         q.taskNmbr++;
         if (q.taskNmbr < q.tasks.Count)
         {
             q.currentTask = q.tasks[q.taskNmbr];
         }
+        GameManager.Instance.UiManager.QuestText.text = q.currentTask.taskName;
     }
 
     /// <summary>
@@ -124,14 +125,12 @@ public class QuestManager : MonoBehaviour
     /// <param name="interactable"></param>
     public void ProgressInteractQuest(Task task, IInteractable interactable)
     {
-
         //if (task.objectToInteract == null) continue;
         if (task.objectToInteract.GetComponent<IInteractable>() == interactable)
         {
             task.success = true;
             task.succesEvent?.Invoke();
         }
-
     }
 
     /// <summary>

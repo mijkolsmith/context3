@@ -1767,6 +1767,22 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f83b45ca3ca3e546b934253d9d6b2a6, type: 3}
+--- !u!1 &494149808 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3849827652478937224, guid: 4f3496bb0e874fd4bbd0a7d18350532c, type: 3}
+  m_PrefabInstance: {fileID: 877693437}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &494149810 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1410645775828550108, guid: 4f3496bb0e874fd4bbd0a7d18350532c, type: 3}
+  m_PrefabInstance: {fileID: 877693437}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494149808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a7d855f1fae46640811e9637fdb7b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &518548772
 GameObject:
   m_ObjectHideFlags: 0
@@ -2285,11 +2301,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8520004809675995954, guid: 4fc9fdb2e20c25d419698aa4965f0ec1, type: 3}
   m_PrefabInstance: {fileID: 630429038}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &643524434 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1675551653131027114, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
-  m_PrefabInstance: {fileID: 1675551653570995704}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &644005236
 GameObject:
@@ -2856,11 +2867,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &718336185 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1675551652921873729, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
-  m_PrefabInstance: {fileID: 1675551653570995704}
-  m_PrefabAsset: {fileID: 0}
 --- !u!64 &726718013
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3518,8 +3524,9 @@ GameObject:
   - component: {fileID: 818546141}
   - component: {fileID: 818546142}
   - component: {fileID: 818546143}
-  - component: {fileID: 818546145}
   - component: {fileID: 818546144}
+  - component: {fileID: 818546145}
+  - component: {fileID: 818546147}
   - component: {fileID: 818546146}
   m_Layer: 0
   m_Name: GameManager
@@ -3603,7 +3610,7 @@ MonoBehaviour:
         m_Calls: []
   player: {fileID: 1359714926}
   quests:
-  - Name: 'Intro: Dorien legt je het spel uit!'
+  - Name: 'Intro: Dorien legt je het spel uit'
     Description: Met deze quest legt Dorien uit hoe je het spel speelt en hoe je
       tijdreist
     uniqueQuestID: 0
@@ -3620,7 +3627,7 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
     tasks:
-    - taskName: Loop naar links met je muis!
+    - taskName: Loop een klein stukje door je linkermuisknop te gebruiken
       type: 1
       objectToInteract: {fileID: 350258233}
       resourceToGet: 0
@@ -3669,23 +3676,49 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-    - taskName: Ga nu tijdreizen!
+    - taskName: Ga tijdreizen naar het verleden met de tijdreistrein
       type: 1
       objectToInteract: {fileID: 972472360}
       resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 818546142}
+            m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
+            m_MethodName: CompletedAllTasksInTimeline
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 818546142}
+            m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
+            m_MethodName: TimeTravelSetDelayedDialogue
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 'Dorien: Goed werk!|Nu kun je verder lopen naar het
+                Arriva kantoor.|Als je niet weet wat je moet doen, kun je linksonder
+                op mijn knop drukken.*         '
+              m_BoolArgument: 0
+            m_CallState: 2
     - taskName: Loop een klein stukje naar rechts
       type: 1
-      objectToInteract: {fileID: 643524434}
+      objectToInteract: {fileID: 0}
       resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 643524434}
+          - m_Target: {fileID: 0}
             m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_MethodName: SetActive
             m_Mode: 6
@@ -3725,9 +3758,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 'Dorien: Goed werk!|Nu kun je verder lopen naar het
-              Arriva kantoor.|Als je niet weet wat je moet doen, kun je linksonder
-              op mijn knop drukken.*'
+            m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
         - m_Target: {fileID: 1047991768}
@@ -3742,7 +3773,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - Name: 'Quest 1.1: Ruim het afval van het platform op!'
+  - Name: 'Quest 1.1: Ruim het afval van het platform op'
     Description: Quest waarin de speler het afval moet opruimen voor het Arriva gebouw
     uniqueQuestID: 1
     sequential: 0
@@ -3765,19 +3796,7 @@ MonoBehaviour:
       success: 0
       succesEvent:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 0}
-            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_MethodName: SetActive
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
     - taskName: Ruim het afval op
       type: 1
       objectToInteract: {fileID: 1880684873}
@@ -3785,19 +3804,7 @@ MonoBehaviour:
       success: 0
       succesEvent:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 0}
-            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_MethodName: SetActive
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
     - taskName: Ruim het afval op
       type: 1
       objectToInteract: {fileID: 585683569}
@@ -3805,19 +3812,7 @@ MonoBehaviour:
       success: 0
       succesEvent:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 0}
-            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_MethodName: SetActive
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
     - taskName: Ruim het afval op
       type: 1
       objectToInteract: {fileID: 1954922637}
@@ -3825,19 +3820,7 @@ MonoBehaviour:
       success: 0
       succesEvent:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 0}
-            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_MethodName: SetActive
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
     - taskName: Ruim het afval op
       type: 1
       objectToInteract: {fileID: 1241556417}
@@ -3845,19 +3828,7 @@ MonoBehaviour:
       success: 0
       succesEvent:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 0}
-            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_MethodName: SetActive
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
     - taskName: Ruim het afval op
       type: 1
       objectToInteract: {fileID: 1908352993}
@@ -3865,19 +3836,7 @@ MonoBehaviour:
       success: 0
       succesEvent:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 0}
-            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_MethodName: SetActive
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
     activateEvent:
       m_PersistentCalls:
         m_Calls:
@@ -3935,7 +3894,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - Name: 'Quest 1.2: Gebruik de recyclemachine met rechtermuisknop!'
+  - Name: 'Quest 1.2: Gebruik de recyclemachine en reis terug naar de toekomst voor
+      het resultaat'
     Description: Quest waarin de speler het afval moet opruimen voor het Arriva gebouw
     uniqueQuestID: 2
     sequential: 0
@@ -3951,7 +3911,7 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
     tasks:
-    - taskName: Gebruik de recyclemachine
+    - taskName: Gebruik de recyclemachine om gescheiden afvalbakken te maken
       type: 2
       objectToInteract: {fileID: 1642109989}
       resourceToGet: 9
@@ -3959,9 +3919,31 @@ MonoBehaviour:
       succesEvent:
         m_PersistentCalls:
           m_Calls:
+          - m_Target: {fileID: 312700401}
+            m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+            m_MethodName: StartDialogue
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 'Dorien: Goed gedaan, je hebt nieuwe afvalbakken
+                gemaakt.|Je kunt nu terug naar de toekomst gaan om het resultaat
+                van je werk te zien!*'
+              m_BoolArgument: 0
+            m_CallState: 2
+    - taskName: Ga terug naar de toekomst!
+      type: 1
+      objectToInteract: {fileID: 972472360}
+      resourceToGet: 0
+      success: 0
+      succesEvent:
+        m_PersistentCalls:
+          m_Calls:
           - m_Target: {fileID: 818546142}
             m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-            m_MethodName: AdvanceFuture
+            m_MethodName: CompletedAllTasksInTimeline
             m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
@@ -3969,7 +3951,21 @@ MonoBehaviour:
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
-              m_BoolArgument: 1
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 818546142}
+            m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
+            m_MethodName: TimeTravelSetDelayedDialogue
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 'Dorien: Wow, het is zo veel schoner dan eerst!|Ik
+                ben benieuwd wat we nog meer kunnen verbeteren.|Laten we het gebouw
+                binnen gaan!*'
+              m_BoolArgument: 0
             m_CallState: 2
     activateEvent:
       m_PersistentCalls:
@@ -3983,7 +3979,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 'Dorien: Laten we het opgeruimd houden door gescheiden
+            m_StringArgument: 'Dorien: Laten we het hier opgeruimd houden door gescheiden
               afvalbakken te maken voor de medewerkers.|Dit kan je doen bij de recycle
               machine.*'
             m_BoolArgument: 0
@@ -4002,99 +3998,10 @@ MonoBehaviour:
           m_CallState: 2
     succesEvent:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 718336185}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-  - Name: 'Quest 1.3: Ga terug naar de toekomst!'
-    Description: Reis terug naar de toekomst met behulp van de tijdreistrein.
-    uniqueQuestID: 3
-    sequential: 0
-    state: 0
-    taskNmbr: 0
-    currentTask:
-      taskName: 
-      type: 0
-      objectToInteract: {fileID: 0}
-      resourceToGet: 0
-      success: 0
-      succesEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    tasks:
-    - taskName: Ga terug naar de toekomst!
-      type: 1
-      objectToInteract: {fileID: 972472360}
-      resourceToGet: 0
-      success: 0
-      succesEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    - taskName: Loop een klein stukje naar rechts
-      type: 1
-      objectToInteract: {fileID: 891824314}
-      resourceToGet: 0
-      success: 0
-      succesEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 891824314}
-            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_MethodName: SetActive
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    activateEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 312700401}
-          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-          m_MethodName: StartDialogue
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 'Dorien: Je kunt nu terug naar de toekomst gaan om
-              het resultaat van je werk te zien!*'
-            m_BoolArgument: 0
-          m_CallState: 2
-    succesEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 312700401}
-          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-          m_MethodName: StartDialogue
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 'Dorien: Wow, het is zo veel schoner dan eerst!|Ik
-              ben benieuwd wat we nog meer kunnen verbeteren.|Laten we het gebouw
-              binnen gaan!*'
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
   - Name: 'Quest 2.4: Het kantoor'
     Description: Het kantoor is enorm donker... wat nu?
-    uniqueQuestID: 4
+    uniqueQuestID: 3
     sequential: 0
     state: 0
     taskNmbr: 0
@@ -4115,7 +4022,19 @@ MonoBehaviour:
       success: 0
       succesEvent:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 818546142}
+            m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
+            m_MethodName: CompletedAllTasksInTimeline
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
     activateEvent:
       m_PersistentCalls:
         m_Calls:
@@ -4140,7 +4059,7 @@ MonoBehaviour:
         m_Calls: []
   - Name: 'Quest 2.5: Verzamelen van afval'
     Description: Verzamel het afval van blikjes en flesjes (metaal en glas)
-    uniqueQuestID: 5
+    uniqueQuestID: 4
     sequential: 0
     state: 0
     taskNmbr: 0
@@ -4217,7 +4136,7 @@ MonoBehaviour:
           m_CallState: 2
   - Name: 'Quest 2.6: Craften van LED-lampen'
     Description: Recycle afval om LED-lampen te maken
-    uniqueQuestID: 6
+    uniqueQuestID: 5
     sequential: 0
     state: 0
     taskNmbr: 0
@@ -4238,23 +4157,11 @@ MonoBehaviour:
       success: 0
       succesEvent:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 970810674}
-            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_MethodName: SetActive
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 1
-            m_CallState: 2
-    - taskName: Loop weg van de machine
+          m_Calls: []
+    - taskName: Sluit de recyclemachine interface
       type: 1
-      objectToInteract: {fileID: 970810674}
-      resourceToGet: 11
+      objectToInteract: {fileID: 494149808}
+      resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -4273,18 +4180,6 @@ MonoBehaviour:
                 hun flesjes en blikjes hebben gesorteerd.*'
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 970810674}
-            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_MethodName: SetActive
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
     - taskName: Verzamel tenminste een flesje en een blikje uit de afvalbakken
       type: 1
       objectToInteract: {fileID: 1769934392}
@@ -4301,30 +4196,31 @@ MonoBehaviour:
       succesEvent:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 970810674}
-            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_MethodName: SetActive
-            m_Mode: 6
+          - m_Target: {fileID: 312700401}
+            m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+            m_MethodName: StartDialogue
+            m_Mode: 5
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 1
+              m_StringArgument: 'Dorien: Laten we kijken hoe het kantoor er nu uitziet
+                in de toekomst'
+              m_BoolArgument: 0
             m_CallState: 2
-    - taskName: Loop een klein beetje
+    - taskName: Reis weer naar de toekomst!
       type: 1
-      objectToInteract: {fileID: 970810674}
+      objectToInteract: {fileID: 972472360}
       resourceToGet: 0
       success: 0
       succesEvent:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 970810674}
-            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_MethodName: SetActive
-            m_Mode: 6
+          - m_Target: {fileID: 818546142}
+            m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
+            m_MethodName: CompletedAllTasksInTimeline
+            m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4333,24 +4229,24 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+          - m_Target: {fileID: 818546142}
+            m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
+            m_MethodName: TimeTravelSetDelayedDialogue
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 'Dorien: Goed gedaan! Einde playtest.*'
+              m_BoolArgument: 0
+            m_CallState: 2
     activateEvent:
       m_PersistentCalls:
         m_Calls: []
     succesEvent:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 312700401}
-          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-          m_MethodName: StartDialogue
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 'Dorien: Goed gedaan! Einde playtest.*'
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!114 &818546141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4417,7 +4313,7 @@ MonoBehaviour:
     objects:
     - {fileID: 959445536}
   - name: EnvironmentPresentQ2
-    foggy: 1
+    foggy: 0
     skyboxMaterial: {fileID: 0}
     objects:
     - {fileID: 184155910}
@@ -4434,7 +4330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bdd6488c1ea588499cc20d8481f83da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 818546145}
+  audioSources: []
   sounds:
   - soundName: 0
     audioClip: {fileID: 8300000, guid: 38f3aa650d8ce514e9aafbc6e31bdb34, type: 3}
@@ -4552,6 +4448,102 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 919b26f43e6075448a1fba960611639a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &818546147
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818546134}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 462bcfd10ba03a84fbb55633e041627e, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!64 &857980314
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4589,9 +4581,37 @@ PrefabInstance:
     m_TransformParent: {fileID: 312700400}
     m_Modifications:
     - target: {fileID: 1311215264945102825, guid: 4f3496bb0e874fd4bbd0a7d18350532c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311215264945102825, guid: 4f3496bb0e874fd4bbd0a7d18350532c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311215264945102825, guid: 4f3496bb0e874fd4bbd0a7d18350532c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 312700401}
+    - target: {fileID: 1311215264945102825, guid: 4f3496bb0e874fd4bbd0a7d18350532c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 494149810}
+    - target: {fileID: 1311215264945102825, guid: 4f3496bb0e874fd4bbd0a7d18350532c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311215264945102825, guid: 4f3496bb0e874fd4bbd0a7d18350532c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311215264945102825, guid: 4f3496bb0e874fd4bbd0a7d18350532c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PopupWindowComponent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311215264945102825, guid: 4f3496bb0e874fd4bbd0a7d18350532c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4132951295329935383, guid: 4f3496bb0e874fd4bbd0a7d18350532c, type: 3}
       propertyPath: questObjectHolder
       value: 
@@ -4707,11 +4727,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 787c79a86efc73a4cb6eb70b02747ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &891824314 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 891824314, guid: 06ffe0028cfe4844d9b4fa5b5fc8ac56, type: 3}
-  m_PrefabInstance: {fileID: 959445534}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &959445534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4720,6 +4735,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1365162627}
     m_Modifications:
+    - target: {fileID: 444627265, guid: 06ffe0028cfe4844d9b4fa5b5fc8ac56, type: 3}
+      propertyPath: m_Name
+      value: Quest2StartHitbox
+      objectReference: {fileID: 0}
     - target: {fileID: 891824315, guid: 06ffe0028cfe4844d9b4fa5b5fc8ac56, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.43
@@ -4727,6 +4746,10 @@ PrefabInstance:
     - target: {fileID: 891824315, guid: 06ffe0028cfe4844d9b4fa5b5fc8ac56, type: 3}
       propertyPath: m_LocalPosition.z
       value: -449.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 4773893265842097638, guid: 06ffe0028cfe4844d9b4fa5b5fc8ac56, type: 3}
+      propertyPath: questIdToActivate
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8783054870406185284, guid: 06ffe0028cfe4844d9b4fa5b5fc8ac56, type: 3}
       propertyPath: m_Name
@@ -4792,11 +4815,6 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8783054870406185284, guid: 06ffe0028cfe4844d9b4fa5b5fc8ac56, type: 3}
   m_PrefabInstance: {fileID: 959445534}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &970810674 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6234852457686480830, guid: 4e8961545023d6548bd76822368e2313, type: 3}
-  m_PrefabInstance: {fileID: 6234852458343092876}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &972472360 stripped
 GameObject:
@@ -8586,6 +8604,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1675551652921873729, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1675551653131027115, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
       propertyPath: m_LocalScale.y
       value: 1
@@ -11053,6 +11075,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1365162627}
     m_Modifications:
+    - target: {fileID: 6234852457086893189, guid: 4e8961545023d6548bd76822368e2313, type: 3}
+      propertyPath: questIdToActivate
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6234852457686480824, guid: 4e8961545023d6548bd76822368e2313, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -11068,6 +11094,10 @@ PrefabInstance:
     - target: {fileID: 6234852458348868980, guid: 4e8961545023d6548bd76822368e2313, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6234852458348868982, guid: 4e8961545023d6548bd76822368e2313, type: 3}
+      propertyPath: questIdToActivate
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6234852458443255178, guid: 4e8961545023d6548bd76822368e2313, type: 3}
       propertyPath: m_Name

@@ -29,6 +29,8 @@ public class SequenceManager : MonoBehaviour
     [SerializeField] private float countDuration = 2.5f;
     [SerializeField] private float fadeDuration = 1.5f;
 
+    private string savedDelayedDialogue;
+
     int environmentNumber = 0;
 
     private bool advanced = false;
@@ -45,12 +47,18 @@ public class SequenceManager : MonoBehaviour
     /// <param name="year"></param>
     public void TimeTravel()
     {
+        if (advanced)
+        {
+            environmentNumber++;
+        }
+        else environmentNumber = GameManager.Instance.EnvironmentManager.InThePast ? environmentNumber - 1 : environmentNumber + 1;
+        advanced = false;
+
         if (!timeTravelling)
         {
             timeTravelling = true;
             currentSequenceState = sequenceState.sequenceFadingIn;
-            //TODO: only change environment if advanced > quest completion
-            environmentNumber++;
+            
             if (GameManager.Instance.EnvironmentManager.InThePast)
             {
                 TimeTravelToTheFuture();
@@ -73,7 +81,7 @@ public class SequenceManager : MonoBehaviour
         GameManager.Instance.EnvironmentManager.InThePast = false;
     }
 
-    public void AdvanceFuture()
+    public void CompletedAllTasksInTimeline()
     {
         advanced = true;
     }
@@ -204,6 +212,13 @@ public class SequenceManager : MonoBehaviour
 
         currentSequenceState = sequenceState.SequenceFadingOut;
         Sequence(environmentNumber);
+
+        GameManager.Instance.UiManager.StartDialogue(savedDelayedDialogue);
         yield return null;
+    }
+
+    public void TimeTravelSetDelayedDialogue(string dialogue)
+	{
+        savedDelayedDialogue = dialogue;
     }
 }

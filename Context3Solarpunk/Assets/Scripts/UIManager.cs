@@ -167,6 +167,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Update all the fontSizes in the game
+    /// </summary>
     private void UpdateFontSize()
 	{
         List<TextMeshProUGUI> textComponents = FindObjectsOfType<TextMeshProUGUI>(false).ToList();

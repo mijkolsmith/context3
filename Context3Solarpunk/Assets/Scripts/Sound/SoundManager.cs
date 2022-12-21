@@ -1,20 +1,29 @@
-using System.Collections.Generic;
+using NaughtyAttributes;
 using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField, ReadOnly] private AudioSource[] audioSources;
     public SoundClass[] sounds;
 
     /// <summary>
-    /// Play a one-shot sound by name
+    /// Get all the attached audioSources 
+    /// You need 2 sources for the script to function
     /// </summary>
-    /// <param name="name"></param>
-    public void PlayOneShotSound(SoundName name)
+	private void Awake()
+	{
+        audioSources = GetComponents<AudioSource>();
+	}
+
+	/// <summary>
+	/// Play a one-shot sound by name
+	/// </summary>
+	/// <param name="name"></param>
+	public void PlayOneShotSound(SoundName name)
     {
-        audioSource.PlayOneShot(sounds.Where(x => x.soundName == name).FirstOrDefault().audioClip);
+        audioSources[0].PlayOneShot(sounds.Where(x => x.soundName == name).FirstOrDefault().audioClip);
     }
 
     /// <summary>
@@ -23,8 +32,8 @@ public class SoundManager : MonoBehaviour
     /// <param name="name"></param>
     public void PlaySound(SoundName name)
     {
-        audioSource.clip = sounds.Where(x => x.soundName == name).FirstOrDefault().audioClip;
-        audioSource.Play();
+        audioSources[1].clip = sounds.Where(x => x.soundName == name).FirstOrDefault().audioClip;
+        audioSources[1].Play();
     }
 
     /// <summary>
@@ -32,7 +41,7 @@ public class SoundManager : MonoBehaviour
     /// </summary>
     public void PauseSound()
     {
-        audioSource.Pause();
+        audioSources[1].Pause();
     }
 
     /// <summary>
@@ -40,6 +49,6 @@ public class SoundManager : MonoBehaviour
     /// </summary>
     public void StopSound()
     {
-        audioSource.Stop();
+        audioSources[1].Stop();
     }
 }
