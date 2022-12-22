@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO: Cleanup / Remove all unnecessary code
-//TODO: Add Summaries
 
 public class QuestManager : MonoBehaviour
 {
@@ -89,6 +87,9 @@ public class QuestManager : MonoBehaviour
                                 break;
                             case TaskType.Craft:
                                 //ProgressCraftQuest(q);
+                                break;
+                            case TaskType.GatherFromBin:
+                                //ProgressGatherFromBinQuest();
                                 break;
                             default:
                                 break;
@@ -186,6 +187,23 @@ public class QuestManager : MonoBehaviour
         CheckIfAllTasksAreDone(currentQuest);
     }
 
+    public void ProgressGetResourceQuest(ResourceType resourceType)
+    {
+        foreach (var task in currentQuest.tasks)
+        {
+            if (task.resourceToGet == resourceType)
+            {
+                task.success = true;
+                task.succesEvent?.Invoke();
+            }
+        }
+    }
+
+    /// <summary>
+    /// This returns true if all the tasks in quest Q are complete
+    /// </summary>
+    /// <param name="q"></param>
+    /// <returns></returns>
     private bool CheckIfAllTasksAreDone(Quest q)
     {
         bool allTasksAreDone = true;

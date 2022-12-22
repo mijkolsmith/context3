@@ -55,8 +55,8 @@ public class CraftingManager : MonoBehaviour
     /// <param name="resourceType"></param>
     public void AddResourceToInventory(ResourceType resourceType)
 	{
+        GameManager.Instance.QuestManager.ProgressGetResourceQuest(resourceType);
         resources.Add(resourceType);
-        //GameManager.Instance.QuestManager.AdvanceGatherItemTasks(resourceType);
 	}
 
     /// <summary>
@@ -88,7 +88,7 @@ public class CraftingManager : MonoBehaviour
 			}
 		}
 
-        resources.Add(resourceType);
+        AddResourceToInventory(resourceType);
         ((CraftingPopupWindow) GameManager.Instance.UiManager.PopupWindows.Where(x => x.GetPopupWindowType() == PopupWindowType.Crafting).FirstOrDefault()).UpdateUI();
     }
 
