@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
+using UnityEngine.UI;
 
 public class CraftingPopupWindow : PopupWindow
 {
@@ -17,6 +18,7 @@ public class CraftingPopupWindow : PopupWindow
     [SerializeField] private List<CraftingUiElement> craftingUiElements = new();
     [SerializeField] private List<GameObject> craftedTextAnimationPrefabs = new();
     [SerializeField] private List<ResourceTextAnimation> craftingTextAnimations = new();
+    [SerializeField] private List<Image> toCraftHolograms = new();
     [SerializeField] private Transform gridLayoutGroup;
     [SerializeField] private Animator animator;
 

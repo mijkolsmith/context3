@@ -367,7 +367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1245208960843153437
 RectTransform:
   m_ObjectHideFlags: 0
@@ -401,6 +401,7 @@ GameObject:
   - component: {fileID: 5871036818751514421}
   - component: {fileID: 854837993021806914}
   - component: {fileID: 2525979415533587070}
+  - component: {fileID: 7895762150794114415}
   m_Layer: 5
   m_Name: Recyclebin
   m_TagString: Untagged
@@ -457,15 +458,27 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 7c715f096ebca6344b7d7875854ddeb5, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 1
   m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillMethod: 0
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7895762150794114415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3137209913624478104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2714eab93cefd7e448b11fd17c4c7aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3849827652478937224
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,7 +932,9 @@ MonoBehaviour:
   - {fileID: 5158187043676473152, guid: 3e4298b0f2c096647ace53bb1f564fcd, type: 3}
   - {fileID: 6653996094066597074, guid: 27f6f3ad9067bea4e924171b6d684396, type: 3}
   craftingTextAnimations: []
+  toCraftHolograms: []
   gridLayoutGroup: {fileID: 1245208960004385097}
+  animator: {fileID: 0}
   questObjectHolder: {fileID: 0}
 --- !u!1 &4991181757897112887
 GameObject:
@@ -931,9 +946,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5638225718835064225}
   - component: {fileID: 5361768443957455810}
-  - component: {fileID: 6589278963888403236}
   m_Layer: 5
-  m_Name: RecyclebinBackground
+  m_Name: ToCraftBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -968,36 +982,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4991181757897112887}
   m_CullTransparentMesh: 1
---- !u!114 &6589278963888403236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4991181757897112887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &8296458490214667138
 GameObject:
   m_ObjectHideFlags: 0
