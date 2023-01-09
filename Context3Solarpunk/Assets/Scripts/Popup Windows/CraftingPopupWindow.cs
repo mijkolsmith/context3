@@ -18,7 +18,7 @@ public class CraftingPopupWindow : PopupWindow
     [SerializeField] private List<CraftingUiElement> craftingUiElements = new();
     [SerializeField] private List<GameObject> craftedTextAnimationPrefabs = new();
     [SerializeField] private List<ResourceTextAnimation> craftingTextAnimations = new();
-    [SerializeField] private List<Image> toCraftHolograms = new();
+    [SerializeField] private List<ToCraftHologram> toCraftHolograms = new();
     [SerializeField] private Transform gridLayoutGroup;
     [SerializeField] private Animator animator;
 
@@ -45,10 +45,15 @@ public class CraftingPopupWindow : PopupWindow
             PopupWindowObject.SetActive(true);
             GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.Crafting;
 
-            //QUALITY CONTROL, will probably throw errors if the resourceToGet = ResourceType.None
             resourceToCraft = GameManager.Instance.QuestManager.GetResourceTypeFromTask();
 
+            //DEBUG LINE REMOVE AFTER 09/01
+            if (resourceToCraft == ResourceType.None) resourceToCraft = ResourceType.SeparatedBin;
+
             ClearCraftingUiElements();
+
+            // Activate the correct visual hologram
+            toCraftHolograms.Where(x => x.GetResourceType() == resourceToCraft).FirstOrDefault().gameObject.SetActive(true);
 
             // Dynamically add the resources to fill
             Dictionary<ResourceType, int> craftingRecipe = GameManager.Instance.CraftingManager.GetCraftingRecipe(resourceToCraft);
@@ -118,10 +123,22 @@ public class CraftingPopupWindow : PopupWindow
     /// <param name="resourceType"></param>
     public void Fill(ResourceType resourceType)
     {
-        if (craftingUiElements.Where(x => x.GetResourceType() == resourceType).ToList().Count > 0)
+        List<CraftingUiElement> craftingUiElementsOfResourceType = craftingUiElements.Where(x => x.GetResourceType() == resourceType).ToList();
+        if (craftingUiElementsOfResourceType.Count > 0)
         {
-            craftingUiElements.Where(x => x.GetResourceType() == resourceType && x.activated == false).FirstOrDefault().Activate();
+            // Activate the first crafting UI element
+            craftingUiElementsOfResourceType.Where(x => x.activated == false).FirstOrDefault().Activate();
+            
+            // Visually remove the first inventory UI element from the inventory
             inventoryUiElements.Where(x => x.GetResourceType() == resourceType).FirstOrDefault().TemporarilyRemove();
+
+            // Get the correct toCraftHologram and set the progress
+            toCraftHolograms.Where(
+                x => x.GetResourceType() == resourceToCraft).
+            FirstOrDefault().SetProgress(craftingUiElements.Where(
+                x => x.activated == true).
+            ToList().Count / (float)craftingUiElements.Count);
+
             if (craftingUiElements.Where(x => x.activated == false).ToList().Count == 0)
             {//Craft the resourceToCraft
 
@@ -153,6 +170,10 @@ public class CraftingPopupWindow : PopupWindow
         animator.Play("Base Layer.Craft", 0, 0);
     }
 
+    /// <summary>
+    /// Set the resourcetocraft (DEPRECATED ? needs testing)
+    /// </summary>
+    /// <param name="resourceType"></param>
     public void SetResourceToCraft(ResourceType resourceType)
 	{
         resourceToCraft = resourceType;

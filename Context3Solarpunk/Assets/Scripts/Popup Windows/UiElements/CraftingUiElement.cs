@@ -7,7 +7,7 @@ public class CraftingUiElement : Resource
     public override ResourceType GetResourceType() => ResourceType;
 
     [SerializeField] private Image image;
-    public bool activated = false;
+    public bool activated { get; private set; } = false;
 
     /// <summary>
     /// Change the alpha value to 255 in the image color.
