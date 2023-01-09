@@ -18,6 +18,7 @@ public class CraftingPopupWindow : PopupWindow
     [SerializeField] private List<GameObject> craftedTextAnimationPrefabs = new();
     [SerializeField] private List<ResourceTextAnimation> craftingTextAnimations = new();
     [SerializeField] private Transform gridLayoutGroup;
+    [SerializeField] private Animator animator;
 
     //TEMP FOR PLAYTEST 07 AND 08/12/22
     [SerializeField] private GameObject questObjectHolder;
@@ -147,6 +148,7 @@ public class CraftingPopupWindow : PopupWindow
     public void StartAnimation()
     {
         craftingTextAnimations.Add(Instantiate(craftedTextAnimationPrefabs.Where(x => x.GetComponent<ResourceTextAnimation>().GetResourceType() == resourceToCraft).FirstOrDefault(), EndDragPanel.transform.position, Quaternion.identity, EndDragPanel.transform).GetComponent<ResourceTextAnimation>());
+        animator.Play("Base Layer.Craft", 0, 0);
     }
 
     public void SetResourceToCraft(ResourceType resourceType)
