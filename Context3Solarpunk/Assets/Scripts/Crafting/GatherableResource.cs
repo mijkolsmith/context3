@@ -16,7 +16,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
     [SerializeField] private GameObject resourceModel;
     [SerializeField] private GameObject resourceSprite;
 
-    [SerializeField] private GameObject partilePrefab;
+    [SerializeField] private GameObject particlePrefab;
     private GameObject particleObject;
 
 
