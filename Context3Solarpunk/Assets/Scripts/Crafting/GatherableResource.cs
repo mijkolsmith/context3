@@ -15,9 +15,14 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
 
     [SerializeField] private GameObject resourceModel;
     [SerializeField] private GameObject resourceSprite;
+
+    [SerializeField] private GameObject partilePrefab;
+    private GameObject particleObject;
+
+
     private bool dragging = false;
 
-	private bool Dragging
+    private bool Dragging
     {
         get => dragging;
         set
@@ -29,10 +34,10 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
         }
     }
 
-	/// <summary>
-	/// Assign some components in the start method.
-	/// </summary>
-	private void Start()
+    /// <summary>
+    /// Assign some components in the start method.
+    /// </summary>
+    private void Start()
     {
         hitboxCollider = GetComponent<Collider>();
         navMeshObstacle = GetComponent<NavMeshObstacle>();
@@ -71,7 +76,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
         }
 
         if (Input.GetButtonUp("InteractionKey"))
-		{
+        {
             Dragging = false;
         }
     }
@@ -101,12 +106,17 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
     /// </summary>
     public virtual void Interact()
     {
+        if (particleObject == null)
+        {
+            particleObject = Instantiate(partilePrefab, transform);
+            Destroy(particleObject, 2);
+        }
         timeElapsed = 0;
         var mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(
             Input.mousePosition.x,
             Input.mousePosition.y,
             Mathf.Abs(Vector3.Distance(Camera.main.transform.position, transform.position))));
-        
+
         gameObject.transform.position = new Vector3(
             mouseWorldPos.x,
             mouseWorldPos.y + .5f,
@@ -114,11 +124,11 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
 
         hitboxCollider.isTrigger = true;
         navMeshObstacle.enabled = false;
-        
+
         if (!Dragging)
-		{
+        {
             Dragging = true;
-		}
+        }
     }
 
     /// <summary>
