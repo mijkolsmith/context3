@@ -69,27 +69,22 @@ public class QuestManager : MonoBehaviour
             if (q.state == QuestState.Active) //Get all the active ones
             {
                 //If quest is sequential
-                if (q.sequential && q.currentTask.objectToInteract.GetComponent<IInteractable>() == interactableObject)
+                if (q.sequential && (q.currentTask.objectToInteract.GetComponent<IInteractable>() == interactableObject || q.currentTask.objectToInteract == null))
                 {
                     ProgressSequentialQuest(q);
                 }
                 else //Not sequential
                 {
-                    GameManager.Instance.UiManager.QuestText.text = q.tasks[0].taskName;
-                    for (int j = 0; j < q.tasks.Count; j++)
+                    foreach (Task task in q.tasks)
                     {
-                        switch (q.tasks[j].type)
+                        switch (task.type)
                         {
                             case TaskType.None:
                                 break;
                             case TaskType.Interact:
-                                ProgressInteractQuest(q.tasks[j], interactableObject);
+                                ProgressInteractTask(task, interactableObject);
                                 break;
-                            case TaskType.Craft:
-                                //ProgressCraftQuest(q);
-                                break;
-                            case TaskType.GatherFromBin:
-                                //ProgressGatherFromBinQuest();
+                            case TaskType.Gather:
                                 break;
                             default:
                                 break;
@@ -111,12 +106,12 @@ public class QuestManager : MonoBehaviour
     {
         q.currentTask.success = true;
         q.currentTask.succesEvent?.Invoke();
+
         q.taskNmbr++;
         if (q.taskNmbr < q.tasks.Count)
         {
             q.currentTask = q.tasks[q.taskNmbr];
         }
-        GameManager.Instance.UiManager.QuestText.text = q.currentTask.taskName;
     }
 
     /// <summary>
@@ -124,10 +119,11 @@ public class QuestManager : MonoBehaviour
     /// </summary>
     /// <param name="task"></param>
     /// <param name="interactable"></param>
-    public void ProgressInteractQuest(Task task, IInteractable interactableObject)
+    public void ProgressInteractTask(Task task, IInteractable interactableObject)
     {
-        //if (task.objectToInteract == null) continue;
-        if (task.objectToInteract.GetComponent<IInteractable>() == interactableObject)
+        if (task.type == TaskType.Interact 
+            && (task.objectToInteract.GetComponent<IInteractable>() == interactableObject 
+                || task.objectToInteract == null))
         {
             task.success = true;
             task.succesEvent?.Invoke();
@@ -144,7 +140,8 @@ public class QuestManager : MonoBehaviour
         {
             for (int j = 0; j < currentQuest.tasks.Count; j++) //Check for all tasks in quest
             {
-                if (!currentQuest.tasks[j].success && currentQuest.tasks[j].resourceToGet != ResourceType.None)
+                if (!currentQuest.tasks[j].success 
+                    && currentQuest.tasks[j].resourceToGet != ResourceType.None)
                 {
                     Debug.Log("Got resourcetoget!");
                     return currentQuest.tasks[j].resourceToGet;
@@ -156,46 +153,25 @@ public class QuestManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Progress a quest where you have to craft something.
+    /// Progress a gather task
     /// </summary>
-    /// <param name="q"></param>
-    public void ProgressCraftQuest(Quest q)
+    /// <param name="resourceType"></param>
+    public void ProgressGatherTask(ResourceType resourceType)
     {
-        for (int j = 0; j < q.tasks.Count; j++) //Check for all tasks in quest
+        if (currentQuest != null)
         {
-            if (q.tasks[j].resourceToGet != ResourceType.None)
+            foreach (var task in currentQuest.tasks)
             {
-                q.tasks[j].success = true;
-                q.tasks[j].succesEvent?.Invoke();
+                if (task.type == TaskType.Gather
+                    && task.resourceToGet == resourceType)
+                {
+                    task.success = true;
+                    task.succesEvent?.Invoke();
+                }
+                break;
             }
-        }
-    }
 
-    /// <summary>
-    /// Progress a quest where you have to craft something using currentquest instead of a specific one by parameter
-    /// </summary>
-    public void ProgressCraftQuest()
-    {
-        for (int j = 0; j < currentQuest.tasks.Count; j++) //Check for all tasks in quest
-        {
-            if (currentQuest.tasks[j].resourceToGet != ResourceType.None)
-            {
-                currentQuest.tasks[j].success = true;
-                currentQuest.tasks[j].succesEvent?.Invoke();
-            }
-        }
-        CheckIfAllTasksAreDone(currentQuest);
-    }
-
-    public void ProgressGetResourceQuest(ResourceType resourceType)
-    {
-        foreach (var task in currentQuest.tasks)
-        {
-            if (task.resourceToGet == resourceType)
-            {
-                task.success = true;
-                task.succesEvent?.Invoke();
-            }
+            CheckIfAllTasksAreDone(currentQuest);
         }
     }
 
@@ -207,13 +183,16 @@ public class QuestManager : MonoBehaviour
     private bool CheckIfAllTasksAreDone(Quest q)
     {
         bool allTasksAreDone = true;
-        for (int j = 0; j < q.tasks.Count; j++)
+        foreach (Task task in q.tasks)
         {
-            if (!q.tasks[j].success)
+            if (task.type == TaskType.None) task.success = true;
+            if (!task.success)
             {
+                GameManager.Instance.UiManager.QuestText.text = task.taskName;
                 allTasksAreDone = false;
             }
         }
+
         if (allTasksAreDone)
         {
             Debug.Log("Quest " + q.uniqueQuestID + "is completed.");

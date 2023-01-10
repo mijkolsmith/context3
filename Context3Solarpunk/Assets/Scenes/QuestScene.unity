@@ -3763,7 +3763,8 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-    - taskName: Ga tijdreizen naar het verleden met de tijdreistrein
+    - taskName: Gebruik je rechtermuisknop om te tijdreizen naar het verleden met
+        de tijdreistrein
       type: 1
       objectToInteract: {fileID: 972472360}
       resourceToGet: 0
@@ -3817,6 +3818,18 @@ MonoBehaviour:
     succesEvent:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 312700401}
+          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+          m_MethodName: SetQuestText
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Loop naar rechts richting het arriva hoofdkantoor
+            m_BoolArgument: 1
+          m_CallState: 2
         - m_Target: {fileID: 1047991768}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
@@ -3847,9 +3860,9 @@ MonoBehaviour:
           m_Calls: []
     tasks:
     - taskName: Ruim het afval op
-      type: 1
+      type: 2
       objectToInteract: {fileID: 236340707}
-      resourceToGet: 0
+      resourceToGet: 1
       amountOfResourcesToGet: 0
       success: 0
       succesEvent:
@@ -3955,6 +3968,18 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 312700401}
+          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+          m_MethodName: SetQuestText
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Ga het arriva hoofdkantoor binnen
             m_BoolArgument: 1
           m_CallState: 2
   - Name: 'Quest 1.2: Gebruik de recyclemachine en reis terug naar de toekomst voor
@@ -4064,7 +4089,20 @@ MonoBehaviour:
           m_CallState: 2
     succesEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 312700401}
+          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+          m_MethodName: SetQuestText
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Loop naar rechts richting het arriva hoofdkantoor en
+              ga naar binnen
+            m_BoolArgument: 0
+          m_CallState: 2
   - Name: 'Quest 2.4: Het kantoor'
     Description: Het kantoor is enorm donker... wat nu?
     uniqueQuestID: 3
@@ -4124,7 +4162,19 @@ MonoBehaviour:
           m_CallState: 2
     succesEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 312700401}
+          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+          m_MethodName: SetQuestText
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Loop naar rechts richting het arriva hoofdkantoor
+            m_BoolArgument: 0
+          m_CallState: 2
   - Name: 'Quest 2.5: Verzamelen van afval'
     Description: Verzamel het afval van blikjes en flesjes (metaal en glas)
     uniqueQuestID: 4
@@ -4205,6 +4255,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 312700401}
+          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+          m_MethodName: SetQuestText
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Ga het arriva hoofdkantoor binnen
+            m_BoolArgument: 1
+          m_CallState: 2
   - Name: 'Quest 2.6: Proberen te craften van LED-lampen'
     Description: Recycle afval om LED-lampen te maken
     uniqueQuestID: 5
@@ -4254,8 +4316,8 @@ MonoBehaviour:
                 hun flesjes en blikjes hebben gesorteerd.*'
               m_BoolArgument: 0
             m_CallState: 2
-    - taskName: Verzamel tenminste 1 flesje uit de afvalbakken
-      type: 3
+    - taskName: Verzamel 1 flesje uit de afvalbakken
+      type: 2
       objectToInteract: {fileID: 1769934392}
       resourceToGet: 2
       amountOfResourcesToGet: 1
@@ -4263,11 +4325,29 @@ MonoBehaviour:
       succesEvent:
         m_PersistentCalls:
           m_Calls: []
-    - taskName: Verzamel tenminste 3 blikjes uit de afvalbakken
-      type: 3
+    - taskName: Verzamel 1 blikje uit de afvalbakken
+      type: 2
       objectToInteract: {fileID: 1769934392}
       resourceToGet: 4
-      amountOfResourcesToGet: 3
+      amountOfResourcesToGet: 1
+      success: 0
+      succesEvent:
+        m_PersistentCalls:
+          m_Calls: []
+    - taskName: Verzamel 1 blikje uit de afvalbakken
+      type: 2
+      objectToInteract: {fileID: 1769934392}
+      resourceToGet: 4
+      amountOfResourcesToGet: 1
+      success: 0
+      succesEvent:
+        m_PersistentCalls:
+          m_Calls: []
+    - taskName: Verzamel 1 blikje uit de afvalbakken
+      type: 2
+      objectToInteract: {fileID: 1769934392}
+      resourceToGet: 4
+      amountOfResourcesToGet: 1
       success: 0
       succesEvent:
         m_PersistentCalls:
@@ -4278,6 +4358,18 @@ MonoBehaviour:
     succesEvent:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 312700401}
+          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+          m_MethodName: TogglePopupWindow
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1289627641}
+            m_ObjectArgumentAssemblyTypeName: PopupWindowComponent, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 312700401}
           m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
           m_MethodName: StartDialogue
@@ -5811,6 +5903,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ResourceType>k__BackingField: 9
   model: {fileID: 1769934392}
+--- !u!114 &1289627641 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4892545806375102662, guid: bde76b17d1f5ad546bdabfff39d173e1, type: 3}
+  m_PrefabInstance: {fileID: 1776373640}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a7d855f1fae46640811e9637fdb7b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1307112681
 GameObject:
   m_ObjectHideFlags: 0

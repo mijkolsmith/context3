@@ -186,4 +186,9 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+
+    public void SetQuestText(string text)
+	{
+        questText.text = text;
+	}
 }

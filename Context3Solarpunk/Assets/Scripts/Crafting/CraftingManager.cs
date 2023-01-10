@@ -55,7 +55,7 @@ public class CraftingManager : MonoBehaviour
     /// <param name="resourceType"></param>
     public void AddResourceToInventory(ResourceType resourceType)
 	{
-        GameManager.Instance.QuestManager.ProgressGetResourceQuest(resourceType);
+        GameManager.Instance.QuestManager.ProgressGatherTask(resourceType);
         resources.Add(resourceType);
 	}
 
@@ -71,14 +71,11 @@ public class CraftingManager : MonoBehaviour
 
     /// <summary>
     /// Craft a new resource using the resources available in the inventory.
-    /// Updates the crafting UI afterwards.
     /// </summary>
     /// <param name="resourceType"></param>
     public void Craft(ResourceType resourceType)
 	{
         Dictionary<ResourceType, int> resourcesNeeded = craftingRecipes[resourceType];
-
-        //GameManager.Instance.QuestManager.AdvanceGatherItemTasks(resourceType);
 
         foreach (ResourceType resourceNeeded in resourcesNeeded.Keys)
 		{
@@ -89,7 +86,6 @@ public class CraftingManager : MonoBehaviour
 		}
 
         AddResourceToInventory(resourceType);
-        ((CraftingPopupWindow) GameManager.Instance.UiManager.PopupWindows.Where(x => x.GetPopupWindowType() == PopupWindowType.Crafting).FirstOrDefault()).UpdateUI();
     }
 
     /// <summary>

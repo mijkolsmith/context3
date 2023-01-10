@@ -135,23 +135,22 @@ public class CraftingPopupWindow : PopupWindow
 
             if (craftingUiElements.Where(x => x.activated == false).ToList().Count == 0)
             {
-                // Craft the resourceToCraft and start an animation
-                GameManager.Instance.CraftingManager.Craft(resourceToCraft);
-                StartAnimation();
-
                 // Set the crafted object to active
                 craftedObjects.Where(x => x.GetResourceType() == resourceToCraft).FirstOrDefault().Activate();
 
                 // Reset the crafting UI for the next craft
                 ClearCraftingUiElements();
                 toCraftHolograms.Where(x => x.GetResourceType() == resourceToCraft).FirstOrDefault().SetProgress(0);
-                resourceToCraft = ResourceType.None;
                 UpdateUI();
-                
-                // Play sound, toggle the window and progress the quest
-                GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.CRAFTING_MACHINE);
+
+                // Craft the resourceToCraft, start an animation, play a sound
                 GameManager.Instance.UiManager.TogglePopupWindow(PopupWindowType.Crafting);
-                GameManager.Instance.QuestManager.ProgressCraftQuest();
+                GameManager.Instance.CraftingManager.Craft(resourceToCraft);
+                GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.CRAFTING_MACHINE);
+                StartAnimation();
+
+                // Reset the resourceToCraft for the next craft
+                resourceToCraft = ResourceType.None;
             }
         }
     }
