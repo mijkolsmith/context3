@@ -66,7 +66,12 @@ public class GameManager : MonoBehaviour
 
         //TODO: Loading
 
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
+        Application.Quit();
+#endif
     }
 
     /// <summary>
