@@ -29,6 +29,13 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
         {
             dragging = value;
             (GameManager.Instance.UiManager.PopupWindows.Where(x => x.GetPopupWindowType() == PopupWindowType.Dorien).FirstOrDefault() as DorienPopupWindow).draggingIndicator.SetActive(value);
+            
+            if (value)
+            {
+                particleObject = Instantiate(particlePrefab, transform);
+            }
+            else Destroy(particleObject);
+
             resourceModel.SetActive(!value);
             resourceSprite.SetActive(value);
         }
@@ -106,11 +113,6 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
     /// </summary>
     public virtual void Interact()
     {
-        if (particleObject == null)
-        {
-            particleObject = Instantiate(partilePrefab, transform);
-            Destroy(particleObject, 2);
-        }
         timeElapsed = 0;
         var mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(
             Input.mousePosition.x,
