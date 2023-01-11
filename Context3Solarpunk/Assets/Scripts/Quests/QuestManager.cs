@@ -163,13 +163,14 @@ public class QuestManager : MonoBehaviour
     {
         if (currentQuest != null)
         {
-            for (int j = 0; j < currentQuest.tasks.Count; j++) //Check for all tasks in quest
+            foreach (Task task in currentQuest.tasks) //Check for all tasks in quest
             {
-                if (!currentQuest.tasks[j].success 
-                    && currentQuest.tasks[j].resourceToGet != ResourceType.None)
+                if (!task.success 
+                    && task.resourceToGet != ResourceType.None
+                    && task.type == TaskType.Gather)
                 {
                     Debug.Log("Got resourcetoget!");
-                    return currentQuest.tasks[j].resourceToGet;
+                    return task.resourceToGet;
                 }
             }
         }
@@ -229,9 +230,9 @@ public class QuestManager : MonoBehaviour
                 GameManager.Instance.UiManager.TogglePopupWindow(GameManager.Instance.UiManager.popupWindowOpenType);
 			}
 
+            currentQuest = null;
             q.succesEvent?.Invoke();
             q.state = QuestState.Completed;
-            currentQuest = null;
         }
         return allTasksAreDone;
     }

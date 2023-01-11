@@ -19,6 +19,7 @@ public class CraftingPopupWindow : PopupWindow
     [SerializeField] private List<GameObject> craftedTextAnimationPrefabs = new();
     [SerializeField] private List<ResourceTextAnimation> craftingTextAnimations = new();
     [SerializeField] private List<ToCraftHologram> toCraftHolograms = new();
+    [SerializeField, ReadOnly] private ToCraftHologram toCraftHologram;
     [SerializeField] private List<CraftedObject> craftedObjects = new();
     [SerializeField] private Transform gridLayoutGroup;
     [SerializeField] private Animator animator;
@@ -33,6 +34,7 @@ public class CraftingPopupWindow : PopupWindow
     {
         if (PopupWindowObject.activeInHierarchy)
         {
+            ClearHolograms();
             ClearCraftingUiElements();
 
             PopupWindowObject.SetActive(false);
@@ -48,7 +50,8 @@ public class CraftingPopupWindow : PopupWindow
             if (resourceToCraft == ResourceType.None) return;
 
             // Activate the correct visual hologram
-            toCraftHolograms.Where(x => x.GetResourceType() == resourceToCraft).FirstOrDefault().gameObject.SetActive(true);
+            toCraftHologram = toCraftHolograms.Where(x => x.GetResourceType() == resourceToCraft).FirstOrDefault();
+            if (toCraftHologram != null) toCraftHologram.gameObject.SetActive(true);
 
             // Dynamically add the resources to fill
             Dictionary<ResourceType, int> craftingRecipe = GameManager.Instance.CraftingManager.GetCraftingRecipe(resourceToCraft);
@@ -90,12 +93,23 @@ public class CraftingPopupWindow : PopupWindow
     /// </summary>
     private void ClearCraftingUiElements()
     {
-        foreach (var craftingUiElement in craftingUiElements)
+        foreach (CraftingUiElement craftingUiElement in craftingUiElements)
         {
             Destroy(craftingUiElement.gameObject);
         }
         craftingUiElements.Clear();
     }
+
+    /// <summary>
+    /// Set all the holograms to inactive gameobjects
+    /// </summary>
+    private void ClearHolograms()
+	{
+		foreach (ToCraftHologram hologram in toCraftHolograms)
+		{
+            hologram.gameObject.SetActive(false);
+		}
+	}
 
     /// <summary>
     /// Create a new Draggable Object on given position with given resourceType and Sprite.
@@ -127,11 +141,7 @@ public class CraftingPopupWindow : PopupWindow
             inventoryUiElements.Where(x => x.GetResourceType() == resourceType).FirstOrDefault().TemporarilyRemove();
 
             // Get the correct toCraftHologram and set the progress
-            toCraftHolograms.Where(
-                x => x.GetResourceType() == resourceToCraft).
-            FirstOrDefault().SetProgress(craftingUiElements.Where(
-                x => x.activated == true).
-            ToList().Count / (float)craftingUiElements.Count);
+            toCraftHologram.SetProgress(craftingUiElements.Where(x => x.activated == true).ToList().Count / (float)craftingUiElements.Count);
 
             if (craftingUiElements.Where(x => x.activated == false).ToList().Count == 0)
             {
@@ -140,7 +150,8 @@ public class CraftingPopupWindow : PopupWindow
 
                 // Reset the crafting UI for the next craft
                 ClearCraftingUiElements();
-                toCraftHolograms.Where(x => x.GetResourceType() == resourceToCraft).FirstOrDefault().SetProgress(0);
+                toCraftHologram.SetProgress(0);
+                toCraftHologram.gameObject.SetActive(false);
                 UpdateUI();
 
                 // Craft the resourceToCraft, start an animation, play a sound

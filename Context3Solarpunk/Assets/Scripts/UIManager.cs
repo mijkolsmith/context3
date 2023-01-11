@@ -167,15 +167,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Close all open popup windows
-    /// </summary>
-    /// <param name="popupWindowType"></param>
-    public void ClosePopupWindows(PopupWindowType popupWindowType)
-    {
-
-    }
-
 	/// <summary>
 	/// Update all the fontSizes in the game
 	/// </summary>
