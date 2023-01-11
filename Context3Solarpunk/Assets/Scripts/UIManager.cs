@@ -168,9 +168,18 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Update all the fontSizes in the game
+    /// Close all open popup windows
     /// </summary>
-    private void UpdateFontSize()
+    /// <param name="popupWindowType"></param>
+    public void ClosePopupWindows(PopupWindowType popupWindowType)
+    {
+
+    }
+
+	/// <summary>
+	/// Update all the fontSizes in the game
+	/// </summary>
+	private void UpdateFontSize()
 	{
         List<TextMeshProUGUI> textComponents = FindObjectsOfType<TextMeshProUGUI>(false).ToList();
 

@@ -136,7 +136,7 @@ public class CraftingPopupWindow : PopupWindow
             if (craftingUiElements.Where(x => x.activated == false).ToList().Count == 0)
             {
                 // Set the crafted object to active
-                craftedObjects.Where(x => x.GetResourceType() == resourceToCraft).FirstOrDefault().Activate();
+                craftedObjects.Where(x => x.GetResourceType() == resourceToCraft).FirstOrDefault().ActivateHologram();
 
                 // Reset the crafting UI for the next craft
                 ClearCraftingUiElements();

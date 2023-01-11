@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
     public GameStateManager GameStateManager { get => gameStateManager; private set => gameStateManager = value; }
     public CraftingManager CraftingManager { get => craftingManager; private set => craftingManager = value; }
     public QuestManager QuestManager { get => questManager; private set => questManager = value; }
-    public UIManager DialogueManager { get => uiManager; private set => uiManager = value; }
     public UIManager UiManager { get => uiManager; set => uiManager = value; }
     public SequenceManager SequenceManager { get => sequenceManager; set => sequenceManager = value; }
 	public SoundManager SoundManager { get => soundManager; set => soundManager = value; }

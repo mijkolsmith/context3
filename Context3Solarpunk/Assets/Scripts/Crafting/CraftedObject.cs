@@ -8,10 +8,24 @@ public class CraftedObject : Resource
 	public override ResourceType GetResourceType() => ResourceType;
 
 	[SerializeField] private GameObject model;
+	[SerializeField] private GameObject oldModel;
+	[SerializeField] private GameObject modelDorien;
+	[SerializeField] private GameObject modelHologram;
+
+	public void ActivateHologram()
+	{
+		if (oldModel != null) oldModel.SetActive(false);
+		modelDorien.SetActive(true);
+		modelHologram.SetActive(true);
+	}
 
 	public void Activate()
 	{
 		model.SetActive(true);
-        GameManager.Instance.QuestManager.AdvanceBuildTask(model);
+
+		modelDorien.SetActive(false);
+		modelHologram.SetActive(false);
+
+		GameManager.Instance.QuestManager.AdvanceBuildTask(this);
 	}
 }
