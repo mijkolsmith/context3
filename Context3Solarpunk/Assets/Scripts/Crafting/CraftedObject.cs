@@ -12,5 +12,6 @@ public class CraftedObject : Resource
 	public void Activate()
 	{
 		model.SetActive(true);
+        GameManager.Instance.QuestManager.AdvanceBuildTask(model);
 	}
 }

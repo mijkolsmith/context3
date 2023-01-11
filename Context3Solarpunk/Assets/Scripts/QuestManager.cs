@@ -114,6 +114,27 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    public void AdvanceBuildTask(GameObject obj)
+    {
+        if (currentQuest.currentTask.type == TaskType.Build)
+        {
+            for (int i = 0; i < currentQuest.tasks.Count; i++)
+            {
+                if (obj == currentQuest.tasks[i].objectToBuild)
+                {
+                    currentQuest.tasks[i].success = true;
+                    currentQuest.tasks[i].succesEvent?.Invoke();
+                }
+            }
+            
+        } 
+        else
+        {
+            Debug.LogWarning("Current questType is not TaskType.Build");
+        }
+    }
+
+
     /// <summary>
     /// Progress a quest where you have to interact with an assigned interactable
     /// </summary>

@@ -11,6 +11,7 @@ public class Task
     public TaskType type;
 
     public GameObject objectToInteract;
+    public GameObject objectToBuild;
     public ResourceType resourceToGet;
     public int amountOfResourcesToGet;
 

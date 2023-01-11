@@ -6,5 +6,6 @@ public enum TaskType
 {
     None = 0,
     Interact = 1,
-    Gather = 2
+    Gather = 2,
+    Build = 3
 }

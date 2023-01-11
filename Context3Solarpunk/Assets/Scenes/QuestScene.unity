@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.33263952, g: 0.22073445, b: 0.1562495, a: 1}
+  m_IndirectSpecularColor: {r: 0.33263585, g: 0.22072777, b: 0.15623349, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3680,6 +3680,7 @@ MonoBehaviour:
       taskName: 
       type: 0
       objectToInteract: {fileID: 0}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -3706,6 +3707,7 @@ MonoBehaviour:
       taskName: 
       type: 0
       objectToInteract: {fileID: 0}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -3716,6 +3718,7 @@ MonoBehaviour:
     - taskName: Loop een klein stukje door je linkermuisknop te gebruiken
       type: 1
       objectToInteract: {fileID: 350258233}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -3767,6 +3770,7 @@ MonoBehaviour:
         de tijdreistrein
       type: 1
       objectToInteract: {fileID: 972472360}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -3852,6 +3856,7 @@ MonoBehaviour:
       taskName: 
       type: 0
       objectToInteract: {fileID: 0}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -3862,6 +3867,7 @@ MonoBehaviour:
     - taskName: Ruim het afval op
       type: 2
       objectToInteract: {fileID: 236340707}
+      objectToBuild: {fileID: 0}
       resourceToGet: 1
       amountOfResourcesToGet: 0
       success: 0
@@ -3871,6 +3877,7 @@ MonoBehaviour:
     - taskName: Ruim het afval op
       type: 1
       objectToInteract: {fileID: 1880684873}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -3880,6 +3887,7 @@ MonoBehaviour:
     - taskName: Ruim het afval op
       type: 1
       objectToInteract: {fileID: 585683569}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -3889,6 +3897,7 @@ MonoBehaviour:
     - taskName: Ruim het afval op
       type: 1
       objectToInteract: {fileID: 1954922637}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -3898,6 +3907,7 @@ MonoBehaviour:
     - taskName: Ruim het afval op
       type: 1
       objectToInteract: {fileID: 1241556417}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -3907,6 +3917,7 @@ MonoBehaviour:
     - taskName: Ruim het afval op
       type: 1
       objectToInteract: {fileID: 1908352993}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -3993,6 +4004,7 @@ MonoBehaviour:
       taskName: 
       type: 0
       objectToInteract: {fileID: 0}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -4003,6 +4015,7 @@ MonoBehaviour:
     - taskName: Gebruik de recyclemachine om gescheiden afvalbakken te maken
       type: 2
       objectToInteract: {fileID: 1642109989}
+      objectToBuild: {fileID: 0}
       resourceToGet: 9
       amountOfResourcesToGet: 1
       success: 0
@@ -4026,6 +4039,7 @@ MonoBehaviour:
     - taskName: Ga terug naar de toekomst!
       type: 1
       objectToInteract: {fileID: 972472360}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -4113,6 +4127,7 @@ MonoBehaviour:
       taskName: 
       type: 0
       objectToInteract: {fileID: 0}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -4123,6 +4138,7 @@ MonoBehaviour:
     - taskName: Ga naar het verleden!
       type: 1
       objectToInteract: {fileID: 972472360}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -4185,6 +4201,7 @@ MonoBehaviour:
       taskName: 
       type: 0
       objectToInteract: {fileID: 0}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -4195,6 +4212,7 @@ MonoBehaviour:
     - taskName: Ruim het afval op
       type: 1
       objectToInteract: {fileID: 1858942057}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -4204,6 +4222,7 @@ MonoBehaviour:
     - taskName: Ruim het afval op
       type: 1
       objectToInteract: {fileID: 382423372}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -4277,6 +4296,7 @@ MonoBehaviour:
       taskName: 
       type: 0
       objectToInteract: {fileID: 0}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -4287,6 +4307,7 @@ MonoBehaviour:
     - taskName: Probeer LED-lampen te maken in de recyclemachine
       type: 1
       objectToInteract: {fileID: 1642109989}
+      objectToBuild: {fileID: 0}
       resourceToGet: 11
       amountOfResourcesToGet: 0
       success: 0
@@ -4296,6 +4317,7 @@ MonoBehaviour:
     - taskName: Sluit de recyclemachine interface
       type: 1
       objectToInteract: {fileID: 494149808}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -4319,6 +4341,7 @@ MonoBehaviour:
     - taskName: Verzamel 1 flesje uit de afvalbakken
       type: 2
       objectToInteract: {fileID: 1769934392}
+      objectToBuild: {fileID: 0}
       resourceToGet: 2
       amountOfResourcesToGet: 1
       success: 0
@@ -4328,6 +4351,7 @@ MonoBehaviour:
     - taskName: Verzamel 1 blikje uit de afvalbakken
       type: 2
       objectToInteract: {fileID: 1769934392}
+      objectToBuild: {fileID: 0}
       resourceToGet: 4
       amountOfResourcesToGet: 1
       success: 0
@@ -4337,6 +4361,7 @@ MonoBehaviour:
     - taskName: Verzamel 1 blikje uit de afvalbakken
       type: 2
       objectToInteract: {fileID: 1769934392}
+      objectToBuild: {fileID: 0}
       resourceToGet: 4
       amountOfResourcesToGet: 1
       success: 0
@@ -4346,6 +4371,7 @@ MonoBehaviour:
     - taskName: Verzamel 1 blikje uit de afvalbakken
       type: 2
       objectToInteract: {fileID: 1769934392}
+      objectToBuild: {fileID: 0}
       resourceToGet: 4
       amountOfResourcesToGet: 1
       success: 0
@@ -4394,6 +4420,7 @@ MonoBehaviour:
       taskName: 
       type: 0
       objectToInteract: {fileID: 0}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -4404,6 +4431,7 @@ MonoBehaviour:
     - taskName: Maak LED-lampen in de recycle machine
       type: 2
       objectToInteract: {fileID: 1642109989}
+      objectToBuild: {fileID: 0}
       resourceToGet: 11
       amountOfResourcesToGet: 1
       success: 0
@@ -4413,6 +4441,7 @@ MonoBehaviour:
     - taskName: Plaats de LED-lampen [UNFINISHED]
       type: 0
       objectToInteract: {fileID: 0}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -4422,6 +4451,7 @@ MonoBehaviour:
     - taskName: Reis weer naar de toekomst!
       type: 1
       objectToInteract: {fileID: 972472360}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -4456,6 +4486,7 @@ MonoBehaviour:
       taskName: 
       type: 0
       objectToInteract: {fileID: 0}
+      objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
       success: 0
@@ -4466,6 +4497,7 @@ MonoBehaviour:
     - taskName: Loop naar het kantoor
       type: 1
       objectToInteract: {fileID: 1642109989}
+      objectToBuild: {fileID: 0}
       resourceToGet: 11
       amountOfResourcesToGet: 0
       success: 0
