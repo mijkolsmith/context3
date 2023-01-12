@@ -2,14 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class QuestManager : MonoBehaviour
 {
     [HideInInspector] public Quest currentQuest;
     [SerializeField] private PlayerControllerPointClick player;
-    //private int questNmbr;
     public List<Quest> quests = new List<Quest>();
-    //bool questNotDone = true;
 
     /// <summary>
     /// Start quest 0 in Start method
@@ -66,12 +63,12 @@ public class QuestManager : MonoBehaviour
         {
             Quest q = quests[i];
 
-            if (q.state == QuestState.Active) //Get all the active ones
+            if (q.state == QuestState.Active) //Get all the active quests
             {
-                //If quest is sequential
+                //If quest is sequential (all tasks are interact)
                 if (q.sequential && (q.currentTask.objectToInteract.GetComponent<IInteractable>() == interactableObject || q.currentTask.objectToInteract == null))
                 {
-                    ProgressSequentialQuest(q);
+                    if (q.currentTask.type == TaskType.Interact) ProgressSequentialQuest(q);
                 }
                 else //Not sequential
                 {
@@ -166,8 +163,7 @@ public class QuestManager : MonoBehaviour
             foreach (Task task in currentQuest.tasks) //Check for all tasks in quest
             {
                 if (!task.success 
-                    && task.resourceToGet != ResourceType.None
-                    && task.type == TaskType.Gather)
+                    && task.resourceToGet != ResourceType.None)
                 {
                     Debug.Log("Got resourcetoget!");
                     return task.resourceToGet;

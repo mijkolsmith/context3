@@ -46,12 +46,13 @@ public class PlayerControllerPointClick : MonoBehaviour
     public static GameObject Player { get; private set; }
     public GameObject CompanionPositionGameObject { get => companionPositionGameObject; set => companionPositionGameObject = value; }
     public IInteractable InteractableObject { get => interactableObject; set => interactableObject = value; }
-#endregion
+	public Color CanInteractColor { get => canInteractColor; private set => canInteractColor = value; }
+	#endregion
 
-    /// <summary>
-    /// Get the navMeshAgent in the Start method.
-    /// </summary>
-    private void Start()
+	/// <summary>
+	/// Get the navMeshAgent in the Start method.
+	/// </summary>
+	private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
@@ -92,7 +93,7 @@ public class PlayerControllerPointClick : MonoBehaviour
 
                 if (Vector3.Distance(interactionHit.collider.transform.position, transform.position) < interactionDistance)
 				{
-					interactableObject.Highlight(canInteractColor);
+					interactableObject.Highlight(CanInteractColor);
 					if (interactionInput || GameManager.Instance.InputManager.DoubleClick())
 					{
                         CancelMovement();

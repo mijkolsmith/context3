@@ -42,7 +42,7 @@ public class CraftedObjectHologram : MonoBehaviour, IInteractable
 	public void Highlight(Color color)
 	{
 		objectOutline.OutlineWidth = 5f;
-		objectOutline.OutlineColor = Color.blue;
+		objectOutline.OutlineColor = (color == PlayerControllerPointClick.Player.GetComponent<PlayerControllerPointClick>().CanInteractColor) ? Color.blue : color;
 		highlighting = true;
 	}
 }

@@ -107,6 +107,7 @@ public class CraftingPopupWindow : PopupWindow
 	{
 		foreach (ToCraftHologram hologram in toCraftHolograms)
 		{
+            hologram.SetProgress(0);
             hologram.gameObject.SetActive(false);
 		}
 	}
