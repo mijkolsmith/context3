@@ -14,7 +14,7 @@ public class CraftedObject : Resource
 
 	public void ActivateHologram()
 	{
-		oldModel.SetActive(false);
+		if (oldModel != null) oldModel.SetActive(false);
 		modelDorien.SetActive(true);
 		modelHologram.SetActive(true);
 	}
@@ -23,7 +23,7 @@ public class CraftedObject : Resource
 	{
 		model.SetActive(true);
 
-		darkness.SetActive(false);
+		if (darkness != null) darkness.SetActive(false);
 		modelDorien.SetActive(false);
 		modelHologram.SetActive(false);
 
