@@ -49,6 +49,7 @@ public class SequenceManager : MonoBehaviour
     /// <param name="year"></param>
     public void TimeTravel()
     {
+        //If you want to go to the newest future, complete all tasks in current past timeline and trigger CompletedAllTasksInTimeline().
         if (advanced)
         {
             environmentNumber++;

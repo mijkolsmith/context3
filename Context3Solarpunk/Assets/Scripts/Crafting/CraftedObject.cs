@@ -8,13 +8,16 @@ public class CraftedObject : Resource
 	public override ResourceType GetResourceType() => ResourceType;
 
 	[SerializeField] private GameObject model;
-	[SerializeField] private GameObject oldModel;
+	[SerializeField] private GameObject[] oldModels;
 	[SerializeField] private GameObject modelDorien;
 	[SerializeField] private GameObject modelHologram;
 
 	public void ActivateHologram()
 	{
-		if (oldModel != null) oldModel.SetActive(false);
+		foreach (GameObject model in oldModels)
+		{
+			model.SetActive(false);
+		}
 		modelDorien.SetActive(true);
 		modelHologram.SetActive(true);
 	}
