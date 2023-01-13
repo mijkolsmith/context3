@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class CraftedObject : Resource
 {
@@ -8,16 +7,14 @@ public class CraftedObject : Resource
 	public override ResourceType GetResourceType() => ResourceType;
 
 	[SerializeField] private GameObject model;
-	[SerializeField] private GameObject[] oldModels;
+	[SerializeField, ShowIf("GetResourceType", ResourceType.LedLamp)] private GameObject oldModel;
+	[SerializeField, ShowIf("GetResourceType", ResourceType.LedLamp)] private GameObject darkness;
 	[SerializeField] private GameObject modelDorien;
 	[SerializeField] private GameObject modelHologram;
 
 	public void ActivateHologram()
 	{
-		foreach (GameObject model in oldModels)
-		{
-			model.SetActive(false);
-		}
+		oldModel.SetActive(false);
 		modelDorien.SetActive(true);
 		modelHologram.SetActive(true);
 	}
@@ -26,6 +23,7 @@ public class CraftedObject : Resource
 	{
 		model.SetActive(true);
 
+		darkness.SetActive(false);
 		modelDorien.SetActive(false);
 		modelHologram.SetActive(false);
 

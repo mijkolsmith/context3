@@ -10471,6 +10471,79 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1462314986080806610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6147062766816642675}
+  - component: {fileID: 7091231571828819736}
+  - component: {fileID: 1244421976854028772}
+  - component: {fileID: 8459257688473714039}
+  m_Layer: 0
+  m_Name: DorienDialogueHitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6147062766816642675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462314986080806610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.07, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491464261516716866}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7091231571828819736
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462314986080806610}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.6275988, y: 3.7017403, z: 9.916566}
+  m_Center: {x: 4.657664, y: 0.0040673614, z: 0.3990054}
+--- !u!65 &1244421976854028772
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462314986080806610}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6466246, y: 4.026602, z: 10.547083}
+  m_Center: {x: 6.8203006, y: 0.19368696, z: 0.61165905}
+--- !u!114 &8459257688473714039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462314986080806610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5023d1a82f79a544496b3d31eced81d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: 'Dorien: Help, Ik zie niks!|Laten we teruggaan.*'
 --- !u!1 &1463506078163562597
 GameObject:
   m_ObjectHideFlags: 0
@@ -12382,6 +12455,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1225539941641504957}
+  - component: {fileID: 615632878762025598}
   m_Layer: 0
   m_Name: Trashbags 1
   m_TagString: Untagged
@@ -12412,6 +12486,19 @@ Transform:
   m_Father: {fileID: 4846757385655414449}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &615632878762025598
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894377969479586311}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 186.68091, y: 98.148285, z: 290.80307}
+  m_Center: {x: 12.177256, y: 5.0632305, z: 0.4606143}
 --- !u!1 &1911044654696077616
 GameObject:
   m_ObjectHideFlags: 0
@@ -16335,6 +16422,7 @@ Transform:
   - {fileID: 6958846388832785332}
   - {fileID: 2590214928821927203}
   - {fileID: 6474177954405389498}
+  - {fileID: 6147062766816642675}
   m_Father: {fileID: 4846757385655414449}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -61633,7 +61721,7 @@ Transform:
   - {fileID: 2467560882541411198}
   - {fileID: 4846757385655414449}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5421717848816772470
 GameObject:

@@ -1,5 +1,78 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &998202273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 998202274}
+  - component: {fileID: 998202277}
+  - component: {fileID: 998202276}
+  - component: {fileID: 998202275}
+  m_Layer: 0
+  m_Name: DorienDialogueHitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &998202274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998202273}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -11.07, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2472886245640204118}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &998202277
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998202273}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.6275988, y: 3.7017403, z: 9.916566}
+  m_Center: {x: 4.657664, y: 0.0040673614, z: 0.3990054}
+--- !u!65 &998202276
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998202273}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6466246, y: 4.026602, z: 10.547083}
+  m_Center: {x: 6.8203006, y: 0.19368696, z: 0.61165905}
+--- !u!114 &998202275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998202273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5023d1a82f79a544496b3d31eced81d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: 'Dorien: Help, Ik zie niks!|Laten we teruggaan.*'
 --- !u!1 &587375780215209394
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,6 +187,7 @@ Transform:
   - {fileID: 6182508243572053069}
   - {fileID: 5159215269595833973}
   - {fileID: 2327973575848109111}
+  - {fileID: 998202274}
   m_Father: {fileID: 4081956245535909910}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -860,7 +934,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6234852457086893193}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.718315, y: 14.28857, z: -444.81}
+  m_LocalPosition: {x: 22.99, y: 14.28857, z: -451.77}
   m_LocalScale: {x: 1, y: 1, z: 2.9956}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -892,7 +966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f82f846d7fc21fc42850dc83659ea726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questIdToActivate: 5
+  questIdToActivate: 4
 --- !u!1 &6234852457123397586
 GameObject:
   m_ObjectHideFlags: 0
@@ -6681,7 +6755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f82f846d7fc21fc42850dc83659ea726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questIdToActivate: 6
+  questIdToActivate: 5
 --- !u!1 &6234852458443255178
 GameObject:
   m_ObjectHideFlags: 0
@@ -6719,7 +6793,7 @@ Transform:
   - {fileID: 6234852456555530506}
   - {fileID: 4081956245535909910}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6654235627243619868
 GameObject:

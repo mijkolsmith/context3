@@ -5140,7 +5140,7 @@ Transform:
   - {fileID: 1675551652995999874}
   - {fileID: 5931554083029141473}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1675551652086448659
 GameObject:
@@ -6440,6 +6440,79 @@ Transform:
   m_Father: {fileID: 1675551652027728784}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1935989953967227429
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8790040858004875439}
+  - component: {fileID: 6673446490450565541}
+  - component: {fileID: 6411101256317701248}
+  - component: {fileID: 3677119368597784673}
+  m_Layer: 0
+  m_Name: DorienDialogueHitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8790040858004875439
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935989953967227429}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -11.67, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7423750962129880992}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6673446490450565541
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935989953967227429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.6275988, y: 3.7017403, z: 9.916566}
+  m_Center: {x: 4.657664, y: 0.0040673614, z: 0.3990054}
+--- !u!65 &6411101256317701248
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935989953967227429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6466246, y: 4.026602, z: 10.547083}
+  m_Center: {x: 6.8203006, y: 0.19368696, z: 0.61165905}
+--- !u!114 &3677119368597784673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935989953967227429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5023d1a82f79a544496b3d31eced81d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: 'Dorien: Help, Ik zie niks!|Laten we teruggaan.*'
 --- !u!1 &2377761029682423255
 GameObject:
   m_ObjectHideFlags: 0
@@ -6720,6 +6793,7 @@ Transform:
   - {fileID: 7543828926806009273}
   - {fileID: 4425867327739011757}
   - {fileID: 4051401543843619110}
+  - {fileID: 8790040858004875439}
   m_Father: {fileID: 5931554083029141473}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8231,7 +8305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1317917745220639953, guid: 60e7a5d61bb66a14a9deeac559b691f5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -36.16
+      value: -34.69
       objectReference: {fileID: 0}
     - target: {fileID: 1317917745220639953, guid: 60e7a5d61bb66a14a9deeac559b691f5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8239,7 +8313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1317917745220639953, guid: 60e7a5d61bb66a14a9deeac559b691f5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.6
+      value: -3.32
       objectReference: {fileID: 0}
     - target: {fileID: 1317917745220639953, guid: 60e7a5d61bb66a14a9deeac559b691f5, type: 3}
       propertyPath: m_LocalRotation.w
