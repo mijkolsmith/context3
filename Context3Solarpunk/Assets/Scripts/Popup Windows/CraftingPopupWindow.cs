@@ -46,6 +46,9 @@ public class CraftingPopupWindow : PopupWindow
             GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.Crafting;
             ClearAnimations();
 
+            if (!inventoryUiElements.Any()) inventoryUiElements = GetComponentsInChildren<InventoryUiElement>(true).ToList();
+            UpdateUI();
+
             resourceToCraft = GameManager.Instance.QuestManager.GetResourceTypeFromTask();
             if (resourceToCraft == ResourceType.None) return;
 
@@ -62,9 +65,6 @@ public class CraftingPopupWindow : PopupWindow
                     craftingUiElements.Add(Instantiate(craftingUiElementPrefabs.Where(x => x.GetComponent<CraftingUiElement>().GetResourceType() == resourceType).FirstOrDefault(), gridLayoutGroup).GetComponent<CraftingUiElement>());
                 }
             }
-
-            if (!inventoryUiElements.Any()) inventoryUiElements = GetComponentsInChildren<InventoryUiElement>(true).ToList();
-            UpdateUI();
         }
     }
 

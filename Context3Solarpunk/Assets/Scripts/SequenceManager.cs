@@ -142,6 +142,8 @@ public class SequenceManager : MonoBehaviour
         // if fading in
         if (fadeIn)
         {
+            GameManager.Instance.UiManager.TogglePopupWindow(PopupWindowType.BlackoutPanel);
+
             // while the timer is less than the duration
             while (t < fadeDuration)
             {
@@ -160,8 +162,11 @@ public class SequenceManager : MonoBehaviour
                 yield return null;
             }
 
-            // set the alpha value of the image to fully opaque
+            // set the alpha value of the image & text to fully opaque
             fadeImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1f);
+            GameManager.Instance.UiManager.CurrentYearAmountText.color = new Color(255, 255, 255, 1f);
+            GameManager.Instance.UiManager.CurrentYearText.color = new Color(255, 255, 255, 1f);
+
             currentSequenceState = sequenceState.SequenceCenter;
             Sequence(environmentNumber);
         }
@@ -186,8 +191,13 @@ public class SequenceManager : MonoBehaviour
                 yield return null;
             }
 
-            // set the alpha value of the image to fully transparent
+            // set the alpha value of the image & text to fully transparent
             fadeImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0f);
+            GameManager.Instance.UiManager.CurrentYearAmountText.color = new Color(255, 255, 255, 0);
+            GameManager.Instance.UiManager.CurrentYearText.color = new Color(255, 255, 255, 0);
+
+            GameManager.Instance.UiManager.TogglePopupWindow(PopupWindowType.BlackoutPanel);
+
             currentSequenceState = sequenceState.notInSequence;
             Sequence(environmentNumber);
         }
