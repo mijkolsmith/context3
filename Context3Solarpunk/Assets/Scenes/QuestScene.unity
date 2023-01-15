@@ -1223,11 +1223,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4990829700342139071, guid: aafb50781072ac14fb1cccefceee93d5, type: 3}
---- !u!1 &236340707 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8728719311004507610, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
-  m_PrefabInstance: {fileID: 1675551653570995704}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &239190713
 GameObject:
   m_ObjectHideFlags: 0
@@ -2200,11 +2195,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577844878}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &585683569 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8728719310234000222, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
-  m_PrefabInstance: {fileID: 1675551653570995704}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &617595241
 GameObject:
   m_ObjectHideFlags: 0
@@ -3838,7 +3828,7 @@ MonoBehaviour:
             m_StringArgument: Loop naar rechts richting het arriva hoofdkantoor
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1047991768}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -3945,7 +3935,7 @@ MonoBehaviour:
               te ruimen.|Loop naar het afval toe en sleep het naar mij met de rechtermuisknop.*'
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1047991768}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -3973,7 +3963,7 @@ MonoBehaviour:
               uit!*'
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1319075006}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -4116,7 +4106,7 @@ MonoBehaviour:
               machine.*'
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1319075006}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -5468,11 +5458,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992921203}
   m_CullTransparentMesh: 1
---- !u!1 &1047991768 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1675551652727091232, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
-  m_PrefabInstance: {fileID: 1675551653570995704}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1079471373 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f83b45ca3ca3e546b934253d9d6b2a6, type: 3}
@@ -6126,11 +6111,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307112681}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1319075006 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1675551652456012102, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
-  m_PrefabInstance: {fileID: 1675551653570995704}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1359714924 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 668230995828949949, guid: fa9ee64057b5e6d49a7090c003af23e6, type: 3}
@@ -6176,7 +6156,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 350258231}
-  - {fileID: 1678009960}
+  - {fileID: 482221221}
   - {fileID: 959445535}
   - {fileID: 184155911}
   m_Father: {fileID: 1803585175}
@@ -7339,11 +7319,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1942863076}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1954922637 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8728719310804839833, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
-  m_PrefabInstance: {fileID: 1675551653570995704}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1963716342
 GameObject:
   m_ObjectHideFlags: 0
