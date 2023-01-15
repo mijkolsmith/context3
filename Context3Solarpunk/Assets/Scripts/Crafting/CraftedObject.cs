@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class CraftedObject : Resource
 {
@@ -8,7 +7,8 @@ public class CraftedObject : Resource
 	public override ResourceType GetResourceType() => ResourceType;
 
 	[SerializeField] private GameObject model;
-	[SerializeField] private GameObject oldModel;
+	[SerializeField, ShowIf("GetResourceType", ResourceType.LedLamp)] private GameObject oldModel;
+	[SerializeField, ShowIf("GetResourceType", ResourceType.LedLamp)] private GameObject darkness;
 	[SerializeField] private GameObject modelDorien;
 	[SerializeField] private GameObject modelHologram;
 
@@ -23,6 +23,7 @@ public class CraftedObject : Resource
 	{
 		model.SetActive(true);
 
+		if (darkness != null) darkness.SetActive(false);
 		modelDorien.SetActive(false);
 		modelHologram.SetActive(false);
 

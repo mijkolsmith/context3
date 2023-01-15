@@ -55,7 +55,6 @@ public class CraftingManager : MonoBehaviour
     /// <param name="resourceType"></param>
     public void AddResourceToInventory(ResourceType resourceType)
 	{
-        Debug.Log(resourceType);
         GameManager.Instance.QuestManager.ProgressGatherTask(resourceType);
         resources.Add(resourceType);
 	}
