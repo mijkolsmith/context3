@@ -64,10 +64,12 @@ public class SequenceManager : MonoBehaviour
             
             if (GameManager.Instance.EnvironmentManager.InThePast)
             {
+                GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.TIME_TRAVEL_TO_FUTURE);
                 TimeTravelToTheFuture();
             }
             else
             {
+                GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.TIME_TRAVEL_TO_PAST);
                 TimeTravelToThePast();
             }
         }

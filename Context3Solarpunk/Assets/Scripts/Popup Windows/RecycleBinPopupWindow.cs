@@ -105,6 +105,8 @@ public class RecycleBinPopupWindow : PopupWindow
         recycleBinUiElements.Remove(recycleBinUiElement);
         Destroy(recycleBinUiElement.gameObject);
 
+        GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_SELECT);
+
         GameManager.Instance.CraftingManager.AddResourceToInventory(resourceType);
         UpdateUI();
     }

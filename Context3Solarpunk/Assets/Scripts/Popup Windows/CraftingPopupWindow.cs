@@ -143,6 +143,8 @@ public class CraftingPopupWindow : PopupWindow
 
             // Get the correct toCraftHologram and set the progress
             toCraftHologram.SetProgress(craftingUiElements.Where(x => x.activated == true).ToList().Count / (float)craftingUiElements.Count);
+        
+            GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_SELECT);
 
             if (craftingUiElements.Where(x => x.activated == false).ToList().Count == 0)
             {

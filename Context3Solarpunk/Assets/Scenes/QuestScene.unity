@@ -2606,13 +2606,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333040027}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.1810737, y: 6.9065504, z: -4.7520757}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.62572, y: -1.7956362, z: -12.146959}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 1279826165}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &345955775
 PrefabInstance:
@@ -2702,41 +2702,9 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1365162627}
     m_Modifications:
-    - target: {fileID: 584105282, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 584105282, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 1810022903, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1112986570234404598, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5421717847055112874, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5421717848508359513, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5421717848793049192, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5421717848812052672, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_Name
       value: EnvironmentFutureQ1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5421717848812052672, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848812052675, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_RootOrder
@@ -2782,14 +2750,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5421717848862916366, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7542222715723983293, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
@@ -2807,6 +2767,11 @@ GameObject:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2108450843, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
   m_PrefabInstance: {fileID: 350258230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &358009343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3634308688952400458, guid: 3ca7039ca2ac0a046be113ee2d29473b, type: 3}
+  m_PrefabInstance: {fileID: 6633180827786294264}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &382423372 stripped
 GameObject:
@@ -3421,6 +3386,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 518548774}
           m_ObjectArgumentAssemblyTypeName: PopupWindowComponent, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 818546134}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5698,6 +5675,7 @@ GameObject:
   - component: {fileID: 818546144}
   - component: {fileID: 818546145}
   - component: {fileID: 818546147}
+  - component: {fileID: 818546148}
   - component: {fileID: 818546146}
   m_Layer: 0
   m_Name: GameManager
@@ -5921,10 +5899,10 @@ MonoBehaviour:
             m_StringArgument: Loop naar rechts richting het arriva hoofdkantoor
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 818546142}
+          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
+          m_MethodName: CompletedAllTasksInTimeline
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6028,7 +6006,7 @@ MonoBehaviour:
               te ruimen.|Loop naar het afval toe en sleep het naar mij met de rechtermuisknop.*'
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 852138353}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -6056,7 +6034,7 @@ MonoBehaviour:
               uit!*'
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 1150671915}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -6199,7 +6177,7 @@ MonoBehaviour:
               machine.*'
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 1150671915}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -6227,7 +6205,7 @@ MonoBehaviour:
               ga naar binnen
             m_BoolArgument: 0
           m_CallState: 2
-  - Name: 'Quest 2.4: Het kantoor: LED-lampen'
+  - Name: 'Quest 2.3: Het kantoor: LED-lampen'
     Description: Het kantoor is enorm donker... wat nu?
     uniqueQuestID: 3
     sequential: 0
@@ -6301,7 +6279,7 @@ MonoBehaviour:
             m_StringArgument: Loop naar rechts richting het arriva hoofdkantoor
             m_BoolArgument: 0
           m_CallState: 2
-  - Name: 'Quest 2.5: Verzamelen van afval'
+  - Name: 'Quest 2.4: Verzamelen van afval'
     Description: Verzamel het afval van blikjes en flesjes (metaal en glas)
     uniqueQuestID: 4
     sequential: 0
@@ -6396,7 +6374,7 @@ MonoBehaviour:
             m_StringArgument: Ga het arriva hoofdkantoor binnen
             m_BoolArgument: 1
           m_CallState: 2
-  - Name: 'Quest 2.6: Proberen te craften van LED-lampen'
+  - Name: 'Quest 2.5: Proberen te craften van LED-lampen'
     Description: Recycle afval om LED-lampen te maken
     uniqueQuestID: 5
     sequential: 0
@@ -6520,7 +6498,7 @@ MonoBehaviour:
               doen.*'
             m_BoolArgument: 0
           m_CallState: 2
-  - Name: 'Quest 2.7: Craft en plaats daadwerkelijk de LED-lampen'
+  - Name: 'Quest 2.6: Craft en plaats daadwerkelijk de LED-lampen'
     Description: losgekoppeld omdat eerst de twee recycle bin tasks af moeten
     uniqueQuestID: 6
     sequential: 1
@@ -6615,7 +6593,7 @@ MonoBehaviour:
     succesEvent:
       m_PersistentCalls:
         m_Calls: []
-  - Name: 'Quest 3.8: Het kantoor deel 2: Zonnepanelen'
+  - Name: 'Quest 3.7: Het kantoor deel 2: Zonnepanelen'
     Description: Zonnepanelen quest
     uniqueQuestID: 7
     sequential: 0
@@ -6635,7 +6613,7 @@ MonoBehaviour:
     tasks:
     - taskName: Ga op zoek naar nieuwe materialen
       type: 2
-      objectToInteract: {fileID: 0}
+      objectToInteract: {fileID: 1964002893}
       objectToBuild: {fileID: 0}
       resourceToGet: 3
       amountOfResourcesToGet: 1
@@ -6645,7 +6623,7 @@ MonoBehaviour:
           m_Calls: []
     - taskName: Ga op zoek naar nieuwe materialen
       type: 2
-      objectToInteract: {fileID: 0}
+      objectToInteract: {fileID: 358009343}
       objectToBuild: {fileID: 0}
       resourceToGet: 3
       amountOfResourcesToGet: 1
@@ -6655,7 +6633,7 @@ MonoBehaviour:
           m_Calls: []
     - taskName: Ga op zoek naar nieuwe materialen
       type: 2
-      objectToInteract: {fileID: 0}
+      objectToInteract: {fileID: 1058784988}
       objectToBuild: {fileID: 0}
       resourceToGet: 3
       amountOfResourcesToGet: 1
@@ -6708,7 +6686,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - Name: 'Quest 3.9: Het verzamelen van genoeg materiaal en zonnepanelen maken'
+  - Name: 'Quest 3.8: Het verzamelen van genoeg materiaal en zonnepanelen maken'
     Description: Zonnepanelen quest
     uniqueQuestID: 8
     sequential: 0
@@ -7078,7 +7056,13 @@ MonoBehaviour:
   - soundName: 2
     audioClip: {fileID: 8300000, guid: 2c130e4cbff254f4983f108bd8205b4d, type: 3}
   - soundName: 3
-    audioClip: {fileID: 8300000, guid: de2ff9e04dc762843a4f0512a6bbda41, type: 3}
+    audioClip: {fileID: 8300000, guid: 706cbeb793e13f141b46dbc14b7c971c, type: 3}
+  - soundName: 4
+    audioClip: {fileID: 8300000, guid: 33ae2aabf9bf6ab4eb8fbc25a7040adb, type: 3}
+  - soundName: 5
+    audioClip: {fileID: 8300000, guid: 438d7dcfd7f64064d9fcd386cc108145, type: 3}
+  - soundName: 6
+    audioClip: {fileID: 8300000, guid: 65260f1cd5bc342439ce20331a323813, type: 3}
 --- !u!82 &818546145
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7283,6 +7267,107 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &818546148
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818546134}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 462bcfd10ba03a84fbb55633e041627e, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 65260f1cd5bc342439ce20331a323813, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1 &852138353 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1675551652727091232, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
+  m_PrefabInstance: {fileID: 1675551653570995704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!64 &857980314
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7796,10 +7881,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnvironmentFutureQ2
       objectReference: {fileID: 0}
-    - target: {fileID: 8783054870406185284, guid: 06ffe0028cfe4844d9b4fa5b5fc8ac56, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8783054870406185307, guid: 06ffe0028cfe4844d9b4fa5b5fc8ac56, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -8251,6 +8332,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031390993}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1058784988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3634308688802942833, guid: 3ca7039ca2ac0a046be113ee2d29473b, type: 3}
+  m_PrefabInstance: {fileID: 6633180827786294264}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1079471373 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f83b45ca3ca3e546b934253d9d6b2a6, type: 3}
@@ -8591,6 +8677,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7618497800160366510, guid: b42be65fb5403f2448777e44b8dd66fc, type: 3}
   m_PrefabInstance: {fileID: 1137339246}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1150671915 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1675551652456012102, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
+  m_PrefabInstance: {fileID: 1675551653570995704}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1162175478
 PrefabInstance:
@@ -9174,6 +9265,9 @@ Transform:
   - {fileID: 1983109304}
   - {fileID: 51873259}
   - {fileID: 1556089764}
+  - {fileID: 1341430505}
+  - {fileID: 1348688055}
+  - {fileID: 333040031}
   m_Father: {fileID: 1803585175}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9559,14 +9653,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1341430504}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.002963, y: 6.1834517, z: -5.433959}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.447609, y: -2.518735, z: -12.828843}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 174123369}
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 1279826165}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1348688054
 GameObject:
@@ -9591,8 +9685,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348688054}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.4439538, y: 2.3984838, z: -1.8996513}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.1113999, y: -6.303703, z: -9.294536}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9603,8 +9697,8 @@ Transform:
   - {fileID: 2092952955}
   - {fileID: 1576855057}
   - {fileID: 1977720516}
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1279826165}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1359714924 stripped
 GameObject:
@@ -12791,6 +12885,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1964002893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3634308688730716518, guid: 3ca7039ca2ac0a046be113ee2d29473b, type: 3}
+  m_PrefabInstance: {fileID: 6633180827786294264}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1977720513
 GameObject:
   m_ObjectHideFlags: 0
@@ -15314,10 +15413,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnvironmentPresentQ1
       objectReference: {fileID: 0}
-    - target: {fileID: 1675551652027728799, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
@@ -17302,10 +17397,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnvironmentFutureQ4
       objectReference: {fileID: 0}
-    - target: {fileID: 5282293677562981028, guid: 10d2df0ae77ee6e4983bab5bed5c8b15, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5282293677562981031, guid: 10d2df0ae77ee6e4983bab5bed5c8b15, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -17967,10 +18058,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnvironmentPresentQ2
       objectReference: {fileID: 0}
-    - target: {fileID: 6234852458443255178, guid: 4e8961545023d6548bd76822368e2313, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6234852458443255179, guid: 4e8961545023d6548bd76822368e2313, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -18368,10 +18455,6 @@ PrefabInstance:
     - target: {fileID: 8624249447917313238, guid: 3ca7039ca2ac0a046be113ee2d29473b, type: 3}
       propertyPath: m_Name
       value: EnvironmentFutureQ3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8624249447917313238, guid: 3ca7039ca2ac0a046be113ee2d29473b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

@@ -59,7 +59,6 @@ public class Train : MonoBehaviour, IInteractable
         if (IsInteractable)
         {
 			StartCoroutine(TemporarilyDisableInteraction(.3f));
-			GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.TIME_TRAVEL);
             GameManager.Instance.QuestManager.AdvanceTasks(this);
             GameManager.Instance.SequenceManager.TimeTravel();
         }
