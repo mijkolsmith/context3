@@ -9,6 +9,9 @@ public class PlayerControllerPointClick : MonoBehaviour
     [SerializeField] private LayerMask walkableLayer;
     [SerializeField] private GameObject targetDestinationGameObject;
     [SerializeField] private float targetGameObjectDisappearDistance = 2f;
+    [SerializeField, ReadOnly] private Quaternion newRotation;
+    [SerializeField] private float rotationSpeed = 3f;
+
     private NavMeshAgent agent;
 
     [Header("Interaction")]
@@ -46,13 +49,13 @@ public class PlayerControllerPointClick : MonoBehaviour
     public static GameObject Player { get; private set; }
     public GameObject CompanionPositionGameObject { get => companionPositionGameObject; set => companionPositionGameObject = value; }
     public IInteractable InteractableObject { get => interactableObject; set => interactableObject = value; }
-	public Color CanInteractColor { get => canInteractColor; private set => canInteractColor = value; }
-	#endregion
+    public Color CanInteractColor { get => canInteractColor; private set => canInteractColor = value; }
+    #endregion
 
-	/// <summary>
-	/// Get the navMeshAgent in the Start method.
-	/// </summary>
-	private void Start()
+    /// <summary>
+    /// Get the navMeshAgent in the Start method.
+    /// </summary>
+    private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
@@ -78,42 +81,51 @@ public class PlayerControllerPointClick : MonoBehaviour
             {
                 if (Physics.Raycast(ray, out RaycastHit targetHit, Mathf.Infinity, walkableLayer))
                 {
-					targetDestinationGameObject.transform.position = targetHit.point;
-					agent.SetDestination(targetHit.point);
-				}
+                    Vector3 lookPos = -(targetHit.point - transform.position); //the character model is the wrong way around
+                    lookPos.y = 0;
+                    newRotation = Quaternion.LookRotation(lookPos, Vector3.up);
+
+                    targetDestinationGameObject.transform.position = targetHit.point;
+                    agent.SetDestination(targetHit.point);
+                }
+            }
+
+            if (Vector3.Distance(transform.position, targetDestinationGameObject.transform.position) > .2f)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * rotationSpeed);
             }
 
             // Interaction
             interactionInput = Input.GetButton("InteractionKey");
 
-			if (Physics.Raycast(ray, out RaycastHit interactionHit, Mathf.Infinity, interactableLayer))
-			{
+            if (Physics.Raycast(ray, out RaycastHit interactionHit, Mathf.Infinity, interactableLayer))
+            {
                 interactableObject = interactionHit.collider.GetComponent<IInteractable>();
                 interactableGameObject = interactionHit.collider.gameObject;
 
                 if (Vector3.Distance(interactionHit.collider.transform.position, transform.position) < interactionDistance)
-				{
-					interactableObject.Highlight(CanInteractColor);
-					if (interactionInput || GameManager.Instance.InputManager.DoubleClick())
-					{
+                {
+                    interactableObject.Highlight(CanInteractColor);
+                    if (interactionInput || GameManager.Instance.InputManager.DoubleClick())
+                    {
                         CancelMovement();
 
                         interactableObject.Interact();
-						GameManager.Instance.RefreshNavMesh();
-					}
-				}
-				else interactableObject.Highlight(cantInteractColor);
-			}
+                        GameManager.Instance.RefreshNavMesh();
+                    }
+                }
+                else interactableObject.Highlight(cantInteractColor);
+            }
 
-			// Respawning
-			respawnInput = Input.GetButtonDown("RespawnKey");
+            // Respawning
+            respawnInput = Input.GetButtonDown("RespawnKey");
             if (respawnInput)
             {
                 transform.position = respawnLocation;
             }
         }
         else
-		{
+        {
             CancelMovement();
         }
 
@@ -131,7 +143,7 @@ public class PlayerControllerPointClick : MonoBehaviour
     /// Cancel the player movement
     /// </summary>
     private void CancelMovement()
-	{
+    {
         targetDestinationGameObject.transform.position = transform.position;
         agent.SetDestination(transform.position);
     }
