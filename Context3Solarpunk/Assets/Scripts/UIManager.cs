@@ -106,32 +106,45 @@ public class UIManager : MonoBehaviour
     public IEnumerator TypeSentence(string sentence)
     {
         GameManager.Instance.SoundManager.StopSound();
-        GameManager.Instance.SoundManager.PlaySound(SoundName.DORIEN_TALKING);
+
+        List<string> sentences = new();
         activeDialogueText.text = "";
+
         foreach (char letter in sentence.ToCharArray())
         {
-            //TEST: >=1 and remove the next line, should work
             activeDialogueText.text += letter;
-            if (activeDialogueText.text.Length > 1)
+            if (letter == '|' || letter == '*')
             {
-                string s = activeDialogueText.text.Substring(activeDialogueText.text.Length - 1);
-                if (s == "|")
-                {
-                    GameManager.Instance.SoundManager.PauseSound();
-                    paused = true; //Pause the dialogue
-                    activeDialogueText.text = activeDialogueText.text.Substring(0, activeDialogueText.text.Length - 1); //Takes the last character away from the text (presumably a "|")
-                    yield return new WaitUntil(() => !paused/*Input.GetKeyDown(KeyCode.Return)*/);
-                    GameManager.Instance.SoundManager.PlaySound(SoundName.DORIEN_TALKING);
-                    activeDialogueText.text = "";
-                } 
-                else if (s == "*")
-                {
-                    GameManager.Instance.SoundManager.StopSound();
-                    activeDialogueText.text = activeDialogueText.text.Substring(0, activeDialogueText.text.Length - 1);
-                }
+                sentences.Add(activeDialogueText.text.Substring(0, activeDialogueText.text.Length - 1));
+                activeDialogueText.text = "";
             }
-            yield return new WaitForSeconds(textSpeed);
         }
+
+        foreach (string splitSentence in sentences)
+        {
+            //Set the right text size
+            activeDialogueText.enableAutoSizing = true;
+            activeDialogueText.text = splitSentence;
+            activeDialogueText.ForceMeshUpdate();
+            float autoFontSize = activeDialogueText.fontSize;
+            activeDialogueText.text = "";
+            activeDialogueText.enableAutoSizing = false;
+            activeDialogueText.fontSize = autoFontSize;
+
+            GameManager.Instance.SoundManager.PlaySound(SoundName.DORIEN_TALKING);
+            foreach (char letter in splitSentence)
+            {
+                activeDialogueText.text += letter;
+                yield return new WaitForSeconds(textSpeed);
+            }
+
+            GameManager.Instance.SoundManager.PauseSound();
+            paused = true;
+            yield return new WaitUntil(() => !paused);
+            activeDialogueText.text = "";
+        }
+        CheckBlockingToggle();
+        GameManager.Instance.SoundManager.StopSound();
     }
 
     /// <summary>

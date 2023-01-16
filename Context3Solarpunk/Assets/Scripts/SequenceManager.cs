@@ -200,6 +200,12 @@ public class SequenceManager : MonoBehaviour
 
             GameManager.Instance.UiManager.TogglePopupWindow(PopupWindowType.BlackoutPanel);
 
+            if (startDelayedDialogue)
+            {
+                GameManager.Instance.UiManager.StartDialogue(savedDelayedDialogue);
+                startDelayedDialogue = false;
+            }
+
             currentSequenceState = sequenceState.notInSequence;
             Sequence(environmentNumber);
         }
@@ -228,11 +234,6 @@ public class SequenceManager : MonoBehaviour
         currentSequenceState = sequenceState.SequenceFadingOut;
         Sequence(environmentNumber);
 
-        if (startDelayedDialogue)
-        {
-            GameManager.Instance.UiManager.StartDialogue(savedDelayedDialogue);
-            startDelayedDialogue = false;
-        }
         yield return null;
     }
 

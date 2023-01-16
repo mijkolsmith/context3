@@ -50,6 +50,7 @@ public class IntroManager : MonoBehaviour
         //Set the right text size
         dialogueText.enableAutoSizing = true;
         dialogueText.text = sentence;
+        dialogueText.ForceMeshUpdate();
         float autoFontSize = dialogueText.fontSize;
         dialogueText.text = "";
         dialogueText.enableAutoSizing = false;
