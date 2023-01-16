@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
 #region Variables
     [SerializeField] private TextMeshProUGUI questText;
     [SerializeField] private GameObject dialoguePanel;
-    [SerializeField, Range(0.001f, 0.2f)] private float textSpeed = 0.02f;
+    [SerializeField, Range(0.0001f, 0.05f)] private float textSpeed = 0.02f;
     [SerializeField] private TextMeshProUGUI[] dialogueTexts;
     [SerializeField] private TextMeshProUGUI activeDialogueText;
 
@@ -22,7 +22,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject dorienPopupUIObject;
 
     [SerializeField] private bool paused = false;
-    [SerializeField, ReadOnly] private bool dialogueFinished = false;
 
     [SerializeField] private GameObject blackoutSquare;
     [SerializeField] private TextMeshProUGUI currentYearText;
@@ -83,11 +82,6 @@ public class UIManager : MonoBehaviour
     public void ContinueDialogue()
     {
         paused = false;
-        if (dialogueFinished)
-        {
-            CheckBlockingToggle();
-            dialogueFinished = false;
-        }
     }
 
     private void CheckBlockingToggle()
@@ -116,6 +110,7 @@ public class UIManager : MonoBehaviour
         activeDialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
+            //TEST: >=1 and remove the next line, should work
             activeDialogueText.text += letter;
             if (activeDialogueText.text.Length > 1)
             {
@@ -127,14 +122,12 @@ public class UIManager : MonoBehaviour
                     activeDialogueText.text = activeDialogueText.text.Substring(0, activeDialogueText.text.Length - 1); //Takes the last character away from the text (presumably a "|")
                     yield return new WaitUntil(() => !paused/*Input.GetKeyDown(KeyCode.Return)*/);
                     GameManager.Instance.SoundManager.PlaySound(SoundName.DORIEN_TALKING);
-                    dialogueFinished = false;
                     activeDialogueText.text = "";
                 } 
                 else if (s == "*")
                 {
                     GameManager.Instance.SoundManager.StopSound();
                     activeDialogueText.text = activeDialogueText.text.Substring(0, activeDialogueText.text.Length - 1);
-                    dialogueFinished = true;
                 }
             }
             yield return new WaitForSeconds(textSpeed);

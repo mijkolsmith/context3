@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,12 +6,13 @@ using UnityEngine.UI;
 public class IntroManager : MonoBehaviour
 {
     [SerializeField] private string[] introDialogue;
-    int currentDialogueIndex;
+    int currentDialogueIndex = 0;
 
     [SerializeField] private Sprite[] introSprites;
     [SerializeField] private Image introImage;
 
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField, Range(0.0001f, 0.05f)] private float textSpeed = 0.02f;
 
     [SerializeField] private GameObject previousButtonGameObject;
     [SerializeField] private GameObject nextButtonGameObject;
@@ -19,19 +21,44 @@ public class IntroManager : MonoBehaviour
 
     private void Start()
     {
-        dialogueText.text = introDialogue[0];
         introImage.sprite = introSprites[0];
+        StartDialogue();
     }
 
-    /// <summary>
-    /// This method adjusts the dialogue visible on the screen, and also adjusts the buttons and background accordingly
-    /// </summary>
-    /// <param name="byAmount">1 to go ahead and -1 go back</param>
-    public void ProgressDialogue(int byAmount)
+    public void NextSentence()
+	{
+        if (currentDialogueIndex + 1 < introDialogue.Length) currentDialogueIndex++;
+        StartDialogue();
+    }
+
+    public void PreviousSentence()
     {
-        if ((currentDialogueIndex + byAmount) > -1 && (currentDialogueIndex + byAmount) < introDialogue.Length)
+        if(currentDialogueIndex - 1 > -1) currentDialogueIndex--;
+        StartDialogue();
+    }
+
+    public void StartDialogue()
+	{
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(introDialogue[currentDialogueIndex]));
+    }
+
+    public IEnumerator TypeSentence(string sentence)
+    {
+        nextButtonGameObject.SetActive(false);
+
+        //Set the right text size
+        dialogueText.enableAutoSizing = true;
+        dialogueText.text = sentence;
+        float autoFontSize = dialogueText.fontSize;
+        dialogueText.text = "";
+        dialogueText.enableAutoSizing = false;
+        dialogueText.fontSize = autoFontSize;
+
+        foreach (char letter in sentence.ToCharArray())
         {
-            currentDialogueIndex += byAmount;
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(textSpeed);
         }
 
         if (currentDialogueIndex == 0)
@@ -39,21 +66,19 @@ public class IntroManager : MonoBehaviour
             previousButtonGameObject.SetActive(false);
             introImage.sprite = introSprites[0];
         }
-        else 
+        else
         {
             previousButtonGameObject.SetActive(true);
             if (currentDialogueIndex == 1)
-			{
+            {
                 introImage.sprite = introSprites[1];
             }
             else if (currentDialogueIndex == 3)
-			{
+            {
                 introImage.sprite = introSprites[2];
             }
             else introImage.sprite = introSprites[0];
         }
-
-        dialogueText.text = introDialogue[currentDialogueIndex];
 
         if (currentDialogueIndex == introDialogue.Length - 1)
         {
