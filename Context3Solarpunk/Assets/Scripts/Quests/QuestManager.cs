@@ -143,12 +143,15 @@ public class QuestManager : MonoBehaviour
     /// <param name="interactable"></param>
     public void ProgressInteractTask(Task task, IInteractable interactableObject)
     {
-        if (task.type == TaskType.Interact 
-            && (task.objectToInteract.GetComponent<IInteractable>() == interactableObject 
-                || task.objectToInteract == null))
+        //If you get a nullreference error here, you probably forgot to assign the interactableobject
+        if (task.type == TaskType.Interact)
         {
-            task.success = true;
-            task.succesEvent?.Invoke();
+            if (task.objectToInteract.GetComponent<IInteractable>() == interactableObject
+                || task.objectToInteract == null)
+            {
+                task.success = true;
+                task.succesEvent?.Invoke();
+            }
         }
     }
 

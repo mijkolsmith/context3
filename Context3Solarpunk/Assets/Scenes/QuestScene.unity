@@ -5951,9 +5951,9 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
     tasks:
-    - taskName: Ruim het afval op
+    - taskName: Ruim al het afval op
       type: 2
-      objectToInteract: {fileID: 0}
+      objectToInteract: {fileID: 888572577}
       objectToBuild: {fileID: 0}
       resourceToGet: 1
       amountOfResourcesToGet: 0
@@ -5961,7 +5961,7 @@ MonoBehaviour:
       succesEvent:
         m_PersistentCalls:
           m_Calls: []
-    - taskName: Ruim het afval op
+    - taskName: Ruim al het afval op
       type: 1
       objectToInteract: {fileID: 1880684873}
       objectToBuild: {fileID: 0}
@@ -5971,9 +5971,9 @@ MonoBehaviour:
       succesEvent:
         m_PersistentCalls:
           m_Calls: []
-    - taskName: Ruim het afval op
+    - taskName: Ruim al het afval op
       type: 1
-      objectToInteract: {fileID: 0}
+      objectToInteract: {fileID: 892981158}
       objectToBuild: {fileID: 0}
       resourceToGet: 0
       amountOfResourcesToGet: 0
@@ -5981,7 +5981,7 @@ MonoBehaviour:
       succesEvent:
         m_PersistentCalls:
           m_Calls: []
-    - taskName: Ruim het afval op
+    - taskName: Ruim al het afval op
       type: 1
       objectToInteract: {fileID: 1954922637}
       objectToBuild: {fileID: 0}
@@ -5991,7 +5991,7 @@ MonoBehaviour:
       succesEvent:
         m_PersistentCalls:
           m_Calls: []
-    - taskName: Ruim het afval op
+    - taskName: Ruim al het afval op
       type: 1
       objectToInteract: {fileID: 1241556417}
       objectToBuild: {fileID: 0}
@@ -6001,7 +6001,7 @@ MonoBehaviour:
       succesEvent:
         m_PersistentCalls:
           m_Calls: []
-    - taskName: Ruim het afval op
+    - taskName: Ruim al het afval op
       type: 1
       objectToInteract: {fileID: 1908352993}
       objectToBuild: {fileID: 0}
@@ -7643,6 +7643,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132148406676186, guid: 9fc88dabf90034f43aa281c37eb18309, type: 3}
   m_PrefabInstance: {fileID: 1744823704}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &888572577 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8728719311004507610, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
+  m_PrefabInstance: {fileID: 1675551653570995704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &892890690 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3942637915437885778, guid: 07fbbf1361d04714a9b15bf80d5610b5, type: 3}
@@ -7662,6 +7667,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5755189679344240438, guid: 07fbbf1361d04714a9b15bf80d5610b5, type: 3}
+--- !u!1 &892981158 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8728719310234000222, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
+  m_PrefabInstance: {fileID: 1675551653570995704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &926015143 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 977619983593547768, guid: 7318ab0cded75d442b4ca779442f58ad, type: 3}
@@ -9641,12 +9651,12 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 350258231}
+  - {fileID: 1678009960}
   - {fileID: 959445535}
   - {fileID: 184155911}
   - {fileID: 3144277784534871857}
   - {fileID: 8600012955733777779}
   - {fileID: 1803595078}
-  - {fileID: 1678009960}
   m_Father: {fileID: 1803585175}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
