@@ -1423,6 +1423,7 @@ GameObject:
   - component: {fileID: 1685812458328631326}
   - component: {fileID: 8179010390331113703}
   - component: {fileID: 2277228665883875165}
+  - component: {fileID: 2642106571025800082}
   m_Layer: 8
   m_Name: QuestsButton
   m_TagString: Untagged
@@ -1570,6 +1571,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &2642106571025800082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4411434691091562027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bec6d576875bda4aa37d41800a24ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: 6
 --- !u!1 &4762616789013087022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,6 +1748,7 @@ GameObject:
   - component: {fileID: 1489647425473505619}
   - component: {fileID: 5403691583968746710}
   - component: {fileID: 7795935652785610767}
+  - component: {fileID: 6138878653385957810}
   m_Layer: 8
   m_Name: InventoryButton
   m_TagString: Untagged
@@ -1881,6 +1896,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &6138878653385957810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7713887077754111664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bec6d576875bda4aa37d41800a24ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: 6
 --- !u!1 &7724082117310613141
 GameObject:
   m_ObjectHideFlags: 0

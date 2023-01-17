@@ -10,7 +10,7 @@ public class SoundManager : MonoBehaviour
 
     /// <summary>
     /// Get all the attached audioSources 
-    /// You need 2 sources for the script to function
+    /// You need (at least) 2 sources for this script to function
     /// </summary>
 	private void Awake()
 	{
@@ -24,6 +24,15 @@ public class SoundManager : MonoBehaviour
 	public void PlayOneShotSound(SoundName name)
     {
         audioSources[0].PlayOneShot(sounds.Where(x => x.soundName == name).FirstOrDefault().audioClip);
+    }
+
+    /// <summary>
+	/// Play a one-shot sound by name from a button
+	/// </summary>
+	/// <param name="name"></param>
+	public void PlayOneShotSound(SoundNameComponent name)
+    {
+        audioSources[0].PlayOneShot(sounds.Where(x => x.soundName == name.soundName).FirstOrDefault().audioClip);
     }
 
     /// <summary>

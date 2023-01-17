@@ -30,11 +30,13 @@ public class RecycleBinPopupWindow : PopupWindow
 
             PopupWindowObject.SetActive(false);
             GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.None;
+            GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_CLOSE);
         }
         else
         {
             PopupWindowObject.SetActive(true);
             GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.RecycleBin;
+            GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_OPEN);
 
             // Dynamically add recycleBinUiElements
             // TODO: Make this a dynamic system
@@ -105,7 +107,7 @@ public class RecycleBinPopupWindow : PopupWindow
         recycleBinUiElements.Remove(recycleBinUiElement);
         Destroy(recycleBinUiElement.gameObject);
 
-        GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_SELECT);
+        GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.TRANSFER_ITEM);
 
         GameManager.Instance.CraftingManager.AddResourceToInventory(resourceType);
         UpdateUI();

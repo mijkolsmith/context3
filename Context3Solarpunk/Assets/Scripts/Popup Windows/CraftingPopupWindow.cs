@@ -36,14 +36,17 @@ public class CraftingPopupWindow : PopupWindow
         {
             ClearHolograms();
             ClearCraftingUiElements();
+            
 
             PopupWindowObject.SetActive(false);
             GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.None;
+            GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_CLOSE);
         }
         else
         {
             PopupWindowObject.SetActive(true);
             GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.Crafting;
+            GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_OPEN);
             ClearAnimations();
 
             if (!inventoryUiElements.Any()) inventoryUiElements = GetComponentsInChildren<InventoryUiElement>(true).ToList();
@@ -143,8 +146,8 @@ public class CraftingPopupWindow : PopupWindow
 
             // Get the correct toCraftHologram and set the progress
             toCraftHologram.SetProgress(craftingUiElements.Where(x => x.activated == true).ToList().Count / (float)craftingUiElements.Count);
-        
-            GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_SELECT);
+
+            GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.TRANSFER_ITEM);
 
             if (craftingUiElements.Where(x => x.activated == false).ToList().Count == 0)
             {

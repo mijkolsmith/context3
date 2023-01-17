@@ -67,6 +67,7 @@ public class DraggableObject : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 	/// <param name="eventData"></param>
 	public void OnBeginDrag(PointerEventData eventData)
 	{
+		GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_SELECT_01);
 		transform.SetParent(popupWindow.transform);
 	}
 

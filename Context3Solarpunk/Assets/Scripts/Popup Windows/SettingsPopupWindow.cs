@@ -18,16 +18,25 @@ public class SettingsPopupWindow : PopupWindow
 		{
 			PopupWindowObject.SetActive(false);
 			GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.None;
+			GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_CLOSE);
 		}
 		else
 		{
 			PopupWindowObject.SetActive(true);
 			GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.Settings;
+			GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_OPEN);
 		}
 	}
 
 	public override void UpdateUI()
 	{
 		
+	}
+
+	public void SaveQuit()
+	{
+		GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_SELECT_02);
+		Debug.Log("no functionality yet");
+		//empty function
 	}
 }
