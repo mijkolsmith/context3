@@ -82,7 +82,7 @@ public class PlayerControllerPointClick : MonoBehaviour
             {
                 if (Physics.Raycast(ray, out RaycastHit targetHit, Mathf.Infinity, walkableLayer))
                 {
-                    Vector3 lookPos = -(targetHit.point - transform.position); //the character model is the wrong way around
+                    Vector3 lookPos = (targetHit.point - transform.position);
                     lookPos.y = 0;
                     newRotation = Quaternion.LookRotation(lookPos, Vector3.up);
 
