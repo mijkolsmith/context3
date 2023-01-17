@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.41117796, g: 0.27339473, b: 0.19505513, a: 1}
+  m_IndirectSpecularColor: {r: 0.4111834, g: 0.2734049, b: 0.19507048, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2527,6 +2527,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1365162627}
     m_Modifications:
+    - target: {fileID: 1810022903, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112986570234404598, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2362304720776539369, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2541,15 +2549,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5421717847055112874, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848508359513, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848793049192, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848812052672, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_Name
@@ -2557,7 +2565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848812052672, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848812052675, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_RootOrder
@@ -2605,7 +2613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848862916366, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6474177954405389498, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_LocalScale.x
@@ -2622,6 +2630,10 @@ PrefabInstance:
     - target: {fileID: 6474177954405389498, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542222715723983293, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -13879,6 +13891,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 312700401}
+    - target: {fileID: 5592316755307159525, guid: b1e5ece1b72e0074ca93d3a0e9aca45f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592316755307159525, guid: b1e5ece1b72e0074ca93d3a0e9aca45f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592316755496574324, guid: b1e5ece1b72e0074ca93d3a0e9aca45f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592316755496574324, guid: b1e5ece1b72e0074ca93d3a0e9aca45f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592316755496574324, guid: b1e5ece1b72e0074ca93d3a0e9aca45f, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5592316756466947198, guid: b1e5ece1b72e0074ca93d3a0e9aca45f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
