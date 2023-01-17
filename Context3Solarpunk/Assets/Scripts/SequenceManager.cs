@@ -202,7 +202,7 @@ public class SequenceManager : MonoBehaviour
 
             if (startDelayedDialogue)
             {
-                GameManager.Instance.UiManager.StartDialogue(savedDelayedDialogue);
+                GameManager.Instance.UiManager.StartDorienDialogue(savedDelayedDialogue);
                 startDelayedDialogue = false;
             }
 

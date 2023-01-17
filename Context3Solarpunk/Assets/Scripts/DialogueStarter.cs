@@ -5,6 +5,6 @@ public class DialogueStarter : MonoBehaviour
 	[SerializeField] private string dialogue;
 	private void OnCollisionEnter(Collision collision)
 	{
-		GameManager.Instance.UiManager.StartDialogue(dialogue);
+		GameManager.Instance.UiManager.StartDorienDialogue(dialogue);
 	}
 }

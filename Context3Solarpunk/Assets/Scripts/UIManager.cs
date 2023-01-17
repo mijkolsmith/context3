@@ -68,7 +68,7 @@ public class UIManager : MonoBehaviour
     /// Starts dialogue in dialogueText object.
     /// </summary>
     /// <param name="dialogue"></param>
-    public void StartDialogue(string dialogue)
+    public void StartDorienDialogue(string dialogue)
     {
         StopAllCoroutines();
         CheckBlockingToggle();
