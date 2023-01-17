@@ -11,20 +11,13 @@ public class CharacterCustomisation : MonoBehaviour
     [HorizontalLine]
     [Header("HairStyle related Variables")]
     [SerializeField] private List<GameObject> hairStyles = new List<GameObject>();
+    [SerializeField] private GameObject hairParent;
+    [SerializeField] private GameObject selectedHairStyle;
+
 
     void Awake()
     {
-
-    }
-
-    public void SetSkinColour(Color color)
-    {
-        foreach (GameObject go in skinColourObjects)
-        {
-            Renderer skinRenderer = go.GetComponent<Renderer>();
-            skinRenderer.material.color = color;
-
-        }
+        SetHairStyle(0);
     }
 
     public void SetSkinColorByHex(string hexColor)
@@ -32,23 +25,37 @@ public class CharacterCustomisation : MonoBehaviour
         Debug.Log("Buttonpresscalled");
         foreach (GameObject go in skinColourObjects)
         {
-            Debug.Log(go.name);
             Color newCol;
             Renderer skinRenderer = go.GetComponent<Renderer>();
 
             if (ColorUtility.TryParseHtmlString(hexColor, out newCol))
             {
-                Debug.Log(newCol);
                 skinRenderer.material.color = newCol;
             }
         }
     }
 
-    public void DebugColour(Color parColor)
-    {
-        Color color = parColor;
-        string message = "Color " + 1 + " tested.";
 
-        Debug.Log(string.Format("<color=#{0:X2}{1:X2}{2:X2}>{3}</color>", (byte)(color.r * 255f), (byte)(color.g * 255f), (byte)(color.b * 255f), message));
+    public void SetHairStyle(int hairStyleIndex)
+    {
+        for (int i = 0; i < hairStyles.Count; i++)
+        {
+            if (i == hairStyleIndex)
+            {
+                Destroy(selectedHairStyle);
+                selectedHairStyle = Instantiate(hairStyles[i], hairParent.transform);
+            }
+        }
+    }
+
+    public void SetHairColour(string hexColor)
+    {
+        Color newCol;
+        Renderer r = selectedHairStyle.GetComponentInChildren<Renderer>();
+
+        if (ColorUtility.TryParseHtmlString(hexColor, out newCol))
+        {
+            r.material.color = newCol;
+        }
     }
 }
