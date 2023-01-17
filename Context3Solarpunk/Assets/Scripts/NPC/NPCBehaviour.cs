@@ -6,6 +6,8 @@ using UnityEngine;
 public class NPCBehaviour : MonoBehaviour, IInteractable
 {
 	[SerializeField, ReadOnly] private Outline objectOutline;
+	[SerializeField] private string dialogue;
+	[SerializeField] private int npcId;
 	private bool highlighting = false;
 
 	/// <summary>
@@ -33,7 +35,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
 	/// </summary>
 	public void Interact()
 	{
-		
+		GameManager.Instance.UiManager.StartNpcDialogue(dialogue, npcId);
 	}
 
 	/// <summary>

@@ -12,10 +12,12 @@ public class UIManager : MonoBehaviour
 {
 #region Variables
     [SerializeField] private TextMeshProUGUI questText;
-    [SerializeField] private GameObject dialoguePanel;
     [SerializeField, Range(0.0001f, 0.05f)] private float textSpeed = 0.02f;
+
+    [SerializeField] private GameObject[] dialoguePanels;
     [SerializeField] private TextMeshProUGUI[] dialogueTexts;
     [SerializeField] private TextMeshProUGUI activeDialogueText;
+    private int currentNpcId;
 
     [SerializeField] private GameObject canInteractPopupUIObject;
     [SerializeField] private GameObject canCraftPopupUIObject;
@@ -64,6 +66,28 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void StartNpcDialogue(string dialogue, int npcId)
+	{
+        StopAllCoroutines();
+        currentNpcId = npcId;
+        ToggleNpcDialogue(true);
+        StartCoroutine(TypeSentence(dialogue, false));
+    }
+
+    public void ToggleNpcDialogue(bool inactive)
+	{
+        if (inactive)
+        {
+            dialoguePanels[currentNpcId - 1].SetActive(true);
+            activeDialogueText = dialogueTexts[currentNpcId];
+        }
+        else
+        {
+            dialoguePanels[currentNpcId - 1].SetActive(false);
+            activeDialogueText = null;
+        }
+    }
+
     /// <summary>
     /// Starts dialogue in dialogueText object.
     /// </summary>
@@ -71,8 +95,18 @@ public class UIManager : MonoBehaviour
     public void StartDorienDialogue(string dialogue)
     {
         StopAllCoroutines();
-        CheckBlockingToggle();
-        StartCoroutine(TypeSentence(dialogue));
+        ToggleDorienDialogue(true);
+        StartCoroutine(TypeSentence(dialogue, true));
+    }
+
+    private void ToggleDorienDialogue(bool inactive)
+    {
+        if (inactive)
+		{
+            activeDialogueText = dialogueTexts[0];
+        }
+        else activeDialogueText = null;
+        TogglePopupWindow(PopupWindowType.Dialogue);
     }
 
     /// <summary>
@@ -84,28 +118,14 @@ public class UIManager : MonoBehaviour
         paused = false;
     }
 
-    private void CheckBlockingToggle()
-	{
-        if (!blocking)
-        {
-            dialoguePanel.SetActive(!dialoguePanel.activeInHierarchy);
-            activeDialogueText = dialogueTexts[0];
-        }
-        else
-        {
-            TogglePopupWindow(PopupWindowType.Dialogue);
-            activeDialogueText = dialogueTexts[1];
-        }
-    }
-
     /// <summary>
     /// Enumerator that actually types the sentence and pauses when "paused" bool is set to true.
     /// </summary>
     /// <param name="sentence"></param>
     /// <returns></returns>
-    public IEnumerator TypeSentence(string sentence)
+    public IEnumerator TypeSentence(string sentence, bool dorien)
     {
-        GameManager.Instance.SoundManager.StopSound();
+        if (dorien) GameManager.Instance.SoundManager.StopSound();
 
         List<string> sentences = new();
         activeDialogueText.text = "";
@@ -131,20 +151,25 @@ public class UIManager : MonoBehaviour
             activeDialogueText.enableAutoSizing = false;
             activeDialogueText.fontSize = autoFontSize;
 
-            GameManager.Instance.SoundManager.PlaySound(SoundName.DORIEN_TALKING);
+            if (dorien) GameManager.Instance.SoundManager.PlaySound(SoundName.DORIEN_TALKING);
             foreach (char letter in splitSentence)
             {
                 activeDialogueText.text += letter;
                 yield return new WaitForSeconds(textSpeed);
             }
 
-            GameManager.Instance.SoundManager.PauseSound();
+            if (dorien) GameManager.Instance.SoundManager.PauseSound();
             paused = true;
             yield return new WaitUntil(() => !paused);
             activeDialogueText.text = "";
         }
-        CheckBlockingToggle();
-        GameManager.Instance.SoundManager.StopSound();
+
+        if (dorien)
+        {
+            ToggleDorienDialogue(false);
+            GameManager.Instance.SoundManager.StopSound();
+        }
+        else ToggleNpcDialogue(false);
     }
 
     /// <summary>
