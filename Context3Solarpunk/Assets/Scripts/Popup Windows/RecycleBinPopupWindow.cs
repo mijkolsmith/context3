@@ -40,9 +40,9 @@ public class RecycleBinPopupWindow : PopupWindow
             // TODO: Make this a dynamic system
             Dictionary<ResourceType, int> recycleBinContents = new()
             {
-                { ResourceType.Bottle, 3 },
-                { ResourceType.Can, 3 },
-                { ResourceType.OldPlastic, 0 },
+                { ResourceType.Bottle, 4 },
+                { ResourceType.Can, 4 },
+                { ResourceType.OldPlastic, 4 },
                 { ResourceType.Leaf, 0 },
             };
 
