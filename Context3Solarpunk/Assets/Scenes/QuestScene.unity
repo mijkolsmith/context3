@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4111834, g: 0.2734049, b: 0.19507048, a: 1}
+  m_IndirectSpecularColor: {r: 0.41117796, g: 0.27339473, b: 0.19505513, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -18875,7 +18875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2424988673632255285, guid: 851a2afc40d6ed24fb6d04079802e72f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2424988673632255285, guid: 851a2afc40d6ed24fb6d04079802e72f, type: 3}
       propertyPath: m_LocalRotation.x
@@ -18883,7 +18883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2424988673632255285, guid: 851a2afc40d6ed24fb6d04079802e72f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2424988673632255285, guid: 851a2afc40d6ed24fb6d04079802e72f, type: 3}
       propertyPath: m_LocalRotation.z
@@ -18895,7 +18895,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2424988673632255285, guid: 851a2afc40d6ed24fb6d04079802e72f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 2424988673632255285, guid: 851a2afc40d6ed24fb6d04079802e72f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -18904,6 +18904,18 @@ PrefabInstance:
     - target: {fileID: 3093017421800433551, guid: 851a2afc40d6ed24fb6d04079802e72f, type: 3}
       propertyPath: m_Name
       value: AnimatedSkirtPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837483311007525310, guid: 851a2afc40d6ed24fb6d04079802e72f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837483311007525310, guid: 851a2afc40d6ed24fb6d04079802e72f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837483311007525310, guid: 851a2afc40d6ed24fb6d04079802e72f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8826976984920871825, guid: 851a2afc40d6ed24fb6d04079802e72f, type: 3}
       propertyPath: targetDestinationGameObject
