@@ -27,7 +27,7 @@ public class PlayerManager : MonoBehaviour
 
     public void SpawnPlayer()
     {
-        PlayerObject = playerAsset.isPantsCharacter ? Instantiate(skirtPlayerPrefab, spawnPosition) : Instantiate(pantsPlayerPrefab, spawnPosition);
+        PlayerObject = playerAsset.isPantsCharacter ? Instantiate(pantsPlayerPrefab, spawnPosition) : Instantiate(skirtPlayerPrefab, spawnPosition);
         playerModel = PlayerObject.GetComponent<PlayerModel>();
         companionTransform = playerObject.GetComponent<PlayerControllerPointClick>().CompanionPositionGameObject.transform;
         SetSkinColor(playerAsset.skinColorHex);
