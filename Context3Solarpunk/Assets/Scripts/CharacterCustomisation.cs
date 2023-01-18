@@ -33,7 +33,9 @@ public class CharacterCustomisation : MonoBehaviour
     [SerializeField, ReadOnly] private string skinColorHex = "#FFF3EB";
     [SerializeField, ReadOnly] private int hairIndex = 0;
     [SerializeField, ReadOnly] private string hairColorHex = "#E4DFD9";
-    [SerializeField, ReadOnly] private string accessoryColor = "#91DDE3";
+    [SerializeField, ReadOnly] private string accessoryColorHex = "#91DDE3";
+
+    [SerializeField] private PlayerModelScriptableObject playerAsset;
 
 
 
@@ -103,6 +105,15 @@ public class CharacterCustomisation : MonoBehaviour
         SetHairStyle(hairIndex);
         SetHairColour(hairColorHex);
         SetSkinColorByHex(skinColorHex);
+    }
+
+    public void UpdateAsset()
+    {
+        playerAsset.isPantsCharacter = isPantsCharacter;
+        playerAsset.skinColorHex = skinColorHex;
+        playerAsset.hairIndex = hairIndex;
+        playerAsset.hairColorHex = hairColorHex;
+        playerAsset.accessoryColorHex = accessoryColorHex;
     }
 
 }

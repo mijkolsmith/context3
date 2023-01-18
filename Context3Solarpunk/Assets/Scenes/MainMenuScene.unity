@@ -201,14 +201,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42952f4673f396479485c8f8bd8d280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPantsCharacter: 0
   characterPosition: {fileID: 2063731337}
   selectedCharacter: {fileID: 0}
   pantsCharacterPrefab: {fileID: 8381219609242626507, guid: c763bcfba8fe369429f2fa10015699c0, type: 3}
   skirtCharacterPrefab: {fileID: 3118023978459068008, guid: 34df30e5a36b52f45bb442a3fd836652, type: 3}
   skinColourObject: {fileID: 0}
-  skinColor: {r: 0.54509807, g: 0.41960788, b: 0.34117648, a: 0}
-  accessoryColor: {r: 0.45098042, g: 0.7411765, b: 0.85098046, a: 0}
   hairStyles:
   - {fileID: 919132149155446097, guid: 4edffaf744c3f9544bd4815cdeaa0ef6, type: 3}
   - {fileID: 919132149155446097, guid: f39cc84fb35744242875fac07cf0bd0a, type: 3}
@@ -220,6 +217,12 @@ MonoBehaviour:
   selectedHairStyle: {fileID: 0}
   hairMaterial: {fileID: 2100000, guid: 6be5fa7bfb1008147a29364f2258b747, type: 2}
   accessoryMaterial: {fileID: 2100000, guid: 2e0f434d22ce0684396ad486134ef1a7, type: 2}
+  isPantsCharacter: 0
+  skinColorHex: 
+  hairIndex: 0
+  hairColorHex: 
+  accessoryColor: 
+  playerAsset: {fileID: 11400000, guid: bda4cc9a33c0a7f4c8424220067b078a, type: 2}
 --- !u!1 &33976730
 GameObject:
   m_ObjectHideFlags: 0
@@ -15647,14 +15650,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2063731336}
-  m_LocalRotation: {x: -0, y: 0.96592593, z: -0, w: 0.2588188}
+  m_LocalRotation: {x: 0, y: 0.7826082, z: 0, w: 0.62251467}
   m_LocalPosition: {x: -66.504, y: 2.7947183, z: 9.008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 150, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 103, z: 0}
 --- !u!1 &2074580437
 GameObject:
   m_ObjectHideFlags: 0
