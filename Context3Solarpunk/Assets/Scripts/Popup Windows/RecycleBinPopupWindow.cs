@@ -26,22 +26,26 @@ public class RecycleBinPopupWindow : PopupWindow
     {
         if (PopupWindowObject.activeInHierarchy)
         {
+            ClearRecycleBinUiElements();
+
             PopupWindowObject.SetActive(false);
             GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.None;
+            GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_CLOSE);
         }
         else
         {
             PopupWindowObject.SetActive(true);
             GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.RecycleBin;
+            GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_OPEN);
 
             // Dynamically add recycleBinUiElements
             // TODO: Make this a dynamic system
             Dictionary<ResourceType, int> recycleBinContents = new()
             {
-                { ResourceType.Bottle, 1 },
-                { ResourceType.OldElectronics, 1 },
-                { ResourceType.OldPlastic, 1 },
-                { ResourceType.Leaf, 1 },
+                { ResourceType.Bottle, 4 },
+                { ResourceType.Can, 4 },
+                { ResourceType.OldPlastic, 4 },
+                { ResourceType.Leaf, 0 },
             };
 
             foreach (var resourceType in recycleBinContents.Keys.ToList())
@@ -75,6 +79,15 @@ public class RecycleBinPopupWindow : PopupWindow
         }
     }
 
+    private void ClearRecycleBinUiElements()
+    {
+        foreach (var recycleBinUiElement in recycleBinUiElements)
+        {
+            Destroy(recycleBinUiElement.gameObject);
+        }
+        recycleBinUiElements.Clear();
+    }
+
     /// <summary>
     /// Create a new Draggable Object on given position with given resourceType and Sprite.
     /// </summary>
@@ -90,7 +103,12 @@ public class RecycleBinPopupWindow : PopupWindow
 
     public void AddResourceToInventory(ResourceType resourceType)
 	{
-        Destroy(recycleBinUiElements.Where(x => x.GetResourceType() == resourceType).FirstOrDefault().gameObject);
+        RecycleBinUiElement recycleBinUiElement = recycleBinUiElements.Where(x => x.GetResourceType() == resourceType).FirstOrDefault();
+        recycleBinUiElements.Remove(recycleBinUiElement);
+        Destroy(recycleBinUiElement.gameObject);
+
+        GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.TRANSFER_ITEM);
+
         GameManager.Instance.CraftingManager.AddResourceToInventory(resourceType);
         UpdateUI();
     }

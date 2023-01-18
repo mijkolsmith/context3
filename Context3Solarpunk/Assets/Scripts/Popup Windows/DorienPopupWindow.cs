@@ -39,6 +39,7 @@ public class DorienPopupWindow : PopupWindow
 		{
 			PopupWindowObject.SetActive(false);
 			GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.None;
+			GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_CLOSE);
 
 			cameraController.objectToFollow = PlayerControllerPointClick.Player;
 			cameraController.cameraDistance = startDistanceToPlayer;
@@ -48,6 +49,7 @@ public class DorienPopupWindow : PopupWindow
 		{
 			PopupWindowObject.SetActive(true);
 			GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.Dorien;
+			GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_OPEN);
 
 			if (!inventoryUIElements.Any()) inventoryUIElements = GetComponentsInChildren<InventoryUiElement>(true).ToList();
 			UpdateUI();

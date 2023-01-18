@@ -15,24 +15,36 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
 
     [SerializeField] private GameObject resourceModel;
     [SerializeField] private GameObject resourceSprite;
+
+    [SerializeField] private GameObject particlePrefab;
+    private GameObject particleObject;
+
+
     private bool dragging = false;
 
-	private bool Dragging
+    private bool Dragging
     {
         get => dragging;
         set
         {
             dragging = value;
             (GameManager.Instance.UiManager.PopupWindows.Where(x => x.GetPopupWindowType() == PopupWindowType.Dorien).FirstOrDefault() as DorienPopupWindow).draggingIndicator.SetActive(value);
+            
+            if (value)
+            {
+                particleObject = Instantiate(particlePrefab, transform);
+            }
+            else Destroy(particleObject);
+
             resourceModel.SetActive(!value);
             resourceSprite.SetActive(value);
         }
     }
 
-	/// <summary>
-	/// Assign some components in the start method.
-	/// </summary>
-	private void Start()
+    /// <summary>
+    /// Assign some components in the start method.
+    /// </summary>
+    private void Start()
     {
         hitboxCollider = GetComponent<Collider>();
         navMeshObstacle = GetComponent<NavMeshObstacle>();
@@ -71,7 +83,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
         }
 
         if (Input.GetButtonUp("InteractionKey"))
-		{
+        {
             Dragging = false;
         }
     }
@@ -106,7 +118,7 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
             Input.mousePosition.x,
             Input.mousePosition.y,
             Mathf.Abs(Vector3.Distance(Camera.main.transform.position, transform.position))));
-        
+
         gameObject.transform.position = new Vector3(
             mouseWorldPos.x,
             mouseWorldPos.y + .5f,
@@ -114,11 +126,11 @@ public abstract class GatherableResource : Resource, IInteractable, IGatherable
 
         hitboxCollider.isTrigger = true;
         navMeshObstacle.enabled = false;
-        
+
         if (!Dragging)
-		{
+        {
             Dragging = true;
-		}
+        }
     }
 
     /// <summary>

@@ -29,6 +29,10 @@ public class SequenceManager : MonoBehaviour
     [SerializeField] private float countDuration = 2.5f;
     [SerializeField] private float fadeDuration = 1.5f;
 
+    //delayed dialogue
+    private string savedDelayedDialogue;
+    private bool startDelayedDialogue;
+
     int environmentNumber = 0;
 
     private bool advanced = false;
@@ -45,18 +49,27 @@ public class SequenceManager : MonoBehaviour
     /// <param name="year"></param>
     public void TimeTravel()
     {
+        //If you want to go to the newest future, complete all tasks in current past timeline and trigger CompletedAllTasksInTimeline().
+        if (advanced)
+        {
+            environmentNumber++;
+        }
+        else environmentNumber = GameManager.Instance.EnvironmentManager.InThePast ? environmentNumber - 1 : environmentNumber + 1;
+        advanced = false;
+
         if (!timeTravelling)
         {
             timeTravelling = true;
             currentSequenceState = sequenceState.sequenceFadingIn;
-            //TODO: only change environment if advanced > quest completion
-            environmentNumber++;
+            
             if (GameManager.Instance.EnvironmentManager.InThePast)
             {
+                GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.TIME_TRAVEL_TO_FUTURE);
                 TimeTravelToTheFuture();
             }
             else
             {
+                GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.TIME_TRAVEL_TO_PAST);
                 TimeTravelToThePast();
             }
         }
@@ -73,7 +86,7 @@ public class SequenceManager : MonoBehaviour
         GameManager.Instance.EnvironmentManager.InThePast = false;
     }
 
-    public void AdvanceFuture()
+    public void CompletedAllTasksInTimeline()
     {
         advanced = true;
     }
@@ -131,6 +144,8 @@ public class SequenceManager : MonoBehaviour
         // if fading in
         if (fadeIn)
         {
+            GameManager.Instance.UiManager.TogglePopupWindow(PopupWindowType.BlackoutPanel);
+
             // while the timer is less than the duration
             while (t < fadeDuration)
             {
@@ -149,8 +164,11 @@ public class SequenceManager : MonoBehaviour
                 yield return null;
             }
 
-            // set the alpha value of the image to fully opaque
+            // set the alpha value of the image & text to fully opaque
             fadeImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1f);
+            GameManager.Instance.UiManager.CurrentYearAmountText.color = new Color(255, 255, 255, 1f);
+            GameManager.Instance.UiManager.CurrentYearText.color = new Color(255, 255, 255, 1f);
+
             currentSequenceState = sequenceState.SequenceCenter;
             Sequence(environmentNumber);
         }
@@ -175,8 +193,19 @@ public class SequenceManager : MonoBehaviour
                 yield return null;
             }
 
-            // set the alpha value of the image to fully transparent
+            // set the alpha value of the image & text to fully transparent
             fadeImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0f);
+            GameManager.Instance.UiManager.CurrentYearAmountText.color = new Color(255, 255, 255, 0);
+            GameManager.Instance.UiManager.CurrentYearText.color = new Color(255, 255, 255, 0);
+
+            GameManager.Instance.UiManager.TogglePopupWindow(PopupWindowType.BlackoutPanel);
+
+            if (startDelayedDialogue)
+            {
+                GameManager.Instance.UiManager.StartDorienDialogue(savedDelayedDialogue);
+                startDelayedDialogue = false;
+            }
+
             currentSequenceState = sequenceState.notInSequence;
             Sequence(environmentNumber);
         }
@@ -204,6 +233,13 @@ public class SequenceManager : MonoBehaviour
 
         currentSequenceState = sequenceState.SequenceFadingOut;
         Sequence(environmentNumber);
+
         yield return null;
+    }
+
+    public void TimeTravelSetDelayedDialogue(string dialogue)
+	{
+        savedDelayedDialogue = dialogue;
+        startDelayedDialogue = true;
     }
 }

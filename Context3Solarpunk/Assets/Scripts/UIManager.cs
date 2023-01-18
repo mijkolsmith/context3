@@ -12,17 +12,18 @@ public class UIManager : MonoBehaviour
 {
 #region Variables
     [SerializeField] private TextMeshProUGUI questText;
-    [SerializeField] private GameObject dialoguePanel;
-    [SerializeField, Range(0.001f, 0.2f)] private float textSpeed = 0.02f;
+    [SerializeField, Range(0.0001f, 0.05f)] private float textSpeed = 0.02f;
+
+    [SerializeField] private GameObject[] dialoguePanels;
     [SerializeField] private TextMeshProUGUI[] dialogueTexts;
     [SerializeField] private TextMeshProUGUI activeDialogueText;
+    private int currentNpcId;
 
     [SerializeField] private GameObject canInteractPopupUIObject;
     [SerializeField] private GameObject canCraftPopupUIObject;
     [SerializeField] private GameObject dorienPopupUIObject;
 
     [SerializeField] private bool paused = false;
-    [SerializeField, ReadOnly] private bool dialogueFinished = false;
 
     [SerializeField] private GameObject blackoutSquare;
     [SerializeField] private TextMeshProUGUI currentYearText;
@@ -65,15 +66,47 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void StartNpcDialogue(string dialogue, int npcId)
+	{
+        StopAllCoroutines();
+        currentNpcId = npcId;
+        ToggleNpcDialogue(true);
+        StartCoroutine(TypeSentence(dialogue, false));
+    }
+
+    public void ToggleNpcDialogue(bool inactive)
+	{
+        if (inactive)
+        {
+            dialoguePanels[currentNpcId - 1].SetActive(true);
+            activeDialogueText = dialogueTexts[currentNpcId];
+        }
+        else
+        {
+            dialoguePanels[currentNpcId - 1].SetActive(false);
+            activeDialogueText = null;
+        }
+    }
+
     /// <summary>
     /// Starts dialogue in dialogueText object.
     /// </summary>
     /// <param name="dialogue"></param>
-    public void StartDialogue(string dialogue)
+    public void StartDorienDialogue(string dialogue)
     {
         StopAllCoroutines();
-        CheckBlockingToggle();
-        StartCoroutine(TypeSentence(dialogue));
+        ToggleDorienDialogue(true);
+        StartCoroutine(TypeSentence(dialogue, true));
+    }
+
+    private void ToggleDorienDialogue(bool inactive)
+    {
+        if (inactive)
+		{
+            activeDialogueText = dialogueTexts[0];
+        }
+        else activeDialogueText = null;
+        TogglePopupWindow(PopupWindowType.Dialogue);
     }
 
     /// <summary>
@@ -83,25 +116,6 @@ public class UIManager : MonoBehaviour
     public void ContinueDialogue()
     {
         paused = false;
-        if (dialogueFinished)
-        {
-            CheckBlockingToggle();
-            dialogueFinished = false;
-        }
-    }
-
-    private void CheckBlockingToggle()
-	{
-        if (!blocking)
-        {
-            dialoguePanel.SetActive(!dialoguePanel.activeInHierarchy);
-            activeDialogueText = dialogueTexts[0];
-        }
-        else
-        {
-            TogglePopupWindow(PopupWindowType.Dialogue);
-            activeDialogueText = dialogueTexts[1];
-        }
     }
 
     /// <summary>
@@ -109,36 +123,53 @@ public class UIManager : MonoBehaviour
     /// </summary>
     /// <param name="sentence"></param>
     /// <returns></returns>
-    public IEnumerator TypeSentence(string sentence)
+    public IEnumerator TypeSentence(string sentence, bool dorien)
     {
-        GameManager.Instance.SoundManager.StopSound();
-        GameManager.Instance.SoundManager.PlaySound(SoundName.DORIEN_TALKING);
+        if (dorien) GameManager.Instance.SoundManager.StopSound();
+
+        List<string> sentences = new();
         activeDialogueText.text = "";
+
         foreach (char letter in sentence.ToCharArray())
         {
             activeDialogueText.text += letter;
-            if (activeDialogueText.text.Length > 1)
+            if (letter == '|' || letter == '*')
             {
-                string s = activeDialogueText.text.Substring(activeDialogueText.text.Length - 1);
-                if (s == "|")
-                {
-                    GameManager.Instance.SoundManager.PauseSound();
-                    paused = true; //Pause the dialogue
-                    activeDialogueText.text = activeDialogueText.text.Substring(0, activeDialogueText.text.Length - 1); //Takes the last character away from the text (presumably a "|")
-                    yield return new WaitUntil(() => !paused/*Input.GetKeyDown(KeyCode.Return)*/);
-                    GameManager.Instance.SoundManager.PlaySound(SoundName.DORIEN_TALKING);
-                    dialogueFinished = false;
-                    activeDialogueText.text = "";
-                } 
-                else if (s == "*")
-                {
-                    GameManager.Instance.SoundManager.StopSound();
-                    activeDialogueText.text = activeDialogueText.text.Substring(0, activeDialogueText.text.Length - 1);
-                    dialogueFinished = true;
-                }
+                sentences.Add(activeDialogueText.text.Substring(0, activeDialogueText.text.Length - 1));
+                activeDialogueText.text = "";
             }
-            yield return new WaitForSeconds(textSpeed);
         }
+
+        foreach (string splitSentence in sentences)
+        {
+            //Set the right text size
+            activeDialogueText.enableAutoSizing = true;
+            activeDialogueText.text = splitSentence;
+            activeDialogueText.ForceMeshUpdate();
+            float autoFontSize = activeDialogueText.fontSize;
+            activeDialogueText.text = "";
+            activeDialogueText.enableAutoSizing = false;
+            activeDialogueText.fontSize = autoFontSize;
+
+            if (dorien) GameManager.Instance.SoundManager.PlaySound(SoundName.DORIEN_TALKING);
+            foreach (char letter in splitSentence)
+            {
+                activeDialogueText.text += letter;
+                yield return new WaitForSeconds(textSpeed);
+            }
+
+            if (dorien) GameManager.Instance.SoundManager.PauseSound();
+            paused = true;
+            yield return new WaitUntil(() => !paused);
+            activeDialogueText.text = "";
+        }
+
+        if (dorien)
+        {
+            ToggleDorienDialogue(false);
+            GameManager.Instance.SoundManager.StopSound();
+        }
+        else ToggleNpcDialogue(false);
     }
 
     /// <summary>
@@ -167,7 +198,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void UpdateFontSize()
+	/// <summary>
+	/// Update all the fontSizes in the game
+	/// </summary>
+	private void UpdateFontSize()
 	{
         List<TextMeshProUGUI> textComponents = FindObjectsOfType<TextMeshProUGUI>(false).ToList();
 
@@ -183,4 +217,9 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+
+    public void SetQuestText(string text)
+	{
+        questText.text = text;
+	}
 }

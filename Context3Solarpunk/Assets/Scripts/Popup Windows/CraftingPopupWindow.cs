@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
+using UnityEngine.UI;
 
 public class CraftingPopupWindow : PopupWindow
 {
@@ -17,10 +18,11 @@ public class CraftingPopupWindow : PopupWindow
     [SerializeField] private List<CraftingUiElement> craftingUiElements = new();
     [SerializeField] private List<GameObject> craftedTextAnimationPrefabs = new();
     [SerializeField] private List<ResourceTextAnimation> craftingTextAnimations = new();
+    [SerializeField] private List<ToCraftHologram> toCraftHolograms = new();
+    [SerializeField, ReadOnly] private ToCraftHologram toCraftHologram;
+    [SerializeField] private List<CraftedObject> craftedObjects = new();
     [SerializeField] private Transform gridLayoutGroup;
-
-    //TEMP FOR PLAYTEST 07 AND 08/12/22
-    [SerializeField] private GameObject questObjectHolder;
+    [SerializeField] private Animator animator;
 
     /// <summary>
     /// The Toggle method gets called from the PopupWindow Class.
@@ -32,20 +34,30 @@ public class CraftingPopupWindow : PopupWindow
     {
         if (PopupWindowObject.activeInHierarchy)
         {
-            ClearCraftingUIElements();
+            ClearHolograms();
+            ClearCraftingUiElements();
+            
 
             PopupWindowObject.SetActive(false);
             GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.None;
+            GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_CLOSE);
         }
         else
         {
             PopupWindowObject.SetActive(true);
             GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.Crafting;
+            GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_OPEN);
+            ClearAnimations();
 
-            //QUALITY CONTROL, will probably throw errors if the resourceToGet = ResourceType.None
+            if (!inventoryUiElements.Any()) inventoryUiElements = GetComponentsInChildren<InventoryUiElement>(true).ToList();
+            UpdateUI();
+
             resourceToCraft = GameManager.Instance.QuestManager.GetResourceTypeFromTask();
+            if (resourceToCraft == ResourceType.None) return;
 
-            ClearCraftingUIElements();
+            // Activate the correct visual hologram
+            toCraftHologram = toCraftHolograms.Where(x => x.GetResourceType() == resourceToCraft).FirstOrDefault();
+            if (toCraftHologram != null) toCraftHologram.gameObject.SetActive(true);
 
             // Dynamically add the resources to fill
             Dictionary<ResourceType, int> craftingRecipe = GameManager.Instance.CraftingManager.GetCraftingRecipe(resourceToCraft);
@@ -56,10 +68,6 @@ public class CraftingPopupWindow : PopupWindow
                     craftingUiElements.Add(Instantiate(craftingUiElementPrefabs.Where(x => x.GetComponent<CraftingUiElement>().GetResourceType() == resourceType).FirstOrDefault(), gridLayoutGroup).GetComponent<CraftingUiElement>());
                 }
             }
-
-            if (!inventoryUiElements.Any()) inventoryUiElements = GetComponentsInChildren<InventoryUiElement>(true).ToList();
-            ClearAnimations();
-            UpdateUI();
         }
     }
 
@@ -86,14 +94,26 @@ public class CraftingPopupWindow : PopupWindow
     /// <summary>
     /// Destroys all the craftingUiElements and clears the list.
     /// </summary>
-    private void ClearCraftingUIElements()
+    private void ClearCraftingUiElements()
     {
-        foreach (var craftingUiElement in craftingUiElements)
+        foreach (CraftingUiElement craftingUiElement in craftingUiElements)
         {
             Destroy(craftingUiElement.gameObject);
         }
         craftingUiElements.Clear();
     }
+
+    /// <summary>
+    /// Set all the holograms to inactive gameobjects
+    /// </summary>
+    private void ClearHolograms()
+	{
+		foreach (ToCraftHologram hologram in toCraftHolograms)
+		{
+            hologram.SetProgress(0);
+            hologram.gameObject.SetActive(false);
+		}
+	}
 
     /// <summary>
     /// Create a new Draggable Object on given position with given resourceType and Sprite.
@@ -115,28 +135,39 @@ public class CraftingPopupWindow : PopupWindow
     /// <param name="resourceType"></param>
     public void Fill(ResourceType resourceType)
     {
-        if (craftingUiElements.Where(x => x.GetResourceType() == resourceType).ToList().Count > 0)
+        List<CraftingUiElement> craftingUiElementsOfResourceType = craftingUiElements.Where(x => x.GetResourceType() == resourceType).ToList();
+        if (craftingUiElementsOfResourceType.Count > 0)
         {
-            craftingUiElements.Where(x => x.GetResourceType() == resourceType && x.activated == false).FirstOrDefault().Activate();
+            // Activate the first crafting UI element
+            craftingUiElementsOfResourceType.Where(x => x.activated == false).FirstOrDefault().Activate();
+            
+            // Visually remove the first inventory UI element from the inventory
             inventoryUiElements.Where(x => x.GetResourceType() == resourceType).FirstOrDefault().TemporarilyRemove();
+
+            // Get the correct toCraftHologram and set the progress
+            toCraftHologram.SetProgress(craftingUiElements.Where(x => x.activated == true).ToList().Count / (float)craftingUiElements.Count);
+
+            GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.TRANSFER_ITEM);
+
             if (craftingUiElements.Where(x => x.activated == false).ToList().Count == 0)
-            {//Craft the resourceToCraft
+            {
+                // Set the crafted object to active
+                craftedObjects.Where(x => x.GetResourceType() == resourceToCraft).FirstOrDefault().ActivateHologram();
 
-                GameManager.Instance.CraftingManager.Craft(resourceToCraft);
-                StartAnimation();
-
-                ClearCraftingUIElements();
-
-                resourceToCraft = ResourceType.None;
-
+                // Reset the crafting UI for the next craft
+                ClearCraftingUiElements();
+                toCraftHologram.SetProgress(0);
+                toCraftHologram.gameObject.SetActive(false);
                 UpdateUI();
 
-                GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.CRAFTING_MACHINE);
-                GameManager.Instance.QuestManager.ProgressCraftQuest();
-
-                //TEMP FOR PLAYTEST 19/12/22
+                // Craft the resourceToCraft, start an animation, play a sound
                 GameManager.Instance.UiManager.TogglePopupWindow(PopupWindowType.Crafting);
-                questObjectHolder.SetActive(true);
+                GameManager.Instance.CraftingManager.Craft(resourceToCraft);
+                GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.CRAFTING_MACHINE);
+                StartAnimation();
+
+                // Reset the resourceToCraft for the next craft
+                resourceToCraft = ResourceType.None;
             }
         }
     }
@@ -147,8 +178,13 @@ public class CraftingPopupWindow : PopupWindow
     public void StartAnimation()
     {
         craftingTextAnimations.Add(Instantiate(craftedTextAnimationPrefabs.Where(x => x.GetComponent<ResourceTextAnimation>().GetResourceType() == resourceToCraft).FirstOrDefault(), EndDragPanel.transform.position, Quaternion.identity, EndDragPanel.transform).GetComponent<ResourceTextAnimation>());
+        animator.Play("Base Layer.Craft", 0, 0);
     }
 
+    /// <summary>
+    /// Set the resourcetocraft (DEPRECATED? needs testing)
+    /// </summary>
+    /// <param name="resourceType"></param>
     public void SetResourceToCraft(ResourceType resourceType)
 	{
         resourceToCraft = resourceType;

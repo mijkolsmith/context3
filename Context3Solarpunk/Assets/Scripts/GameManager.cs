@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.AI.Navigation;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,7 +27,6 @@ public class GameManager : MonoBehaviour
     public GameStateManager GameStateManager { get => gameStateManager; private set => gameStateManager = value; }
     public CraftingManager CraftingManager { get => craftingManager; private set => craftingManager = value; }
     public QuestManager QuestManager { get => questManager; private set => questManager = value; }
-    public UIManager DialogueManager { get => uiManager; private set => uiManager = value; }
     public UIManager UiManager { get => uiManager; set => uiManager = value; }
     public SequenceManager SequenceManager { get => sequenceManager; set => sequenceManager = value; }
 	public SoundManager SoundManager { get => soundManager; set => soundManager = value; }
@@ -66,7 +66,12 @@ public class GameManager : MonoBehaviour
 
         //TODO: Loading
 
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
+        Application.Quit();
+#endif
     }
 
     /// <summary>

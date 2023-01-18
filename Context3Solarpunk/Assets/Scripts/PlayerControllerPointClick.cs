@@ -4,15 +4,16 @@ using NaughtyAttributes;
 
 public class PlayerControllerPointClick : MonoBehaviour
 {
-#region Variables
+    #region Variables
     [Header("Movement")]
+    [SerializeField] private PlayerStates currentPlayerState = PlayerStates.Idle;
     [SerializeField] private LayerMask walkableLayer;
     [SerializeField] private GameObject targetDestinationGameObject;
     [SerializeField] private float targetGameObjectDisappearDistance = 2f;
-    private NavMeshAgent agent;
+    [SerializeField, ReadOnly] private Quaternion newRotation;
+    [SerializeField] private float rotationSpeed = 3f;
 
-    [Header("State")]
-    [SerializeField, ReadOnly] private PlayerStates playerState = PlayerStates.idle; //Player is currently... (insert state here)
+    private NavMeshAgent agent;
 
     [Header("Interaction")]
     [ReadOnly] private IInteractable interactableObject;
@@ -47,10 +48,10 @@ public class PlayerControllerPointClick : MonoBehaviour
 
     #region Properties
     public static GameObject Player { get; private set; }
-    internal PlayerStates PlayerState { get => playerState; set => playerState = value; }
     public GameObject CompanionPositionGameObject { get => companionPositionGameObject; set => companionPositionGameObject = value; }
     public IInteractable InteractableObject { get => interactableObject; set => interactableObject = value; }
-#endregion
+    public Color CanInteractColor { get => canInteractColor; private set => canInteractColor = value; }
+    #endregion
 
     /// <summary>
     /// Get the navMeshAgent in the Start method.
@@ -81,50 +82,76 @@ public class PlayerControllerPointClick : MonoBehaviour
             {
                 if (Physics.Raycast(ray, out RaycastHit targetHit, Mathf.Infinity, walkableLayer))
                 {
-					targetDestinationGameObject.transform.position = targetHit.point;
-					agent.SetDestination(targetHit.point);
-				}
+                    Vector3 lookPos = (targetHit.point - transform.position);
+                    lookPos.y = 0;
+                    newRotation = Quaternion.LookRotation(lookPos, Vector3.up);
+
+                    targetDestinationGameObject.transform.position = targetHit.point;
+                    agent.SetDestination(targetHit.point);
+                }
+            }
+
+            if (Vector3.Distance(transform.position, targetDestinationGameObject.transform.position) > .2f)
+            {
+                currentPlayerState = PlayerStates.Walking;
+                anim.SetBool("isWalking", true);
+                transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * rotationSpeed);
             }
 
             // Interaction
             interactionInput = Input.GetButton("InteractionKey");
 
-			if (Physics.Raycast(ray, out RaycastHit interactionHit, Mathf.Infinity, interactableLayer))
-			{
+            if (Physics.Raycast(ray, out RaycastHit interactionHit, Mathf.Infinity, interactableLayer))
+            {
                 interactableObject = interactionHit.collider.GetComponent<IInteractable>();
                 interactableGameObject = interactionHit.collider.gameObject;
 
                 if (Vector3.Distance(interactionHit.collider.transform.position, transform.position) < interactionDistance)
-				{
-					interactableObject.Highlight(canInteractColor);
-					if (interactionInput || GameManager.Instance.InputManager.DoubleClick())
-					{
-						interactableObject.Interact();
-						GameManager.Instance.RefreshNavMesh();
-					}
-				}
-				else interactableObject.Highlight(cantInteractColor);
-			}
+                {
+                    interactableObject.Highlight(CanInteractColor);
+                    if (interactionInput || GameManager.Instance.InputManager.DoubleClick())
+                    {
+                        CancelMovement();
 
-			// Respawning
-			respawnInput = Input.GetButtonDown("RespawnKey");
+                        interactableObject.Interact();
+                        GameManager.Instance.RefreshNavMesh();
+                    }
+                }
+                else interactableObject.Highlight(cantInteractColor);
+            }
+
+            // Respawning
+            respawnInput = Input.GetButtonDown("RespawnKey");
             if (respawnInput)
             {
                 transform.position = respawnLocation;
             }
         }
         else
-		{
-            agent.SetDestination(transform.position);
+        {
+            CancelMovement();
         }
 
         if (Vector3.Distance(gameObject.transform.position, targetDestinationGameObject.transform.position) < targetGameObjectDisappearDistance)
         {
             targetDestinationGameObject.SetActive(false);
+            currentPlayerState = PlayerStates.Idle;
+            anim.SetBool("isWalking", false);
         }
         else
         {
             targetDestinationGameObject.SetActive(true);
         }
+    }
+
+    /// <summary>
+    /// Cancel the player movement
+    /// </summary>
+    private void CancelMovement()
+    {
+        currentPlayerState = PlayerStates.Idle;
+        anim.SetBool("isWalking", false);
+        targetDestinationGameObject.transform.position = transform.position;
+        agent.SetDestination(transform.position);
     }
 }

@@ -11,5 +11,6 @@ public enum PopupWindowType
     Dorien,
     Settings,
     Dialogue,
-    RecycleBin
+    RecycleBin,
+    BlackoutPanel
 }

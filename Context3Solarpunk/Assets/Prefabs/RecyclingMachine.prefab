@@ -305,8 +305,8 @@ GameObject:
   - component: {fileID: 8520004809675995954}
   - component: {fileID: 1642109990}
   - component: {fileID: 1642109993}
-  - component: {fileID: 1642109994}
   - component: {fileID: 1642109995}
+  - component: {fileID: 96332162860374292}
   m_Layer: 6
   m_Name: RecyclingMachine
   m_TagString: Interactable
@@ -326,9 +326,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1087068044275928774}
   - {fileID: 8194187675687513587}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!208 &1642109990
 NavMeshObstacle:
@@ -364,19 +365,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &1642109994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520004809675995955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33c97fcd95993fc43abe01442e201a42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectOutline: {fileID: 0}
 --- !u!65 &1642109995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -390,6 +378,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.5993366, y: 3.4508965, z: 5.690231}
   m_Center: {x: -0.0154390335, y: 0.27234304, z: 1.0097954}
+--- !u!114 &96332162860374292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520004809675995955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3fc6bc1e8e416443b0fb65d6e3bc6d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectOutline: {fileID: 0}
 --- !u!1 &8862040537160267593
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +406,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8194187675687513587
 Transform:
   m_ObjectHideFlags: 0
@@ -508,3 +509,100 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &620568610691328301
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 8520004809675995954}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: bdbd81385b89c514da5670827074675a, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bdbd81385b89c514da5670827074675a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bdbd81385b89c514da5670827074675a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.49
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bdbd81385b89c514da5670827074675a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bdbd81385b89c514da5670827074675a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bdbd81385b89c514da5670827074675a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bdbd81385b89c514da5670827074675a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bdbd81385b89c514da5670827074675a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bdbd81385b89c514da5670827074675a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bdbd81385b89c514da5670827074675a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bdbd81385b89c514da5670827074675a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5846448562560732870, guid: bdbd81385b89c514da5670827074675a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5eaaa5665e5db6a4892a74cffbe6cecb, type: 2}
+    - target: {fileID: 919132149155446097, guid: bdbd81385b89c514da5670827074675a, type: 3}
+      propertyPath: m_Name
+      value: CraftingMachine_final
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525539152500033246, guid: bdbd81385b89c514da5670827074675a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5eaaa5665e5db6a4892a74cffbe6cecb, type: 2}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: bdbd81385b89c514da5670827074675a, type: 3}
+--- !u!1 &314647298003866748 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bdbd81385b89c514da5670827074675a, type: 3}
+  m_PrefabInstance: {fileID: 620568610691328301}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2453434571687114008
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314647298003866748}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c9453fc19b9f02d4f8b8a3641be68dbe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!4 &1087068044275928774 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bdbd81385b89c514da5670827074675a, type: 3}
+  m_PrefabInstance: {fileID: 620568610691328301}
+  m_PrefabAsset: {fileID: 0}
