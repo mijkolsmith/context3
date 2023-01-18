@@ -10,9 +10,14 @@ public class CharacterCustomisation : MonoBehaviour
     [SerializeField] private Color skinColor;
     [HorizontalLine]
     [Header("HairStyle related Variables")]
+    [SerializeField] private Color accessoryColor;
     [SerializeField] private List<GameObject> hairStyles = new List<GameObject>();
     [SerializeField] private GameObject hairParent;
     [SerializeField] private GameObject selectedHairStyle;
+
+    [SerializeField] private Material hairMaterial;
+    [SerializeField] private Material accessoryMaterial;
+
 
 
     void Awake()
@@ -22,7 +27,6 @@ public class CharacterCustomisation : MonoBehaviour
 
     public void SetSkinColorByHex(string hexColor)
     {
-        Debug.Log("Buttonpresscalled");
         foreach (GameObject go in skinColourObjects)
         {
             Color newCol;
@@ -55,7 +59,9 @@ public class CharacterCustomisation : MonoBehaviour
 
         if (ColorUtility.TryParseHtmlString(hexColor, out newCol))
         {
-            r.material.color = newCol;
+            hairMaterial.color = newCol;
+            accessoryMaterial.color = newCol;
         }
     }
+
 }
