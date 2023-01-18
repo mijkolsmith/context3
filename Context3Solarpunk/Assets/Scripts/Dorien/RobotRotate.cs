@@ -6,12 +6,14 @@ public class RobotRotate : MonoBehaviour
 {
     [SerializeField] private GameObject playerCompanionParent;
 
+    public GameObject PlayerCompanionParent { get => playerCompanionParent; set => playerCompanionParent = value; }
+
     /// <summary>
     /// To fix choppiness, call the LookAtPlayer method in the LateUpdate method.
     /// </summary>
     void LateUpdate()
     {
-        LookAtPlayer(playerCompanionParent.transform.position);
+        LookAtPlayer(PlayerCompanionParent.transform.position);
     }
 
     /// <summary>

@@ -20,7 +20,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameStateManager gameStateManager;
     [SerializeField] private SequenceManager sequenceManager;
     [SerializeField] private SoundManager soundManager;
+    [SerializeField] private PlayerManager playerManager;
     [SerializeField] private InputManager inputManager;
+    [SerializeField] private DorienManager dorienManager;
+    [SerializeField] private CameraController cameraController;
 
     [SerializeField] private NavMeshSurface surface;
     public EnvironmentManager EnvironmentManager { get => environmentManager; private set => environmentManager = value; }
@@ -29,8 +32,11 @@ public class GameManager : MonoBehaviour
     public QuestManager QuestManager { get => questManager; private set => questManager = value; }
     public UIManager UiManager { get => uiManager; set => uiManager = value; }
     public SequenceManager SequenceManager { get => sequenceManager; set => sequenceManager = value; }
-	public SoundManager SoundManager { get => soundManager; set => soundManager = value; }
+    public SoundManager SoundManager { get => soundManager; set => soundManager = value; }
+    public PlayerManager PlayerManager { get => playerManager; set => playerManager = value; }
     public InputManager InputManager { get => inputManager; set => inputManager = value; }
+    public DorienManager DorienManager { get => dorienManager; set => dorienManager = value; }
+
 
     [MinValue(0), MaxValue(3), ReadOnly] public int trashCount;
 
@@ -42,31 +48,38 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-        } 
+        }
         else if (Instance != this)
         {
             Destroy(gameObject);
         }
+        
+        PlayerManager = GetComponent<PlayerManager>();
+        PlayerManager.SpawnPlayer();
 
+        DorienManager = GetComponent<DorienManager>();
+        dorienManager.SetRobot(PlayerManager.PlayerObject.GetComponent<PlayerControllerPointClick>().CompanionPositionGameObject.transform);
+        cameraController.objectToFollow = playerManager.PlayerObject;
+
+        questManager.Player = PlayerManager.PlayerObject.GetComponent<PlayerControllerPointClick>();
         GameStateManager = gameObject.AddComponent<GameStateManager>();
         SequenceManager = GetComponent<SequenceManager>();
         EnvironmentManager = GetComponent<EnvironmentManager>();
-		SoundManager = GetComponent<SoundManager>();
-		InputManager = GetComponent<InputManager>();
+        SoundManager = GetComponent<SoundManager>();
+        InputManager = GetComponent<InputManager>();
     }
 
-	/// <summary>
-	/// Serializes & Saves position, quest progress and inventory
-	/// </summary>
-	public void SaveAndQuit()
-	{
+    /// <summary>
+    /// Serializes & Saves position, quest progress and inventory
+    /// </summary>
+    public void SaveAndQuit()
+    {
         //TODO: Save quest progress
         //TODO: Save position
         CraftingManager.SaveInventory();
 
         //TODO: Loading
 
-        //SceneManager.LoadScene(0);
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else
@@ -78,7 +91,7 @@ public class GameManager : MonoBehaviour
     /// Refreshes the NavMesh after changing the environment during playmode.
     /// </summary>
     public void RefreshNavMesh()
-	{
+    {
         surface.BuildNavMesh();
     }
 

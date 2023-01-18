@@ -8,12 +8,14 @@ public class RobotFollow : MonoBehaviour
     [SerializeField] private float speed = 2f; //The speed the robot moves at.
     [SerializeField] private float followDistance = 1f;
 
+    public GameObject PlayerCompanionParent { get => playerCompanionParent; set => playerCompanionParent = value; }
+
     /// <summary>
     /// To fix choppiness, call the FollowPlayer method in the LateUpdate method.
     /// </summary>
     void LateUpdate()
     {
-        FollowPlayer(playerCompanionParent.transform.position);
+        FollowPlayer(PlayerCompanionParent.transform.position);
     }
 
     /// <summary>

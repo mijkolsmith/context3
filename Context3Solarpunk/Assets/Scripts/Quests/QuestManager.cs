@@ -8,6 +8,8 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private PlayerControllerPointClick player;
     public List<Quest> quests = new List<Quest>();
 
+    public PlayerControllerPointClick Player { get => player; set => player = value; }
+
     /// <summary>
     /// Start quest 0 in Start method
     /// </summary>

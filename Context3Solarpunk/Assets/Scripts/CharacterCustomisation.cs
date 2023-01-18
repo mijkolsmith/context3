@@ -76,7 +76,6 @@ public class CharacterCustomisation : MonoBehaviour
     public void SetHairColour(string hexColor)
     {
         Color newCol;
-        Renderer r = selectedHairStyle.GetComponentInChildren<Renderer>();
 
         if (ColorUtility.TryParseHtmlString(hexColor, out newCol))
         {
