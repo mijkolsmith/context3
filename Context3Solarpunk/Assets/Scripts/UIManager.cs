@@ -125,7 +125,7 @@ public class UIManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator TypeSentence(string sentence, bool dorien)
     {
-        if (dorien) GameManager.Instance.SoundManager.StopSound();
+        GameManager.Instance.SoundManager.StopSound();
 
         List<string> sentences = new();
         activeDialogueText.text = "";
@@ -151,7 +151,12 @@ public class UIManager : MonoBehaviour
             activeDialogueText.enableAutoSizing = false;
             activeDialogueText.fontSize = autoFontSize;
 
-            if (dorien) GameManager.Instance.SoundManager.PlaySound(SoundName.DORIEN_TALKING);
+            if (dorien)
+            {
+                GameManager.Instance.SoundManager.PlaySound(SoundName.DORIEN_TALKING);
+            }
+            else PlayRandomNPCSound();
+
             foreach (char letter in splitSentence)
             {
                 activeDialogueText.text += letter;
@@ -164,11 +169,8 @@ public class UIManager : MonoBehaviour
             activeDialogueText.text = "";
         }
 
-        if (dorien)
-        {
-            ToggleDorienDialogue(false);
-            GameManager.Instance.SoundManager.StopSound();
-        }
+        GameManager.Instance.SoundManager.StopSound();
+        if (dorien) ToggleDorienDialogue(false);
         else ToggleNpcDialogue(false);
     }
 
@@ -222,4 +224,10 @@ public class UIManager : MonoBehaviour
 	{
         questText.text = text;
 	}
+
+    private void PlayRandomNPCSound()
+	{
+        int r = Random.Range(11, 17);
+        GameManager.Instance.SoundManager.PlaySound((SoundName)r);
+    }
 }

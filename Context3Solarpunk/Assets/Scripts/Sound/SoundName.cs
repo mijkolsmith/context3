@@ -13,5 +13,13 @@ public enum SoundName
     MENU_SELECT_02,
     MENU_CLOSE,
     MENU_OPEN,
-    TRANSFER_ITEM
+    TRANSFER_ITEM,
+
+    //Please keep these at slot 11-16 or change code in UiManager regarding NPC dialogue.
+    NPC_TALKING_1,
+    NPC_TALKING_2,
+    NPC_TALKING_3,
+    NPC_TALKING_4,
+    NPC_TALKING_5,
+    NPC_TALKING_6
 }
