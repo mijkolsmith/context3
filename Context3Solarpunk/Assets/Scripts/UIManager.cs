@@ -29,6 +29,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentYearText;
     [SerializeField] private TextMeshProUGUI currentYearAmountText;
 
+    [SerializeField] private Image timeIndicator;
+    [SerializeField] private Sprite[] timeIndicatorSprites;
+
     // Popup Windows
     [SerializeField] private PopupWindow[] popupWindows;
     [ReadOnly] public PopupWindowType popupWindowOpenType = PopupWindowType.None;
@@ -37,7 +40,6 @@ public class UIManager : MonoBehaviour
     private Dictionary<TextMeshProUGUI, float> fontSizes = new();
     private float fontSizeModifier = 1f;
 
-    private bool screenfaded = false;
     public bool blocking = true;
 #endregion
 
@@ -230,4 +232,9 @@ public class UIManager : MonoBehaviour
         int r = Random.Range(11, 17);
         GameManager.Instance.SoundManager.PlaySound((SoundName)r);
     }
+
+    public void ToggleTimeIndicator()
+	{
+        timeIndicator.sprite = (timeIndicator.sprite = timeIndicatorSprites[0]) ? timeIndicatorSprites[1] : timeIndicatorSprites[0];
+	}
 }
