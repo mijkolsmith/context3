@@ -36,7 +36,7 @@ public class SettingsPopupWindow : PopupWindow
 	public void SaveQuit()
 	{
 		GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_SELECT_02);
-		Debug.Log("no functionality yet");
+        Application.Quit();
 		//empty function
 	}
 }
