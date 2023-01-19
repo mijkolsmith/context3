@@ -19,7 +19,7 @@ public class SequenceManager : MonoBehaviour
 {
     [SerializeField] private bool timeTravelling = false;
 
-    [SerializeField] private int currentYear = 2082;
+    [SerializeField] private int currentYear = 2083;
 
     [SerializeField] private sequenceState currentSequenceState = sequenceState.notInSequence;
     [SerializeField] private GameObject blackoutSquareUI;
@@ -82,7 +82,7 @@ public class SequenceManager : MonoBehaviour
     [ContextMenu("Run travel sequence to the future")]
     public void TimeTravelToTheFuture()
     {
-        targetYear = 2082;
+        targetYear = 2083;
         GameManager.Instance.EnvironmentManager.InThePast = false;
     }
 
@@ -97,7 +97,7 @@ public class SequenceManager : MonoBehaviour
     [ContextMenu("Run travel sequence to the past")]
     public void TimeTravelToThePast()
     {
-        targetYear = 2022;
+        targetYear = 2023;
         GameManager.Instance.EnvironmentManager.InThePast = true;
     }
 
