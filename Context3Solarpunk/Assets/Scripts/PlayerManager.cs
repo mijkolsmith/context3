@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
 
     [Header("SpawnPosition"),SerializeField] private Transform spawnPosition;
-    [SerializeField] private PlayerModelScriptableObject playerAsset;
+    //[SerializeField] private PlayerModelScriptableObject playerAsset;
 
     [SerializeField, ReadOnly] private GameObject playerObject;
     [SerializeField, ReadOnly] private GameObject selectedHairStyle;
@@ -27,11 +27,14 @@ public class PlayerManager : MonoBehaviour
 
     public void SpawnPlayer()
     {
-        PlayerObject = playerAsset.isPantsCharacter ? Instantiate(pantsPlayerPrefab, spawnPosition) : Instantiate(skirtPlayerPrefab, spawnPosition);
+        bool isPantsBool = PlayerPrefs.GetInt("_isPantsCharacter") != 0;
+        Debug.Log(isPantsBool);
+        PlayerObject = isPantsBool ? Instantiate(pantsPlayerPrefab, spawnPosition) : Instantiate(skirtPlayerPrefab, spawnPosition);
+
         playerModel = PlayerObject.GetComponent<PlayerModel>();
         companionTransform = playerObject.GetComponent<PlayerControllerPointClick>().CompanionPositionGameObject.transform;
-        SetSkinColor(playerAsset.skinColorHex);
-        SetHair(playerAsset.hairIndex,playerAsset.hairColorHex);
+        SetSkinColor(PlayerPrefs.GetString("_skinColorHex"));
+        SetHair(PlayerPrefs.GetInt("_hairIndex"),PlayerPrefs.GetString("_hairColorHex"));
     }
     public void SetSkinColor(string hexColor)
     {
