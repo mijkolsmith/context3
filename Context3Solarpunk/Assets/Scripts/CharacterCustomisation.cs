@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using System.Xml.Serialization;
+using System.IO;
 
 public class CharacterCustomisation : MonoBehaviour
 {
@@ -105,14 +107,18 @@ public class CharacterCustomisation : MonoBehaviour
         SetHairColour(hairColorHex);
         SetSkinColorByHex(skinColorHex);
     }
-
     public void UpdateAsset()
     {
-        playerAsset.isPantsCharacter = isPantsCharacter;
-        playerAsset.skinColorHex = skinColorHex;
-        playerAsset.hairIndex = hairIndex;
-        playerAsset.hairColorHex = hairColorHex;
-        playerAsset.accessoryColorHex = accessoryColorHex;
+
+        int isPantsInt = isPantsCharacter ? 0 : 1;
+        PlayerPrefs.SetInt("_isPantsCharacter", isPantsInt);
+        PlayerPrefs.SetString("_skinColorHex", skinColorHex);
+        PlayerPrefs.SetInt("_hairIndex", hairIndex);
+        PlayerPrefs.SetString("_hairColorHex", hairColorHex);//.hairColorHex = hairColorHex;
+        PlayerPrefs.SetString("_accessoryColorHex", accessoryColorHex);// = accessoryColorHex;
+
     }
+
+
 
 }
