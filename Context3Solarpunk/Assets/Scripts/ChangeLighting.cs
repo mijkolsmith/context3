@@ -8,17 +8,8 @@ public class ChangeLighting : MonoBehaviour
 		lighting = GameManager.Instance.EnvironmentManager.GetCurrentEnvironment().lighting;
 		if (lighting?.Length > 1)
 		{
-			lighting[0].SetActive(false);
-			lighting[1].SetActive(true);
-		}
-	}
-
-	private void OnTriggerExit(Collider other)
-	{
-		if (lighting?.Length > 1)
-		{
-			lighting[0].SetActive(true);
-			lighting[1].SetActive(false);
+			lighting[0].SetActive(lighting[0].activeInHierarchy);
+			lighting[1].SetActive(lighting[1].activeInHierarchy);
 		}
 	}
 }
