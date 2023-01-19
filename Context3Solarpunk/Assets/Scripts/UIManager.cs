@@ -235,6 +235,6 @@ public class UIManager : MonoBehaviour
 
     public void ToggleTimeIndicator()
 	{
-        timeIndicator.sprite = (timeIndicator.sprite = timeIndicatorSprites[0]) ? timeIndicatorSprites[1] : timeIndicatorSprites[0];
+        timeIndicator.sprite = (timeIndicator.sprite == timeIndicatorSprites[0]) ? timeIndicatorSprites[1] : timeIndicatorSprites[0];
 	}
 }
