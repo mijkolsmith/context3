@@ -8,6 +8,7 @@ public class PlayerControllerPointClick : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private PlayerStates currentPlayerState = PlayerStates.Idle;
     [SerializeField] private LayerMask walkableLayer;
+    [SerializeField] private GameObject targetDestinationGameObjectPrefab;
     [SerializeField] private GameObject targetDestinationGameObject;
     [SerializeField] private float targetGameObjectDisappearDistance = 2f;
     [SerializeField, ReadOnly] private Quaternion newRotation;
@@ -58,6 +59,7 @@ public class PlayerControllerPointClick : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        targetDestinationGameObject = Instantiate(targetDestinationGameObjectPrefab);
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         Player = gameObject;
