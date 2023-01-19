@@ -5250,9 +5250,7 @@ Transform:
   m_Children:
   - {fileID: 6305481044130963364}
   - {fileID: 3065751951334630792}
-  - {fileID: 1675551653028724564}
-  - {fileID: 5425697091288310894}
-  - {fileID: 7693733174953057122}
+  - {fileID: 2895149747695604251}
   - {fileID: 1675551651591458085}
   - {fileID: 1675551653533255482}
   - {fileID: 1675551652086448660}
@@ -6083,7 +6081,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1675551652027728784}
+  m_Father: {fileID: 2895149747695604251}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1675551653028724565
@@ -7158,6 +7156,40 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!1 &3743406572916331401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2895149747695604251}
+  m_Layer: 0
+  m_Name: Lighting & PP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2895149747695604251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3743406572916331401}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1675551653028724564}
+  - {fileID: 5425697091288310894}
+  - {fileID: 7693733174953057122}
+  m_Father: {fileID: 1675551652027728784}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3775188327833830739
 GameObject:
   m_ObjectHideFlags: 0
@@ -7481,7 +7513,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7693733174953057122}
   m_Layer: 0
-  m_Name: ExteriorLightingHQ1
+  m_Name: ExteriorLightingPQ1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7500,7 +7532,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1250875507599304167}
-  m_Father: {fileID: 1675551652027728784}
+  m_Father: {fileID: 2895149747695604251}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5353182341541982013
@@ -7812,7 +7844,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5425697091288310894}
   m_Layer: 0
-  m_Name: InteriorLightingHQ1
+  m_Name: InteriorLightingPQ1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7837,7 +7869,7 @@ Transform:
   - {fileID: 2312487126260288878}
   - {fileID: 6758015721900586465}
   - {fileID: 9181615925293651958}
-  m_Father: {fileID: 1675551652027728784}
+  m_Father: {fileID: 2895149747695604251}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1675551651593520759

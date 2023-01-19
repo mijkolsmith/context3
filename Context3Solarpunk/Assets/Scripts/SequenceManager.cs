@@ -135,21 +135,21 @@ public class SequenceManager : MonoBehaviour
     {
         Image fadeImage = blackoutSquareUI.GetComponent<Image>();
 
-        // get the current color of the image
+        // Get the current color of the image
         Color currentColor = fadeImage.color;
 
-        // create a timer
+        // Create a timer
         float t = 0f;
 
-        // if fading in
+        // If fading in
         if (fadeIn)
         {
             GameManager.Instance.UiManager.TogglePopupWindow(PopupWindowType.BlackoutPanel);
 
-            // while the timer is less than the duration
+            // While the timer is less than the duration
             while (t < fadeDuration)
             {
-                // set the alpha value of the image based on the timer
+                // Set the alpha value of the image based on the timer
                 Color objectColor = new Color(currentColor.r, currentColor.g, currentColor.b, Mathf.Lerp(0f, 1f, t / fadeDuration));
 
                 GameManager.Instance.UiManager.CurrentYearAmountText.color = new Color(255, 255, 255, objectColor.a);
@@ -157,28 +157,31 @@ public class SequenceManager : MonoBehaviour
 
                 fadeImage.color = objectColor;
 
-                // increment the timer
+                // Increment the timer
                 t += Time.deltaTime;
 
-                // wait for the next frame
+                // Wait for the next frame
                 yield return null;
             }
 
-            // set the alpha value of the image & text to fully opaque
+            // Set the alpha value of the image & text to fully opaque
             fadeImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1f);
             GameManager.Instance.UiManager.CurrentYearAmountText.color = new Color(255, 255, 255, 1f);
             GameManager.Instance.UiManager.CurrentYearText.color = new Color(255, 255, 255, 1f);
-
+            
+            // Toggle the time indicator year count
+            GameManager.Instance.UiManager.ToggleTimeIndicator();
+            
             currentSequenceState = sequenceState.SequenceCenter;
             Sequence(environmentNumber);
         }
-        // if fading out
+        // If fading out
         else
         {
-            // while the timer is less than the duration
+            // While the timer is less than the duration
             while (t < fadeDuration)
             {
-                // set the alpha value of the image based on the timer
+                // Set the alpha value of the image based on the timer
                 Color objectColor = new Color(currentColor.r, currentColor.g, currentColor.b, Mathf.Lerp(1f, 0f, t / fadeDuration));
 
                 GameManager.Instance.UiManager.CurrentYearAmountText.color = new Color(255, 255, 255, objectColor.a);
@@ -186,20 +189,19 @@ public class SequenceManager : MonoBehaviour
 
                 fadeImage.color = objectColor;
 
-                // increment the timer
+                // Increment the timer
                 t += Time.deltaTime;
 
-                // wait for the next frame
+                // Wait for the next frame
                 yield return null;
             }
 
-            // set the alpha value of the image & text to fully transparent
+            // Set the alpha value of the image & text to fully transparent
             fadeImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0f);
             GameManager.Instance.UiManager.CurrentYearAmountText.color = new Color(255, 255, 255, 0);
             GameManager.Instance.UiManager.CurrentYearText.color = new Color(255, 255, 255, 0);
 
             GameManager.Instance.UiManager.TogglePopupWindow(PopupWindowType.BlackoutPanel);
-            GameManager.Instance.UiManager.ToggleTimeIndicator();
 
             if (startDelayedDialogue)
             {
