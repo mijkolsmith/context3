@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,4 +8,5 @@ public class Environment
     public bool foggy;
     public Material skyboxMaterial;
     public List<GameObject> objects;
+    public GameObject[] lighting;
 }

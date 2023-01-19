@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
-
 
 public class EnvironmentManager : MonoBehaviour
 {
@@ -45,6 +43,7 @@ public class EnvironmentManager : MonoBehaviour
 
     private void AdvanceScene()
     {
+        // TODO: Fix unnecessary for loop
         for (int i = 0; i < environments.Count; i++)
         {
             if (i == Progress)
@@ -65,4 +64,9 @@ public class EnvironmentManager : MonoBehaviour
             }
         }
     }
+
+    public Environment GetCurrentEnvironment()
+	{
+        return environments[Progress];
+	}
 }
