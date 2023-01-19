@@ -199,6 +199,7 @@ public class SequenceManager : MonoBehaviour
             GameManager.Instance.UiManager.CurrentYearText.color = new Color(255, 255, 255, 0);
 
             GameManager.Instance.UiManager.TogglePopupWindow(PopupWindowType.BlackoutPanel);
+            GameManager.Instance.UiManager.ToggleTimeIndicator();
 
             if (startDelayedDialogue)
             {
