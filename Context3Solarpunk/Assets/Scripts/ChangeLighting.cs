@@ -17,8 +17,8 @@ public class ChangeLighting : MonoBehaviour
 	{
 		if (lighting?.Length > 1)
 		{
-			lighting[0].SetActive(false);
-			lighting[1].SetActive(true);
+			lighting[0].SetActive(true);
+			lighting[1].SetActive(false);
 		}
 	}
 }
