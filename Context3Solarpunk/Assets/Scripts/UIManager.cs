@@ -97,7 +97,7 @@ public class UIManager : MonoBehaviour
     public void StartDorienDialogue(string dialogue)
     {
         StopAllCoroutines();
-        ToggleNpcDialogue(false);
+        if (currentNpcId > 0) ToggleNpcDialogue(false);
         ToggleDorienDialogue(true);
         StartCoroutine(TypeSentence(dialogue, true));
     }
