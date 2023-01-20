@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43409842, g: 0.28874508, b: 0.20640284, a: 1}
+  m_IndirectSpecularColor: {r: 0.43410525, g: 0.28875542, b: 0.20642224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1680,15 +1680,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5421717847055112874, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848508359513, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848793049192, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848812052672, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_Name
@@ -1696,7 +1696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848812052672, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848812052675, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_RootOrder
@@ -1744,7 +1744,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5421717848862916366, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8803325519240130635, guid: fe289365c71f47b4783f04fda3650c32, type: 3}
+      propertyPath: dialogue
+      value: Het lijkt wel met de dag erger te worden...|Ik kom het gebouw niet eens
+        meer in!*
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -6287,6 +6292,11 @@ PrefabInstance:
     - target: {fileID: 4943873241841839329, guid: 06ffe0028cfe4844d9b4fa5b5fc8ac56, type: 3}
       propertyPath: npcId
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943873241841839329, guid: 06ffe0028cfe4844d9b4fa5b5fc8ac56, type: 3}
+      propertyPath: dialogue
+      value: Jeetje wat een viezigheid...|Er is hier al heel lang niemand meer binnen
+        geweest.|Het is wel donker verderop...*
       objectReference: {fileID: 0}
     - target: {fileID: 5753342105409484357, guid: 06ffe0028cfe4844d9b4fa5b5fc8ac56, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11783,7 +11793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1223467905521563579, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
       propertyPath: dialogue
-      value: Die gloeilampen werken zo slecht..
+      value: Die gloeilampen werken zo slecht...*
       objectReference: {fileID: 0}
     - target: {fileID: 1675551652027728784, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
       propertyPath: m_RootOrder
@@ -11844,6 +11854,10 @@ PrefabInstance:
     - target: {fileID: 1995500627245165855, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
       propertyPath: m_LocalPosition.z
       value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872724341098724181, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
+      propertyPath: dialogue
+      value: Welkom bij het Arriva hoofdkantoor!*
       objectReference: {fileID: 0}
     - target: {fileID: 6626119422409742445, guid: f0e7b5537e4b7f3479974838188ba270, type: 3}
       propertyPath: m_Camera
@@ -13867,6 +13881,10 @@ PrefabInstance:
       propertyPath: npcId
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1735235876507417636, guid: 10d2df0ae77ee6e4983bab5bed5c8b15, type: 3}
+      propertyPath: dialogue
+      value: Ik heb alle planten al water gegeven vanochtend!*
+      objectReference: {fileID: 0}
     - target: {fileID: 5025796930093022458, guid: 10d2df0ae77ee6e4983bab5bed5c8b15, type: 3}
       propertyPath: m_Avatar
       value: 
@@ -14103,6 +14121,10 @@ PrefabInstance:
       propertyPath: npcId
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2143059611425890984, guid: 6b19961ac4d823641897be2bb9da8a4a, type: 3}
+      propertyPath: dialogue
+      value: Welkom bij het Arriva hoofdkantoor!*
+      objectReference: {fileID: 0}
     - target: {fileID: 2380327489213995284, guid: 6b19961ac4d823641897be2bb9da8a4a, type: 3}
       propertyPath: m_Camera
       value: 
@@ -14181,7 +14203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6710887010010184236, guid: 6b19961ac4d823641897be2bb9da8a4a, type: 3}
       propertyPath: dialogue
-      value: Oh, ik was vergeten dat ik vandaag vrij had..
+      value: Oh, ik was vergeten dat ik vandaag vrij had...*
       objectReference: {fileID: 0}
     - target: {fileID: 7031506944754072882, guid: 6b19961ac4d823641897be2bb9da8a4a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -14700,9 +14722,17 @@ PrefabInstance:
       propertyPath: npcId
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1947230709518531605, guid: 4e8961545023d6548bd76822368e2313, type: 3}
+      propertyPath: dialogue
+      value: Die gloeilampen werken zo slecht...*
+      objectReference: {fileID: 0}
     - target: {fileID: 4097333818698856047, guid: 4e8961545023d6548bd76822368e2313, type: 3}
       propertyPath: npcId
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097333818698856047, guid: 4e8961545023d6548bd76822368e2313, type: 3}
+      propertyPath: dialogue
+      value: Welkom bij het Arriva hoofdkantoor!*
       objectReference: {fileID: 0}
     - target: {fileID: 4768520241745435688, guid: 4e8961545023d6548bd76822368e2313, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15187,6 +15217,11 @@ PrefabInstance:
     - target: {fileID: 588194126177753561, guid: 3ca7039ca2ac0a046be113ee2d29473b, type: 3}
       propertyPath: npcId
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 588194126177753561, guid: 3ca7039ca2ac0a046be113ee2d29473b, type: 3}
+      propertyPath: dialogue
+      value: Wat een rommel!|Zou  jij het kunnen opruimen?|Ik zou me er beter door
+        voelen!*
       objectReference: {fileID: 0}
     - target: {fileID: 5640729830030822751, guid: 3ca7039ca2ac0a046be113ee2d29473b, type: 3}
       propertyPath: m_LocalPosition.x

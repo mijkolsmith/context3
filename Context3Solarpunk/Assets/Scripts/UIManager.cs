@@ -172,6 +172,7 @@ public class UIManager : MonoBehaviour
         }
 
         GameManager.Instance.SoundManager.StopSound();
+
         if (dorien) ToggleDorienDialogue(false);
         else ToggleNpcDialogue(false);
     }
