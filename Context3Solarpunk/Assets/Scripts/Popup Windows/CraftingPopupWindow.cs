@@ -8,7 +8,8 @@ public class CraftingPopupWindow : PopupWindow
 {
     [field: SerializeField] protected override GameObject PopupWindowObject { get; set; }
     [field: SerializeField] protected override GameObject EndDragPanel { get; set; }
-    public override PopupWindowType GetPopupWindowType() => PopupWindowType.Crafting;
+
+	public override PopupWindowType GetPopupWindowType() => PopupWindowType.Crafting;
     public override RectTransform GetEndDragPanelRectTransform() => EndDragPanel.transform as RectTransform;
 
     [SerializeField, ReadOnly] private List<InventoryUiElement> inventoryUiElements = new();
@@ -23,6 +24,8 @@ public class CraftingPopupWindow : PopupWindow
     [SerializeField] private List<CraftedObject> craftedObjects = new();
     [SerializeField] private Transform gridLayoutGroup;
     [SerializeField] private Animator animator;
+
+    public ResourceType ResourceToCraft { get => resourceToCraft; private set => resourceToCraft = value; }
 
     /// <summary>
     /// The Toggle method gets called from the PopupWindow Class.
@@ -52,15 +55,15 @@ public class CraftingPopupWindow : PopupWindow
             if (!inventoryUiElements.Any()) inventoryUiElements = GetComponentsInChildren<InventoryUiElement>(true).ToList();
             UpdateUI();
 
-            resourceToCraft = GameManager.Instance.QuestManager.GetResourceTypeFromTask();
-            if (resourceToCraft == ResourceType.None) return;
+            ResourceToCraft = GameManager.Instance.QuestManager.GetResourceTypeFromTask();
+            if (ResourceToCraft == ResourceType.None) return;
 
             // Activate the correct visual hologram
-            toCraftHologram = toCraftHolograms.Where(x => x.GetResourceType() == resourceToCraft).FirstOrDefault();
+            toCraftHologram = toCraftHolograms.Where(x => x.GetResourceType() == ResourceToCraft).FirstOrDefault();
             if (toCraftHologram != null) toCraftHologram.gameObject.SetActive(true);
 
             // Dynamically add the resources to fill
-            Dictionary<ResourceType, int> craftingRecipe = GameManager.Instance.CraftingManager.GetCraftingRecipe(resourceToCraft);
+            Dictionary<ResourceType, int> craftingRecipe = GameManager.Instance.CraftingManager.GetCraftingRecipe(ResourceToCraft);
             foreach (var resourceType in craftingRecipe.Keys.ToList())
             {
                 for (int i = 0; i < craftingRecipe[resourceType]; i++)
@@ -152,7 +155,7 @@ public class CraftingPopupWindow : PopupWindow
             if (craftingUiElements.Where(x => x.activated == false).ToList().Count == 0)
             {
                 // Set the crafted object to active
-                craftedObjects.Where(x => x.GetResourceType() == resourceToCraft).FirstOrDefault().ActivateHologram();
+                craftedObjects.Where(x => x.GetResourceType() == ResourceToCraft).FirstOrDefault().ActivateHologram();
 
                 // Reset the crafting UI for the next craft
                 ClearCraftingUiElements();
@@ -162,12 +165,12 @@ public class CraftingPopupWindow : PopupWindow
 
                 // Craft the resourceToCraft, start an animation, play a sound
                 GameManager.Instance.UiManager.TogglePopupWindow(PopupWindowType.Crafting);
-                GameManager.Instance.CraftingManager.Craft(resourceToCraft);
+                GameManager.Instance.CraftingManager.Craft(ResourceToCraft);
                 GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.CRAFTING_MACHINE);
                 StartAnimation();
 
                 // Reset the resourceToCraft for the next craft
-                resourceToCraft = ResourceType.None;
+                ResourceToCraft = ResourceType.None;
             }
         }
     }
@@ -177,16 +180,16 @@ public class CraftingPopupWindow : PopupWindow
     /// </summary>
     public void StartAnimation()
     {
-        craftingTextAnimations.Add(Instantiate(craftedTextAnimationPrefabs.Where(x => x.GetComponent<ResourceTextAnimation>().GetResourceType() == resourceToCraft).FirstOrDefault(), EndDragPanel.transform.position, Quaternion.identity, EndDragPanel.transform).GetComponent<ResourceTextAnimation>());
+        craftingTextAnimations.Add(Instantiate(craftedTextAnimationPrefabs.Where(x => x.GetComponent<ResourceTextAnimation>().GetResourceType() == ResourceToCraft).FirstOrDefault(), EndDragPanel.transform.position, Quaternion.identity, EndDragPanel.transform).GetComponent<ResourceTextAnimation>());
         animator.Play("Base Layer.Craft", 0, 0);
     }
 
     /// <summary>
-    /// Set the resourcetocraft (DEPRECATED? needs testing)
+    /// Set the resourcetocraft
     /// </summary>
     /// <param name="resourceType"></param>
     public void SetResourceToCraft(ResourceType resourceType)
 	{
-        resourceToCraft = resourceType;
+        ResourceToCraft = resourceType;
 	}
 }

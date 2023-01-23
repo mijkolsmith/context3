@@ -7,8 +7,10 @@ public class QuestManager : MonoBehaviour
     [HideInInspector] public Quest currentQuest;
     [SerializeField] private PlayerControllerPointClick player;
     public List<Quest> quests = new List<Quest>();
+    private ResourceType resourceToCraft = ResourceType.None;
 
     public PlayerControllerPointClick Player { get => player; set => player = value; }
+    public ResourceType ResourceToCraft { get => resourceToCraft; private set => resourceToCraft = value; }
 
     /// <summary>
     /// Start quest 0 in Start method
@@ -171,12 +173,14 @@ public class QuestManager : MonoBehaviour
                     && task.resourceToGet != ResourceType.None)
                 {
                     Debug.Log("Got resourcetoget!");
-                    return task.resourceToGet;
+                    resourceToCraft = task.resourceToGet;
+                    break;
                 }
             }
         }
+
         Debug.Log("Didn't get resourcetoget!");
-        return ResourceType.None;
+        return resourceToCraft;
     }
 
     /// <summary>

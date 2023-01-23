@@ -16,6 +16,7 @@ public class RecycleBinPopupWindow : PopupWindow
     [SerializeField] private List<RecycleBinUiElement> recycleBinUiElements = new();
 
     [SerializeField] private GameObject draggableObjectPrefab;
+    [SerializeField] private ResourceType resourceToCraft;
 
 
     /// <summary>
@@ -38,16 +39,21 @@ public class RecycleBinPopupWindow : PopupWindow
             GameManager.Instance.UiManager.popupWindowOpenType = PopupWindowType.RecycleBin;
             GameManager.Instance.SoundManager.PlayOneShotSound(SoundName.MENU_OPEN);
 
-            // Dynamically add recycleBinUiElements
-            // TODO: Make this a dynamic system
-            Dictionary<ResourceType, int> recycleBinContents = new()
-            {
-                { ResourceType.Bottle, 1 },
-                { ResourceType.Can, 3 },
-                { ResourceType.OldPlastic, 1 },
-                { ResourceType.Leaf, 0 },
-            };
+            // Dynamically add recycle bin contents
+            resourceToCraft = GameManager.Instance.QuestManager.ResourceToCraft;
+            bool canCraft;
+            Dictionary<ResourceType, int> resourcesToGet = GameManager.Instance.CraftingManager.CanCraft(resourceToCraft, out canCraft);
 
+            Dictionary<ResourceType, int> recycleBinContents = new();
+            if (!canCraft)
+			{
+                foreach (ResourceType resource in resourcesToGet.Keys.Where(x => x == ResourceType.Bottle || x == ResourceType.Can || x == ResourceType.OldPlastic || x == ResourceType.Leaf))
+				{
+                    recycleBinContents.Add(resource, resourcesToGet[resource]);
+                }
+			}
+
+            // Enable Ui Elements depending on contents
             foreach (var resourceType in recycleBinContents.Keys.ToList())
             {
                 for (int i = 0; i < recycleBinContents[resourceType]; i++)

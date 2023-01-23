@@ -93,7 +93,7 @@ public class CraftingManager : MonoBehaviour
     /// </summary>
     /// <param name="resourceType"></param>
     /// <param name="canCraft"></param>
-    /// <returns>Amount of resources in the Crafting Recipe</returns>
+    /// <returns>Amount of resources missing from the Crafting Recipe</returns>
     public Dictionary<ResourceType, int> CanCraft(ResourceType resourceType, out bool canCraft)
     {
         Dictionary<ResourceType, int> resourcesNeeded = craftingRecipes[resourceType];
@@ -102,11 +102,10 @@ public class CraftingManager : MonoBehaviour
         {
             resourcesCount.Add(resourceNeeded, 0);
         }
-        List<ResourceType> tempResources = new(resources);
 
         foreach (ResourceType resource in resourcesNeeded.Keys)
         {
-            resourcesCount[resource] = tempResources.Where(x => x == resource).Count();
+            resourcesCount[resource] = resources.Where(x => x == resource).Count();
         }
 
         foreach (ResourceType resource in resourcesNeeded.Keys)
@@ -114,7 +113,7 @@ public class CraftingManager : MonoBehaviour
             if (resourcesCount[resource] < resourcesNeeded[resource])
             {
                 canCraft = false;
-                return resourcesCount;
+                resourcesCount[resource] = resourcesNeeded[resource] - resourcesCount[resource];
             }
         }
         canCraft = true;
