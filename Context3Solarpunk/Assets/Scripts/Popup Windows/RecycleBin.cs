@@ -5,7 +5,6 @@ public class RecycleBin : MonoBehaviour, IInteractable
 {
 	[SerializeField, ReadOnly] private Outline objectOutline;
 	private bool highlighting = false;
-	private float recycleBinOpenDelay = 10f;
 
 	/// <summary>
 	/// Assign Outline component in the start method.
@@ -20,7 +19,6 @@ public class RecycleBin : MonoBehaviour, IInteractable
 	/// </summary>
 	private void Update()
 	{
-		if (recycleBinOpenDelay > 0) recycleBinOpenDelay -= Time.deltaTime;
 		if (!highlighting)
 		{
 			objectOutline.OutlineWidth = 0f;
@@ -33,11 +31,8 @@ public class RecycleBin : MonoBehaviour, IInteractable
 	/// </summary>
 	public void Interact()
 	{
-		if (recycleBinOpenDelay <= 0)
-		{
-			GameManager.Instance.UiManager.TogglePopupWindow(PopupWindowType.RecycleBin);
-			GameManager.Instance.QuestManager.AdvanceTasks(this);
-		}
+		GameManager.Instance.UiManager.TogglePopupWindow(PopupWindowType.RecycleBin);
+		GameManager.Instance.QuestManager.AdvanceTasks(this);
 	}
 
 	/// <summary>
@@ -46,11 +41,8 @@ public class RecycleBin : MonoBehaviour, IInteractable
 	/// <param name="color"></param>
 	public void Highlight(Color color)
 	{
-		if (recycleBinOpenDelay <= 0)
-		{
-			objectOutline.OutlineWidth = 5f;
-			objectOutline.OutlineColor = color;
-			highlighting = true;
-		}
+		objectOutline.OutlineWidth = 5f;
+		objectOutline.OutlineColor = color;
+		highlighting = true;
 	}
 }

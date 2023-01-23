@@ -1,8 +1,7 @@
-using UnityEngine;
+using NaughtyAttributes;
 using System.Collections.Generic;
 using System.Linq;
-using NaughtyAttributes;
-using UnityEngine.UI;
+using UnityEngine;
 
 public class CraftingPopupWindow : PopupWindow
 {
@@ -183,13 +182,4 @@ public class CraftingPopupWindow : PopupWindow
         craftingTextAnimations.Add(Instantiate(craftedTextAnimationPrefabs.Where(x => x.GetComponent<ResourceTextAnimation>().GetResourceType() == ResourceToCraft).FirstOrDefault(), EndDragPanel.transform.position, Quaternion.identity, EndDragPanel.transform).GetComponent<ResourceTextAnimation>());
         animator.Play("Base Layer.Craft", 0, 0);
     }
-
-    /// <summary>
-    /// Set the resourcetocraft
-    /// </summary>
-    /// <param name="resourceType"></param>
-    public void SetResourceToCraft(ResourceType resourceType)
-	{
-        ResourceToCraft = resourceType;
-	}
 }

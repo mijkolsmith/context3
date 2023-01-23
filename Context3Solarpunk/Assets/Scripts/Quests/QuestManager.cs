@@ -170,16 +170,15 @@ public class QuestManager : MonoBehaviour
             foreach (Task task in currentQuest.tasks) //Check for all tasks in quest
             {
                 if (!task.success 
-                    && task.resourceToGet != ResourceType.None)
+                    && task.resourceToCraft != ResourceType.None)
                 {
-                    Debug.Log("Got resourcetoget!");
-                    resourceToCraft = task.resourceToGet;
+                    resourceToCraft = task.resourceToCraft;
                     break;
                 }
             }
         }
 
-        Debug.Log("Didn't get resourcetoget!");
+        Debug.Log("Resource To Craft: " + resourceToCraft);
         return resourceToCraft;
     }
 
@@ -197,6 +196,7 @@ public class QuestManager : MonoBehaviour
                     && task.resourceToGet == resourceType
                     && !task.success)
                 {
+                    if (resourceType == resourceToCraft) resourceToCraft = ResourceType.None;
                     task.success = true;
                     task.succesEvent?.Invoke();
                     break;
