@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour
     {
         bool isPantsBool = PlayerPrefs.GetInt("_isPantsCharacter") != 0;
         Debug.Log(isPantsBool);
-        PlayerObject = isPantsBool ? Instantiate(pantsPlayerPrefab, spawnPosition) : Instantiate(skirtPlayerPrefab, spawnPosition);
+        PlayerObject = isPantsBool ? Instantiate(skirtPlayerPrefab, spawnPosition) : Instantiate(pantsPlayerPrefab, spawnPosition);
 
         playerModel = PlayerObject.GetComponent<PlayerModel>();
         companionTransform = playerObject.GetComponent<PlayerControllerPointClick>().CompanionPositionGameObject.transform;
