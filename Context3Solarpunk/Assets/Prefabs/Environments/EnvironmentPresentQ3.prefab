@@ -27628,7 +27628,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7120302041426702315, guid: ec04888ed7661d140ba601cbf1bf1380, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7120302041426702315, guid: ec04888ed7661d140ba601cbf1bf1380, type: 3}
       propertyPath: m_LocalPosition.y
@@ -27668,11 +27668,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7609874284517422415, guid: ec04888ed7661d140ba601cbf1bf1380, type: 3}
       propertyPath: npcId
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7609874284517422415, guid: ec04888ed7661d140ba601cbf1bf1380, type: 3}
       propertyPath: dialogue
-      value: Wat een rommel! Misschien kan jij het opruimen?
+      value: Oh, ik was vergeten dat ik vandaag vrij had...*
       objectReference: {fileID: 0}
     - target: {fileID: 7609874284517422417, guid: ec04888ed7661d140ba601cbf1bf1380, type: 3}
       propertyPath: m_Name
@@ -29503,11 +29503,11 @@ PrefabInstance:
     - target: {fileID: 3760585059141678481, guid: ec04888ed7661d140ba601cbf1bf1380, type: 3}
       propertyPath: m_Avatar
       value: 
-      objectReference: {fileID: 9000000, guid: 64c5427617f41084eb401073fac060bc, type: 3}
+      objectReference: {fileID: 9000000, guid: 4dbc1be986a9b774f849eb3956273775, type: 3}
     - target: {fileID: 3760585059141678481, guid: ec04888ed7661d140ba601cbf1bf1380, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 52e78c7088143b445844a0c4fa92c656, type: 2}
+      objectReference: {fileID: 9100000, guid: f3a0271026068e246b24eb16085a618c, type: 2}
     - target: {fileID: 7120302041426702315, guid: ec04888ed7661d140ba601cbf1bf1380, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -29554,11 +29554,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7609874284517422415, guid: ec04888ed7661d140ba601cbf1bf1380, type: 3}
       propertyPath: npcId
-      value: 2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7609874284517422415, guid: ec04888ed7661d140ba601cbf1bf1380, type: 3}
       propertyPath: dialogue
-      value: Welkom bij het Arriva hoofdkantoor!
+      value: Welkom bij het Arriva hoofdkantoor!*
       objectReference: {fileID: 0}
     - target: {fileID: 7609874284517422417, guid: ec04888ed7661d140ba601cbf1bf1380, type: 3}
       propertyPath: m_Name
@@ -29827,6 +29827,34 @@ PrefabInstance:
     - target: {fileID: 1118506557210840833, guid: c96f08703b35f404292c476efd0c310f, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065022326386525471, guid: c96f08703b35f404292c476efd0c310f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -584.99994
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065022326386525471, guid: c96f08703b35f404292c476efd0c310f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 740.4585
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065022326386525471, guid: c96f08703b35f404292c476efd0c310f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065022326386525471, guid: c96f08703b35f404292c476efd0c310f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8822951
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065022326386525471, guid: c96f08703b35f404292c476efd0c310f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065022326386525471, guid: c96f08703b35f404292c476efd0c310f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.47069687
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065022326386525471, guid: c96f08703b35f404292c476efd0c310f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 56.159
       objectReference: {fileID: 0}
     - target: {fileID: 3525267458827657530, guid: c96f08703b35f404292c476efd0c310f, type: 3}
       propertyPath: m_Layer

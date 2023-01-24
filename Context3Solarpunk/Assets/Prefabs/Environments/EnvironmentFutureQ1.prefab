@@ -51842,7 +51842,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4812738216077846066
 Transform:
   m_ObjectHideFlags: 0
@@ -51884,7 +51884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4812738216093454547
 Transform:
   m_ObjectHideFlags: 0
@@ -52222,7 +52222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4812738216989147410
 Transform:
   m_ObjectHideFlags: 0
@@ -104459,8 +104459,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7609874284517422415, guid: ec04888ed7661d140ba601cbf1bf1380, type: 3}
       propertyPath: dialogue
-      value: Het lijkt wel met de dag erger te worden... Ik kom het gebouw nieteens
-        meer in
+      value: Het lijkt wel met de dag erger te worden...|Ik kom het gebouw niet eens
+        meer in!*
       objectReference: {fileID: 0}
     - target: {fileID: 7609874284517422417, guid: ec04888ed7661d140ba601cbf1bf1380, type: 3}
       propertyPath: m_Name
@@ -105862,6 +105862,34 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8403c4b35cba9254c936f78696586b31, type: 2}
+    - target: {fileID: 2065022326386525471, guid: c96f08703b35f404292c476efd0c310f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -584.99994
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065022326386525471, guid: c96f08703b35f404292c476efd0c310f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 740.4585
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065022326386525471, guid: c96f08703b35f404292c476efd0c310f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065022326386525471, guid: c96f08703b35f404292c476efd0c310f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8822951
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065022326386525471, guid: c96f08703b35f404292c476efd0c310f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065022326386525471, guid: c96f08703b35f404292c476efd0c310f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.47069687
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065022326386525471, guid: c96f08703b35f404292c476efd0c310f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 56.159
+      objectReference: {fileID: 0}
     - target: {fileID: 2141274069520367676, guid: c96f08703b35f404292c476efd0c310f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
