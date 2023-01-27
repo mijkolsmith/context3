@@ -23,10 +23,7 @@ public class SequenceManager : MonoBehaviour
 
     [SerializeField] private sequenceState currentSequenceState = sequenceState.notInSequence;
     [SerializeField] private GameObject blackoutSquareUI;
-    [SerializeField] private float transitionSpeed = 0.0025f;
-    [SerializeField] private float timeTravelSpeed = 15f;
 
-    [SerializeField] private float countDuration = 2.5f;
     [SerializeField] private float fadeDuration = 1.5f;
 
     //delayed dialogue
@@ -37,11 +34,7 @@ public class SequenceManager : MonoBehaviour
 
     private bool advanced = false;
 
-    private float fadeSpeed = 5f;
-
     [SerializeField, ReadOnly] private int targetYear;
-
-    private float t; //a timer
 
     /// <summary>
     /// Preset method that can be executed in the inspector to go to any year with param

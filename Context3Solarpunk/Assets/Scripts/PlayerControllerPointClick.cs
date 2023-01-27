@@ -6,7 +6,6 @@ public class PlayerControllerPointClick : MonoBehaviour
 {
     #region Variables
     [Header("Movement")]
-    [SerializeField] private PlayerStates currentPlayerState = PlayerStates.Idle;
     [SerializeField] private LayerMask walkableLayer;
     [SerializeField] private GameObject targetDestinationGameObjectPrefab;
     [SerializeField] private GameObject targetDestinationGameObject;
@@ -95,7 +94,6 @@ public class PlayerControllerPointClick : MonoBehaviour
 
             if (Vector3.Distance(transform.position, targetDestinationGameObject.transform.position) > .2f)
             {
-                currentPlayerState = PlayerStates.Walking;
                 anim.SetBool("isWalking", true);
                 transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * rotationSpeed);
             }
@@ -137,7 +135,6 @@ public class PlayerControllerPointClick : MonoBehaviour
         if (Vector3.Distance(gameObject.transform.position, targetDestinationGameObject.transform.position) < targetGameObjectDisappearDistance)
         {
             targetDestinationGameObject.SetActive(false);
-            currentPlayerState = PlayerStates.Idle;
             anim.SetBool("isWalking", false);
         }
         else
@@ -151,7 +148,6 @@ public class PlayerControllerPointClick : MonoBehaviour
     /// </summary>
     private void CancelMovement()
     {
-        currentPlayerState = PlayerStates.Idle;
         anim.SetBool("isWalking", false);
         targetDestinationGameObject.transform.position = transform.position;
         agent.SetDestination(transform.position);
